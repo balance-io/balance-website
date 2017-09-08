@@ -5,7 +5,6 @@ import { globalStyles } from '../styles';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { responsive } from '../styles';
 
 import '../assets/css/font-faces.css';
 import '../assets/css/main.css';
@@ -17,18 +16,17 @@ const SWrapper = styled.div`
   width: 100%;
   max-width: 1028px;
   margin: 0 auto;
+  padding: 0 20px;
 `;
 
 const SContent = styled.div`
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
-  @media screen and (${responsive.sm.max}) {
-    padding: 20px;
-  }
+  padding: 12px 0;
 `;
 
-const TemplateWrapper = ({ children, data }) => (
+const TemplateWrapper = ({ children, location, data }) => (
   <SWrapper>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -37,14 +35,17 @@ const TemplateWrapper = ({ children, data }) => (
         { name: 'keywords', content: 'sample, something' }
       ]}
     />
-    <Header />
+    <Header pathname={location.pathname} />
     <SContent>{children()}</SContent>
-    <Footer />
+    <Footer pathname={location.pathname} />
   </SWrapper>
 );
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export const query = graphql`

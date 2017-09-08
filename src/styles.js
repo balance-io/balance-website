@@ -2,13 +2,14 @@ export const colors = {
   white: '255, 255, 255',
   black: '0, 0, 0',
   dark: '51, 51, 51',
-  grey: '221, 221, 221',
+  grey: '187, 187, 187',
   lightGrey: '241, 240, 250',
   darkGrey: '128, 128, 128',
   blue: '97, 218, 251',
   lightBlue: '197, 242, 255',
   gold: '246, 203, 71',
   green: '11, 176, 113',
+  purple: '50, 50, 93',
   lightGreen: '10, 255, 162',
   red: '221, 69, 65'
 };
@@ -63,6 +64,11 @@ export const globalStyles = `
     padding: 0;
   }
 
+  #___gatsby, div[data-reactroot] {
+    height: 100%;
+    width: 100%;
+  }
+
   @media screen and (${responsive.sm.max}) {
     html, body {
   		position: relative;
@@ -108,6 +114,7 @@ export const globalStyles = `
   a {
     text-decoration: none;
     color: inherit;
+    outline: none;
   }
 
   ul, li {
