@@ -1,98 +1,6 @@
 /* universal styles */
-
-@font-face {
-	font-family:'FF Mark Pro';
-	src: url('/assets/fonts/MarkPro-Book.eot');
-	src: url('/assets/fonts/MarkPro-Book.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/MarkPro-Book.woff2') format('woff2'),
-		url('/assets/fonts/MarkPro-Book.woff') format('woff'),
-		url('/assets/fonts/MarkPro-Book.svg#MarkPro-Book') format('svg');
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-@font-face {
-	font-family:'FF Mark Pro';
-	src: url('/assets/fonts/MarkPro-Medium.eot');
-	src: url('/assets/fonts/MarkPro-Medium.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/MarkPro-Medium.woff2') format('woff2'),
-		url('/assets/fonts/MarkPro-Medium.woff') format('woff'),
-		url('/assets/fonts/MarkPro-Medium.svg#MarkPro-Medium') format('svg');
-	font-weight: 500;
-	font-style: normal;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-@font-face {
-	font-family:'FF Mark Pro';
-	src: url('/assets/fonts/MarkPro-Bold.eot');
-	src: url('/assets/fonts/MarkPro-Bold.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/MarkPro-Bold.woff2') format('woff2'),
-		url('/assets/fonts/MarkPro-Bold.woff') format('woff'),
-		url('/assets/fonts/MarkPro-Bold.svg#MarkPro-Bold') format('svg');
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-body {
-	padding: 0;
-	margin: 0;
-	font-family: 'FF Mark Pro', "Helvetica Neue", Arial, Helvetica, sans-serif;
-	font-weight: 400;
-	font-size: 16px;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
-}
-
-ul, li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-a, p, h1, h2, h3, h4, h5, h6 {
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
-}
-
-a {
-	color: inherit;
-}
-
-/*::selection {
-	background: #0BB071;
-	color: #fff;
-}*/
-
-nav {
-	position: absolute;
-	top: 12px;
-	right: 0;
-	left: 0;
-	height: 43px;
-	margin: 0 auto;
-	padding: 0 20px;
-	max-width: 1028px;
-	z-index: 1;
-	-webkit-user-select: none;
-}
-
 .nav-logo {
-	display: block;
-	float: left;
-	width: 83px;
-	height: 23px;
-	mask-image: url(/assets/images/logo.svg) center no-repeat;
-	-webkit-mask: url(/assets/images/logo.svg) center no-repeat;
-	background-color: #F1F0FA;
+
 }
 
 .nav-links {
@@ -289,7 +197,6 @@ footer p {
 		height: 23px;
 		mask-image: url(/assets/images/mobile-logo.svg) center no-repeat;
 		-webkit-mask: url(/assets/images/mobile-logo.svg) center no-repeat;
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
 	.mobile-nav-toggle {
@@ -305,7 +212,6 @@ footer p {
 		cursor: pointer;
 		-webkit-transition: .24s;
 		transform: scale(1);
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
 	.mobile-nav-toggle.nav-reveal {
@@ -332,7 +238,6 @@ footer p {
 		font-size: 1.125em;
 		font-weight: 500;
 		color: #333;
-		-webkit-user-select: none;
 		will-change: transform,opacity;
 		transition-property: transform,opacity;
 		transform: rotate3d(1,1,0,-20deg);
@@ -362,7 +267,6 @@ footer p {
 		-webkit-transition: .24s;
 		transform: rotate(-20deg);
 		cursor: pointer;
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
 	.mobile-nav-close.nav-reveal {
@@ -388,7 +292,6 @@ footer p {
 		padding: 24px 0 26px 48px;
 		opacity: 0;
 		-webkit-transition: .1s ease;
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
 		-webkit-user-drag: none;
 	}
 
@@ -454,49 +357,6 @@ footer p {
 
 
 /* general */
-@font-face {
-	font-family:'FreightText';
-	src: url('/assets/fonts/FreightText Pro Book.eot');
-	src: url('/assets/fonts/FreightText Pro Book.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/FreightText Pro Book.woff2') format('woff2'),
-		url('/assets/fonts/FreightText Pro Book.woff') format('woff'),
-		url('/assets/fonts/FreightText Pro Book.svg#FreightText Pro Book') format('svg');
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-@font-face {
-	font-family:'FreightText';
-	src: url('/assets/fonts/FreightText Pro Book Italic.eot');
-	src: url('/assets/fonts/FreightText Pro Book Italic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/FreightText Pro Book Italic.woff2') format('woff2'),
-		url('/assets/fonts/FreightText Pro Book Italic.woff') format('woff'),
-		url('/assets/fonts/FreightText Pro Book Italic.svg#FreightText Pro Book Italic') format('svg');
-	font-weight: 400;
-	font-style: italic;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-@font-face {
-	font-family:'FreightText';
-	src: url('/assets/fonts/FreightText Pro Bold.eot');
-	src: url('/assets/fonts/FreightText Pro Bold.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/FreightText Pro Bold.woff2') format('woff2'),
-		url('/assets/fonts/FreightText Pro Bold.woff') format('woff'),
-		url('/assets/fonts/FreightText Pro Bold.svg#FreightText Pro Bold') format('svg');
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	unicode-range: U+0020-00FE;
-}
-
-#top-section {
-	-webkit-user-select: none;
-}
-
 nav a {
 	color: #0BB071;
 	font-weight: 400;
@@ -580,7 +440,6 @@ footer a {
 	cursor: pointer;
 	-webkit-transition: .38s cubic-bezier(0.19, 1, 0.22, 1);
 	overflow: hidden;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #blog-directory .blog-post-card:first-child {

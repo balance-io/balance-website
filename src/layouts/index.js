@@ -4,26 +4,32 @@ import styled, { injectGlobal } from 'styled-components';
 import { globalStyles } from '../styles';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { responsive } from '../styles';
 
-import '../css/main.css';
+import '../assets/css/font-faces.css';
+import '../assets/css/main.css';
 
 // eslint-disable-next-line
 injectGlobal`${globalStyles}`;
 
-const StyledWrapper = styled.div`
+const SWrapper = styled.div`
   width: 100%;
-  max-width: 1000px;
+  max-width: 1028px;
   margin: 0 auto;
 `;
 
-const StyledContent = styled.div`
+const SContent = styled.div`
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
+  @media screen and (${responsive.sm.max}) {
+    padding: 20px;
+  }
 `;
 
 const TemplateWrapper = ({ children, data }) => (
-  <StyledWrapper>
+  <SWrapper>
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
@@ -32,8 +38,9 @@ const TemplateWrapper = ({ children, data }) => (
       ]}
     />
     <Header />
-    <StyledContent>{children()}</StyledContent>
-  </StyledWrapper>
+    <SContent>{children()}</SContent>
+    <Footer />
+  </SWrapper>
 );
 
 TemplateWrapper.propTypes = {

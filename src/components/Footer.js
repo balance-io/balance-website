@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, responsive } from '.../styles';
+import { colors, responsive } from '../styles';
 
-const StyledFooter = styled.footer`
+const SFooter = styled.footer`
   & a {
     color: rgba(${colors.black}, 0.8);
   }
@@ -11,9 +11,9 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const StyledFooterLinks = styled.ul`float: left;`;
+const SFooterLinks = styled.ul`float: left;`;
 
-const StyledCopyright = styled.p`
+const SCopyright = styled.p`
   @media screen and (${responsive.md.max}) {
     & span {
       display: none;
@@ -22,17 +22,17 @@ const StyledCopyright = styled.p`
 `;
 
 const Footer = () => (
-  <StyledFooter>
-    <StyledFooterLinks>
+  <SFooter>
+    <SFooterLinks>
       <a href="">Press</a>
       <a href="./privacy">Privacy</a>
       <a href="./terms">Terms</a>
-    </StyledFooterLinks>
+    </SFooterLinks>
 
-    <StyledCopyright>
+    <SCopyright>
       © 2017<span> Balanced Software Inc.</span>
-    </StyledCopyright>
-  </StyledFooter>
+    </SCopyright>
+  </SFooter>
 );
 
 export default Footer;
