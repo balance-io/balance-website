@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import { colors, transitions, responsive } from '../styles';
-import { ellipseText, getReadingTime, getTimeagoString } from '../utils/helpers';
+import { ellipseText, getTimeagoString } from '../utils/helpers';
 
 const dividerColors = ['#A539BD', '#9251AC', '#32325D', '#3079C0', '#217AB7', '#00AEA5', '#517299', '#54606C'];
 
@@ -26,7 +26,7 @@ const SDivider = styled.div`
   }
 `;
 
-const SPostCards = styled(Link)`
+const SPostCards = styled.div`
   display: block;
   box-sizing: border-box;
   position: relative;
@@ -102,18 +102,24 @@ const IndexPage = ({ data, errors }) => {
   return (
     <div>
       {posts.map((post, idx) => (
-        <SPostCards key={post.node.id} i={idx} to={post.node.slug}>
-          <SDivider i={idx}>
-            <div />
-          </SDivider>
-          <SPostInfo i={idx}>
-            {`${getTimeagoString(post.node.date, true)}  •  ${getReadingTime(post.node.body.body)} min read`}
-          </SPostInfo>
-          <SPostTitle>{post.node.title.title}</SPostTitle>
-          <SPostSummary>
-            {idx > 0 ? ellipseText(post.node.body.body, 117) : ellipseText(post.node.body.body, 237)}
-          </SPostSummary>
-        </SPostCards>
+        <Link key={post.node.id} to={post.node.slug}>
+          <SPostCards i={idx}>
+            <SDivider i={idx}>
+              <div />
+            </SDivider>
+            <SPostInfo i={idx}>
+              {`${getTimeagoString(post.node.date, true)}  •  ${post.node.body.content.timeToRead} min read`}
+            </SPostInfo>
+            <SPostTitle>{post.node.title.title}</SPostTitle>
+            <SPostSummary>
+              {idx > 0 ? (
+                ellipseText(post.node.body.content.excerpt, 120)
+              ) : (
+                ellipseText(post.node.body.content.excerpt, 240)
+              )}
+            </SPostSummary>
+          </SPostCards>
+        </Link>
       ))}
     </div>
   );
@@ -133,7 +139,10 @@ export const query = graphql`
             title
           }
           body {
-            body
+            content: childMarkdownRemark {
+              excerpt(pruneLength: 250)
+              timeToRead
+            }
           }
         }
       }
