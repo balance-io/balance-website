@@ -36,7 +36,7 @@ const STriangles = styled.div`
 
 const STopSection = styled.div`width: 100%;`;
 
-const SLogo = styled(Link)`
+const SLogo = styled.div`
   width: 90px;
   height: 23px;
   mask-image: url(${mobileLogo}) center no-repeat;
@@ -227,7 +227,9 @@ class Header extends Component {
       <STriangles />
       <STopSection>
         <SNav>
-          <SLogo homepage={this.props.pathname === '/'} to="/" />
+          <Link to="/">
+            <SLogo homepage={this.props.pathname === '/'} />
+          </Link>
           <SNavList>
             <SNavLinks href="">Blog</SNavLinks>
             <SNavLinks href="/about">About</SNavLinks>

@@ -5,11 +5,8 @@ import { globalStyles } from '../styles';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
 import '../assets/css/font-faces.css';
-import '../assets/css/main.css';
 
-// eslint-disable-next-line
 injectGlobal`${globalStyles}`;
 
 const SWrapper = styled.div`
