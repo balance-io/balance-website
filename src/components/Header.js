@@ -12,13 +12,11 @@ import mobileNavClose from '../assets/images/mobile-nav-close.svg';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
-  & a {
-    color: ${({ homepage }) =>
-      homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`};
+  & nav a {
+    color: ${({ homepage }) => (homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`)};
   }
-  & a:hover {
-    color: ${({ homepage }) =>
-      homepage ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
+  & nav a:hover {
+    color: ${({ homepage }) => (homepage ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   }
 `;
 
@@ -29,6 +27,7 @@ const STriangles = styled.div`
   width: 132px;
   height: 144px;
   z-index: -1;
+  display: ${({ homepage }) => (homepage ? 'block' : 'none')};
   @media screen and (${responsive.sm.max}) {
     background: url(${triangles}) no-repeat;
   }
@@ -45,11 +44,9 @@ const SLogo = styled.div`
   -webkit-mask-size: 90%;
   transition: ${transitions.short};
   background-color: #f1f0fa;
-  background-color: ${({ homepage }) =>
-    homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`};
+  background-color: ${({ homepage }) => (homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`)};
   &:hover {
-    background-color: ${({ homepage }) =>
-      homepage ? `rgba(${colors.green}, 0.8)` : `rgba(${colors.dark}, 0.8)`};
+    background-color: ${({ homepage }) => (homepage ? `rgba(${colors.green}, 0.8)` : `rgba(${colors.dark}, 0.8)`)};
   }
 `;
 
@@ -111,17 +108,16 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: rgba(${colors.black}, 0.8);
+  background: ${({ homepage }) => (homepage ? `rgba(${colors.black}, 0.8)` : `rgb(${colors.green})`)};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
-    reveal
-      ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)'
-      : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
+    reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
   pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
-  &:hover {
-    background: rgba(0, 0, 0, 1);
-    opacity: 0.5;
-    transition: ${transitions.short};
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.5;
+      transition: ${transitions.short};
+    }
   }
   @media screen and (${responsive.sm.max}) {
     display: block;
@@ -143,8 +139,7 @@ const SMobileNav = styled.div`
   border-radius: 0 0 0 10px;
   background: rgb(${colors.white});
   overflow: hidden;
-  box-shadow: 0 50px 100px rgba(${colors.purple}, 0.1),
-    0 15px 35px rgba(${colors.purple}, 0.15),
+  box-shadow: 0 50px 100px rgba(${colors.purple}, 0.1), 0 15px 35px rgba(${colors.purple}, 0.15),
     0 5px 15px rgba(${colors.black}, 0.1), 0 0 1px rgba(${colors.purple}, 0.12);
   font-size: 1.125em;
   font-weight: 500;
@@ -153,8 +148,7 @@ const SMobileNav = styled.div`
   transition-property: transform, opacity;
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
   pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) =>
-    reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)'};
+  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
   transform-origin: 100% 0;
   transition: ${transitions.base};
 `;
@@ -166,20 +160,17 @@ const SMobileNavLinks = styled.a`
   width: 100%;
   height: 50px;
   opacity: 0;
-  color: ${({ selected }) =>
-    selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
+  color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
   pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) =>
-    reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)'};
+  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
   & > span {
     margin-left: 20px;
   }
   & > div {
     margin-left: 20px;
-    background-color: ${({ selected }) =>
-      selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
+    background-color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   }
   &:active {
     background: rgba(${colors.grey}, 0.16);
@@ -224,7 +215,7 @@ class Header extends Component {
   };
   render = () => (
     <SHeader homepage={this.props.pathname === '/'}>
-      <STriangles />
+      <STriangles homepage={this.props.pathname === '/'} />
       <STopSection>
         <SNav>
           <Link to="/">
@@ -242,6 +233,7 @@ class Header extends Component {
         <SMobileNavToggle
           reveal={this.state.navReveal}
           onClick={this.toggleNavReveal}
+          homepage={this.props.pathname === '/'}
         />
         <SMobileNav reveal={this.state.navReveal}>
           <SMobileNavLinks selected reveal={this.state.navReveal} href="">
@@ -256,10 +248,7 @@ class Header extends Component {
             <SMobileNavIcons icon={mobileNavSupport} />
             <span>Support</span>
           </SMobileNavLinks>
-          <SMobileNavClose
-            reveal={this.state.navReveal}
-            onClick={this.toggleNavReveal}
-          />
+          <SMobileNavClose reveal={this.state.navReveal} onClick={this.toggleNavReveal} />
         </SMobileNav>
       </STopSection>
     </SHeader>
