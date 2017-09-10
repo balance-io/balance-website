@@ -18,11 +18,11 @@ export const fonts = {
   small: '12px',
   medium: '16px',
   large: '18px',
-  h1: '30px',
+  h1: '32px',
   h2: '28px',
   h3: '24px',
-  h4: '18px',
-  h5: '16px'
+  h4: '20px',
+  h5: '17px'
 };
 
 export const transitions = {
@@ -109,6 +109,25 @@ export const globalStyles = `
   	text-decoration: none;
   	margin: 0;
   	padding: 0;
+  }
+
+  h1 {
+    font-size: ${fonts.h1}
+  }
+  h2 {
+    font-size: ${fonts.h2}
+  }
+  h3 {
+    font-size: ${fonts.h3}
+  }
+  h4 {
+    font-size: ${fonts.h4}
+  }
+  h5 {
+    font-size: ${fonts.h5}
+  }
+  h6 {
+    font-size: ${fonts.h6}
   }
 
   a {
