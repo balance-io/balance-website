@@ -14,14 +14,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       	}
       }
     `).then(result => {
+      if (result.errors) {
+        reject(result.errors);
+      }
       result.data.posts.edges.map(({ node }) => {
-        createPage({
-          path: node.slug,
-          component: path.resolve(`./src/layouts/post.js`),
-          context: {
-            slug: node.slug
-          }
-        });
+        if (node.slug) {
+          createPage({
+            path: node.slug,
+            component: path.resolve(`./src/layouts/post.js`),
+            context: {
+              slug: node.slug
+            }
+          });
+        }
       });
       resolve();
     });

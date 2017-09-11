@@ -114,7 +114,7 @@ const Post = ({ data }) => {
 export default Post;
 
 export const query = graphql`
-  query PostQuery($slug: String!) {
+  query PostQuery($slug: String) {
     contentfulPost(slug: { eq: $slug }) {
       date
       author {
