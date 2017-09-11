@@ -128,7 +128,7 @@ const IndexPage = ({ data, errors }) => {
 export default IndexPage;
 
 export const query = graphql`
-  query IndexQuery {
+  query BlogDirectoryQuery {
     allContentfulPost(sort: { fields: [date], order: DESC }) {
       edges {
         node {
