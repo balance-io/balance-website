@@ -103,7 +103,6 @@ const SPostSummary = styled.p`
 `;
 
 const SMediumLogo = styled.img`
-  display: ${({ medium }) => (medium ? 'block' : 'none')};
   position: absolute;
   height: 44px;
   width: 44px;
@@ -151,19 +150,36 @@ const IndexPage = ({ data, errors }) => {
   console.log(posts);
   return (
     <div>
-      {posts.map((post, idx) => (
-        <Link key={post.id} to={`blog/${post.slug}`}>
-          <SPostCards medium={post.medium} i={idx}>
-            <SDivider i={idx}>
-              <div />
-            </SDivider>
-            <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
-            <SPostTitle>{post.title}</SPostTitle>
-            <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
-            <SMediumLogo medium={post.medium} src={mediumLogo} alt="medium" />
-          </SPostCards>
-        </Link>
-      ))}
+      {posts.map((post, idx) => {
+        if (post.medium) {
+          return (
+            <a key={post.id} href={`https://medium.com/balancemymoney/${post.slug}-${post.id}`}>
+              <SPostCards medium={post.medium} i={idx}>
+                <SDivider i={idx}>
+                  <div />
+                </SDivider>
+                <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
+                <SPostTitle>{post.title}</SPostTitle>
+                <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
+                <SMediumLogo src={mediumLogo} alt="medium" />
+              </SPostCards>
+            </a>
+          );
+        } else {
+          return (
+            <Link key={post.id} to={`blog/${post.slug}`}>
+              <SPostCards medium={post.medium} i={idx}>
+                <SDivider i={idx}>
+                  <div />
+                </SDivider>
+                <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
+                <SPostTitle>{post.title}</SPostTitle>
+                <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
+              </SPostCards>
+            </Link>
+          );
+        }
+      })}
     </div>
   );
 };
