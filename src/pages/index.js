@@ -106,8 +106,8 @@ const SMediumLogo = styled.img`
   position: absolute;
   height: 44px;
   width: 44px;
-  right: 10px;
-  bottom: 10px;
+  right: 5px;
+  bottom: 0;
 `;
 
 const mergePosts = (contentful, medium) => {
@@ -138,7 +138,13 @@ const mergePosts = (contentful, medium) => {
       result.excerpt = post.node.virtuals.excerpt;
       result.readingTime = Math.ceil(post.node.virtuals.readingTime);
     }
+
     return result;
+  });
+  parsedPosts.sort((a, b) => {
+    if (a.date > b.date) return -1;
+    if (a.date < b.date) return 1;
+    return 0;
   });
   return parsedPosts;
 };
@@ -147,7 +153,6 @@ const IndexPage = ({ data, errors }) => {
   const contentful = data.allContentfulPost.edges;
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
-  console.log(posts);
   return (
     <div>
       {posts.map((post, idx) => {
