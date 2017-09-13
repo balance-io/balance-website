@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
+import mediumLogo from '../assets/images/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
 
@@ -35,6 +36,10 @@ const SPostCards = styled.div`
   cursor: pointer;
   transition: all 0.38s cubic-bezier(0.19, 1, 0.22, 1);
   overflow: hidden;
+  & p,
+  & h2 {
+    padding-right: ${({ medium }) => (medium ? '50px' : 0)};
+  }
   @media screen and (${responsive.sm.max}) {
     border-radius: 0;
   }
@@ -97,27 +102,65 @@ const SPostSummary = styled.p`
   }};
 `;
 
+const SMediumLogo = styled.img`
+  display: ${({ medium }) => (medium ? 'block' : 'none')};
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  right: 10px;
+  bottom: 10px;
+`;
+
+const mergePosts = (contentful, medium) => {
+  const allPosts = contentful.concat(medium);
+  const parsedPosts = allPosts.map(post => {
+    const result = {
+      id: '',
+      slug: '',
+      date: '',
+      title: '',
+      excerpt: '',
+      readingTime: '',
+      medium: false
+    };
+    result.id = post.node.id;
+    result.slug = post.node.slug;
+    result.date = isNaN(post.node.date) ? Date.parse(post.node.date) : Number(post.node.date);
+    if (typeof post.node.title === 'string') {
+      result.medium = true;
+      result.title = post.node.title;
+    } else {
+      result.title = post.node.title.title;
+    }
+    if (post.node.body) {
+      result.excerpt = post.node.body.content.excerpt;
+      result.readingTime = Math.ceil(post.node.body.content.readingTime);
+    } else {
+      result.excerpt = post.node.virtuals.excerpt;
+      result.readingTime = Math.ceil(post.node.virtuals.readingTime);
+    }
+    return result;
+  });
+  return parsedPosts;
+};
+
 const IndexPage = ({ data, errors }) => {
-  const posts = data.allContentfulPost.edges;
+  const contentful = data.allContentfulPost.edges;
+  const medium = data.allMediumPost.edges;
+  const posts = mergePosts(contentful, medium);
+  console.log(posts);
   return (
     <div>
       {posts.map((post, idx) => (
-        <Link key={post.node.id} to={`blog/${post.node.slug}`}>
-          <SPostCards i={idx}>
+        <Link key={post.id} to={`blog/${post.slug}`}>
+          <SPostCards medium={post.medium} i={idx}>
             <SDivider i={idx}>
               <div />
             </SDivider>
-            <SPostInfo i={idx}>
-              {`${getTimeagoString(post.node.date, true)}  •  ${post.node.body.content.timeToRead} min read`}
-            </SPostInfo>
-            <SPostTitle>{post.node.title.title}</SPostTitle>
-            <SPostSummary>
-              {idx > 0 ? (
-                ellipseText(post.node.body.content.excerpt, 120)
-              ) : (
-                ellipseText(post.node.body.content.excerpt, 240)
-              )}
-            </SPostSummary>
+            <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
+            <SPostTitle>{post.title}</SPostTitle>
+            <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
+            <SMediumLogo medium={post.medium} src={mediumLogo} alt="medium" />
           </SPostCards>
         </Link>
       ))}
@@ -129,6 +172,20 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
+    allMediumPost {
+      edges {
+        node {
+          id
+          slug
+          date: firstPublishedAt
+          title
+          virtuals {
+            excerpt: subtitle
+            readingTime
+          }
+        }
+      }
+    }
     allContentfulPost(sort: { fields: [date], order: DESC }) {
       edges {
         node {
@@ -141,7 +198,7 @@ export const query = graphql`
           body {
             content: childMarkdownRemark {
               excerpt(pruneLength: 250)
-              timeToRead
+              readingTime: timeToRead
             }
           }
         }
