@@ -11,13 +11,19 @@ import '../assets/css/font-faces.css';
 
 injectGlobal`${globalStyles}`;
 
-const SWrapper = styled.div`width: 100%;`;
+const SWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
 
 const SContent = styled.div`
   width: 100%;
-  max-width: 700px;
   margin: 0 auto;
-  padding: 12px 0;
+  ${({ layout }) =>
+    layout !== 'page' &&
+    `padding: 68px 0 12px;
+    max-width: 700px;
+    `};
 `;
 
 const SBackgroundTriangles = styled.div`
@@ -59,9 +65,9 @@ const TemplateWrapper = ({ children, location, data }) => {
         <STrianglesLeft />
         <STrianglesRight />
       </SBackgroundTriangles>
-      <Header layout={layout} />
-      <SContent>{children()}</SContent>
-      <Footer layout={layout} />
+      <Header pathname={location.pathname} layout={layout} />
+      <SContent layout={layout}>{children()}</SContent>
+      {layout !== 'page' && <Footer layout={layout} />}
     </SWrapper>
   );
 };

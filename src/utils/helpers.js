@@ -42,7 +42,7 @@ export const getTimeagoString = (date, short, current) => {
   const dateObj = new Date(_date);
   const timestamp = dateObj.getTime();
   const month = dateObj.getUTCMonth();
-  const day = dateObj.getUTCDay();
+  const day = dateObj.getUTCDate();
   const diff = _current - timestamp;
   let string = short ? `${monthsShort[month]} ${day}` : `${monthsLong[month]} ${day}`;
   if (diff < limits[0]) {

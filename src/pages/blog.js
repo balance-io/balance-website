@@ -153,6 +153,7 @@ const Blog = ({ data, errors }) => {
   const contentful = data.allContentfulPost.edges;
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
+  console.log(posts);
   return (
     <div>
       {posts.map((post, idx) => {

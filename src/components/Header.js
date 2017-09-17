@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import triangles from '../assets/images/blog-directory-triangles.svg';
+import homeTriangles from '../assets/images/triangles-mobile.svg';
+import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mobileLogo from '../assets/images/mobile-logo.svg';
 import mobileNavToggle from '../assets/images/mobile-nav-toggle.svg';
 import mobileNavBlog from '../assets/images/mobile-nav-blog.svg';
@@ -13,9 +14,7 @@ import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
   width: 100%;
-  max-width: 1028px;
-  margin: 0 auto;
-  padding: 0 20px;
+  position: absolute;
   & nav a {
     color: ${({ layout }) => {
       if (layout === 'blog') {
@@ -23,7 +22,7 @@ const SHeader = styled.div`
       } else if (layout === 'post') {
         return `rgb(${colors.green})`;
       } else {
-        return `rgb(${colors.grey})`;
+        return `rgb(${colors.lightBlue})`;
       }
     }};
   }
@@ -34,7 +33,7 @@ const SHeader = styled.div`
       } else if (layout === 'post') {
         return `rgb(${colors.dark})`;
       } else {
-        return `rgb(${colors.grey})`;
+        return `rgb(${colors.lightBlue})`;
       }
     }};
   }
@@ -46,22 +45,32 @@ const STriangles = styled.div`
   right: 0;
   width: 132px;
   height: 144px;
-  z-index: -1;
   display: ${({ layout }) => {
-    if (layout === 'blog') {
-      return 'block';
-    } else if (layout === 'post') {
+    if (layout === 'post') {
       return 'none';
     } else {
-      return 'none';
+      return 'block';
     }
   }};
   @media screen and (${responsive.sm.max}) {
-    background: url(${triangles}) no-repeat;
+    background: ${({ layout }) => {
+      if (layout === 'blog') {
+        return `url(${blogTriangles}) no-repeat`;
+      } else if (layout === 'page') {
+        return `url(${homeTriangles}) no-repeat`;
+      } else {
+        return 'none';
+      }
+    }};
   }
 `;
 
-const STopSection = styled.div`width: 100%;`;
+const STopSection = styled.div`
+  width: 100%;
+  max-width: 1028px;
+  margin: 0 auto;
+  padding: 0 20px;
+`;
 
 const SLogo = styled.div`
   width: 90px;
@@ -78,7 +87,7 @@ const SLogo = styled.div`
     } else if (layout === 'post') {
       return `rgb(${colors.green})`;
     } else {
-      return `rgb(${colors.grey})`;
+      return `rgb(${colors.lightBlue})`;
     }
   }};
   &:hover {
@@ -88,7 +97,7 @@ const SLogo = styled.div`
       } else if (layout === 'post') {
         return `rgba(${colors.dark}, 0.8)`;
       } else {
-        return `rgba(${colors.grey}, 0.8)`;
+        return `rgba(${colors.lightBlue}, 0.8)`;
       }
     }};
   }
@@ -158,7 +167,7 @@ const SMobileNavToggle = styled.div`
     } else if (layout === 'post') {
       return `rgb(${colors.green})`;
     } else {
-      return `rgb(${colors.grey})`;
+      return `rgb(${colors.lightBlue})`;
     }
   }};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
@@ -225,7 +234,7 @@ const SMobileNavLinks = styled(Link)`
     background-color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   }
   &:active {
-    background: rgba(${colors.grey}, 0.16);
+    background: rgba(${colors.lightBlue}, 0.16);
   }
 `;
 
@@ -271,7 +280,6 @@ class Header extends Component {
   render = () => (
     <SHeader layout={this.props.layout}>
       <STriangles layout={this.props.layout} />
-      {console.log(this.props.layout)}
       <STopSection>
         <SNav>
           <Link onClick={this.hideNavReveal} to="/">
@@ -294,7 +302,12 @@ class Header extends Component {
 
         <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} layout={this.props.layout} />
         <SMobileNav reveal={this.state.navReveal}>
-          <SMobileNavLinks selected reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/blog">
+          <SMobileNavLinks
+            selected={this.props.pathname === '/blog'}
+            reveal={this.state.navReveal}
+            onClick={this.hideNavReveal}
+            to="/blog"
+          >
             <SMobileNavIcons icon={mobileNavBlog} />
             <span>Blog</span>
           </SMobileNavLinks>
@@ -314,7 +327,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  layout: PropTypes.string.isRequired
+  layout: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired
 };
 
 export default Header;
