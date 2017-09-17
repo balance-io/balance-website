@@ -16,6 +16,7 @@ const SHeader = styled.div`
   width: 100%;
   position: absolute;
   & nav a {
+    font-weight: ${({ layout }) => (layout === 'page' ? '500' : '400')};
     color: ${({ layout }) => {
       if (layout === 'blog') {
         return `rgb(${colors.dark})`;
@@ -45,6 +46,7 @@ const STriangles = styled.div`
   right: 0;
   width: 132px;
   height: 144px;
+  pointer-events: none;
   display: ${({ layout }) => {
     if (layout === 'post') {
       return 'none';
@@ -73,8 +75,9 @@ const STopSection = styled.div`
 `;
 
 const SLogo = styled.div`
-  width: 90px;
-  height: 23px;
+  width: 95px;
+  height: 22px;
+  margin-left: 10px;
   mask-image: url(${mobileLogo}) center no-repeat;
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
@@ -127,13 +130,9 @@ const SNavList = styled.ul`
 const SNavLinks = styled(Link)`
   display: inline-block;
   color: rgb(${colors.green});
-  padding: 10px 14px;
-  font-weight: 400;
+  padding: 10px 16px;
   font-size: 1.1875em;
   transition: ${transitions.short};
-  &:last-child {
-    padding-right: 0;
-  }
   &:active {
     transform: scale(0.95) translate3d(0, 0, 0);
     transition: ${transitions.short};
