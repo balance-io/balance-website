@@ -12,11 +12,31 @@ import mobileNavClose from '../assets/images/mobile-nav-close.svg';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
+  width: 100%;
+  max-width: 1028px;
+  margin: 0 auto;
+  padding: 0 20px;
   & nav a {
-    color: ${({ homepage }) => (homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`)};
+    color: ${({ layout }) => {
+      if (layout === 'blog') {
+        return `rgb(${colors.dark})`;
+      } else if (layout === 'post') {
+        return `rgb(${colors.green})`;
+      } else {
+        return `rgb(${colors.grey})`;
+      }
+    }};
   }
   & nav a:hover {
-    color: ${({ homepage }) => (homepage ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
+    color: ${({ layout }) => {
+      if (layout === 'blog') {
+        return `rgb(${colors.green})`;
+      } else if (layout === 'post') {
+        return `rgb(${colors.dark})`;
+      } else {
+        return `rgb(${colors.grey})`;
+      }
+    }};
   }
 `;
 
@@ -27,7 +47,15 @@ const STriangles = styled.div`
   width: 132px;
   height: 144px;
   z-index: -1;
-  display: ${({ homepage }) => (homepage ? 'block' : 'none')};
+  display: ${({ layout }) => {
+    if (layout === 'blog') {
+      return 'block';
+    } else if (layout === 'post') {
+      return 'none';
+    } else {
+      return 'none';
+    }
+  }};
   @media screen and (${responsive.sm.max}) {
     background: url(${triangles}) no-repeat;
   }
@@ -44,9 +72,25 @@ const SLogo = styled.div`
   -webkit-mask-size: 90%;
   transition: ${transitions.short};
   background-color: #f1f0fa;
-  background-color: ${({ homepage }) => (homepage ? `rgb(${colors.dark})` : `rgb(${colors.green})`)};
+  background-color: ${({ layout }) => {
+    if (layout === 'blog') {
+      return `rgb(${colors.dark})`;
+    } else if (layout === 'post') {
+      return `rgb(${colors.green})`;
+    } else {
+      return `rgb(${colors.grey})`;
+    }
+  }};
   &:hover {
-    background-color: ${({ homepage }) => (homepage ? `rgba(${colors.green}, 0.8)` : `rgba(${colors.dark}, 0.8)`)};
+    background-color: ${({ layout }) => {
+      if (layout === 'blog') {
+        return `rgba(${colors.green}, 0.8)`;
+      } else if (layout === 'post') {
+        return `rgba(${colors.dark}, 0.8)`;
+      } else {
+        return `rgba(${colors.grey}, 0.8)`;
+      }
+    }};
   }
 `;
 
@@ -71,7 +115,7 @@ const SNavList = styled.ul`
   }
 `;
 
-const SNavLinks = styled.a`
+const SNavLinks = styled(Link)`
   display: inline-block;
   color: rgb(${colors.green});
   padding: 10px 14px;
@@ -108,7 +152,15 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: ${({ homepage }) => (homepage ? `rgba(${colors.black}, 0.8)` : `rgb(${colors.green})`)};
+  background: ${({ layout }) => {
+    if (layout === 'blog') {
+      return `rgba(${colors.black}, 0.8)`;
+    } else if (layout === 'post') {
+      return `rgb(${colors.green})`;
+    } else {
+      return `rgb(${colors.grey})`;
+    }
+  }};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
@@ -153,7 +205,7 @@ const SMobileNav = styled.div`
   transition: ${transitions.base};
 `;
 
-const SMobileNavLinks = styled.a`
+const SMobileNavLinks = styled(Link)`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -210,45 +262,51 @@ class Header extends Component {
   state = {
     navReveal: false
   };
-  toggleNavReveal = () => {
-    this.setState({ navReveal: !this.state.navReveal });
+  showNavReveal = () => {
+    this.setState({ navReveal: true });
+  };
+  hideNavReveal = () => {
+    this.setState({ navReveal: false });
   };
   render = () => (
-    <SHeader homepage={this.props.pathname === '/'}>
-      <STriangles homepage={this.props.pathname === '/'} />
+    <SHeader layout={this.props.layout}>
+      <STriangles layout={this.props.layout} />
+      {console.log(this.props.layout)}
       <STopSection>
         <SNav>
-          <Link to="/">
-            <SLogo homepage={this.props.pathname === '/'} />
+          <Link onClick={this.hideNavReveal} to="/">
+            <SLogo layout={this.props.layout} />
           </Link>
           <SNavList>
-            <SNavLinks href="">Blog</SNavLinks>
-            <SNavLinks href="/about">About</SNavLinks>
-            <SNavLinks href="/support">Support</SNavLinks>
+            <SNavLinks onClick={this.hideNavReveal} to="/blog">
+              Blog
+            </SNavLinks>
+            <SNavLinks onClick={this.hideNavReveal} to="/about">
+              About
+            </SNavLinks>
+            <SNavLinks onClick={this.hideNavReveal} to="/support">
+              Support
+            </SNavLinks>
           </SNavList>
 
           <SNavLinks href="">Download</SNavLinks>
         </SNav>
 
-        <SMobileNavToggle
-          reveal={this.state.navReveal}
-          onClick={this.toggleNavReveal}
-          homepage={this.props.pathname === '/'}
-        />
+        <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} layout={this.props.layout} />
         <SMobileNav reveal={this.state.navReveal}>
-          <SMobileNavLinks selected reveal={this.state.navReveal} href="">
+          <SMobileNavLinks selected reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/blog">
             <SMobileNavIcons icon={mobileNavBlog} />
             <span>Blog</span>
           </SMobileNavLinks>
-          <SMobileNavLinks reveal={this.state.navReveal} href="/about">
+          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
             <SMobileNavIcons icon={mobileNavAbout} />
             <span>About</span>
           </SMobileNavLinks>
-          <SMobileNavLinks reveal={this.state.navReveal} href="/support">
+          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
             <SMobileNavIcons icon={mobileNavSupport} />
             <span>Support</span>
           </SMobileNavLinks>
-          <SMobileNavClose reveal={this.state.navReveal} onClick={this.toggleNavReveal} />
+          <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
         </SMobileNav>
       </STopSection>
     </SHeader>
@@ -256,7 +314,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  pathname: PropTypes.string.isRequired
+  layout: PropTypes.string.isRequired
 };
 
 export default Header;

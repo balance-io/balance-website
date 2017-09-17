@@ -11,12 +11,7 @@ import '../assets/css/font-faces.css';
 
 injectGlobal`${globalStyles}`;
 
-const SWrapper = styled.div`
-  width: 100%;
-  max-width: 1028px;
-  margin: 0 auto;
-  padding: 0 20px;
-`;
+const SWrapper = styled.div`width: 100%;`;
 
 const SContent = styled.div`
   width: 100%;
@@ -26,7 +21,7 @@ const SContent = styled.div`
 `;
 
 const SBackgroundTriangles = styled.div`
-  display: ${({ homepage }) => (homepage ? 'none' : 'block')};
+  display: ${({ layout }) => (layout === 'post' ? 'block' : 'none')};
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
@@ -52,21 +47,24 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const TemplateWrapper = ({ children, location, data }) => (
-  <SWrapper>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-    />
-    <SBackgroundTriangles homepage={location.pathname === '/'}>
-      <STrianglesLeft />
-      <STrianglesRight />
-    </SBackgroundTriangles>
-    <Header pathname={location.pathname} />
-    <SContent>{children()}</SContent>
-    <Footer pathname={location.pathname} />
-  </SWrapper>
-);
+const TemplateWrapper = ({ children, location, data }) => {
+  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
+  return (
+    <SWrapper>
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+      />
+      <SBackgroundTriangles layout={layout}>
+        <STrianglesLeft />
+        <STrianglesRight />
+      </SBackgroundTriangles>
+      <Header layout={layout} />
+      <SContent>{children()}</SContent>
+      <Footer layout={layout} />
+    </SWrapper>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
