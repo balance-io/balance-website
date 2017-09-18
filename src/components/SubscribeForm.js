@@ -46,7 +46,7 @@ class SubscribeForm extends Component {
       });
       return;
     }
-    const url = `//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6&email=${encodeURIComponent(
+    const url = `//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6&EMAIL=${encodeURIComponent(
       this.state.input
     )}`;
     this.setState(
