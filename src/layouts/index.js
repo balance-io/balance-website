@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, responsive } from '../styles';
@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
 import TrianglesRight from '../assets/images/blog-triangles-right.svg';
 import '../assets/css/font-faces.css';
+import { colors } from '../styles';
 
 injectGlobal`${globalStyles}`;
 
@@ -53,24 +54,36 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const TemplateWrapper = ({ children, location, data }) => {
-  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
-  return (
-    <SWrapper>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-      />
-      <SBackgroundTriangles layout={layout}>
-        <STrianglesLeft />
-        <STrianglesRight />
-      </SBackgroundTriangles>
-      <Header pathname={location.pathname} layout={layout} />
-      <SContent layout={layout}>{children()}</SContent>
-      {layout !== 'page' && <Footer layout={layout} />}
-    </SWrapper>
-  );
-};
+class TemplateWrapper extends Component {
+  componentDidMount() {
+    if (this.props.location.pathname === '/') {
+      document.body.style.background = `rgb(${colors.darkerBlue})`;
+    } else {
+      document.body.style.background = `rgb(${colors.white})`;
+    }
+  }
+  render() {
+    const { children, location, data } = this.props;
+    const layout = location.pathname.match(/\/blog\/[\w-]+/g)
+      ? 'post'
+      : location.pathname === '/blog' ? 'blog' : 'page';
+    return (
+      <SWrapper>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+        />
+        <SBackgroundTriangles layout={layout}>
+          <STrianglesLeft />
+          <STrianglesRight />
+        </SBackgroundTriangles>
+        <Header pathname={location.pathname} layout={layout} />
+        <SContent layout={layout}>{children()}</SContent>
+        {layout !== 'page' && <Footer layout={layout} />}
+      </SWrapper>
+    );
+  }
+}
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
