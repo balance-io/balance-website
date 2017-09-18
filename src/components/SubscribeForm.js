@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import jsonp from 'jsonp';
 import { colors } from '../styles';
 
 class SubscribeForm extends Component {
@@ -8,36 +9,6 @@ class SubscribeForm extends Component {
     message: null,
     input: ''
   };
-  apiMailchimp = url => () =>
-    (() =>
-      fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        param: 'c'
-      })
-        .then(data => {
-          console.log('data', data);
-          if (data.result !== 'success') {
-            this.setState({
-              status: 'error',
-              message: data.message
-            });
-          } else {
-            this.setState({
-              status: 'success',
-              message: data.message
-            });
-          }
-        })
-        .catch(err => {
-          console.log('err', err);
-          if (err) {
-            this.setState({
-              status: 'error',
-              message: err
-            });
-          }
-        }))();
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.input || this.state.input.length < 5 || this.state.input.indexOf('@') === -1) {
@@ -54,7 +25,25 @@ class SubscribeForm extends Component {
         status: 'sending',
         message: null
       },
-      this.apiMailchimp(url)
+      () =>
+        jsonp(url, { param: 'c' }, (err, data) => {
+          if (err) {
+            this.setState({
+              status: 'error',
+              msg: err
+            });
+          } else if (data.result !== 'success') {
+            this.setState({
+              status: 'error',
+              msg: data.msg
+            });
+          } else {
+            this.setState({
+              status: 'success',
+              msg: data.msg
+            });
+          }
+        })
     );
   };
   render() {
