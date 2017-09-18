@@ -57,7 +57,7 @@ const STrianglesRight = styled.div`
 const updateBackground = pathname => {
   if (typeof window !== 'undefined') {
     if (window.location.pathname === '/') {
-      document.body.style.background = `rgb(${colors.darkerBlue})`;
+      document.body.style.background = `rgb(${colors.navyBlue})`;
     } else {
       document.body.style.background = `rgb(${colors.white})`;
     }

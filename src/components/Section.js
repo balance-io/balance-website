@@ -6,8 +6,9 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: 100%;
+  z-index: 0;
   min-height: ${({ minHeight }) => `${minHeight}px`};
-  background: ${({ color }) => color};
+  background: ${({ color }) => `rgb(${color})`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,23 +24,36 @@ const SContent = styled.div`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  z-index: 1;
 `;
 
-const Section = ({ children, minHeight, color, ...props }) => (
+const SBackground = styled.div`
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+const Section = ({ children, background, minHeight, color, ...props }) => (
   <SSection minHeight={minHeight} color={color} {...props}>
     <SContent>{children}</SContent>
+    <SBackground>{background}</SBackground>
   </SSection>
 );
 
 Section.propTypes = {
   children: PropTypes.node.isRequired,
+  background: PropTypes.node,
   minHeight: PropTypes.number,
   color: PropTypes.string
 };
 
 Section.defaultProps = {
+  background: null,
   minHeight: 860,
-  color: '#18202A'
+  color: colors.fadedBlue
 };
 
 export default Section;

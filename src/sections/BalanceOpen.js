@@ -13,7 +13,6 @@ const SBackgroundImage = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: -1;
   width: 780px;
   height: 780px;
   mask-image: url(${triangleMask}) no-repeat;
@@ -28,6 +27,7 @@ const SBackgroundImage = styled.div`
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
@@ -66,9 +66,6 @@ const SAppIcon = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  position: absolute;
-  top: 241px;
-  right: 189px;
   width: 402px;
   height: 271px;
   background: url(${balanceOpen}) no-repeat;
@@ -192,8 +189,7 @@ const STitle = styled.h1`
 `;
 
 const BalanceOpen = () => (
-  <Section id="balance-open" minHeight={780} color={'transparent'}>
-    <SBackgroundImage />
+  <Section id="balance-open" minHeight={780} color={colors.navyBlue} background={<SBackgroundImage />}>
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />

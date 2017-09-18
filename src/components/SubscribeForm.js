@@ -8,31 +8,36 @@ class SubscribeForm extends Component {
     message: null,
     input: ''
   };
-  apiMailchimp = url =>
-    fetch(url, {
-      param: 'c'
-    })
-      .then(data => {
-        if (data.result !== 'success') {
-          this.setState({
-            status: 'error',
-            message: data.message
-          });
-        } else {
-          this.setState({
-            status: 'success',
-            message: data.message
-          });
-        }
+  apiMailchimp = url => () =>
+    (() =>
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        param: 'c'
       })
-      .catch(err => {
-        if (err) {
-          this.setState({
-            status: 'error',
-            message: err
-          });
-        }
-      });
+        .then(data => {
+          console.log('data', data);
+          if (data.result !== 'success') {
+            this.setState({
+              status: 'error',
+              message: data.message
+            });
+          } else {
+            this.setState({
+              status: 'success',
+              message: data.message
+            });
+          }
+        })
+        .catch(err => {
+          console.log('err', err);
+          if (err) {
+            this.setState({
+              status: 'error',
+              message: err
+            });
+          }
+        }))();
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.input || this.state.input.length < 5 || this.state.input.indexOf('@') === -1) {
@@ -41,8 +46,8 @@ class SubscribeForm extends Component {
       });
       return;
     }
-    const url = `http://money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6&email=${encodeURIComponent(
-      this.input.value
+    const url = `//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6&email=${encodeURIComponent(
+      this.state.input
     )}`;
     this.setState(
       {
@@ -55,7 +60,13 @@ class SubscribeForm extends Component {
   render() {
     const { messages, ...props } = this.props;
     return (
-      <form onSubmit={this.onSubmit} method="post" noValidate {...props}>
+      <form
+        action="//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6"
+        onSubmit={this.onSubmit}
+        method="POST"
+        noValidate
+        {...props}
+      >
         <input
           autoFocus
           value={this.state.input}

@@ -124,9 +124,10 @@ const SForm = styled(SubscribeForm)`
   & input::placeholder {
     color: rgba(${colors.white}, 0.5);
   }
-  & > form > p {
+  & p {
     position: absolute;
     text-align: center;
+    margin-top: 10px;
   }
 `;
 
