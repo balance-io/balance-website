@@ -54,13 +54,20 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
+const updateBackground = pathname => {
+  if (pathname === '/') {
+    document.body.style.background = `rgb(${colors.darkerBlue})`;
+  } else {
+    document.body.style.background = `rgb(${colors.white})`;
+  }
+};
+
 class TemplateWrapper extends Component {
   componentDidMount() {
-    if (this.props.location.pathname === '/') {
-      document.body.style.background = `rgb(${colors.darkerBlue})`;
-    } else {
-      document.body.style.background = `rgb(${colors.white})`;
-    }
+    updateBackground(this.props.location.pathname);
+  }
+  componentDidUpdate() {
+    updateBackground(this.props.location.pathname);
   }
   render() {
     const { children, location, data } = this.props;
