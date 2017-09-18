@@ -5,6 +5,7 @@
   },
   "globals": {
     "graphql": true,
-    "document": true
+    "document": true,
+    "window": true
   }
 }
