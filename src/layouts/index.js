@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, responsive } from '../styles';
@@ -55,42 +55,34 @@ const STrianglesRight = styled.div`
 `;
 
 const updateBackground = pathname => {
-  if (pathname === '/') {
-    document.body.style.background = `rgb(${colors.darkerBlue})`;
-  } else {
-    document.body.style.background = `rgb(${colors.white})`;
+  if (typeof window !== 'undefined') {
+    if (window.location.pathname === '/') {
+      document.body.style.background = `rgb(${colors.darkerBlue})`;
+    } else {
+      document.body.style.background = `rgb(${colors.white})`;
+    }
   }
 };
 
-class TemplateWrapper extends Component {
-  componentDidMount() {
-    updateBackground(this.props.location.pathname);
-  }
-  componentDidUpdate() {
-    updateBackground(this.props.location.pathname);
-  }
-  render() {
-    const { children, location, data } = this.props;
-    const layout = location.pathname.match(/\/blog\/[\w-]+/g)
-      ? 'post'
-      : location.pathname === '/blog' ? 'blog' : 'page';
-    return (
-      <SWrapper>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-        />
-        <SBackgroundTriangles layout={layout}>
-          <STrianglesLeft />
-          <STrianglesRight />
-        </SBackgroundTriangles>
-        <Header pathname={location.pathname} layout={layout} />
-        <SContent layout={layout}>{children()}</SContent>
-        {layout !== 'page' && <Footer layout={layout} />}
-      </SWrapper>
-    );
-  }
-}
+const TemplateWrapper = ({ children, location, data }) => {
+  updateBackground();
+  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
+  return (
+    <SWrapper>
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+      />
+      <SBackgroundTriangles layout={layout}>
+        <STrianglesLeft />
+        <STrianglesRight />
+      </SBackgroundTriangles>
+      <Header pathname={location.pathname} layout={layout} />
+      <SContent layout={layout}>{children()}</SContent>
+      {layout !== 'page' && <Footer layout={layout} />}
+    </SWrapper>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,

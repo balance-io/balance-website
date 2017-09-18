@@ -20,6 +20,11 @@ const SSectionWrapper = styled.div`
 const SHalf = styled.div`
   width: 50%;
   display: flex;
+  @media screen and (${responsive.md.max}) {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px;
+  }
 `;
 
 const SPreviewWrapper = styled(SHalf)`
@@ -28,6 +33,8 @@ const SPreviewWrapper = styled(SHalf)`
   ${({ mobile }) =>
     mobile
       ? `
+        justify-content: center;
+        margin: 90px auto;
         @media screen and (${responsive.md.min}) {
           display: none;
         }
@@ -63,7 +70,7 @@ const SPlayButton = styled.div`
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: transform 0.2s;
-  ${({ mobile }) => mobile && `margin-top: 103px;`};
+  ${({ mobile }) => mobile && `margin-top: 100px;`};
   &:after {
     content: '';
     position: absolute;
@@ -106,19 +113,13 @@ const SForm = styled(SubscribeForm)`
     margin: 0;
     font-size: ${fonts.large};
     padding: 18px 16px;
-    width: 85%;
+    width: 360px;
     border-radius: 10px;
     background: rgb(${colors.blue});
     color: rgb(${colors.white});
     padding-left: 54px;
     border: none;
     border-style: none;
-    @media screen and (${responsive.sm.max}) {
-      line-height: 1;
-      padding: 10px;
-      padding-left: 44px;
-      width: 200px;
-    }
   }
   & input::placeholder {
     color: rgba(${colors.white}, 0.5);
@@ -146,7 +147,7 @@ const Hero = () => (
     <SSectionWrapper>
       <SPreviewWrapper mobile>
         <SPreview mobile img={previewMobile}>
-          <SPlayButton />
+          <SPlayButton mobile />
         </SPreview>
       </SPreviewWrapper>
 
