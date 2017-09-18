@@ -1,17 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-import Section from '../components/Section';
+import Hero from '../sections/Hero';
+import BalanceOpen from '../sections/BalanceOpen';
+import { colors } from '../styles';
 
-const SWrapper = styled.div`width: 100%;`;
-
-const IndexPage = () => (
-  <SWrapper>
-    <Section />
-    <Section />
-    <Section />
-    <Section />
-    <Section />
-  </SWrapper>
-);
+const IndexPage = () => {
+  document.body.style.background = `rgb(${colors.darkerBlue})`;
+  return (
+    <div>
+      <Hero />
+      <BalanceOpen />
+    </div>
+  );
+};
 
 export default IndexPage;

@@ -14,6 +14,7 @@ import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
   width: 100%;
+  z-index: 10;
   position: absolute;
   & nav a {
     font-weight: ${({ layout }) => (layout === 'page' ? '500' : '400')};
@@ -77,7 +78,7 @@ const STopSection = styled.div`
 const SLogo = styled.div`
   width: 95px;
   height: 22px;
-  margin-left: 10px;
+  margin-left: -10px;
   mask-image: url(${mobileLogo}) center no-repeat;
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;

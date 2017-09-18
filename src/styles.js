@@ -5,9 +5,13 @@ export const colors = {
   grey: '187, 187, 187',
   lightGrey: '240, 240, 240',
   darkGrey: '128, 128, 128',
-  blue: '97, 218, 251',
+  darkerBlue: '17, 23, 31',
+  darkBlue: '55, 61, 73',
+  blue: '58, 113, 242',
   lightBlue: '147, 160, 178',
+  lighterBlue: '157, 171, 187',
   gold: '246, 203, 71',
+  orange: '235, 129, 9',
   green: '11, 176, 113',
   purple: '50, 50, 93',
   lightGreen: '10, 255, 162',
@@ -31,12 +35,6 @@ export const transitions = {
   long: 'all 0.3s ease-in-out'
 };
 
-export const padding = {
-  smallPadding: '15px',
-  mediumPadding: '25px',
-  largePadding: '50px'
-};
-
 export const responsive = {
   xs: {
     min: 'min-width: 479px',
@@ -47,12 +45,12 @@ export const responsive = {
     max: 'max-width: 640px'
   },
   md: {
-    min: 'min-width: 999px',
-    max: 'max-width: 1000px'
+    min: 'min-width: 959px',
+    max: 'max-width: 960px'
   },
   lg: {
-    min: 'min-width: 1199px',
-    max: 'max-width: 1200px'
+    min: 'min-width: 1279px',
+    max: 'max-width: 1280px'
   }
 };
 
