@@ -20,6 +20,9 @@ const SBackgroundImage = styled.div`
   -webkit-mask: url(${triangleMask}) no-repeat;
   background-image: url(${highSierra});
   background-size: 100% 100%;
+  @media screen and (${responsive.md.max}) {
+    display: none;
+  }
 `;
 
 const SSectionWrapper = styled.div`
@@ -28,11 +31,20 @@ const SSectionWrapper = styled.div`
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 90px 20px;
+    text-align: center;
   }
 `;
 
 const SInfo = styled.div`
   max-width: 440px;
+  @media screen and (${responsive.md.max}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   & p {
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
@@ -61,6 +73,9 @@ const SAppPreview = styled.div`
   height: 271px;
   background: url(${balanceOpen}) no-repeat;
   background-size: 100% 100%;
+  @media screen and (${responsive.md.max}) {
+    display: none;
+  }
 `;
 
 const SComboButton = styled.a`
@@ -104,7 +119,7 @@ const SButtonGithub = styled(SComboButton)`
     background-color: #383e49;
     opacity: 1;
   }
-  @media screen and (${responsive.sm.min}) {
+  @media screen and (${responsive.md.min}) {
     display: none;
   }
 `;
@@ -126,7 +141,7 @@ const SButtonApple = styled(SComboButton)`
     -webkit-mask: url(${buttonApple}) no-repeat;
     background-color: rgb(${colors.darkBlue});
   }
-  @media screen and (${responsive.sm.max}) {
+  @media screen and (${responsive.md.max}) {
     display: none;
   }
 `;
@@ -147,7 +162,7 @@ const SContribute = styled(SComboButton)`
     -webkit-mask: url(${buttonGithub}) no-repeat;
     background-color: rgba(${colors.white}, 0.9);
   }
-  @media screen and (${responsive.sm.max}) {
+  @media screen and (${responsive.md.max}) {
     display: none;
   }
 `;
