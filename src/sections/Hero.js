@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import SubscribeForm from '../components/SubscribeForm';
 import emailIcon from '../assets/images/email-icon.svg';
@@ -23,7 +23,7 @@ const SHalf = styled.div`
   @media screen and (${responsive.md.max}) {
     justify-content: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
   }
 `;
 
@@ -34,7 +34,10 @@ const SPreviewWrapper = styled(SHalf)`
     mobile
       ? `
         justify-content: center;
-        margin: 90px auto;
+        margin: 90px auto 0;
+        @media screen and (${responsive.sm.max}) {
+          margin-top: 60px;
+        }
         @media screen and (${responsive.md.min}) {
           display: none;
         }
@@ -66,7 +69,7 @@ const SPlayButton = styled.div`
   height: 80px;
   margin: 258px auto;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(${colors.white}, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: transform 0.2s;
@@ -94,6 +97,12 @@ const SSubscribe = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (${responsive.md.max}) {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 const SFormWrapper = styled.div`
@@ -135,42 +144,133 @@ const SHeroTitle = styled.h1`
   font-size: 2em;
   letter-spacing: -0.25px;
   margin: 40px 0 20px;
+  @media screen and (${responsive.md.max}) {
+    margin: 20px 0 0;
+    font-size: 1.875em;
+    letter-spacing: -0.2px;
+  }
 `;
 
 const STagline = styled.p`
   font-size: 1.125em;
   color: rgb(${colors.lighterBlue});
   line-height: 1.5555555556em;
+  @media screen and (${responsive.md.max}) {
+    margin: 12px auto 0 auto;
+    font-size: 1.1875em;
+    line-height: 1.47em;
+    color: rgba(${colors.white}, 0.8);
+  }
 `;
 
-const Hero = () => (
-  <Section>
-    <SSectionWrapper>
-      <SPreviewWrapper mobile>
-        <SPreview mobile img={previewMobile}>
-          <SPlayButton mobile />
-        </SPreview>
-      </SPreviewWrapper>
+const SVideoContainer = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 10%;
+  z-index: 1000;
+  background: rgba(${colors.dark}, 0.3);
+  transition: opacity 0.225s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
+  pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
+  will-change: transform;
+  ${({ show }) =>
+    show &&
+    `
+    & > div {
+      transition: .225s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: scale(1.0) translateY(0);
+    }
+  `};
+  & iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (${responsive.md.max}) {
+    padding: 0 2%;
+  }
+`;
 
-      <SHalf>
-        <SSubscribe>
-          <SFormWrapper>
-            <img src={emailIcon} alt="email" />
-            <SForm />
-          </SFormWrapper>
+const SVideoWrapper = styled.div`
+  position: relative;
+  padding-bottom: 56.25%;
+  width: 100%;
+  margin: 0 auto;
+  height: 0;
+  will-change: transform;
+  background: #090c0f;
+  & iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
 
-          <SHeroTitle>Get updates on Balance product releases</SHeroTitle>
-          <STagline>We're building a wallet for all the world's currencies, available soon for Mac and iOS.</STagline>
-        </SSubscribe>
-      </SHalf>
+class Hero extends Component {
+  state = {
+    showVideo: false
+  };
+  toggleVideo = () => {
+    const command = this.state.showVideo ? 'pauseVideo' : 'playVideo';
+    this.setState({ showVideo: !this.state.showVideo });
+    this.iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
+  };
+  render = () => (
+    <Section>
+      <SSectionWrapper>
+        <SPreviewWrapper onClick={this.toggleVideo} mobile>
+          <SPreview mobile img={previewMobile}>
+            <SPlayButton mobile />
+          </SPreview>
+        </SPreviewWrapper>
 
-      <SPreviewWrapper>
-        <SPreview img={previewDesktop}>
-          <SPlayButton />
-        </SPreview>
-      </SPreviewWrapper>
-    </SSectionWrapper>
-  </Section>
-);
+        <SHalf>
+          <SSubscribe>
+            <SFormWrapper>
+              <img src={emailIcon} alt="email" />
+              <SForm />
+            </SFormWrapper>
+
+            <SHeroTitle>Get updates on Balance product releases</SHeroTitle>
+            <STagline>We're building a wallet for all the world's currencies, available soon for Mac and iOS.</STagline>
+          </SSubscribe>
+        </SHalf>
+
+        <SPreviewWrapper onClick={this.toggleVideo}>
+          <SPreview img={previewDesktop}>
+            <SPlayButton />
+          </SPreview>
+        </SPreviewWrapper>
+
+        <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
+          <SVideoWrapper>
+            <iframe
+              ref={c => (this.iframe = c)}
+              title="wefunder-youtube"
+              src="https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white"
+              allowFullScreen
+              frameBorder="0"
+            />
+          </SVideoWrapper>
+        </SVideoContainer>
+      </SSectionWrapper>
+    </Section>
+  );
+}
 
 export default Hero;

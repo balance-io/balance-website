@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>triangles-mobile-3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="100" height="100"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Balance-Copy-3" transform="translate(-314.000000, -735.000000)">
+            <g id="Balance-Open" transform="translate(0.000000, 735.000000)">
+                <g id="triangles-mobile-3" transform="translate(314.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Rectangle-8"></g>
+                    <polygon id="Rectangle-5-Copy-3" fill="#E4EDF0" mask="url(#mask-2)" points="150 150 0 0 150 0"></polygon>
+                    <polygon id="Combined-Shape" fill="#FFFFFF" mask="url(#mask-2)" points="50 50 100 0 100 100"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
 import triangleMask from '../assets/images/triangle-mask.svg';
+import trianglesWhite from '../assets/images/triangles-white.svg';
 import highSierra from '../assets/images/high-sierra.jpg';
 import balanceOpen from '../assets/images/balance-open.png';
 import balanceOpenIcon from '../assets/images/balance-open-icon.png';
@@ -13,14 +14,18 @@ const SBackgroundImage = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 780px;
-  height: 780px;
-  mask-image: url(${triangleMask}) no-repeat;
-  -webkit-mask: url(${triangleMask}) no-repeat;
-  background-image: url(${highSierra});
-  background-size: 100% 100%;
-  @media screen and (${responsive.md.max}) {
-    display: none;
+  @media screen and (${responsive.md.min}) {
+    width: 780px;
+    height: 780px;
+    mask-image: url(${triangleMask}) no-repeat;
+    -webkit-mask: url(${triangleMask}) no-repeat;
+    background-image: url(${highSierra});
+    background-size: 100% 100%;
+  }
+  @media screen and (${responsive.sm.max}) {
+    width: 100px;
+    height: 100px;
+    background: url(${trianglesWhite}) no-repeat;
   }
 `;
 
@@ -28,18 +33,23 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media screen and (${responsive.sm.max}) {
+    padding: 100px 20px 80px;
+  }
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 90px 20px;
+  }
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    padding: 220px 20px;
     text-align: center;
   }
 `;
 
 const SInfo = styled.div`
   max-width: 440px;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,9 +68,9 @@ const SInfo = styled.div`
 `;
 
 const SAppIcon = styled.div`
-  margin: 0 auto 25px auto;
-  width: 75px;
-  height: 71px;
+  margin: 25px 0;
+  width: 80px;
+  height: 80px;
   background: url(${balanceOpenIcon}) no-repeat;
   background-size: 100% 100%;
 `;

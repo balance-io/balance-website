@@ -6,7 +6,6 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: 100%;
-  z-index: 0;
   min-height: ${({ minHeight }) => `${minHeight}px`};
   background: ${({ color }) => `rgb(${color})`};
   display: flex;
@@ -29,7 +28,7 @@ const SContent = styled.div`
 
 const SBackground = styled.div`
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 0;
   bottom: 0;
   left: 0;

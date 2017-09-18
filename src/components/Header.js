@@ -78,7 +78,6 @@ const STopSection = styled.div`
 const SLogo = styled.div`
   width: 95px;
   height: 22px;
-  margin-left: -10px;
   mask-image: url(${mobileLogo}) center no-repeat;
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
@@ -104,6 +103,9 @@ const SLogo = styled.div`
         return `rgba(${colors.lightBlue}, 0.8)`;
       }
     }};
+  }
+  @media screen and (${responsive.md.min}) {
+    margin-left: -10px;
   }
 `;
 
