@@ -15,6 +15,10 @@ const SDivider = styled.div`
   margin-bottom: 18px;
   display: ${({ i }) => (i === 0 ? 'none' : 'block')};
   background: rgb(${colors.dark});
+  @media screen and (${responsive.sm.max}) {
+    width: 110%;
+    margin-left: -5%;
+  }
   & > div {
     position: absolute;
     top: 0;
@@ -42,6 +46,7 @@ const SPostCards = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     border-radius: 0;
+    padding: 0 4%;
   }
   @media (hover: hover) {
     &:hover > div > div {
@@ -62,6 +67,7 @@ const SPostCards = styled.div`
       @media screen and (${responsive.sm.max}) {
         transform: scale(.96) rotate3d(0,0,0,0);
       	border-radius: 5px;
+        padding: 20px 8% 27px;
       }
       &:active {
         transform: scale(.92) rotate3d(0,0,0,0);
