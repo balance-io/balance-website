@@ -23,22 +23,22 @@ const SContent = styled.div`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 0;
 `;
 
 const SBackground = styled.div`
   position: absolute;
-  z-index: 0;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 0;
 `;
 
 const Section = ({ children, background, minHeight, color, ...props }) => (
   <SSection minHeight={minHeight} color={color} {...props}>
-    <SContent>{children}</SContent>
     <SBackground>{background}</SBackground>
+    <SContent>{children}</SContent>
   </SSection>
 );
 

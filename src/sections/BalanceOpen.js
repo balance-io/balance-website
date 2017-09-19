@@ -33,8 +33,9 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 34px;
   @media screen and (${responsive.sm.max}) {
-    padding: 100px 20px 80px;
+    padding: 100px 34px 80px;
   }
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
@@ -48,7 +49,9 @@ const SSectionWrapper = styled.div`
 `;
 
 const SInfo = styled.div`
-  max-width: 440px;
+  @media screen and (${responsive.sm.min}) {
+    max-width: 440px;
+  }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     flex-direction: column;

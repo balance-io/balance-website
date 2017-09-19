@@ -2,15 +2,33 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import SubscribeForm from '../components/SubscribeForm';
 import emailIcon from '../assets/images/email-icon.svg';
+import homeTriangles from '../assets/images/triangles-mobile.svg';
 import previewDesktop from '../assets/images/balance-preview-dark-desktop.png';
 import previewMobile from '../assets/images/balance-preview-dark-mobile.png';
 import playButton from '../assets/images/play-button.svg';
 import Section from '../components/Section';
 import { fonts, colors, responsive, transitions } from '../styles';
 
+const SSection = styled(Section)`z-index: 2;`;
+
+const SBackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 132px;
+  height: 144px;
+  pointer-events: none;
+  display: none;
+  background: url(${homeTriangles}) no-repeat;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+  }
+`;
+
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
+  padding: 0 34px;
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
@@ -37,6 +55,8 @@ const SPreviewWrapper = styled(SHalf)`
         margin: 90px auto 0;
         @media screen and (${responsive.sm.max}) {
           margin-top: 60px;
+          width: calc(100% + 68px);
+          margin-left: -34px;
         }
         @media screen and (${responsive.md.min}) {
           display: none;
@@ -91,14 +111,18 @@ const SPlayButton = styled.div`
 `;
 
 const SSubscribe = styled.div`
-  max-width: 420px;
   margin-top: -20px;
   float: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (${responsive.sm.min}) {
+    max-width: 420px;
+  }
   @media screen and (${responsive.md.max}) {
     margin-top: 0;
+  }
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     align-items: center;
     text-align: center;
@@ -227,7 +251,7 @@ class Hero extends Component {
     this.iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
   };
   render = () => (
-    <Section>
+    <SSection id="hero" minHeight={860} color={colors.fadedBlue} background={<SBackgroundImage />}>
       <SSectionWrapper>
         <SPreviewWrapper onClick={this.toggleVideo} mobile>
           <SPreview mobile img={previewMobile}>
@@ -271,7 +295,7 @@ class Hero extends Component {
           </SVideoWrapper>
         </SVideoContainer>
       </SSectionWrapper>
-    </Section>
+    </SSection>
   );
 }
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
-import { globalStyles, responsive } from '../styles';
+import { globalStyles, responsive, colors } from '../styles';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
 import TrianglesRight from '../assets/images/blog-triangles-right.svg';
+import '../assets/images/favicon.ico';
 import '../assets/css/font-faces.css';
-import { colors } from '../styles';
 
 injectGlobal`${globalStyles}`;
 

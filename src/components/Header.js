@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import homeTriangles from '../assets/images/triangles-mobile.svg';
 import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mobileLogo from '../assets/images/mobile-logo.svg';
 import mobileNavToggle from '../assets/images/mobile-nav-toggle.svg';
@@ -49,7 +48,7 @@ const STriangles = styled.div`
   height: 144px;
   pointer-events: none;
   display: ${({ layout }) => {
-    if (layout === 'post') {
+    if (layout !== 'blog') {
       return 'none';
     } else {
       return 'block';
@@ -59,8 +58,6 @@ const STriangles = styled.div`
     background: ${({ layout }) => {
       if (layout === 'blog') {
         return `url(${blogTriangles}) no-repeat`;
-      } else if (layout === 'page') {
-        return `url(${homeTriangles}) no-repeat`;
       } else {
         return 'none';
       }
@@ -81,9 +78,7 @@ const SLogo = styled.div`
   mask-image: url(${mobileLogo}) center no-repeat;
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
-  -webkit-mask-size: 90%;
   transition: ${transitions.short};
-  background-color: #f1f0fa;
   background-color: ${({ layout }) => {
     if (layout === 'blog') {
       return `rgb(${colors.dark})`;
@@ -103,6 +98,10 @@ const SLogo = styled.div`
         return `rgba(${colors.lightBlue}, 0.8)`;
       }
     }};
+  }
+  @media screen and (${responsive.sm.max}) {
+    mask-size: 95%;
+    background-color: rgb(${colors.fadedDarkBlue});
   }
   @media screen and (${responsive.md.min}) {
     margin-left: -10px;
@@ -169,7 +168,7 @@ const SMobileNavToggle = styled.div`
     } else if (layout === 'post') {
       return `rgb(${colors.green})`;
     } else {
-      return `rgb(${colors.lightBlue})`;
+      return `rgb(${colors.lightGrey})`;
     }
   }};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
