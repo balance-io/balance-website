@@ -192,15 +192,8 @@ const SVideoContainer = styled.div`
       transform: scale(1.0) translateY(0);
     }
   `};
-  & iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
   @media screen and (${responsive.md.max}) {
-    padding: 0 2%;
+    padding: 0 5%;
   }
 `;
 
@@ -212,6 +205,9 @@ const SVideoWrapper = styled.div`
   height: 0;
   will-change: transform;
   background: #090c0f;
+  @media screen and (${responsive.sm.max}) {
+    padding-bottom: 177.77%;
+  }
   & iframe {
     position: absolute;
     top: 0;
@@ -262,7 +258,13 @@ class Hero extends Component {
             <iframe
               ref={c => (this.iframe = c)}
               title="wefunder-youtube"
-              src="https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white"
+              src={
+                window.innerWidth > 640 ? (
+                  'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white'
+                ) : (
+                  'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white'
+                )
+              }
               allowFullScreen
               frameBorder="0"
             />
