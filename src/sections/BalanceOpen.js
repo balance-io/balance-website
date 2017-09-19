@@ -33,7 +33,6 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 34px;
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
   }
@@ -83,6 +82,8 @@ const SAppPreview = styled.div`
   height: 271px;
   background: url(${balanceOpen}) no-repeat;
   background-size: 100% 100%;
+  margin-top: 5vw;
+  margin-right: -2vw;
   @media screen and (${responsive.md.max}) {
     display: none;
   }

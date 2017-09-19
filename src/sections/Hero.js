@@ -28,8 +28,8 @@ const SBackgroundImage = styled.div`
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
-  padding: 0 34px;
   @media screen and (${responsive.md.max}) {
+    padding: 0 34px;
     flex-direction: column;
     justify-content: center;
   }
@@ -90,7 +90,6 @@ const SPlayButton = styled.div`
   margin: 258px auto;
   border-radius: 50%;
   background: rgba(${colors.white}, 0.4);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: transform 0.2s;
   ${({ mobile }) => mobile && `margin-top: 100px;`};
@@ -103,10 +102,14 @@ const SPlayButton = styled.div`
     height: 32px;
     mask-image: url(${playButton}) no-repeat;
     -webkit-mask: url(${playButton}) no-repeat;
-    background-color: #fff;
+    background-color: rgb(${colors.white});
   }
   &:hover {
     transform: scale(1.1);
+  }
+  @media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+    backdrop-filter: none !important;
+    background: rgb(${colors.mediumGrey}) !important;
   }
 `;
 

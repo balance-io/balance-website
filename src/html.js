@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import favicon from './assets/images/favicon.ico';
-import googleAnalytics from './lib/googleAnalytics';
+import './lib/googleAnalytics';
+import './lib/mailchimpTracking';
 
 class Html extends React.Component {
   render() {
@@ -40,8 +41,6 @@ class Html extends React.Component {
           />
           <meta property="og:site_name" content="Balance" />
           <meta property="fb:admins" content="1748891795369317" />
-
-          <script src={googleAnalytics} />
         </head>
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />

@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
 import TrianglesRight from '../assets/images/blog-triangles-right.svg';
+import '../lib/intercom';
 import '../assets/images/favicon.ico';
 import '../assets/css/font-faces.css';
 
@@ -54,19 +55,23 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const updateBackground = pathname => {
+const checkLayout = layout => {
   if (typeof window !== 'undefined') {
-    if (window.location.pathname === '/') {
+    if (layout === 'page') {
+      console.log(document.getElementById('intercom-container'));
+      // document.getElementById('intercom-container').style.display = 'block';
       document.body.style.background = `rgb(${colors.navyBlue})`;
     } else {
+      // document.getElementById('intercom-container').style.display = 'none';
       document.body.style.background = `rgb(${colors.white})`;
     }
   }
 };
 
 const TemplateWrapper = ({ children, location, data }) => {
-  updateBackground();
   const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
+  if (layout === 'page' && typeof Intercom !== 'undefined') Intercom('boot', { app_id: 'j0fl7v0m' });
+  checkLayout(layout);
   return (
     <SWrapper>
       <Helmet

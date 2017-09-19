@@ -6,6 +6,7 @@
   "globals": {
     "graphql": true,
     "document": true,
-    "window": true
+    "window": true,
+    "Intercom": true
   }
 }
