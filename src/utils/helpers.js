@@ -76,3 +76,34 @@ export const getReadingTime = content => {
   const wordsPerMinute = 250;
   return Math.ceil(articleWordLength / wordsPerMinute);
 };
+
+/**
+ * @desc Appends script tag to hide Intercom
+ * @return {Void}
+ */
+export const hideIntercom = () => {
+  const css = '#intercom-container { display: none }';
+  const head = document.head || document.getElementsByTagName('head')[0];
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.id = 'hideIntercom';
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+};
+
+/**
+ * @desc Removes script tag to show Intercom
+ * @return {Void}
+ */
+export const showIntercom = () => {
+  const style = document.getElementById('hideIntercom');
+  if (style) {
+    style.parentNode.removeChild(style);
+  }
+};

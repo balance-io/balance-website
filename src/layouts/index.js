@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, responsive, colors } from '../styles';
+import { hideIntercom, showIntercom } from '../utils/helpers';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -55,23 +56,17 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const checkLayout = layout => {
+const TemplateWrapper = ({ children, location, data }) => {
+  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
   if (typeof window !== 'undefined') {
     if (layout === 'page') {
-      console.log(document.getElementById('intercom-container'));
-      // document.getElementById('intercom-container').style.display = 'block';
+      showIntercom();
       document.body.style.background = `rgb(${colors.navyBlue})`;
     } else {
-      // document.getElementById('intercom-container').style.display = 'none';
+      hideIntercom();
       document.body.style.background = `rgb(${colors.white})`;
     }
   }
-};
-
-const TemplateWrapper = ({ children, location, data }) => {
-  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
-  if (layout === 'page' && typeof Intercom !== 'undefined') Intercom('boot', { app_id: 'j0fl7v0m' });
-  checkLayout(layout);
   return (
     <SWrapper>
       <Helmet
