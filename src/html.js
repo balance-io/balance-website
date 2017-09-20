@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import favicon from './assets/images/favicon.ico';
-import './lib/googleAnalytics';
-import './lib/mailchimpTracking';
 
 class Html extends React.Component {
   render() {
@@ -21,7 +18,7 @@ class Html extends React.Component {
             name="description"
             content="A subscription-based Mac app for monitoring your bank balances and card transactions."
           />
-          <link rel="shortcut icon" type="image/x-icon" href={favicon} />
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@balancemymoney" />
@@ -30,17 +27,20 @@ class Html extends React.Component {
             name="twitter:description"
             content="A subscription-based Mac app for monitoring your bank balances and card transactions."
           />
-          <meta name="twitter:image:src" content="resources/css/images/twitter-card-800-400.png" />
+          <meta name="twitter:image:src" content="/twitter-card-800-400.png" />
           <meta property="og:title" content="Balance" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://balancemy.money/" />
-          <meta property="og:image" content="resources/css/images/twitter-card-800-400.png" />
+          <meta property="og:image" content="/twitter-card-800-400.png" />
           <meta
             property="og:description"
             content="A subscription-based Mac app for monitoring your bank balances and card transactions."
           />
           <meta property="og:site_name" content="Balance" />
           <meta property="fb:admins" content="1748891795369317" />
+          <script type="text/javascript" src="/googleAnalytics.js" />
+          <script type="text/javascript" src="/intercom.js" />
+          <script type="text/javascript" src="/mailchimpTracking.js" />
         </head>
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />

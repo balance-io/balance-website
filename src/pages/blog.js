@@ -7,6 +7,12 @@ import { ellipseText, getTimeagoString } from '../utils/helpers';
 
 const dividerColors = ['#A539BD', '#9251AC', '#32325D', '#3079C0', '#217AB7', '#00AEA5', '#517299', '#54606C'];
 
+const SBlog = styled.div`
+  padding: 68px 0 12px;
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
 const SDivider = styled.div`
   position: relative;
   width: 100%;
@@ -160,7 +166,7 @@ const Blog = ({ data, errors }) => {
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
   return (
-    <div>
+    <SBlog>
       {posts.map((post, idx) => {
         if (post.medium) {
           return (
@@ -191,7 +197,7 @@ const Blog = ({ data, errors }) => {
           );
         }
       })}
-    </div>
+    </SBlog>
   );
 };
 

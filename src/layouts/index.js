@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, responsive, colors } from '../styles';
@@ -8,8 +8,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
 import TrianglesRight from '../assets/images/blog-triangles-right.svg';
-import '../lib/intercom';
-import '../assets/images/favicon.ico';
 import '../assets/css/font-faces.css';
 
 injectGlobal`${globalStyles}`;
@@ -22,15 +20,10 @@ const SWrapper = styled.div`
 const SContent = styled.div`
   width: 100%;
   margin: 0 auto;
-  ${({ layout }) =>
-    layout !== 'page' &&
-    `padding: 68px 0 12px;
-    max-width: 700px;
-    `};
 `;
 
 const SBackgroundTriangles = styled.div`
-  display: ${({ layout }) => (layout === 'post' ? 'block' : 'none')};
+  display: ${({ template }) => (template === 'post' ? 'block' : 'none')};
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
@@ -56,33 +49,74 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const TemplateWrapper = ({ children, location, data }) => {
-  const layout = location.pathname.match(/\/blog\/[\w-]+/g) ? 'post' : location.pathname === '/blog' ? 'blog' : 'page';
+const getTemplate = pathname => {
+  let template = 'page';
   if (typeof window !== 'undefined') {
-    if (layout === 'page') {
-      showIntercom();
-      document.body.style.background = `rgb(${colors.navyBlue})`;
-    } else {
-      hideIntercom();
-      document.body.style.background = `rgb(${colors.white})`;
-    }
+    template = window.location.pathname.match(/\/blog\/[\w-]+/g)
+      ? 'post'
+      : window.location.pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
   }
-  return (
-    <SWrapper>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-      />
-      <SBackgroundTriangles layout={layout}>
-        <STrianglesLeft />
-        <STrianglesRight />
-      </SBackgroundTriangles>
-      <Header pathname={location.pathname} layout={layout} />
-      <SContent layout={layout}>{children()}</SContent>
-      {layout !== 'page' && <Footer layout={layout} />}
-    </SWrapper>
-  );
+  return template;
 };
+
+class TemplateWrapper extends Component {
+  state = {
+    template: getTemplate()
+  };
+  componentWillMount() {
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('WILL MOUNT', this.state.template);
+  }
+  componentDidMount() {
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('DID MOUNT before', this.state.template);
+    this.checkLayout();
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('DID MOUNT after', this.state.template);
+  }
+  componentDidUpdate() {
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('DID UPDATE before', this.state.template);
+    this.checkLayout();
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('DID UPDATE after', this.state.template);
+  }
+  checkLayout = () => {
+    if (typeof window !== 'undefined') {
+      const template = getTemplate();
+      if (this.state.template !== template) {
+        this.setState({ template });
+        if (template === 'page') {
+          showIntercom();
+          document.body.style.background = `rgb(${colors.navyBlue})`;
+        } else {
+          hideIntercom();
+          document.body.style.background = `rgb(${colors.white})`;
+        }
+      }
+    }
+  };
+  render() {
+    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
+    console.log('RENDER', this.state.template);
+    const { children, location, data } = this.props;
+    return (
+      <SWrapper>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+        />
+        <SBackgroundTriangles template={this.state.template}>
+          <STrianglesLeft />
+          <STrianglesRight />
+        </SBackgroundTriangles>
+        <Header pathname={location.pathname} template={this.state.template} />
+        <SContent template={this.state.template}>{children()}</SContent>
+        {this.state.template !== 'page' && <Footer template={this.state.template} />}
+      </SWrapper>
+    );
+  }
+}
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,

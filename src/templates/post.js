@@ -4,8 +4,9 @@ import { colors, responsive } from '../styles';
 import { getTimeagoString } from '../utils/helpers';
 
 const SPost = styled.div`
-  padding: 16px 0;
+  padding: 84px 0 12px;
   margin: 0 auto;
+  max-width: 700px;
   & h1 {
     margin-bottom: 11px;
     font-size: 2.5em;
