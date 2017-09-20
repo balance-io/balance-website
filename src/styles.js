@@ -86,7 +86,7 @@ export const globalStyles = `
   	font-stretch: normal;
     font-size: ${fonts.medium};
     color: rgb(${colors.dark});
-    overflow:auto;
+    overflow-y:auto;
     text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
