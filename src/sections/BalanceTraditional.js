@@ -190,7 +190,7 @@ const SFeatureBlock = styled.div`
   }
 `;
 
-const BalanceOpen = () => (
+const BalanceTraditional = () => (
   <Section id="balance-open" minHeight={780} color={colors.navyBlue} background={<SBackground />}>
     <SSectionWrapper>
       <SInfo>
@@ -252,4 +252,4 @@ const BalanceOpen = () => (
   </Section>
 );
 
-export default BalanceOpen;
+export default BalanceTraditional;
