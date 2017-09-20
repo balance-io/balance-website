@@ -86,11 +86,13 @@ export const globalStyles = `
   	font-stretch: normal;
     font-size: ${fonts.medium};
     color: rgb(${colors.dark});
+    overflow:auto;
     text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   	-webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   button:active,
