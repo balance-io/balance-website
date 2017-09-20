@@ -52,8 +52,8 @@ export const responsive = {
     max: 'max-width: 960px'
   },
   lg: {
-    min: 'min-width: 1279px',
-    max: 'max-width: 1280px'
+    min: 'min-width: 1023px',
+    max: 'max-width: 1024px'
   }
 };
 
