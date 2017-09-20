@@ -41,6 +41,7 @@ class Html extends React.Component {
           <script type="text/javascript" src="/googleAnalytics.js" />
           <script type="text/javascript" src="/intercom.js" />
           <script type="text/javascript" src="/mailchimpTracking.js" />
+          <script type="text/javascript" src="/mobileHelper.js" />
         </head>
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
