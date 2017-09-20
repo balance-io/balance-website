@@ -69,6 +69,7 @@ const SPostCards = styled.div`
       width: calc(100% + 44px);
       background: #fff;
       border-radius: 5px;
+      z-index: 5;
       box-shadow: 0 0 1px 0 rgba(49,49,93,.12), 0 5px 15px 0 rgba(49,49,93,.1), 0 15px 35px 0 rgba(49,49,93,0.15), 0 50px 100px 0 rgba(49,49,93,0.1);
       @media screen and (${responsive.sm.max}) {
         transform: scale(.96) rotate3d(0,0,0,0);

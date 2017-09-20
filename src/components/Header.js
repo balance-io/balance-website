@@ -13,7 +13,6 @@ import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
   width: 100%;
-  z-index: 10;
   position: absolute;
   & nav a {
     font-weight: ${({ template }) => (template === 'page' ? '500' : '400')};
@@ -118,6 +117,7 @@ const SLogo = styled.div`
 
 const SNav = styled.nav`
   display: flex;
+  z-index: 3;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
