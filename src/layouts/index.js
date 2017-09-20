@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, responsive, colors } from '../styles';
@@ -49,74 +49,35 @@ const STrianglesRight = styled.div`
   background: url(${TrianglesRight}) no-repeat;
 `;
 
-const getTemplate = pathname => {
-  let template = 'page';
+const TemplateWrapper = ({ children, location, data }) => {
+  const template = location.pathname.match(/\/blog\/[\w-]+/g)
+    ? 'post'
+    : location.pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
   if (typeof window !== 'undefined') {
-    template = window.location.pathname.match(/\/blog\/[\w-]+/g)
-      ? 'post'
-      : window.location.pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
-  }
-  return template;
-};
-
-class TemplateWrapper extends Component {
-  state = {
-    template: getTemplate()
-  };
-  componentWillMount() {
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('WILL MOUNT', this.state.template);
-  }
-  componentDidMount() {
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('DID MOUNT before', this.state.template);
-    this.checkLayout();
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('DID MOUNT after', this.state.template);
-  }
-  componentDidUpdate() {
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('DID UPDATE before', this.state.template);
-    this.checkLayout();
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('DID UPDATE after', this.state.template);
-  }
-  checkLayout = () => {
-    if (typeof window !== 'undefined') {
-      const template = getTemplate();
-      if (this.state.template !== template) {
-        this.setState({ template });
-        if (template === 'page') {
-          showIntercom();
-          document.body.style.background = `rgb(${colors.navyBlue})`;
-        } else {
-          hideIntercom();
-          document.body.style.background = `rgb(${colors.white})`;
-        }
-      }
+    if (template === 'page') {
+      showIntercom();
+      document.body.style.background = `rgb(${colors.navyBlue})`;
+    } else {
+      hideIntercom();
+      document.body.style.background = `rgb(${colors.white})`;
     }
-  };
-  render() {
-    console.log(typeof window !== 'undefined' ? window.location.pathname : null);
-    console.log('RENDER', this.state.template);
-    const { children, location, data } = this.props;
-    return (
-      <SWrapper>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-        />
-        <SBackgroundTriangles template={this.state.template}>
-          <STrianglesLeft />
-          <STrianglesRight />
-        </SBackgroundTriangles>
-        <Header pathname={location.pathname} template={this.state.template} />
-        <SContent template={this.state.template}>{children()}</SContent>
-        {this.state.template !== 'page' && <Footer template={this.state.template} />}
-      </SWrapper>
-    );
   }
-}
+  return (
+    <SWrapper>
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+      />
+      <SBackgroundTriangles template={template}>
+        <STrianglesLeft />
+        <STrianglesRight />
+      </SBackgroundTriangles>
+      <Header template={template} pathname={location.pathname} />
+      <SContent>{children()}</SContent>
+      {template !== 'page' && <Footer template={template} pathname={location.pathname} />}
+    </SWrapper>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,

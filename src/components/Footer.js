@@ -69,8 +69,8 @@ const Footer = ({ template }) => (
   <SFooter template={template}>
     <SFooterList>
       <SFooterLinks href="">Press</SFooterLinks>
-      <SFooterLinks href="./privacy">Privacy</SFooterLinks>
-      <SFooterLinks href="./terms">Terms</SFooterLinks>
+      <SFooterLinks href="/privacy">Privacy</SFooterLinks>
+      <SFooterLinks href="/terms">Terms</SFooterLinks>
     </SFooterList>
 
     <SCopyright>

@@ -312,7 +312,7 @@ class Header extends Component {
         <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={this.props.template} />
         <SMobileNav reveal={this.state.navReveal}>
           <SMobileNavLinks
-            selected={this.props.pathname === '/blog'}
+            selected={this.props.pathname.match(/\/blog\/?/g)}
             reveal={this.state.navReveal}
             onClick={this.hideNavReveal}
             to="/blog"

@@ -87,6 +87,7 @@ const SAppPreview = styled.div`
   margin: 0 auto;
   width: 619px;
   height: 842px;
+  z-index: -1;
   background: url(${balanceIOSPreview}) no-repeat;
   background-size: 100%;
   @media screen and (${responsive.md.max}) {
