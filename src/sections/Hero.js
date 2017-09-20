@@ -157,6 +157,9 @@ const SForm = styled(SubscribeForm)`
     padding-left: 54px;
     border: none;
     border-style: none;
+    @media screen and (${responsive.sm.max}) {
+      width: 100%;
+    }
   }
   & input::placeholder {
     color: rgba(${colors.white}, 0.5);
