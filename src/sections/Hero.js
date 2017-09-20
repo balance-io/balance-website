@@ -286,11 +286,11 @@ class Hero extends Component {
               ref={c => (this.iframe = c)}
               title="wefunder-youtube"
               src={
-                window.innerWidth > 640 ? (
+                typeof window === 'undefined' ? window.innerWidth > 640 ? (
                   'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white'
                 ) : (
                   'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white'
-                )
+                ) : null
               }
               allowFullScreen
               frameBorder="0"
