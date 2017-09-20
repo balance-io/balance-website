@@ -49,6 +49,7 @@ const SHalf = styled.div`
 const SPreviewWrapper = styled(SHalf)`
   align-items: center;
   justify-content: flex-end;
+  cursor: pointer;
   ${({ mobile }) =>
     mobile
       ? `

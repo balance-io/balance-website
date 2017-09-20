@@ -57,7 +57,6 @@ class SubscribeForm extends Component {
         {...props}
       >
         <input
-          autoFocus
           value={this.state.input}
           onChange={e => this.setState({ input: e.target.value })}
           type="email"

@@ -114,6 +114,7 @@ const SNavList = styled.ul`
 const SNavLinks = styled(Link)`
   display: inline-block;
   color: rgb(${colors.green});
+  cursor: pointer;
   padding: 10px 16px;
   font-size: 1.1875em;
   transition: ${transitions.short};
@@ -138,6 +139,7 @@ const SMobileNavToggle = styled.div`
   right: 21px;
   width: 38px;
   height: 38px;
+  cursor: pointer;
   mask-image: url(${mobileNavToggle}) center no-repeat;
   -webkit-mask: url(${mobileNavToggle}) center no-repeat;
   background-color: rgb(${colors.lightGrey});
@@ -204,6 +206,7 @@ const SMobileNavLinks = styled(Link)`
   width: 100%;
   height: 50px;
   opacity: 0;
+  cursor: pointer;
   color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};

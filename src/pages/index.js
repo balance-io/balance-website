@@ -18,6 +18,7 @@ const SVideoContainer = styled.div`
   bottom: 0;
   padding: 0 10%;
   z-index: 1000;
+  cursor: pointer;
   background: rgba(${colors.dark}, 0.3);
   transition: opacity 0.225s cubic-bezier(0, 0, 0.2, 1);
   -webkit-backdrop-filter: blur(12px);
