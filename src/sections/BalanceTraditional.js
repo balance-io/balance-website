@@ -1,57 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import triangleMask from '../assets/images/triangle-mask.svg';
-import trianglesWhite from '../assets/images/triangles-white.svg';
-import highSierra from '../assets/images/high-sierra.jpg';
-import balanceOpen from '../assets/images/balance-open.png';
-import balanceOpenIcon from '../assets/images/balance-open-icon.png';
-import buttonGithub from '../assets/images/button-github.svg';
+import balanceIcon from '../assets/images/balance-icon.png';
 import buttonApple from '../assets/images/button-apple.svg';
 import { responsive, colors } from '../styles';
-
-const SBackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  @media screen and (${responsive.md.min}) {
-    width: 780px;
-    height: 780px;
-    mask-image: url(${triangleMask}) no-repeat;
-    -webkit-mask: url(${triangleMask}) no-repeat;
-    background-image: url(${highSierra});
-    background-size: 100% 100%;
-  }
-  @media screen and (${responsive.sm.max}) {
-    width: 100px;
-    height: 100px;
-    background: url(${trianglesWhite}) no-repeat;
-  }
-`;
 
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 220px 20px;
+  text-align: center;
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
-  }
-  @media screen and (${responsive.md.max}) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    padding: 220px 20px;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
   }
 `;
 
 const SInfo = styled.div`
   @media screen and (${responsive.sm.min}) {
     max-width: 440px;
-  }
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,20 +42,8 @@ const SAppIcon = styled.div`
   margin: 25px 0;
   width: 80px;
   height: 80px;
-  background: url(${balanceOpenIcon}) no-repeat;
+  background: url(${balanceIcon}) no-repeat;
   background-size: 100% 100%;
-`;
-
-const SAppPreview = styled.div`
-  width: 402px;
-  height: 271px;
-  background: url(${balanceOpen}) no-repeat;
-  background-size: 100% 100%;
-  margin-top: 5vw;
-  margin-right: -2vw;
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
 `;
 
 const SComboButton = styled.a`
@@ -109,35 +66,9 @@ const SComboButton = styled.a`
   }
 `;
 
-const SButtonGithub = styled(SComboButton)`
-  width: 189px;
-  background: linear-gradient(-45deg, #ccd4de, #ededf5);
-  border-radius: 10px;
-  color: #383e49;
-  padding: 0 0 4px 44px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 12.5px;
-    left: 16px;
-    width: 20px;
-    height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: #383e49;
-    opacity: 1;
-  }
-  @media screen and (${responsive.md.min}) {
-    display: none;
-  }
-`;
-
 const SButtonApple = styled(SComboButton)`
   width: 155px;
-  background: linear-gradient(-45deg, #ccd4de, #eeeef5);
+  background: linear-gradient(-45deg, #00a36a, #00c278);
   color: rgb(${colors.darkBlue});
   margin-right: 13px;
   padding: 13px 18px 0 40px;
@@ -152,30 +83,6 @@ const SButtonApple = styled(SComboButton)`
     -webkit-mask: url(${buttonApple}) no-repeat;
     background-color: rgb(${colors.darkBlue});
   }
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
-`;
-
-const SContribute = styled(SComboButton)`
-  width: 155px;
-  background: linear-gradient(-45deg, #3c424d, #4e5662);
-  padding: 13px 18px 0 40px;
-  color: rgba(${colors.white}, 0.9);
-  &:before {
-    content: '';
-    position: absolute;
-    top: 12.5px;
-    left: 16px;
-    width: 20px;
-    height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: rgba(${colors.white}, 0.9);
-  }
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
 `;
 
 const STitle = styled.h1`
@@ -185,37 +92,16 @@ const STitle = styled.h1`
   font-weight: 700;
   letter-spacing: -0.2px;
   margin-bottom: 8px;
-  &:after {
-    position: absolute;
-    top: calc(100% - 1.8em);
-    left: 105%;
-    display: flex;
-    align-items: center;
-    padding: 1.5px 3.5px;
-    content: 'NEW';
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    text-align: center;
-    background: rgb(${colors.orange});
-    border-radius: 4px;
-  }
 `;
 
 const BalanceOpen = () => (
-  <Section id="balance-open" minHeight={780} color={colors.navyBlue} background={<SBackgroundImage />}>
+  <Section id="balance-open" minHeight={780} color={colors.navyBlue}>
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
-        <STitle>Balance Open</STitle>
-        <p>
-          A free, open source Mac app for checking Coinbase. Support for GDAX, Poloniex, BTCChina, and many other
-          exchanges is coming soon.
-        </p>
+        <STitle>Balance</STitle>
+        <p>A subscription-based Mac app for monitoring your bank balances and card transactions.</p>
 
-        <SButtonGithub href="https://github.com/balancemymoney/balance-open" target="_blank" rel="noreferrer noopener">
-          View on GitHub
-        </SButtonGithub>
         <SButtonApple
           href="https://github.com/balancemymoney/balance-open/releases"
           target="_blank"
@@ -223,16 +109,12 @@ const BalanceOpen = () => (
         >
           Get for Mac
         </SButtonApple>
-        <SContribute href="https://github.com/balancemymoney/balance-open" target="_blank" rel="noreferrer noopener">
-          Contribute
-        </SContribute>
 
         <ul>
-          <li>Read-only API access</li>
-          <li>Multi-currency support</li>
+          <li>Supports U.S. banks</li>
+          <li>Subscriptions from $4.99</li>
         </ul>
       </SInfo>
-      <SAppPreview />
     </SSectionWrapper>
   </Section>
 );
