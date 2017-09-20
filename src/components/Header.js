@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mobileLogo from '../assets/images/mobile-logo.svg';
 import mobileNavToggle from '../assets/images/mobile-nav-toggle.svg';
 import mobileNavBlog from '../assets/images/mobile-nav-blog.svg';
@@ -13,6 +12,7 @@ import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
   width: 100%;
+  z-index: 10;
   position: absolute;
   & nav a {
     font-weight: ${({ template }) => (template === 'page' ? '500' : '400')};
@@ -34,31 +34,6 @@ const SHeader = styled.div`
         return `rgb(${colors.dark})`;
       } else {
         return `rgb(${colors.lightBlue})`;
-      }
-    }};
-  }
-`;
-
-const STriangles = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 132px;
-  height: 144px;
-  pointer-events: none;
-  display: ${({ template }) => {
-    if (template !== 'blog') {
-      return 'none';
-    } else {
-      return 'block';
-    }
-  }};
-  @media screen and (${responsive.sm.max}) {
-    background: ${({ template }) => {
-      if (template === 'blog') {
-        return `url(${blogTriangles}) no-repeat`;
-      } else {
-        return 'none';
       }
     }};
   }
@@ -117,7 +92,6 @@ const SLogo = styled.div`
 
 const SNav = styled.nav`
   display: flex;
-  z-index: 3;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
@@ -288,7 +262,6 @@ class Header extends Component {
   };
   render = () => (
     <SHeader template={this.props.template}>
-      <STriangles template={this.props.template} />
       <STopSection>
         <SNav>
           <Link onClick={this.hideNavReveal} to="/">

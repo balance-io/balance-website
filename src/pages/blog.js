@@ -1,17 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
+import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mediumLogo from '../assets/images/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
-
-const dividerColors = ['#A539BD', '#9251AC', '#32325D', '#3079C0', '#217AB7', '#00AEA5', '#517299', '#54606C'];
 
 const SBlog = styled.div`
   padding: 68px 0 12px;
   max-width: 700px;
   margin: 0 auto;
 `;
+
+const STriangles = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 132px;
+  height: 144px;
+  display: none;
+  pointer-events: none;
+  background: url(${blogTriangles}) no-repeat;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+  }
+`;
+
+const dividerColors = ['#A539BD', '#9251AC', '#32325D', '#3079C0', '#217AB7', '#00AEA5', '#517299', '#54606C'];
 
 const SDivider = styled.div`
   position: relative;
@@ -168,6 +183,7 @@ const Blog = ({ data, errors }) => {
   const posts = mergePosts(contentful, medium);
   return (
     <SBlog>
+      <STriangles />
       {posts.map((post, idx) => {
         if (post.medium) {
           return (
