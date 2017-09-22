@@ -5,13 +5,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       query {
-      	posts: allContentfulPost {
-      	  edges {
-      	    node {
+        posts: allContentfulPost {
+          edges {
+            node {
               slug
-      	    }
-      	  }
-      	}
+            }
+          }
+        }
       }
     `).then(result => {
       if (result.errors) {
