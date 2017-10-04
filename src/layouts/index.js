@@ -38,7 +38,7 @@ const TemplateWrapper = ({ children, location, data }) => {
       />
       <Header pathname={location.pathname} />
       <SContent>{children()}</SContent>
-      {location.pathname.indexOf('blog') === -1 && <Footer pathname={location.pathname} />}
+      {location.pathname.indexOf('blog') !== -1 && <Footer pathname={location.pathname} />}
     </SWrapper>
   );
 };
