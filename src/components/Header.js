@@ -16,26 +16,16 @@ const SHeader = styled.div`
   position: absolute;
   & nav a {
     font-weight: ${({ template }) => (template === 'page' ? '500' : '400')};
-    color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgb(${colors.dark})`;
-      } else if (template === 'post') {
-        return `rgb(${colors.green})`;
-      } else {
-        return `rgb(${colors.lightBlue})`;
-      }
-    }};
+    color: ${({ template }) =>
+      template === 'blog'
+        ? `rgb(${colors.dark})`
+        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
   }
   & nav a:hover {
-    color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgb(${colors.green})`;
-      } else if (template === 'post') {
-        return `rgb(${colors.dark})`;
-      } else {
-        return `rgb(${colors.lightBlue})`;
-      }
-    }};
+    color: ${({ template }) =>
+      template === 'blog'
+        ? `rgb(${colors.green})`
+        : template === 'post' ? `rgb(${colors.dark})` : `rgb(${colors.lightBlue})`};
   }
 `;
 
@@ -53,37 +43,23 @@ const SLogo = styled.div`
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
   transition: ${transitions.short};
-  background-color: ${({ template }) => {
-    if (template === 'blog') {
-      return `rgb(${colors.dark})`;
-    } else if (template === 'post') {
-      return `rgb(${colors.green})`;
-    } else {
-      return `rgb(${colors.lightBlue})`;
-    }
+  background-color: ${({ template }) =>
+    template === 'blog'
+      ? `rgb(${colors.dark})`
+      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
   }};
   &:hover {
-    background-color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgba(${colors.green}, 0.8)`;
-      } else if (template === 'post') {
-        return `rgba(${colors.dark}, 0.8)`;
-      } else {
-        return `rgba(${colors.lightBlue}, 0.8)`;
-      }
-    }};
+    background-color: ${({ template }) =>
+      template === 'blog'
+        ? `rgba(${colors.green}, 0.8)`
+        : template === 'post' ? `rgba(${colors.dark}, 0.8)` : `rgba(${colors.lightBlue}, 0.8)`};
   }
   @media screen and (${responsive.sm.max}) {
     mask-size: 95%;
-    background-color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgb(${colors.dark})`;
-      } else if (template === 'post') {
-        return `rgb(${colors.green})`;
-      } else {
-        return `rgb(${colors.fadedDarkBlue})`;
-      }
-    }};
+    background-color: ${({ template }) =>
+      template === 'blog'
+        ? `rgb(${colors.dark})`
+        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.fadedDarkBlue})`};
   }
   @media screen and (${responsive.md.min}) {
     margin-left: -10px;
@@ -146,15 +122,10 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: ${({ template }) => {
-    if (template === 'blog') {
-      return `rgba(${colors.black}, 0.8)`;
-    } else if (template === 'post') {
-      return `rgb(${colors.green})`;
-    } else {
-      return `rgb(${colors.lightGrey})`;
-    }
-  }};
+  background: ${({ template }) =>
+    template === 'blog'
+      ? `rgba(${colors.dark}, 0.8)`
+      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightGrey})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
@@ -255,7 +226,10 @@ const SMobileNavClose = styled.div`
 
 class Header extends Component {
   state = {
-    navReveal: false
+    navReveal: false,
+    template: this.props.pathname.match(/\/blog\/[\w-]+/g)
+      ? 'post'
+      : this.props.pathname.match(/\/blog\/?/g) ? 'blog' : 'page'
   };
   showNavReveal = () => {
     this.setState({ navReveal: true });
@@ -265,13 +239,12 @@ class Header extends Component {
   };
   render = () => {
     const { pathname, ...props } = this.props;
-    const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
     return (
-      <SHeader template={template} {...props}>
+      <SHeader template={this.state.template} {...props}>
         <STopSection>
           <SNav>
             <Link onClick={this.hideNavReveal} to="/">
-              <SLogo template={template} />
+              <SLogo template={this.state.template} />
             </Link>
             <SNavList>
               <SNavLinks onClick={this.hideNavReveal} to="/blog">
@@ -288,7 +261,7 @@ class Header extends Component {
             <SNavLinks href="">Download</SNavLinks>
           </SNav>
 
-          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={template} />
+          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={this.state.template} />
           <SMobileNav reveal={this.state.navReveal}>
             <SMobileNavLinks
               selected={pathname.match(/\/blog\/?/g)}
