@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import Section from '../components/Section';
+import BlogHeader from '../components/BlogHeader';
+import BlogFooter from '../components/BlogFooter';
 import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mediumLogo from '../assets/images/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
@@ -179,39 +181,53 @@ const Blog = ({ data, errors }) => {
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
   return (
-    <SBlog maxWidth={700} fontColor={colors.dark}>
-      <STriangles />
-      {posts.map((post, idx) => {
-        if (post.medium) {
-          return (
-            <a key={post.id} href={`https://medium.com/balancemymoney/${post.slug}-${post.id}`}>
-              <SPostCards medium={post.medium} i={idx}>
-                <SDivider i={idx}>
-                  <div />
-                </SDivider>
-                <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
-                <SPostTitle>{post.title}</SPostTitle>
-                <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
-                <SMediumLogo src={mediumLogo} alt="medium" />
-              </SPostCards>
-            </a>
-          );
-        } else {
-          return (
-            <Link key={post.id} to={`blog/${post.slug}`}>
-              <SPostCards medium={post.medium} i={idx}>
-                <SDivider i={idx}>
-                  <div />
-                </SDivider>
-                <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${post.readingTime} min read`}</SPostInfo>
-                <SPostTitle>{post.title}</SPostTitle>
-                <SPostSummary>{idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}</SPostSummary>
-              </SPostCards>
-            </Link>
-          );
-        }
-      })}
-    </SBlog>
+    <div>
+      <BlogHeader />
+      <SBlog maxWidth={700} fontColor={colors.dark}>
+        <STriangles />
+        {posts.map((post, idx) => {
+          if (post.medium) {
+            return (
+              <a key={post.id} href={`https://medium.com/balancemymoney/${post.slug}-${post.id}`}>
+                <SPostCards medium={post.medium} i={idx}>
+                  <SDivider i={idx}>
+                    <div />
+                  </SDivider>
+                  <SPostInfo i={idx}>{`${getTimeagoString(
+                    post.date,
+                    true
+                  )}  •  ${post.readingTime} min read`}</SPostInfo>
+                  <SPostTitle>{post.title}</SPostTitle>
+                  <SPostSummary>
+                    {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
+                  </SPostSummary>
+                  <SMediumLogo src={mediumLogo} alt="medium" />
+                </SPostCards>
+              </a>
+            );
+          } else {
+            return (
+              <Link key={post.id} to={`blog/${post.slug}`}>
+                <SPostCards medium={post.medium} i={idx}>
+                  <SDivider i={idx}>
+                    <div />
+                  </SDivider>
+                  <SPostInfo i={idx}>{`${getTimeagoString(
+                    post.date,
+                    true
+                  )}  •  ${post.readingTime} min read`}</SPostInfo>
+                  <SPostTitle>{post.title}</SPostTitle>
+                  <SPostSummary>
+                    {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
+                  </SPostSummary>
+                </SPostCards>
+              </Link>
+            );
+          }
+        })}
+      </SBlog>
+      <BlogFooter />
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 import mobileLogo from '../assets/images/mobile-logo.svg';
@@ -15,17 +14,11 @@ const SHeader = styled.div`
   z-index: 10;
   position: absolute;
   & nav a {
-    font-weight: ${({ template }) => (template === 'page' ? '500' : '400')};
-    color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.dark})`
-        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
+    font-weight: 400;
+    color: rgb(${colors.dark});
   }
   & nav a:hover {
-    color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.green})`
-        : template === 'post' ? `rgb(${colors.dark})` : `rgb(${colors.lightBlue})`};
+    color: rgb(${colors.green});
   }
 `;
 
@@ -43,23 +36,13 @@ const SLogo = styled.div`
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
   transition: ${transitions.short};
-  background-color: ${({ template }) =>
-    template === 'blog'
-      ? `rgb(${colors.dark})`
-      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
-  }};
+  background-color: rgb(${colors.dark});
   &:hover {
-    background-color: ${({ template }) =>
-      template === 'blog'
-        ? `rgba(${colors.green}, 0.8)`
-        : template === 'post' ? `rgba(${colors.dark}, 0.8)` : `rgba(${colors.lightBlue}, 0.8)`};
+    background-color: rgba(${colors.green}, 0.8);
   }
   @media screen and (${responsive.sm.max}) {
     mask-size: 95%;
-    background-color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.dark})`
-        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.fadedDarkBlue})`};
+    background-color: rgb(${colors.dark});
   }
   @media screen and (${responsive.md.min}) {
     margin-left: -10px;
@@ -122,10 +105,7 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: ${({ template }) =>
-    template === 'blog'
-      ? `rgba(${colors.dark}, 0.8)`
-      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightGrey})`};
+  background: rgba(${colors.dark}, 0.8);
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
@@ -234,60 +214,52 @@ class Header extends Component {
   hideNavReveal = () => {
     this.setState({ navReveal: false });
   };
-  render = () => {
-    const { pathname, ...props } = this.props;
-    const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
-    return (
-      <SHeader template={template} {...props}>
-        <STopSection>
-          <SNav>
-            <Link onClick={this.hideNavReveal} to="/">
-              <SLogo template={template} />
-            </Link>
-            <SNavList>
-              <SNavLinks onClick={this.hideNavReveal} to="/blog">
-                Blog
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/about">
-                About
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/support">
-                Support
-              </SNavLinks>
-            </SNavList>
+  render = () => (
+    <SHeader>
+      <STopSection>
+        <SNav>
+          <Link onClick={this.hideNavReveal} to="/">
+            <SLogo />
+          </Link>
+          <SNavList>
+            <SNavLinks onClick={this.hideNavReveal} to="/blog">
+              Blog
+            </SNavLinks>
+            <SNavLinks onClick={this.hideNavReveal} to="/about">
+              About
+            </SNavLinks>
+            <SNavLinks onClick={this.hideNavReveal} to="/support">
+              Support
+            </SNavLinks>
+          </SNavList>
 
-            <SNavLinks href="">Download</SNavLinks>
-          </SNav>
+          <SNavLinks href="">Download</SNavLinks>
+        </SNav>
 
-          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={template} />
-          <SMobileNav reveal={this.state.navReveal}>
-            <SMobileNavLinks
-              selected={pathname.match(/\/blog\/?/g)}
-              reveal={this.state.navReveal}
-              onClick={this.hideNavReveal}
-              to="/blog"
-            >
-              <SMobileNavIcons icon={mobileNavBlog} />
-              <span>Blog</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
-              <SMobileNavIcons icon={mobileNavAbout} />
-              <span>About</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
-              <SMobileNavIcons icon={mobileNavSupport} />
-              <span>Support</span>
-            </SMobileNavLinks>
-            <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
-          </SMobileNav>
-        </STopSection>
-      </SHeader>
-    );
-  };
+        <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} />
+        <SMobileNav reveal={this.state.navReveal}>
+          <SMobileNavLinks
+            selected={typeof window !== 'undefined' && window.location.pathname.match(/\/blog\/?/g)}
+            reveal={this.state.navReveal}
+            onClick={this.hideNavReveal}
+            to="/blog"
+          >
+            <SMobileNavIcons icon={mobileNavBlog} />
+            <span>Blog</span>
+          </SMobileNavLinks>
+          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
+            <SMobileNavIcons icon={mobileNavAbout} />
+            <span>About</span>
+          </SMobileNavLinks>
+          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
+            <SMobileNavIcons icon={mobileNavSupport} />
+            <span>Support</span>
+          </SMobileNavLinks>
+          <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
+        </SMobileNav>
+      </STopSection>
+    </SHeader>
+  );
 }
-
-Header.propTypes = {
-  pathname: PropTypes.string.isRequired
-};
 
 export default Header;

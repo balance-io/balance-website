@@ -4,8 +4,6 @@ import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, colors } from '../styles';
 import { hideIntercom, showIntercom } from '../utils/helpers';
 import Helmet from 'react-helmet';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import '../assets/css/font-faces.css';
 
 injectGlobal`${globalStyles}`;
@@ -36,9 +34,7 @@ const TemplateWrapper = ({ children, location, data }) => {
         title={data.site.siteMetadata.title}
         meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
       />
-      <Header pathname={location.pathname} />
       <SContent>{children()}</SContent>
-      {location.pathname.indexOf('blog') !== -1 && <Footer pathname={location.pathname} />}
     </SWrapper>
   );
 };

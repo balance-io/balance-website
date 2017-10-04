@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
+import PostHeader from '../components/PostHeader';
+import PostFooter from '../components/PostFooter';
 import { colors, responsive } from '../styles';
 import { getTimeagoString } from '../utils/helpers';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
@@ -123,22 +125,26 @@ const Post = ({ data }) => {
   const authorBio = post.author[0].biography.biography;
   const authorImg = post.author[0].profilePhoto.file.url;
   return (
-    <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
-      <header>
-        <SInfo>
-          <SAuthorImage>
-            <img src={authorImg} alt={authorName} />
-          </SAuthorImage>
-          <SAuthorName>{authorName}</SAuthorName>
-          <p>{authorBio}</p>
-          <p>{`Posted ${getTimeagoString(date, true)}  •  ${readingTime} min read`}</p>
-        </SInfo>
-        <h1>{title}</h1>
-      </header>
-      <article>
-        <SPostContent dangerouslySetInnerHTML={{ __html: html }} />
-      </article>
-    </SPost>
+    <div>
+      <PostHeader />
+      <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
+        <header>
+          <SInfo>
+            <SAuthorImage>
+              <img src={authorImg} alt={authorName} />
+            </SAuthorImage>
+            <SAuthorName>{authorName}</SAuthorName>
+            <p>{authorBio}</p>
+            <p>{`Posted ${getTimeagoString(date, true)}  •  ${readingTime} min read`}</p>
+          </SInfo>
+          <h1>{title}</h1>
+        </header>
+        <article>
+          <SPostContent dangerouslySetInnerHTML={{ __html: html }} />
+        </article>
+      </SPost>
+      <PostFooter />
+    </div>
   );
 };
 
