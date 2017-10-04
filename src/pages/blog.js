@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import Section from '../components/Section';
-import BlogHeader from '../components/BlogHeader';
-import BlogFooter from '../components/BlogFooter';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mediumLogo from '../assets/images/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
@@ -176,13 +176,23 @@ const mergePosts = (contentful, medium) => {
   return parsedPosts;
 };
 
+const layoutTheme = {
+  fontWeight: '400',
+  linkColor: colors.dark,
+  linkHover: colors.green,
+  mobileToggleColor: colors.dark,
+  mobileToggleOpacity: '0.8',
+  logoColor: colors.dark,
+  logoHover: colors.green
+};
+
 const Blog = ({ data, errors }) => {
   const contentful = data.allContentfulPost.edges;
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
   return (
     <div>
-      <BlogHeader />
+      <Header theme={layoutTheme} />
       <SBlog maxWidth={700} fontColor={colors.dark}>
         <STriangles />
         {posts.map((post, idx) => {
@@ -226,7 +236,7 @@ const Blog = ({ data, errors }) => {
           }
         })}
       </SBlog>
-      <BlogFooter />
+      <Footer theme={layoutTheme} />
     </div>
   );
 };

@@ -15,17 +15,11 @@ const SHeader = styled.div`
   z-index: 10;
   position: absolute;
   & nav a {
-    font-weight: ${({ template }) => (template === 'page' ? '500' : '400')};
-    color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.dark})`
-        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
+    font-weight: ${({ theme }) => theme.fontWeight};
+    color: ${({ theme }) => `rgb(${theme.linkColor})`};
   }
   & nav a:hover {
-    color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.green})`
-        : template === 'post' ? `rgb(${colors.dark})` : `rgb(${colors.lightBlue})`};
+    color: ${({ theme }) => `rgb(${theme.linkHover})`};
   }
 `;
 
@@ -43,23 +37,12 @@ const SLogo = styled.div`
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
   transition: ${transitions.short};
-  background-color: ${({ template }) =>
-    template === 'blog'
-      ? `rgb(${colors.dark})`
-      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightBlue})`};
-  }};
+  background-color: ${({ theme }) => `rgb(${theme.logoColor})`};
   &:hover {
-    background-color: ${({ template }) =>
-      template === 'blog'
-        ? `rgba(${colors.green}, 0.8)`
-        : template === 'post' ? `rgba(${colors.dark}, 0.8)` : `rgba(${colors.lightBlue}, 0.8)`};
+    background-color: ${({ theme }) => `rgba(${theme.logoHover}, 0.8)`};
   }
   @media screen and (${responsive.sm.max}) {
     mask-size: 95%;
-    background-color: ${({ template }) =>
-      template === 'blog'
-        ? `rgb(${colors.dark})`
-        : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.fadedDarkBlue})`};
   }
   @media screen and (${responsive.md.min}) {
     margin-left: -10px;
@@ -122,10 +105,7 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: ${({ template }) =>
-    template === 'blog'
-      ? `rgba(${colors.dark}, 0.8)`
-      : template === 'post' ? `rgb(${colors.green})` : `rgb(${colors.lightGrey})`};
+  background: ${({ theme }) => `rgba(${theme.mobileToggleColor}, ${theme.mobileToggleOpacity})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
@@ -235,14 +215,14 @@ class Header extends Component {
     this.setState({ navReveal: false });
   };
   render = () => {
-    const { pathname, ...props } = this.props;
-    const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
+    const { theme, ...props } = this.props;
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
     return (
-      <SHeader template={template} {...props}>
+      <SHeader theme={theme} {...props}>
         <STopSection>
           <SNav>
             <Link onClick={this.hideNavReveal} to="/">
-              <SLogo template={template} />
+              <SLogo theme={theme} />
             </Link>
             <SNavList>
               <SNavLinks onClick={this.hideNavReveal} to="/blog">
@@ -259,7 +239,7 @@ class Header extends Component {
             <SNavLinks href="">Download</SNavLinks>
           </SNav>
 
-          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={template} />
+          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
           <SMobileNav reveal={this.state.navReveal}>
             <SMobileNavLinks
               selected={pathname.match(/\/blog\/?/g)}
@@ -287,7 +267,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  pathname: PropTypes.string.isRequired
+  theme: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default Header;

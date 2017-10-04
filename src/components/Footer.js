@@ -14,26 +14,10 @@ const SFooter = styled.footer`
   min-height: 68px;
   & a {
     font-weight: 400;
-    color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgba(${colors.dark}, 0.8)`;
-      } else if (template === 'post') {
-        return `rgba(${colors.green}, 0.8)`;
-      } else {
-        return `rgba(${colors.grey}, 0.8)`;
-      }
-    }};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ template }) => {
-      if (template === 'blog') {
-        return `rgb(${colors.green})`;
-      } else if (template === 'post') {
-        return `rgb(${colors.dark})`;
-      } else {
-        return `rgb(${colors.grey})`;
-      }
-    }};
+    color: ${({ theme }) => `rgb(${theme.linkHover})`};
   }
 `;
 
@@ -65,25 +49,22 @@ const SCopyright = styled.p`
   }
 `;
 
-const Footer = ({ pathname, ...props }) => {
-  const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
-  return (
-    <SFooter template={template} {...props}>
-      <SFooterList>
-        <SFooterLinks href="">Press</SFooterLinks>
-        <SFooterLinks href="/privacy">Privacy</SFooterLinks>
-        <SFooterLinks href="/terms">Terms</SFooterLinks>
-      </SFooterList>
+const Footer = ({ theme, ...props }) => (
+  <SFooter theme={theme} {...props}>
+    <SFooterList>
+      <SFooterLinks href="">Press</SFooterLinks>
+      <SFooterLinks href="/privacy">Privacy</SFooterLinks>
+      <SFooterLinks href="/terms">Terms</SFooterLinks>
+    </SFooterList>
 
-      <SCopyright>
-        © 2017<span> Balanced Software Inc.</span>
-      </SCopyright>
-    </SFooter>
-  );
-};
+    <SCopyright>
+      © 2017<span> Balanced Software Inc.</span>
+    </SCopyright>
+  </SFooter>
+);
 
 Footer.propTypes = {
-  pathname: PropTypes.string.isRequired
+  theme: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default Footer;

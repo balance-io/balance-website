@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import PostHeader from '../components/PostHeader';
-import PostFooter from '../components/PostFooter';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { colors, responsive } from '../styles';
 import { getTimeagoString } from '../utils/helpers';
 import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
@@ -115,6 +115,16 @@ const SPostContent = styled.div`
   }
 `;
 
+const layoutTheme = {
+  fontWeight: '400',
+  linkColor: colors.green,
+  linkHover: colors.dark,
+  mobileToggleColor: colors.green,
+  mobileToggleOpacity: '1',
+  logoColor: colors.green,
+  logoHover: colors.dark
+};
+
 const Post = ({ data }) => {
   const post = data.contentfulPost;
   const title = post.title.title;
@@ -126,7 +136,7 @@ const Post = ({ data }) => {
   const authorImg = post.author[0].profilePhoto.file.url;
   return (
     <div>
-      <PostHeader />
+      <Header theme={layoutTheme} />
       <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
         <header>
           <SInfo>
@@ -143,7 +153,7 @@ const Post = ({ data }) => {
           <SPostContent dangerouslySetInnerHTML={{ __html: html }} />
         </article>
       </SPost>
-      <PostFooter />
+      <Footer theme={layoutTheme} />
     </div>
   );
 };
