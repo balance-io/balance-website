@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
+import Section from '../components/Section';
 import blogTriangles from '../assets/images/blog-directory-triangles.svg';
 import mediumLogo from '../assets/images/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
 
-const SBlog = styled.div`
-  padding: 68px 0 12px;
-  max-width: 700px;
-  margin: 0 auto;
-`;
+const SBlog = styled(Section)`padding: 48px 0 12px;`;
 
 const STriangles = styled.div`
   position: absolute;
@@ -182,7 +179,7 @@ const Blog = ({ data, errors }) => {
   const medium = data.allMediumPost.edges;
   const posts = mergePosts(contentful, medium);
   return (
-    <SBlog>
+    <SBlog maxWidth={700} fontColor={colors.dark}>
       <STriangles />
       {posts.map((post, idx) => {
         if (post.medium) {

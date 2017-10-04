@@ -263,56 +263,60 @@ class Header extends Component {
   hideNavReveal = () => {
     this.setState({ navReveal: false });
   };
-  render = () => (
-    <SHeader template={this.props.template}>
-      <STopSection>
-        <SNav>
-          <Link onClick={this.hideNavReveal} to="/">
-            <SLogo template={this.props.template} />
-          </Link>
-          <SNavList>
-            <SNavLinks onClick={this.hideNavReveal} to="/blog">
-              Blog
-            </SNavLinks>
-            <SNavLinks onClick={this.hideNavReveal} to="/about">
-              About
-            </SNavLinks>
-            <SNavLinks onClick={this.hideNavReveal} to="/support">
-              Support
-            </SNavLinks>
-          </SNavList>
+  render = () => {
+    const template = this.props.pathname.match(/\/blog\/[\w-]+/g)
+      ? 'post'
+      : this.props.pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
+    return (
+      <SHeader template={template}>
+        <STopSection>
+          <SNav>
+            <Link onClick={this.hideNavReveal} to="/">
+              <SLogo template={template} />
+            </Link>
+            <SNavList>
+              <SNavLinks onClick={this.hideNavReveal} to="/blog">
+                Blog
+              </SNavLinks>
+              <SNavLinks onClick={this.hideNavReveal} to="/about">
+                About
+              </SNavLinks>
+              <SNavLinks onClick={this.hideNavReveal} to="/support">
+                Support
+              </SNavLinks>
+            </SNavList>
 
-          <SNavLinks href="">Download</SNavLinks>
-        </SNav>
+            <SNavLinks href="">Download</SNavLinks>
+          </SNav>
 
-        <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={this.props.template} />
-        <SMobileNav reveal={this.state.navReveal}>
-          <SMobileNavLinks
-            selected={this.props.pathname.match(/\/blog\/?/g)}
-            reveal={this.state.navReveal}
-            onClick={this.hideNavReveal}
-            to="/blog"
-          >
-            <SMobileNavIcons icon={mobileNavBlog} />
-            <span>Blog</span>
-          </SMobileNavLinks>
-          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
-            <SMobileNavIcons icon={mobileNavAbout} />
-            <span>About</span>
-          </SMobileNavLinks>
-          <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
-            <SMobileNavIcons icon={mobileNavSupport} />
-            <span>Support</span>
-          </SMobileNavLinks>
-          <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
-        </SMobileNav>
-      </STopSection>
-    </SHeader>
-  );
+          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={template} />
+          <SMobileNav reveal={this.state.navReveal}>
+            <SMobileNavLinks
+              selected={this.props.pathname.match(/\/blog\/?/g)}
+              reveal={this.state.navReveal}
+              onClick={this.hideNavReveal}
+              to="/blog"
+            >
+              <SMobileNavIcons icon={mobileNavBlog} />
+              <span>Blog</span>
+            </SMobileNavLinks>
+            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
+              <SMobileNavIcons icon={mobileNavAbout} />
+              <span>About</span>
+            </SMobileNavLinks>
+            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
+              <SMobileNavIcons icon={mobileNavSupport} />
+              <span>Support</span>
+            </SMobileNavLinks>
+            <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
+          </SMobileNav>
+        </STopSection>
+      </SHeader>
+    );
+  };
 }
 
 Header.propTypes = {
-  template: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired
 };
 

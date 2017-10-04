@@ -1,12 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
+import Section from '../components/Section';
 import { colors, responsive } from '../styles';
 import { getTimeagoString } from '../utils/helpers';
+import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
+import TrianglesRight from '../assets/images/blog-triangles-right.svg';
 
-const SPost = styled.div`
-  padding: 84px 0 12px;
-  margin: 0 auto;
-  max-width: 700px;
+const SBackgroundTriangles = styled.div`@media screen and (${responsive.sm.max}) {display: none;}`;
+
+const STrianglesLeft = styled.div`
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  left: 0;
+  width: 300px;
+  height: 450px;
+  background: url(${TrianglesLeft}) no-repeat;
+`;
+
+const STrianglesRight = styled.div`
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  right: 0;
+  width: 400px;
+  height: 300px;
+  background: url(${TrianglesRight}) no-repeat;
+`;
+
+const SBackground = () => (
+  <SBackgroundTriangles>
+    <STrianglesLeft />
+    <STrianglesRight />
+  </SBackgroundTriangles>
+);
+
+const SPost = styled(Section)`
+  padding: 56px 0 12px;
   & h1 {
     margin-bottom: 11px;
     font-size: 2.5em;
@@ -19,12 +49,12 @@ const SPost = styled.div`
     margin: 48px 0 11px 0;
     font-size: 1.75em;
     font-weight: 700;
-    letter-spacing: -.6px;
+    letter-spacing: -0.6px;
     line-height: 1.04;
   }
   @media screen and (${responsive.sm.max}) {
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `;
 
@@ -58,7 +88,7 @@ const SAuthorName = styled.h5`
   padding-top: 2px;
   margin-bottom: 3px;
   font-size: 0.9375em;
-  letter-spacing: -.1px;
+  letter-spacing: -0.1px;
   font-weight: 500;
 `;
 
@@ -93,7 +123,7 @@ const Post = ({ data }) => {
   const authorBio = post.author[0].biography.biography;
   const authorImg = post.author[0].profilePhoto.file.url;
   return (
-    <SPost>
+    <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
       <header>
         <SInfo>
           <SAuthorImage>

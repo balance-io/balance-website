@@ -6,12 +6,12 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: 100%;
-  min-height: ${({ minHeight }) => `${minHeight}px`};
-  background: ${({ color }) => `rgb(${color})`};
+  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 0)};
+  background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(${colors.white});
+  color: ${({ fontColor }) => `rgb(${fontColor})`};
   position: relative;
   overflow: ${({ overflow }) => (overflow ? 'auto' : 'hidden')};
   @media screen and (${responsive.md.max}) {
@@ -22,7 +22,7 @@ const SSection = styled.section`
 
 const SContent = styled.div`
   width: 100%;
-  max-width: 1000px;
+  max-width: ${({ maxWidth }) => `${maxWidth}px`};
   margin: 0 auto;
   z-index: 0;
 `;
@@ -36,25 +36,31 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({ children, background, minHeight, color, overflow, ...props }) => (
-  <SSection minHeight={minHeight} color={color} overflow={overflow} {...props}>
+const Section = ({ children, background, maxWidth, minHeight, color, fontColor, overflow, ...props }) => (
+  <SSection minHeight={minHeight} color={color} fontColor={fontColor} overflow={overflow} {...props}>
     <SBackground>{background}</SBackground>
-    <SContent>{children}</SContent>
+    <SContent maxWidth={maxWidth} {...props}>
+      {children}
+    </SContent>
   </SSection>
 );
 
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   background: PropTypes.node,
+  maxWidth: PropTypes.number,
   minHeight: PropTypes.number,
   color: PropTypes.string,
+  fontColor: PropTypes.string,
   overflow: PropTypes.bool
 };
 
 Section.defaultProps = {
   background: null,
-  minHeight: 860,
-  color: colors.fadedBlue,
+  maxWidth: 1000,
+  minHeight: 0,
+  color: null,
+  fontColor: colors.white,
   overflow: true
 };
 

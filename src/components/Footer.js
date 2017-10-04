@@ -65,22 +65,25 @@ const SCopyright = styled.p`
   }
 `;
 
-const Footer = ({ template }) => (
-  <SFooter template={template}>
-    <SFooterList>
-      <SFooterLinks href="">Press</SFooterLinks>
-      <SFooterLinks href="/privacy">Privacy</SFooterLinks>
-      <SFooterLinks href="/terms">Terms</SFooterLinks>
-    </SFooterList>
+const Footer = ({ pathname }) => {
+  const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
+  return (
+    <SFooter template={template}>
+      <SFooterList>
+        <SFooterLinks href="">Press</SFooterLinks>
+        <SFooterLinks href="/privacy">Privacy</SFooterLinks>
+        <SFooterLinks href="/terms">Terms</SFooterLinks>
+      </SFooterList>
 
-    <SCopyright>
-      © 2017<span> Balanced Software Inc.</span>
-    </SCopyright>
-  </SFooter>
-);
+      <SCopyright>
+        © 2017<span> Balanced Software Inc.</span>
+      </SCopyright>
+    </SFooter>
+  );
+};
 
 Footer.propTypes = {
-  template: PropTypes.string.isRequired
+  pathname: PropTypes.string.isRequired
 };
 
 export default Footer;
