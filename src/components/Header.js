@@ -264,11 +264,10 @@ class Header extends Component {
     this.setState({ navReveal: false });
   };
   render = () => {
-    const template = this.props.pathname.match(/\/blog\/[\w-]+/g)
-      ? 'post'
-      : this.props.pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
+    const { pathname, ...props } = this.props;
+    const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
     return (
-      <SHeader template={template}>
+      <SHeader template={template} {...props}>
         <STopSection>
           <SNav>
             <Link onClick={this.hideNavReveal} to="/">
@@ -292,7 +291,7 @@ class Header extends Component {
           <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} template={template} />
           <SMobileNav reveal={this.state.navReveal}>
             <SMobileNavLinks
-              selected={this.props.pathname.match(/\/blog\/?/g)}
+              selected={pathname.match(/\/blog\/?/g)}
               reveal={this.state.navReveal}
               onClick={this.hideNavReveal}
               to="/blog"

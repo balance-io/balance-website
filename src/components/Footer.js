@@ -65,10 +65,10 @@ const SCopyright = styled.p`
   }
 `;
 
-const Footer = ({ pathname }) => {
+const Footer = ({ pathname, ...props }) => {
   const template = pathname.match(/\/blog\/[\w-]+/g) ? 'post' : pathname.match(/\/blog\/?/g) ? 'blog' : 'page';
   return (
-    <SFooter template={template}>
+    <SFooter template={template} {...props}>
       <SFooterList>
         <SFooterLinks href="">Press</SFooterLinks>
         <SFooterLinks href="/privacy">Privacy</SFooterLinks>
