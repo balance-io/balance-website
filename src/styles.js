@@ -9,6 +9,7 @@ export const colors = {
   mediumGrey: '108, 117, 128',
   fadedBlue: '24, 32, 42',
   navyBlue: '17, 23, 31',
+  brightBlue: '58, 113, 242',
   darkBlue: '55, 61, 73',
   blue: '58, 113, 242',
   fadedDarkBlue: '79, 98, 114',
