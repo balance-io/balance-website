@@ -152,14 +152,18 @@ const Post = ({ data }) => {
         meta={[
           { name: 'description', content: excerpt },
           { name: 'keywords', content: tags },
+
+          { name: 'twitter:title', content: title },
           { name: 'twitter:card', content: 'summary_large_image' },
           { name: 'twitter:description', content: excerpt },
           { name: 'twitter:image:src', content: featuredImage },
-          { name: 'og:image', content: featuredImage },
-          { name: 'og:url', content: `${siteUrl}/post/${slug}` },
+
           { name: 'og:title', content: title },
-          { name: 'og:description', content: excerpt },
           { name: 'og:type', content: 'article' },
+          { name: 'og:url', content: `${siteUrl}/post/${slug}` },
+          { name: 'og:description', content: excerpt },
+          { name: 'og:image', content: featuredImage },
+
           { name: 'article:published_time', content: date },
           { name: 'article:author', content: authorName },
           { name: 'article:section', content: category }

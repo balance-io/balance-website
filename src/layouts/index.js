@@ -41,16 +41,19 @@ const TemplateWrapper = ({ children, location, data }) => {
         meta={[
           { name: 'description', content: description },
           { name: 'keywords', content: keywords },
+
           { name: 'twitter:card', content: 'summary_large_image' },
           { name: 'twitter:site', content: twitterUsername },
           { name: 'twitter:title', content: title },
           { name: 'twitter:description', content: description },
           { name: 'twitter:img:src', content: `${url}/${coverImage}` },
+
           { name: 'og:title', content: title },
           { name: 'og:type', content: 'website' },
           { name: 'og:url', content: url },
           { name: 'og:image', content: `${url}/${coverImage}` },
           { name: 'og:description', content: description },
+
           { name: 'og:site_name', content: title },
           { name: 'fb:admins', content: facebookId }
         ]}
