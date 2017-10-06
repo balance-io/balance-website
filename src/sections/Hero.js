@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SubscribeForm from '../components/SubscribeForm';
-import emailIcon from '../assets/email-icon.svg';
 import homeTriangles from '../assets/triangles-mobile.svg';
 import previewDesktop from '../assets/balance-preview-dark-desktop.png';
 import previewMobile from '../assets/balance-preview-dark-mobile.png';
 import playButton from '../assets/play-button.svg';
 import Section from '../components/Section';
-import { fonts, colors, responsive, transitions } from '../styles';
+import { colors, responsive, transitions } from '../styles';
 
 const SSection = styled(Section)`z-index: 2;`;
 
@@ -134,44 +133,6 @@ const SSubscribe = styled.div`
   }
 `;
 
-const SFormWrapper = styled.div`
-  position: relative;
-  margin-bottom: 17px;
-  & img {
-    position: absolute;
-    height: 17px;
-    left: 17px;
-    top: calc(50% - 7px);
-  }
-`;
-
-const SForm = styled(SubscribeForm)`
-  & input {
-    outline: none;
-    margin: 0;
-    font-size: ${fonts.large};
-    padding: 18px 16px;
-    width: 360px;
-    border-radius: 10px;
-    background: rgb(${colors.blue});
-    color: rgb(${colors.white});
-    padding-left: 54px;
-    border: none;
-    border-style: none;
-    @media screen and (${responsive.sm.max}) {
-      width: 100%;
-    }
-  }
-  & input::placeholder {
-    color: rgba(${colors.white}, 0.5);
-  }
-  & p {
-    position: absolute;
-    text-align: center;
-    margin-top: 10px;
-  }
-`;
-
 const STitle = styled.h1`
   font-size: 2em;
   letter-spacing: -0.25px;
@@ -213,10 +174,7 @@ const Hero = ({ toggleVideo }) => (
 
       <SHalf>
         <SSubscribe>
-          <SFormWrapper>
-            <img src={emailIcon} alt="email" />
-            <SForm options={subscribeOptions} />
-          </SFormWrapper>
+          <SubscribeForm options={subscribeOptions} />
 
           <STitle>Get updates on Balance product releases</STitle>
           <STagline>We're building a wallet for all the world's currencies, available soon for Mac and iOS.</STagline>

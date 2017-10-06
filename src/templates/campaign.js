@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import SubscribeForm from '../components/SubscribeForm';
-import emailIcon from '../assets/email-icon.svg';
 import triangleMask from '../assets/triangle-mask.svg';
 import highSierra from '../assets/high-sierra.jpg';
 import balanceOpen from '../assets/balance-open.png';
 import Section from '../components/Section';
-import { fonts, colors, responsive } from '../styles';
+import { colors, responsive } from '../styles';
 
 const SSection = styled(Section)`
   min-height: 100vh;
@@ -51,44 +50,6 @@ const SHalf = styled.div`
   @media screen and (${responsive.md.max}) {
     justify-content: center;
     width: 100%;
-  }
-`;
-
-const SFormWrapper = styled.div`
-  position: relative;
-  margin-bottom: 17px;
-  & img {
-    position: absolute;
-    height: 17px;
-    left: 17px;
-    top: calc(50% - 7px);
-  }
-`;
-
-const SForm = styled(SubscribeForm)`
-  & input {
-    outline: none;
-    margin: 0;
-    font-size: ${fonts.large};
-    padding: 18px 16px;
-    width: 360px;
-    border-radius: 10px;
-    background: rgb(${colors.blue});
-    color: rgb(${colors.white});
-    padding-left: 54px;
-    border: none;
-    border-style: none;
-    @media screen and (${responsive.sm.max}) {
-      width: 100%;
-    }
-  }
-  & input::placeholder {
-    color: rgba(${colors.white}, 0.5);
-  }
-  & p {
-    position: absolute;
-    text-align: center;
-    margin-top: 10px;
   }
 `;
 
@@ -172,10 +133,7 @@ const Campaign = ({ name }) => {
         <SSectionWrapper>
           <SHalf>
             <SSubscribe>
-              <SFormWrapper>
-                <img src={emailIcon} alt="email" />
-                <SForm options={subscribeOptions} />
-              </SFormWrapper>
+              <SubscribeForm options={subscribeOptions} />
 
               <STitle>Try out Balance Open and Receive $2 of Ether</STitle>
               <STagline>A free, open source Mac app for checking Coinbase, a simple digital currency wallet.</STagline>

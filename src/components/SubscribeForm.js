@@ -1,7 +1,75 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import jsonp from 'jsonp';
-import { colors } from '../styles';
+import emailIcon from '../assets/email-icon.svg';
+import { fonts, colors, responsive, transitions } from '../styles';
+
+const SFormWrapper = styled.div`
+  position: relative;
+  margin-bottom: 17px;
+`;
+
+const SMessage = styled.p`
+  position: absolute;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const SSuccess = styled.p`
+  position: absolute;
+  left: 60px;
+  top: calc(50% - 9px);
+  font-weight: 500;
+  transition: ${transitions.base};
+  color: rgb(${colors.brightBlue});
+`;
+
+const SForm = styled.form`
+  & input {
+    outline: none;
+    margin: 0;
+    font-size: ${fonts.large};
+    padding: 18px 16px;
+    width: 360px;
+    border-radius: 10px;
+    background: rgb(${colors.blue});
+    color: rgb(${colors.white});
+    padding-left: 54px;
+    border: none;
+    border-style: none;
+    transition: ${transitions.short};
+    opacity: ${({ success }) => (success ? '0' : '1')};
+    pointer-events: ${({ success }) => (success ? 'none' : 'auto')};
+    visibility: ${({ success }) => (success ? 'hidden' : 'visible')};
+    @media screen and (${responsive.sm.max}) {
+      width: 100%;
+    }
+  }
+  & input::placeholder {
+    color: rgba(${colors.white}, 0.5);
+  }
+  &::before {
+    content: '';
+    transition: ${transitions.base};
+    mask-image: url(${emailIcon}) no-repeat;
+    -webkit-mask: url(${emailIcon}) no-repeat;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    background: rgb(${colors.white});
+    background: ${({ success }) => (success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`)};
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 20px;
+    top: calc(50% - 5px);
+  }
+  & ${SSuccess} {
+    opacity: ${({ success }) => (success ? '1' : '0')};
+    pointer-events: ${({ success }) => (success ? 'auto' : 'none')};
+    visibility: ${({ success }) => (success ? 'visible' : 'hidden')};
+  }
+`;
 
 class SubscribeForm extends Component {
   state = {
@@ -50,18 +118,20 @@ class SubscribeForm extends Component {
   render() {
     const { messages, ...props } = this.props;
     return (
-      <form onSubmit={this.onSubmit} method="POST" noValidate {...props}>
-        <input
-          value={this.state.input}
-          onChange={e => this.setState({ input: e.target.value })}
-          type="email"
-          required
-          placeholder={messages.inputPlaceholder}
-        />
-        {this.state.status === 'sending' && <p color={colors.white}>{messages.sending}</p>}
-        {this.state.status === 'success' && <p color={colors.green}>{messages.success}</p>}
-        {this.state.status === 'error' && <p color={colors.red}>{messages.error}</p>}
-      </form>
+      <SFormWrapper>
+        <SForm success={this.state.status === 'success'} onSubmit={this.onSubmit} method="POST" noValidate {...props}>
+          {this.state.status === 'success' && <SSuccess>Check your email</SSuccess>}
+          <input
+            value={this.state.input}
+            onChange={e => this.setState({ input: e.target.value })}
+            type="email"
+            required
+            placeholder={messages.inputPlaceholder}
+          />
+          {this.state.status === 'sending' && <SMessage color={colors.white}>{messages.sending}</SMessage>}
+          {this.state.status === 'error' && <SMessage color={colors.red}>{messages.error}</SMessage>}
+        </SForm>
+      </SFormWrapper>
     );
   }
 }
