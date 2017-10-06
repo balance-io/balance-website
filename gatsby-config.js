@@ -16,6 +16,12 @@ module.exports = {
         accessToken: `8a07f78be235d70f1bb3aee5d324b30e90275a542173a923604dcc12235ef33c`
       }
     },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `balancemymoney`
+      }
+    },
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
