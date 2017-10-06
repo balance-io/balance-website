@@ -172,7 +172,7 @@ const SForm = styled(SubscribeForm)`
   }
 `;
 
-const SHeroTitle = styled.h1`
+const STitle = styled.h1`
   font-size: 2em;
   letter-spacing: -0.25px;
   margin: 40px 0 20px;
@@ -195,6 +195,13 @@ const STagline = styled.p`
   }
 `;
 
+const subscribeOptions = {
+  server: 'money.us11',
+  userId: 'a3f87e208a9f9896949b4f336',
+  listId: '38021a64b6',
+  origin: ''
+};
+
 const Hero = ({ toggleVideo }) => (
   <SSection id="hero" minHeight={860} color={colors.fadedBlue} background={<SBackgroundImage />}>
     <SSectionWrapper>
@@ -208,10 +215,10 @@ const Hero = ({ toggleVideo }) => (
         <SSubscribe>
           <SFormWrapper>
             <img src={emailIcon} alt="email" />
-            <SForm />
+            <SForm options={subscribeOptions} />
           </SFormWrapper>
 
-          <SHeroTitle>Get updates on Balance product releases</SHeroTitle>
+          <STitle>Get updates on Balance product releases</STitle>
           <STagline>We're building a wallet for all the world's currencies, available soon for Mac and iOS.</STagline>
         </SSubscribe>
       </SHalf>

@@ -10,6 +10,7 @@ class SubscribeForm extends Component {
     input: ''
   };
   onSubmit = e => {
+    const options = this.props.options;
     e.preventDefault();
     if (!this.state.input || this.state.input.length < 5 || this.state.input.indexOf('@') === -1) {
       this.setState({
@@ -17,7 +18,7 @@ class SubscribeForm extends Component {
       });
       return;
     }
-    const url = `//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6&EMAIL=${encodeURIComponent(
+    const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${options.userId}&id=${options.listId}&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(
       this.state.input
     )}`;
     this.setState(
@@ -49,13 +50,7 @@ class SubscribeForm extends Component {
   render() {
     const { messages, ...props } = this.props;
     return (
-      <form
-        action="//money.us11.list-manage.com/subscribe/post-json?u=a3f87e208a9f9896949b4f336&id=3985713da6"
-        onSubmit={this.onSubmit}
-        method="POST"
-        noValidate
-        {...props}
-      >
+      <form onSubmit={this.onSubmit} method="POST" noValidate {...props}>
         <input
           value={this.state.input}
           onChange={e => this.setState({ input: e.target.value })}
@@ -72,7 +67,8 @@ class SubscribeForm extends Component {
 }
 
 SubscribeForm.propTypes = {
-  messages: PropTypes.object.isRequired
+  messages: PropTypes.objectOf(PropTypes.string).isRequired,
+  options: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 SubscribeForm.defaultProps = {
