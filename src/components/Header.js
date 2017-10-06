@@ -236,7 +236,7 @@ class Header extends Component {
               </SNavLinks>
             </SNavList>
 
-            <SNavLinks href="">Download</SNavLinks>
+            <SNavLinks href="https://github.com/balancemymoney/balance-open/releases/">Download</SNavLinks>
           </SNav>
 
           <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
