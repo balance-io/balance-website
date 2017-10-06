@@ -1,6 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Balance`
+    title: `Balance`,
+    baseUrl: `https://balancemy.money`,
+    description: `A subscription-based Mac app for monitoring your bank balances and card transactions.`,
+    keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
+    coverImage: `twitter-card-800-400.png`,
+    twitterUsername: '@balancemymoney',
+    facebookId: '1748891795369317'
   },
   plugins: [
     {

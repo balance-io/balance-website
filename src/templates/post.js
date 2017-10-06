@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Helmet from 'react-helmet';
 import Section from '../components/Section';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -126,16 +127,44 @@ const layoutTheme = {
 };
 
 const Post = ({ data }) => {
+  const siteTitle = data.site.siteMetadata.title;
+  const siteUrl = data.site.siteMetadata.baseUrl;
+
   const post = data.contentfulPost;
+
   const title = post.title.title;
   const date = post.date;
+  const category = post.category.title;
+  const tags = post.tags;
+  const slug = post.slug;
+  const excerpt = post.body.content.excerpt;
+  const featuredImage = `https:${post.featuredImage.file.url}`;
   const readingTime = post.body.content.timeToRead;
   const html = post.body.content.html;
+
   const authorName = post.author[0].name;
   const authorBio = post.author[0].biography.biography;
   const authorImg = post.author[0].profilePhoto.file.url;
   return (
     <div>
+      <Helmet
+        title={`${title} - ${siteTitle} Blog`}
+        meta={[
+          { name: 'description', content: excerpt },
+          { name: 'keywords', content: tags },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:description', content: excerpt },
+          { name: 'twitter:image:src', content: featuredImage },
+          { name: 'og:image', content: featuredImage },
+          { name: 'og:url', content: `${siteUrl}/post/${slug}` },
+          { name: 'og:title', content: title },
+          { name: 'og:description', content: excerpt },
+          { name: 'og:type', content: 'article' },
+          { name: 'article:published_time', content: date },
+          { name: 'article:author', content: authorName },
+          { name: 'article:section', content: category }
+        ]}
+      />
       <Header theme={layoutTheme} />
       <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
         <header>
@@ -162,8 +191,24 @@ export default Post;
 
 export const query = graphql`
   query PostQuery($slug: String) {
+    site {
+      siteMetadata {
+        title
+        baseUrl
+      }
+    }
     contentfulPost(slug: { eq: $slug }) {
       date
+      category {
+        title
+      }
+      tags
+      slug
+      featuredImage {
+        file {
+          url
+        }
+      }
       author {
         name
         biography {
@@ -180,6 +225,7 @@ export const query = graphql`
       }
       body {
         content: childMarkdownRemark {
+          excerpt
           timeToRead
           html
         }

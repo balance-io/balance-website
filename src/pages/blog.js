@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
 import Section from '../components/Section';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -192,6 +193,7 @@ const Blog = ({ data, errors }) => {
   const posts = mergePosts(contentful, medium);
   return (
     <div>
+      <Helmet title={`${data.site.siteMetadata.title} Blog`} />
       <Header theme={layoutTheme} />
       <SBlog maxWidth={700} fontColor={colors.dark}>
         <STriangles />
@@ -245,6 +247,11 @@ export default Blog;
 
 export const query = graphql`
   query BlogQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allMediumPost {
       edges {
         node {

@@ -28,11 +28,33 @@ const TemplateWrapper = ({ children, location, data }) => {
       document.body.style.background = `rgb(${colors.white})`;
     }
   }
+  const title = data.site.siteMetadata.title;
+  const url = data.site.siteMetadata.baseUrl;
+  const description = data.site.siteMetadata.description;
+  const keywords = data.site.siteMetadata.keywords;
+  const coverImage = data.site.siteMetadata.coverImage;
+  const twitterUsername = data.site.siteMetadata.twitterUsername;
+  const facebookId = data.site.siteMetadata.facebookId;
   return (
     <SWrapper>
       <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
+        title={title}
+        meta={[
+          { name: 'description', content: description },
+          { name: 'keywords', content: keywords },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:site', content: twitterUsername },
+          { name: 'twitter:title', content: title },
+          { name: 'twitter:description', content: description },
+          { name: 'twitter:img:src', content: `${url}/${coverImage}` },
+          { name: 'og:title', content: title },
+          { name: 'og:type', content: 'website' },
+          { name: 'og:url', content: url },
+          { name: 'og:image', content: `${url}/${coverImage}` },
+          { name: 'og:description', content: description },
+          { name: 'og:site_name', content: title },
+          { name: 'fb:admins', content: facebookId }
+        ]}
       />
       <SContent>{children()}</SContent>
     </SWrapper>
@@ -51,6 +73,12 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        baseUrl
+        description
+        keywords
+        coverImage
+        twitterUsername
+        facebookId
       }
     }
   }
