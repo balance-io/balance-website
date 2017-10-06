@@ -59,6 +59,86 @@ export const responsive = {
 };
 
 export const globalStyles = `
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Book.eot');
+  src: url('/fonts/FreightText Pro Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Book.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Book.woff') format('woff'),
+    url('/fonts/FreightText Pro Book.svg#FreightText Pro Book') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Book Italic.eot');
+  src: url('/fonts/FreightText Pro Book Italic.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Book Italic.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Book Italic.woff') format('woff'),
+    url('/fonts/FreightText Pro Book Italic.svg#FreightText Pro Book Italic') format('svg');
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Bold.eot');
+  src: url('/fonts/FreightText Pro Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Bold.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Bold.woff') format('woff'),
+    url('/fonts/FreightText Pro Bold.svg#FreightText Pro Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Book.eot');
+  src: url('/fonts/MarkPro-Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Book.woff2') format('woff2'),
+    url('/fonts/MarkPro-Book.woff') format('woff'),
+    url('/fonts/MarkPro-Book.svg#MarkPro-Book') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Medium.eot');
+  src: url('/fonts/MarkPro-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Medium.woff2') format('woff2'),
+    url('/fonts/MarkPro-Medium.woff') format('woff'),
+    url('/fonts/MarkPro-Medium.svg#MarkPro-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Bold.eot');
+  src: url('/fonts/MarkPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Bold.woff2') format('woff2'),
+    url('/fonts/MarkPro-Bold.woff') format('woff'),
+    url('/fonts/MarkPro-Bold.svg#MarkPro-Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+
+
   html, body {
     height: 100%;
     width: 100%;

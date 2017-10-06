@@ -4,7 +4,6 @@ import styled, { injectGlobal } from 'styled-components';
 import { globalStyles, colors } from '../styles';
 import { hideIntercom, showIntercom } from '../utils/helpers';
 import Helmet from 'react-helmet';
-import '../assets/css/font-faces.css';
 
 injectGlobal`${globalStyles}`;
 

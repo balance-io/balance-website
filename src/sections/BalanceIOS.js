@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import trianglesIOS from '../assets/images/triangles-ios.svg';
-import trianglesIOSMobile from '../assets/images/triangles-ios-mobile.svg';
-import balanceIOSPreview from '../assets/images/balance-ios.png';
-import balanceIOSIcon from '../assets/images/balance-ios-icon.png';
+import trianglesIOS from '../assets/triangles-ios.svg';
+import trianglesIOSMobile from '../assets/triangles-ios-mobile.svg';
+import balanceIOSPreview from '../assets/balance-ios.png';
+import balanceIOSIcon from '../assets/balance-ios-icon.png';
 import { colors, responsive } from '../styles';
 
 const SBackgroundImage = styled.div`

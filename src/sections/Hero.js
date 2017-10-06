@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SubscribeForm from '../components/SubscribeForm';
-import emailIcon from '../assets/images/email-icon.svg';
-import homeTriangles from '../assets/images/triangles-mobile.svg';
-import previewDesktop from '../assets/images/balance-preview-dark-desktop.png';
-import previewMobile from '../assets/images/balance-preview-dark-mobile.png';
-import playButton from '../assets/images/play-button.svg';
+import emailIcon from '../assets/email-icon.svg';
+import homeTriangles from '../assets/triangles-mobile.svg';
+import previewDesktop from '../assets/balance-preview-dark-desktop.png';
+import previewMobile from '../assets/balance-preview-dark-mobile.png';
+import playButton from '../assets/play-button.svg';
 import Section from '../components/Section';
 import { fonts, colors, responsive, transitions } from '../styles';
 

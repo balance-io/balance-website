@@ -5,8 +5,8 @@ import Helmet from 'react-helmet';
 import Section from '../components/Section';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import blogTriangles from '../assets/images/blog-directory-triangles.svg';
-import mediumLogo from '../assets/images/medium-logo.svg';
+import blogTriangles from '../assets/blog-directory-triangles.svg';
+import mediumLogo from '../assets/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
 

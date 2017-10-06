@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import mobileLogo from '../assets/images/mobile-logo.svg';
-import mobileNavToggle from '../assets/images/mobile-nav-toggle.svg';
-import mobileNavBlog from '../assets/images/mobile-nav-blog.svg';
-import mobileNavAbout from '../assets/images/mobile-nav-about.svg';
-import mobileNavSupport from '../assets/images/mobile-nav-support.svg';
-import mobileNavClose from '../assets/images/mobile-nav-close.svg';
+import mobileLogo from '../assets/mobile-logo.svg';
+import mobileNavToggle from '../assets/mobile-nav-toggle.svg';
+import mobileNavBlog from '../assets/mobile-nav-blog.svg';
+import mobileNavAbout from '../assets/mobile-nav-about.svg';
+import mobileNavSupport from '../assets/mobile-nav-support.svg';
+import mobileNavClose from '../assets/mobile-nav-close.svg';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`

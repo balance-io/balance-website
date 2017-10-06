@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import triangleMask from '../assets/images/triangle-mask.svg';
-import trianglesWhite from '../assets/images/triangles-white.svg';
-import highSierra from '../assets/images/high-sierra.jpg';
-import balanceOpen from '../assets/images/balance-open.png';
-import balanceOpenIcon from '../assets/images/balance-open-icon.png';
-import buttonGithub from '../assets/images/button-github.svg';
-import buttonApple from '../assets/images/button-apple.svg';
+import triangleMask from '../assets/triangle-mask.svg';
+import trianglesWhite from '../assets/triangles-white.svg';
+import highSierra from '../assets/high-sierra.jpg';
+import balanceOpen from '../assets/balance-open.png';
+import balanceOpenIcon from '../assets/balance-open-icon.png';
+import buttonGithub from '../assets/button-github.svg';
+import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
 
 const SBackgroundImage = styled.div`

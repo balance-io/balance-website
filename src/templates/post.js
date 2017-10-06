@@ -6,8 +6,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { colors, responsive } from '../styles';
 import { getTimeagoString } from '../utils/helpers';
-import TrianglesLeft from '../assets/images/blog-triangles-left.svg';
-import TrianglesRight from '../assets/images/blog-triangles-right.svg';
+import TrianglesLeft from '../assets/blog-triangles-left.svg';
+import TrianglesRight from '../assets/blog-triangles-right.svg';
 
 const SBackgroundTriangles = styled.div`@media screen and (${responsive.sm.max}) {display: none;}`;
 
