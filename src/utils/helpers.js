@@ -5,9 +5,7 @@
  * @return {String}
  */
 export const ellipseText = (text = '', maxLength = false) =>
-  maxLength && text.length > maxLength
-    ? `${text.substring(0, maxLength)}...`
-    : text;
+  maxLength && text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 
 /**
  * @desc   Returns String for date in
@@ -32,20 +30,7 @@ export const getTimeagoString = (date, short, current) => {
     'November',
     'December'
   ];
-  const monthsShort = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec'
-  ];
+  const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const limits = [60000, 3600000, 86400000, 604800000, 1209600000];
   if (!date) return null;
   let _current = current || Date.now();
@@ -57,11 +42,9 @@ export const getTimeagoString = (date, short, current) => {
   const dateObj = new Date(_date);
   const timestamp = dateObj.getTime();
   const month = dateObj.getUTCMonth();
-  const day = dateObj.getUTCDay();
+  const day = dateObj.getUTCDate();
   const diff = _current - timestamp;
-  let string = short
-    ? `${monthsShort[month]} ${day}`
-    : `${monthsLong[month]} ${day}`;
+  let string = short ? `${monthsShort[month]} ${day}` : `${monthsLong[month]} ${day}`;
   if (diff < limits[0]) {
     string = 'just now';
     return string;
@@ -89,9 +72,38 @@ export const getTimeagoString = (date, short, current) => {
 
 export const getReadingTime = content => {
   if (!content) return null;
-  const articleWordLength = content
-    .replace(/\s?[^a-zA-Z\d\s]\s/g, ' ')
-    .split(' ').length;
+  const articleWordLength = content.replace(/\s?[^a-zA-Z\d\s]\s/g, ' ').split(' ').length;
   const wordsPerMinute = 250;
   return Math.ceil(articleWordLength / wordsPerMinute);
+};
+
+/**
+ * @desc Appends script tag to hide Intercom
+ * @return {Void}
+ */
+export const hideIntercom = () => {
+  const css = '#intercom-container { display: none }';
+  const head = document.head || document.getElementsByTagName('head')[0];
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.id = 'hideIntercom';
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+};
+
+/**
+ * @desc Removes script tag to show Intercom
+ * @return {Void}
+ */
+export const showIntercom = () => {
+  const style = document.getElementById('hideIntercom');
+  if (style) {
+    style.parentNode.removeChild(style);
+  }
 };

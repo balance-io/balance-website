@@ -5,13 +5,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       query {
-      	posts: allContentfulPost {
-      	  edges {
-      	    node {
+        posts: allContentfulPost {
+          edges {
+            node {
               slug
-      	    }
-      	  }
-      	}
+            }
+          }
+        }
       }
     `).then(result => {
       if (result.errors) {
@@ -21,7 +21,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         if (node.slug) {
           createPage({
             path: `blog/${node.slug}`,
-            component: path.resolve(`./src/layouts/post.js`),
+            component: path.resolve(`./src/templates/post.js`),
             context: {
               slug: node.slug
             }

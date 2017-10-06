@@ -3,11 +3,19 @@ export const colors = {
   black: '0, 0, 0',
   dark: '51, 51, 51',
   grey: '187, 187, 187',
-  lightGrey: '240, 240, 240',
+  lightGrey: '215, 236, 255',
+  softerGrey: '120, 127, 140',
   darkGrey: '128, 128, 128',
-  blue: '97, 218, 251',
-  lightBlue: '197, 242, 255',
+  mediumGrey: '108, 117, 128',
+  fadedBlue: '24, 32, 42',
+  navyBlue: '17, 23, 31',
+  darkBlue: '55, 61, 73',
+  blue: '58, 113, 242',
+  fadedDarkBlue: '79, 98, 114',
+  lightBlue: '147, 160, 178',
+  lighterBlue: '157, 171, 187',
   gold: '246, 203, 71',
+  orange: '235, 129, 9',
   green: '11, 176, 113',
   purple: '50, 50, 93',
   lightGreen: '10, 255, 162',
@@ -31,12 +39,6 @@ export const transitions = {
   long: 'all 0.3s ease-in-out'
 };
 
-export const padding = {
-  smallPadding: '15px',
-  mediumPadding: '25px',
-  largePadding: '50px'
-};
-
 export const responsive = {
   xs: {
     min: 'min-width: 479px',
@@ -47,16 +49,96 @@ export const responsive = {
     max: 'max-width: 640px'
   },
   md: {
-    min: 'min-width: 999px',
-    max: 'max-width: 1000px'
+    min: 'min-width: 959px',
+    max: 'max-width: 960px'
   },
   lg: {
-    min: 'min-width: 1199px',
-    max: 'max-width: 1200px'
+    min: 'min-width: 1023px',
+    max: 'max-width: 1024px'
   }
 };
 
 export const globalStyles = `
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Book.eot');
+  src: url('/fonts/FreightText Pro Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Book.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Book.woff') format('woff'),
+    url('/fonts/FreightText Pro Book.svg#FreightText Pro Book') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Book Italic.eot');
+  src: url('/fonts/FreightText Pro Book Italic.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Book Italic.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Book Italic.woff') format('woff'),
+    url('/fonts/FreightText Pro Book Italic.svg#FreightText Pro Book Italic') format('svg');
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FreightText';
+  src: url('/fonts/FreightText Pro Bold.eot');
+  src: url('/fonts/FreightText Pro Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FreightText Pro Bold.woff2') format('woff2'),
+    url('/fonts/FreightText Pro Bold.woff') format('woff'),
+    url('/fonts/FreightText Pro Bold.svg#FreightText Pro Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Book.eot');
+  src: url('/fonts/MarkPro-Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Book.woff2') format('woff2'),
+    url('/fonts/MarkPro-Book.woff') format('woff'),
+    url('/fonts/MarkPro-Book.svg#MarkPro-Book') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Medium.eot');
+  src: url('/fonts/MarkPro-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Medium.woff2') format('woff2'),
+    url('/fonts/MarkPro-Medium.woff') format('woff'),
+    url('/fonts/MarkPro-Medium.svg#MarkPro-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'FF Mark Pro';
+  src: url('/fonts/MarkPro-Bold.eot');
+  src: url('/fonts/MarkPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/MarkPro-Bold.woff2') format('woff2'),
+    url('/fonts/MarkPro-Bold.woff') format('woff'),
+    url('/fonts/MarkPro-Bold.svg#MarkPro-Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+
+
   html, body {
     height: 100%;
     width: 100%;
@@ -84,11 +166,13 @@ export const globalStyles = `
   	font-stretch: normal;
     font-size: ${fonts.medium};
     color: rgb(${colors.dark});
+    overflow-y:auto;
     text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   	-webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   button:active,

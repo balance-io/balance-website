@@ -4,6 +4,9 @@
     "array-callback-return": "off"
   },
   "globals": {
-    "graphql": true
+    "graphql": true,
+    "document": true,
+    "window": true,
+    "Intercom": true
   }
 }

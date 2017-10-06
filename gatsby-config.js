@@ -1,6 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Balance`
+    title: `Balance`,
+    baseUrl: `https://balancemy.money`,
+    description: `A subscription-based Mac app for monitoring your bank balances and card transactions.`,
+    keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
+    coverImage: `twitter-card-800-400.png`,
+    twitterUsername: '@balancemymoney',
+    facebookId: '1748891795369317'
   },
   plugins: [
     {
@@ -16,9 +22,16 @@ module.exports = {
         accessToken: `8a07f78be235d70f1bb3aee5d324b30e90275a542173a923604dcc12235ef33c`
       }
     },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `balancemymoney`
+      }
+    },
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-next`
   ]
 };
