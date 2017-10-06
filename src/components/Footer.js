@@ -4,21 +4,20 @@ import styled from 'styled-components';
 import { colors, responsive, transitions } from '../styles';
 
 const SFooter = styled.footer`
-  margin: 0 auto;
-  padding: 12px 0;
+  width: 100%;
   max-width: 1028px;
+  margin: 0 auto;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 68px;
   & a {
     font-weight: 400;
-    color: ${({ homepage }) =>
-      homepage ? `rgba(${colors.dark}, 0.8)` : `rgba(${colors.green}, 0.8)`};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ homepage }) =>
-      homepage ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
+    color: ${({ theme }) => `rgb(${theme.linkHover})`};
   }
 `;
 
@@ -50,12 +49,12 @@ const SCopyright = styled.p`
   }
 `;
 
-const Footer = ({ pathname }) => (
-  <SFooter homepage={pathname === '/'}>
+const Footer = ({ theme, ...props }) => (
+  <SFooter theme={theme} {...props}>
     <SFooterList>
       <SFooterLinks href="">Press</SFooterLinks>
-      <SFooterLinks href="./privacy">Privacy</SFooterLinks>
-      <SFooterLinks href="./terms">Terms</SFooterLinks>
+      <SFooterLinks href="/privacy">Privacy</SFooterLinks>
+      <SFooterLinks href="/terms">Terms</SFooterLinks>
     </SFooterList>
 
     <SCopyright>
@@ -65,7 +64,7 @@ const Footer = ({ pathname }) => (
 );
 
 Footer.propTypes = {
-  pathname: PropTypes.string.isRequired
+  theme: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default Footer;

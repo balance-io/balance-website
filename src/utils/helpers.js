@@ -42,7 +42,7 @@ export const getTimeagoString = (date, short, current) => {
   const dateObj = new Date(_date);
   const timestamp = dateObj.getTime();
   const month = dateObj.getUTCMonth();
-  const day = dateObj.getUTCDay();
+  const day = dateObj.getUTCDate();
   const diff = _current - timestamp;
   let string = short ? `${monthsShort[month]} ${day}` : `${monthsLong[month]} ${day}`;
   if (diff < limits[0]) {
@@ -75,4 +75,35 @@ export const getReadingTime = content => {
   const articleWordLength = content.replace(/\s?[^a-zA-Z\d\s]\s/g, ' ').split(' ').length;
   const wordsPerMinute = 250;
   return Math.ceil(articleWordLength / wordsPerMinute);
+};
+
+/**
+ * @desc Appends script tag to hide Intercom
+ * @return {Void}
+ */
+export const hideIntercom = () => {
+  const css = '#intercom-container { display: none }';
+  const head = document.head || document.getElementsByTagName('head')[0];
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.id = 'hideIntercom';
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+};
+
+/**
+ * @desc Removes script tag to show Intercom
+ * @return {Void}
+ */
+export const showIntercom = () => {
+  const style = document.getElementById('hideIntercom');
+  if (style) {
+    style.parentNode.removeChild(style);
+  }
 };
