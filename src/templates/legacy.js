@@ -72,7 +72,7 @@ const Legacy = ({ data }) => {
   return (
     <div>
       <Helmet
-        title={`${title} - ${siteTitle} Blog`}
+        title={`${title} - ${siteTitle}`}
         meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
       />
       <Header theme={layoutTheme} />
