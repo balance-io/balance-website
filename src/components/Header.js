@@ -204,7 +204,7 @@ const SMobileNavClose = styled.div`
   }
 `;
 
-const SDownload = SNavLinks.withComponent('a');
+const SExternalLink = SNavLinks.withComponent('a');
 
 class Header extends Component {
   state = {
@@ -230,17 +230,26 @@ class Header extends Component {
               <SNavLinks onClick={this.hideNavReveal} to="/blog">
                 Blog
               </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/about">
+              <SExternalLink
+                onClick={this.hideNavReveal}
+                href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
                 About
-              </SNavLinks>
+              </SExternalLink>
               <SNavLinks onClick={this.hideNavReveal} to="/support">
                 Support
               </SNavLinks>
             </SNavList>
 
-            <SDownload href="https://github.com/balancemymoney/balance-open/releases/" target="_blank">
+            <SExternalLink
+              href="https://github.com/balancemymoney/balance-open/releases/"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
               Download
-            </SDownload>
+            </SExternalLink>
           </SNav>
 
           <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
