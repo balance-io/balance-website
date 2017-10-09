@@ -49,15 +49,29 @@ const SVideoWrapper = styled.div`
   height: 0;
   will-change: transform;
   background: #090c0f;
-  @media screen and (${responsive.sm.max}) {
-    padding-bottom: 177.77%;
-  }
   & iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+  @media screen and (${responsive.sm.min}) {
+    & iframe:first-child {
+      display: block;
+    }
+    & iframe:nth-child(2) {
+      display: none;
+    }
+  }
+  @media screen and (${responsive.sm.max}) {
+    padding-bottom: 177.77%;
+    & iframe:first-child {
+      display: none;
+    }
+    & iframe:nth-child(2) {
+      display: block;
+    }
   }
 `;
 
@@ -78,33 +92,42 @@ class IndexPage extends Component {
   toggleVideo = () => {
     const command = this.state.showVideo ? 'pauseVideo' : 'playVideo';
     this.setState({ showVideo: !this.state.showVideo });
-    this.iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
+    let iframe;
+    if (typeof window !== 'undefined') {
+      iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
+    }
+    iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
   };
-  render = () => (
-    <div>
-      <Header theme={layoutTheme} />
-      <Hero toggleVideo={this.toggleVideo} />
-      <BalanceOpen />
-      <BalanceIOS />
-      <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
-        <SVideoWrapper>
-          <iframe
-            ref={c => (this.iframe = c)}
-            title="wefunder-youtube"
-            src={
-              typeof window !== 'undefined'
-                ? window.innerWidth > 640
-                  ? 'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white'
-                  : 'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white'
-                : null
-            }
-            allowFullScreen
-            frameBorder="0"
-          />
-        </SVideoWrapper>
-      </SVideoContainer>
-    </div>
-  );
+  render = () => {
+    const desktopIframe = 'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white';
+    const mobileIframe = 'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white';
+    return (
+      <div>
+        <Header theme={layoutTheme} />
+        <Hero toggleVideo={this.toggleVideo} />
+        <BalanceOpen />
+        <BalanceIOS />
+        <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
+          <SVideoWrapper>
+            <iframe
+              ref={c => (this.desktopIframe = c)}
+              title="wefunder-youtube"
+              src={desktopIframe}
+              allowFullScreen
+              frameBorder="0"
+            />
+            <iframe
+              ref={c => (this.mobileIframe = c)}
+              title="wefunder-youtube"
+              src={mobileIframe}
+              allowFullScreen
+              frameBorder="0"
+            />
+          </SVideoWrapper>
+        </SVideoContainer>
+      </div>
+    );
+  };
 }
 
 export default IndexPage;

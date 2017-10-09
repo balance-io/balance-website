@@ -107,3 +107,10 @@ export const showIntercom = () => {
     style.parentNode.removeChild(style);
   }
 };
+
+/**
+ * @desc capitalise string
+ * @param {string} string
+ * @return {Void}
+ */
+export const capitalise = string => string.slice(0, 1).toUpperCase() + string.slice(1);
