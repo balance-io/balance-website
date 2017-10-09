@@ -126,9 +126,7 @@ const layoutTheme = {
   logoHover: colors.dark
 };
 
-const Post = props => {
-  console.log(props);
-  const data = props.data;
+const Post = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
   const siteUrl = data.site.siteMetadata.baseUrl;
 
