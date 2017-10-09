@@ -16,6 +16,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `legacy`,
+        path: `${__dirname}/src/legacy`
+      }
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `0in2z5jkbaay`,
