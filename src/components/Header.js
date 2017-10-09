@@ -204,6 +204,8 @@ const SMobileNavClose = styled.div`
   }
 `;
 
+const SDownload = SNavLinks.withComponent('a');
+
 class Header extends Component {
   state = {
     navReveal: false
@@ -236,7 +238,9 @@ class Header extends Component {
               </SNavLinks>
             </SNavList>
 
-            <SNavLinks href="https://github.com/balancemymoney/balance-open/releases/">Download</SNavLinks>
+            <SDownload href="https://github.com/balancemymoney/balance-open/releases/" target="_blank">
+              Download
+            </SDownload>
           </SNav>
 
           <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />

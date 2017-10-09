@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'gatsby-link';
 import styled from 'styled-components';
 import { colors, responsive, transitions } from '../styles';
 
@@ -23,7 +24,7 @@ const SFooter = styled.footer`
 
 const SFooterList = styled.ul`float: left;`;
 
-const SFooterLinks = styled.a`
+const SFooterLinks = styled(Link)`
   display: inline-block;
   padding: 10px;
   transition: ${transitions.short};
@@ -52,12 +53,13 @@ const SCopyright = styled.p`
 const Footer = ({ theme, ...props }) => (
   <SFooter theme={theme} {...props}>
     <SFooterList>
-      <SFooterLinks href="">Press</SFooterLinks>
-      <SFooterLinks href="/privacy">Privacy</SFooterLinks>
-      <SFooterLinks href="/terms">Terms</SFooterLinks>
+      <SFooterLinks to="/press">Press</SFooterLinks>
+      <SFooterLinks to="/privacy">Privacy</SFooterLinks>
+      <SFooterLinks to="/terms">Terms</SFooterLinks>
     </SFooterList>
 
-    <SCopyright>
+    <SCopyright // eslint-disable-line
+    >
       © 2017<span> Balanced Software Inc.</span>
     </SCopyright>
   </SFooter>
