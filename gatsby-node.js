@@ -19,6 +19,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       query {
+        site {
+          siteMetadata {
+            title
+            campaigns
+          }
+        }
         legacy: allMarkdownRemark {
           edges {
             node {
@@ -33,12 +39,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               slug
             }
-          }
-        }
-        site {
-          siteMetadata {
-            title
-            campaigns
           }
         }
       }
