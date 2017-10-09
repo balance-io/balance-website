@@ -17,8 +17,11 @@ February 3, 2016
 #### Availability
 United States
 
+#### Screenshots
+[Download all screenshots](balance-all-screenshots.zip)
+
 #### Why did we make this?
-There are a lot of tools that aim to give you an overview of your finances. Nearly all of them are free to use and make money through recommending other financial products or selling your data on to a third party. We thought there might be room for an ad-free, uncluttered, and lightning fast native Mac app that some people would be willing to pay for. When [Mint discontinued their menubar app]("https://mint.lc.intuit.com/questions/1244369-discontinuing-the-mac-quickview-app"), we thought there was an opportunity to fill the void.
+There are a lot of tools that aim to give you an overview of your finances. Nearly all of them are free to use and make money through recommending other financial products or selling your data on to a third party. We thought there might be room for an ad-free, uncluttered, and lightning fast native Mac app that some people would be willing to pay for. When [Mint discontinued their menubar app](https://mint.lc.intuit.com/questions/1244369-discontinuing-the-mac-quickview-app), we thought there was an opportunity to fill the void.
 
 #### How is it different?
 - **Native to the Mac:** Your financial information is instantly accessible in the menubar.

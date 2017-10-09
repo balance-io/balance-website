@@ -51,7 +51,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           });
         }
       });
-      console.log(result.data.legacy.edges[0]);
       result.data.posts.edges.map(({ node }) => {
         if (node.slug) {
           createPage({
