@@ -1,10 +1,23 @@
 import React from 'react';
+import Page from '../templates/page';
 
-const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>Nothing to see here</p>
-  </div>
-);
+const NotFound = ({ data }) => {
+  const siteTitle = data.site.siteMetadata.title;
+  return (
+    <Page title={'Not Found'} siteTitle={siteTitle}>
+      <p>Nothing to see here</p>
+    </Page>
+  );
+};
 
-export default NotFoundPage;
+export default NotFound;
+
+export const query = graphql`
+  query NotFoundQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

@@ -8,6 +8,7 @@ import triangleMask from '../assets/triangle-mask.svg';
 import highSierra from '../assets/high-sierra.jpg';
 import balanceOpen from '../assets/balance-open.png';
 import Section from '../components/Section';
+import { capitalise } from '../utils/helpers';
 import { colors, responsive } from '../styles';
 
 const SSection = styled(Section)`
@@ -107,7 +108,7 @@ const SAppPreview = styled.div`
   }
 `;
 
-const Campaign = ({ name }) => {
+const Campaign = ({ pathContext, data }) => {
   const layoutTheme = {
     fontWeight: '400',
     linkColor: colors.lightBlue,
@@ -117,19 +118,20 @@ const Campaign = ({ name }) => {
     logoColor: colors.lightBlue,
     logoHover: colors.lightBlue
   };
-
+  const name = pathContext.slug;
   const subscribeOptions = {
     server: 'money.us11',
     userId: 'a3f87e208a9f9896949b4f336',
     listId: '3985713da6',
-    origin: name.toLowerCase()
+    origin: name
   };
-  const title = `${name} - Balance`;
+  const siteTitle = data.site.siteMetadata.title;
+  const title = `${capitalise(name)} - ${siteTitle}`;
   return (
     <div>
       <Helmet title={title} meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]} />
       <Header theme={layoutTheme} />
-      <SSection id={name.toLowerCase()} color={colors.navyBlue} background={<SBackgroundImage />}>
+      <SSection id={name} color={colors.navyBlue} background={<SBackgroundImage />}>
         <SSectionWrapper>
           <SHalf>
             <SSubscribe>
@@ -153,3 +155,13 @@ Campaign.propTypes = {
 };
 
 export default Campaign;
+
+export const query = graphql`
+  query CampaignQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

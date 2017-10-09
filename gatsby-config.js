@@ -6,7 +6,8 @@ module.exports = {
     keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     coverImage: `twitter-card-800-400.png`,
     twitterUsername: '@balancemymoney',
-    facebookId: '1748891795369317'
+    facebookId: '1748891795369317',
+    campaigns: ['relay', 'appstories', 'macstories']
   },
   plugins: [
     {
