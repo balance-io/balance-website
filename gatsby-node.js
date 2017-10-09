@@ -35,11 +35,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
           }
         }
+        site {
+          siteMetadata {
+            title
+            campaigns
+          }
+        }
       }
     `).then(result => {
       if (result.errors) {
         reject(result.errors);
       }
+      result.data.site.siteMetadata.campaigns.map(name => {
+        createPage({
+          path: name,
+          component: path.resolve(`./src/templates/campaign.js`),
+          context: {
+            slug: name
+          }
+        });
+      });
       result.data.legacy.edges.map(({ node }) => {
         if (node.fields) {
           createPage({
