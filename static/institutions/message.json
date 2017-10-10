@@ -1,0 +1,7 @@
+{
+	"id": 0,
+	"expiration": 0,
+	"title": "alert title",
+	"message": "alert contents",
+	"okButtonTitle": "OK"
+}
