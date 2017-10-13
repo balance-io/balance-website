@@ -1,7 +1,7 @@
 {
-	"id": 0,
-	"expiration": 0,
-	"title": "alert title",
-	"message": "alert contents",
+	"id": 4,
+	"expiration": 64092211200,
+	"title": "Balance is dead, long live Balance!",
+	"message": "First, the Balance team would like to thank you so much for your support this past year. Since we first launched the app in January, we've grown significantly as a company and have had to make the hard decision to take a different direction, with a stronger focus on crypto-currencies.\n\nYou can read all about the new direction here: bal.money/future\n\nThe bad news is that the app you're using now has been officially shut down. We wanted to make this a smoother transition, but due to issues with our data provider, it was not possible.\n\nThe good news is that Balance as a company is stronger than ever, our new crypto focused product is launching in the coming weeks, and we're working to add banking support back as soon as possible.\n\nWhile we are unable to interact with you directly due to App Store restrictions, please email us at support@balancemy.money with your subscription level and either your PayPal, Venmo, or Square Cash address to receive a refund directly from us for your subscription.\n\nIf you have a monthly subscription, you will receive a refund for this month as well as the previous month. If you have a yearly subscription, you'll receive a full non-prorated refund for your year's subscription.\n\nWe apologize for this inconvenience, and we hope that over time we can meet your needs even better with our new product. If you'd like to receive updates on the progress of our new direction, please join our mailing list by visiting our homepage at bal.money.",
 	"okButtonTitle": "OK"
 }
