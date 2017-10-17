@@ -75,16 +75,6 @@ const SVideoWrapper = styled.div`
   }
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightBlue,
-  linkHover: colors.lightBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightBlue,
-  logoHover: colors.lightBlue
-};
-
 class IndexPage extends Component {
   state = {
     showVideo: false
@@ -103,7 +93,7 @@ class IndexPage extends Component {
     const mobileIframe = 'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white';
     return (
       <div>
-        <Header theme={layoutTheme} />
+        <Header />
         <Hero toggleVideo={this.toggleVideo} />
         <BalanceOpen />
         <BalanceIOS />

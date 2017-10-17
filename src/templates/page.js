@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Section from '../components/Section';
@@ -55,17 +56,7 @@ const SPageContent = styled.div`
   }
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightBlue,
-  linkHover: colors.lightBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightBlue,
-  logoHover: colors.lightBlue
-};
-
-const Page = ({ children, title, siteTitle }) => (
+const Page = ({ children, title, siteTitle, layoutTheme }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
@@ -81,5 +72,24 @@ const Page = ({ children, title, siteTitle }) => (
     <Footer theme={layoutTheme} />
   </div>
 );
+
+Page.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired,
+  layoutTheme: PropTypes.objectOf(PropTypes.string)
+};
+
+Page.defaultProps = {
+  layoutTheme: {
+    fontWeight: '400',
+    linkColor: colors.lightBlue,
+    linkHover: colors.lightBlue,
+    mobileToggleColor: colors.lightGrey,
+    mobileToggleOpacity: '1',
+    logoColor: colors.lightBlue,
+    logoHover: colors.lightBlue
+  }
+};
 
 export default Page;

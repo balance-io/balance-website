@@ -44,9 +44,6 @@ const SLogo = styled.div`
   @media screen and (${responsive.sm.max}) {
     mask-size: 95%;
   }
-  @media screen and (${responsive.md.min}) {
-    margin-left: -10px;
-  }
 `;
 
 const SNav = styled.nav`
@@ -280,7 +277,19 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  theme: PropTypes.objectOf(PropTypes.string).isRequired
+  theme: PropTypes.objectOf(PropTypes.string)
+};
+
+Header.defaultProps = {
+  theme: {
+    fontWeight: '400',
+    linkColor: colors.lightBlue,
+    linkHover: colors.lightBlue,
+    mobileToggleColor: colors.lightGrey,
+    mobileToggleOpacity: '1',
+    logoColor: colors.lightBlue,
+    logoHover: colors.lightBlue
+  }
 };
 
 export default Header;
