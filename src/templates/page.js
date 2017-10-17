@@ -56,14 +56,14 @@ const SPageContent = styled.div`
   }
 `;
 
-const Page = ({ children, title, siteTitle, layoutTheme }) => (
+const Page = ({ children, title, siteTitle, layoutTheme, ...props }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage maxWidth={700} fontColor={colors.white}>
+    <SPage maxWidth={700} fontColor={colors.white} {...props}>
       <article>
         <h1>{title}</h1>
         <SPageContent>{children}</SPageContent>

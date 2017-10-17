@@ -6,6 +6,7 @@ export const colors = {
   lightGrey: '215, 236, 255',
   softerGrey: '120, 127, 140',
   darkGrey: '128, 128, 128',
+  darkerGrey: '105, 113, 128',
   mediumGrey: '108, 117, 128',
   fadedBlue: '24, 32, 42',
   navyBlue: '17, 23, 31',
@@ -18,8 +19,10 @@ export const colors = {
   gold: '246, 203, 71',
   orange: '235, 129, 9',
   green: '11, 176, 113',
+  lightGreen: '0, 194, 120',
+  darkGreen: '0, 163, 106',
+  lighterGreen: '10, 255, 162',
   purple: '50, 50, 93',
-  lightGreen: '10, 255, 162',
   red: '221, 69, 65'
 };
 
@@ -27,11 +30,12 @@ export const fonts = {
   small: '12px',
   medium: '16px',
   large: '18px',
-  h1: '32px',
-  h2: '28px',
+  h1: '42px',
+  h2: '32px',
   h3: '24px',
   h4: '20px',
-  h5: '17px'
+  h5: '17px',
+  h6: '14px'
 };
 
 export const transitions = {

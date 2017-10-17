@@ -13,6 +13,8 @@ import { colors, responsive, transitions } from '../styles';
 const SHeader = styled.div`
   width: 100%;
   z-index: 10;
+  left: 0;
+  top: 0;
   position: absolute;
   & nav a {
     font-weight: ${({ theme }) => theme.fontWeight};
@@ -224,6 +226,12 @@ class Header extends Component {
               <SLogo theme={theme} />
             </Link>
             <SNavList>
+              <SNavLinks onClick={this.hideNavReveal} to="/">
+                Personal
+              </SNavLinks>
+              <SNavLinks onClick={this.hideNavReveal} to="/enterprise">
+                Enterprise
+              </SNavLinks>
               <SNavLinks onClick={this.hideNavReveal} to="/blog">
                 Blog
               </SNavLinks>

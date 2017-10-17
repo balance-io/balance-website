@@ -6,7 +6,7 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: 100%;
-  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 0)};
+  min-height: ${({ minHeight, viewport }) => (viewport ? '100vh' : minHeight ? `${minHeight}px` : 0)};
   background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
   display: flex;
   align-items: center;
@@ -36,8 +36,15 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({ children, background, maxWidth, minHeight, color, fontColor, overflow, ...props }) => (
-  <SSection minHeight={minHeight} color={color} fontColor={fontColor} overflow={overflow} {...props}>
+const Section = ({ children, background, viewport, maxWidth, minHeight, color, fontColor, overflow, ...props }) => (
+  <SSection
+    viewport={viewport}
+    minHeight={minHeight}
+    color={color}
+    fontColor={fontColor}
+    overflow={overflow}
+    {...props}
+  >
     <SBackground>{background}</SBackground>
     <SContent maxWidth={maxWidth} {...props}>
       {children}
@@ -48,6 +55,7 @@ const Section = ({ children, background, maxWidth, minHeight, color, fontColor, 
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   background: PropTypes.node,
+  viewport: PropTypes.bool,
   maxWidth: PropTypes.number,
   minHeight: PropTypes.number,
   color: PropTypes.string,
