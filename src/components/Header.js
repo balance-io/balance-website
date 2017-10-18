@@ -164,7 +164,6 @@ const SMobileNavLink = styled(Link)`
     margin-left: 20px;
   }
   & > div {
-    margin-left: 20px;
     background-color: ${({ active }) => (active ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   }
   &:active {
@@ -175,7 +174,7 @@ const SMobileNavLink = styled(Link)`
 const SMobileNavIcons = styled.div`
   height: 16px;
   width: 16px;
-  margin-left: 20px;
+  margin-left: 10px;
   mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
 `;
 

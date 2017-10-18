@@ -72,6 +72,9 @@ const STitle = styled.h1`
   margin: 60px auto;
   font-weight: 400;
   text-align: center;
+  @media screen and (${responsive.sm.max}) {
+    letter-spacing: -1px;
+  }
 `;
 
 const SSubTitle = styled.h3`
