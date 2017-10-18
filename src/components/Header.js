@@ -35,8 +35,7 @@ const STopSection = styled.div`
 const SLogo = styled.div`
   width: 95px;
   height: 22px;
-  mask-image: url(${mobileLogo}) center no-repeat;
-  -webkit-mask: url(${mobileLogo}) center no-repeat;
+  mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
   transition: ${transitions.short};
   background-color: ${({ theme }) => `rgb(${theme.logoColor})`};
@@ -98,8 +97,7 @@ const SMobileNavToggle = styled.div`
   width: 38px;
   height: 38px;
   cursor: pointer;
-  mask-image: url(${mobileNavToggle}) center no-repeat;
-  -webkit-mask: url(${mobileNavToggle}) center no-repeat;
+  mask: url(${mobileNavToggle}) center no-repeat;
   background-color: rgb(${colors.lightGrey});
   cursor: pointer;
   transition: ${transitions.base};
@@ -178,8 +176,7 @@ const SMobileNavIcons = styled.div`
   height: 16px;
   width: 16px;
   margin-left: 20px;
-  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
+  mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
 `;
 
 const SMobileNavClose = styled.div`
@@ -188,12 +185,9 @@ const SMobileNavClose = styled.div`
   right: 0;
   width: 73px;
   height: 73px;
-  mask-image: url(${mobileNavClose}) no-repeat;
-  -webkit-mask: url(${mobileNavClose}) no-repeat;
+  mask: url(${mobileNavClose}) no-repeat;
   mask-size: 16px 16px;
-  -webkit-mask-size: 16px 16px;
   mask-position: 25px 28px;
-  -webkit-mask-position: 25px 28px;
   background-color: rgb(${colors.dark});
   transition: ${transitions.base};
   transform: ${({ reveal }) => (reveal ? 'rotate(0)' : 'rotate(-20deg)')};
@@ -235,14 +229,9 @@ class Header extends Component {
               <SNavLinks onClick={this.hideNavReveal} to="/blog">
                 Blog
               </SNavLinks>
-              <SExternalLink
-                onClick={this.hideNavReveal}
-                href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
+              <SNavLinks onClick={this.hideNavReveal} to="/about">
                 About
-              </SExternalLink>
+              </SNavLinks>
               <SNavLinks onClick={this.hideNavReveal} to="/support">
                 Support
               </SNavLinks>

@@ -16,11 +16,17 @@ import { colors, fonts, responsive } from '../styles';
 
 const SContent = styled.div`padding-top: 68px;`;
 
-const SBackgroundImage = styled.img`
+const SBackgroundImage = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  height: 100%;
   width: 100vw;
+  mask-image: url(${trianglesEnterprise});
+  mask-repeat: no-repeat;
+  mask-position: 50% 50%;
+  mask-size: cover;
+  background-image: linear-gradient(to bottom, rgb(${colors.darkerGrey}), rgb(${colors.softerGrey}));
 `;
 
 const STitle = styled.h1`
@@ -152,7 +158,7 @@ const Enterprise = ({ data }) => {
   const title = 'Enterprise';
   const siteTitle = data.site.siteMetadata.title;
   return (
-    <Section minHeight={900} fontColor={colors.white} background={<SBackgroundImage src={trianglesEnterprise} />}>
+    <Section minHeight={900} fontColor={colors.white} background={<SBackgroundImage />}>
       <Helmet
         title={`${title} - ${siteTitle}`}
         meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}

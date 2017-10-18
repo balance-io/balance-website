@@ -17,8 +17,7 @@ const SBackgroundImage = styled.div`
   @media screen and (${responsive.md.min}) {
     width: 780px;
     height: 780px;
-    mask-image: url(${triangleMask}) no-repeat;
-    -webkit-mask: url(${triangleMask}) no-repeat;
+    mask: url(${triangleMask}) no-repeat;
     background-image: url(${highSierra});
     background-size: 100% 100%;
   }
@@ -125,8 +124,7 @@ const SButtonGithub = styled(SComboButton)`
     left: 16px;
     width: 20px;
     height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
+    mask: url(${buttonGithub}) no-repeat;
     background-color: #383e49;
     opacity: 1;
   }
@@ -148,8 +146,7 @@ const SButtonApple = styled(SComboButton)`
     left: 16px;
     width: 17px;
     height: 21px;
-    mask-image: url(${buttonApple}) no-repeat;
-    -webkit-mask: url(${buttonApple}) no-repeat;
+    mask: url(${buttonApple}) no-repeat;
     background-color: rgb(${colors.darkBlue});
   }
   @media screen and (${responsive.md.max}) {
@@ -169,8 +166,7 @@ const SContribute = styled(SComboButton)`
     left: 16px;
     width: 20px;
     height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
+    mask: url(${buttonGithub}) no-repeat;
     background-color: rgba(${colors.white}, 0.9);
   }
   @media screen and (${responsive.md.max}) {

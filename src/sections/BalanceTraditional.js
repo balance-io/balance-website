@@ -148,8 +148,7 @@ const SButtonApple = styled(SComboButton)`
     left: 16px;
     width: 17px;
     height: 21px;
-    mask-image: url(${buttonApple}) no-repeat;
-    -webkit-mask: url(${buttonApple}) no-repeat;
+    mask: url(${buttonApple}) no-repeat;
     background-color: rgb(${colors.navyBlue});
   }
 `;

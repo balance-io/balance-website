@@ -26,8 +26,7 @@ const SBackgroundImage = styled.div`
   @media screen and (${responsive.md.min}) {
     width: 780px;
     height: 780px;
-    mask-image: url(${triangleMask}) no-repeat;
-    -webkit-mask: url(${triangleMask}) no-repeat;
+    mask: url(${triangleMask}) no-repeat;
     background-image: url(${highSierra});
     background-size: 100% 100%;
   }

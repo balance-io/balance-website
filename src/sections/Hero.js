@@ -101,8 +101,7 @@ const SPlayButton = styled.div`
     left: 28px;
     width: 29px;
     height: 32px;
-    mask-image: url(${playButton}) no-repeat;
-    -webkit-mask: url(${playButton}) no-repeat;
+    mask: url(${playButton}) no-repeat;
     background-color: rgb(${colors.white});
   }
   &:hover {

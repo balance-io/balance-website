@@ -52,10 +52,8 @@ const SForm = styled.form`
   &::before {
     content: '';
     transition: ${transitions.base};
-    mask-image: url(${emailIcon}) no-repeat;
-    -webkit-mask: url(${emailIcon}) no-repeat;
+    mask: url(${emailIcon}) no-repeat;
     mask-size: contain;
-    -webkit-mask-size: contain;
     background: rgb(${colors.white});
     background: ${({ success }) => (success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`)};
     position: absolute;
