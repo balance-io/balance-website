@@ -109,7 +109,6 @@ const SAppPreview = styled.div`
 
 const Campaign = ({ pathContext, data }) => {
   const layoutTheme = {
-    fontWeight: '400',
     linkColor: colors.lightBlue,
     linkHover: colors.lightBlue,
     mobileToggleColor: colors.lightGrey,

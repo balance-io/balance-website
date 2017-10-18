@@ -82,7 +82,6 @@ Page.propTypes = {
 
 Page.defaultProps = {
   layoutTheme: {
-    fontWeight: '400',
     linkColor: colors.lightBlue,
     linkHover: colors.lightBlue,
     mobileToggleColor: colors.lightGrey,

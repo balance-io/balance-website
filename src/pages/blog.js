@@ -178,7 +178,6 @@ const mergePosts = (contentful, medium) => {
 };
 
 const layoutTheme = {
-  fontWeight: '400',
   linkColor: colors.dark,
   linkHover: colors.green,
   mobileToggleColor: colors.dark,

@@ -117,7 +117,6 @@ const SPostContent = styled.div`
 `;
 
 const layoutTheme = {
-  fontWeight: '400',
   linkColor: colors.green,
   linkHover: colors.dark,
   mobileToggleColor: colors.green,

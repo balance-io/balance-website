@@ -17,7 +17,6 @@ const SHeader = styled.div`
   top: 0;
   position: absolute;
   & nav a {
-    font-weight: ${({ theme }) => theme.fontWeight};
     color: ${({ theme }) => `rgb(${theme.linkColor})`};
   }
   & nav a:hover {
@@ -68,12 +67,13 @@ const SNavList = styled.ul`
   }
 `;
 
-const SNavLinks = styled(Link)`
+const SNavLink = styled(Link)`
   display: inline-block;
   color: rgb(${colors.green});
   cursor: pointer;
   padding: 10px 16px;
   font-size: 1.1875em;
+  font-weight: ${({ active }) => (active ? '600' : '400')};
   transition: ${transitions.short};
   &:active {
     transform: scale(0.95) translate3d(0, 0, 0);
@@ -147,7 +147,7 @@ const SMobileNav = styled.div`
   transition: ${transitions.base};
 `;
 
-const SMobileNavLinks = styled(Link)`
+const SMobileNavLink = styled(Link)`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -155,7 +155,7 @@ const SMobileNavLinks = styled(Link)`
   height: 50px;
   opacity: 0;
   cursor: pointer;
-  color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
+  color: ${({ active }) => (active ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
   pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
@@ -165,7 +165,7 @@ const SMobileNavLinks = styled(Link)`
   }
   & > div {
     margin-left: 20px;
-    background-color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
+    background-color: ${({ active }) => (active ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
   }
   &:active {
     background: rgba(${colors.lightBlue}, 0.16);
@@ -197,7 +197,35 @@ const SMobileNavClose = styled.div`
   }
 `;
 
-const SExternalLink = SNavLinks.withComponent('a');
+const SExternalLink = SNavLink.withComponent('a');
+
+const navigationLinks = [
+  {
+    name: 'Personal',
+    slug: '',
+    icon: null
+  },
+  {
+    name: 'Enterprise',
+    slug: 'enterprise',
+    icon: null
+  },
+  {
+    name: 'Blog',
+    slug: 'blog',
+    icon: mobileNavBlog
+  },
+  {
+    name: 'About',
+    slug: 'about',
+    icon: mobileNavAbout
+  },
+  {
+    name: 'Support',
+    slug: 'support',
+    icon: mobileNavSupport
+  }
+];
 
 class Header extends Component {
   state = {
@@ -209,9 +237,12 @@ class Header extends Component {
   hideNavReveal = () => {
     this.setState({ navReveal: false });
   };
+  isActive = link => {
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+    return link.slug === 'blog' ? pathname.match(/\/blog\/?/g) : pathname === `/${link.slug}`;
+  };
   render = () => {
     const { theme, ...props } = this.props;
-    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
     return (
       <SHeader theme={theme} {...props}>
         <STopSection>
@@ -220,21 +251,11 @@ class Header extends Component {
               <SLogo theme={theme} />
             </Link>
             <SNavList>
-              <SNavLinks onClick={this.hideNavReveal} to="/">
-                Personal
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/enterprise">
-                Enterprise
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/blog">
-                Blog
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/about">
-                About
-              </SNavLinks>
-              <SNavLinks onClick={this.hideNavReveal} to="/support">
-                Support
-              </SNavLinks>
+              {navigationLinks.map(link => (
+                <SNavLink active={this.isActive(link)} onClick={this.hideNavReveal} to={`/${link.slug}`}>
+                  {link.name}
+                </SNavLink>
+              ))}
             </SNavList>
 
             <SExternalLink
@@ -248,23 +269,17 @@ class Header extends Component {
 
           <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
           <SMobileNav reveal={this.state.navReveal}>
-            <SMobileNavLinks
-              selected={pathname.match(/\/blog\/?/g)}
-              reveal={this.state.navReveal}
-              onClick={this.hideNavReveal}
-              to="/blog"
-            >
-              <SMobileNavIcons icon={mobileNavBlog} />
-              <span>Blog</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
-              <SMobileNavIcons icon={mobileNavAbout} />
-              <span>About</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
-              <SMobileNavIcons icon={mobileNavSupport} />
-              <span>Support</span>
-            </SMobileNavLinks>
+            {navigationLinks.map(link => (
+              <SMobileNavLink
+                active={this.isActive(link)}
+                reveal={this.state.navReveal}
+                onClick={this.hideNavReveal}
+                to={`/${link.slug}`}
+              >
+                <SMobileNavIcons icon={link.icon} />
+                <span>{link.name}</span>
+              </SMobileNavLink>
+            ))}
             <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
           </SMobileNav>
         </STopSection>
@@ -279,7 +294,6 @@ Header.propTypes = {
 
 Header.defaultProps = {
   theme: {
-    fontWeight: '400',
     linkColor: colors.lightBlue,
     linkHover: colors.lightBlue,
     mobileToggleColor: colors.lightGrey,

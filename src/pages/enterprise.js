@@ -114,7 +114,6 @@ const SDescription = styled.p`
 `;
 
 const layoutTheme = {
-  fontWeight: '600',
   linkColor: colors.white,
   linkHover: colors.white,
   mobileToggleColor: colors.white,
