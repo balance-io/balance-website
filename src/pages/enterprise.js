@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Section from '../components/Section';
 import balanceCoinbase from '../assets/balance-preview-coinbase.png';
 import balanceXero from '../assets/balance-preview-xero.png';
 import circularArrows from '../assets/circular-arrows.svg';
@@ -14,7 +13,40 @@ import featureSecurity from '../assets/feature-security.svg';
 import featureSync from '../assets/feature-sync.svg';
 import { colors, fonts, responsive } from '../styles';
 
-const SContent = styled.div`padding: 68px 0 34px;`;
+const SSection = styled.section`
+  width: 100%;
+  height: 100%;
+  min-height: 900px;
+  background: 'transparent';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(${colors.white});
+  position: relative;
+  overflow: hidden;
+  @media screen and (${responsive.md.max}) {
+    min-height: 0;
+    height: auto;
+  }
+`;
+
+const SBackground = styled.div`
+  position: absolute;
+  top: calc((100vh - 550px) - 100vh);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+`;
+
+const SContent = styled.div`
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 0;
+`;
+
+const SInner = styled.div`padding: 68px 0 34px;`;
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -217,63 +249,68 @@ const Enterprise = ({ data }) => {
   const title = 'Enterprise';
   const siteTitle = data.site.siteMetadata.title;
   return (
-    <Section minHeight={900} fontColor={colors.white} background={<SBackgroundImage />}>
-      <Helmet
-        title={`${title} - ${siteTitle}`}
-        meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
-      />
-      <Header theme={layoutTheme} />
+    <SSection>
+      <SBackground>
+        <SBackgroundImage />
+      </SBackground>
       <SContent>
-        <STitle>Hold digital currencies on your balance sheet</STitle>
+        <Helmet
+          title={`${title} - ${siteTitle}`}
+          meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
+        />
+        <Header theme={layoutTheme} />
+        <SInner>
+          <STitle>Hold digital currencies on your balance sheet</STitle>
 
-        <SAppPreviewContainer>
-          <SAppPreview img={balanceCoinbase} />
-          <SReconcileWrapper>
-            <SGreenButton>Reconcile</SGreenButton>
-          </SReconcileWrapper>
-          <SAppPreview img={balanceXero} />
-        </SAppPreviewContainer>
+          <SAppPreviewContainer>
+            <SAppPreview img={balanceCoinbase} />
+            <SReconcileWrapper>
+              <SGreenButton>Reconcile</SGreenButton>
+            </SReconcileWrapper>
+            <SAppPreview img={balanceXero} />
+          </SAppPreviewContainer>
 
-        <SContainer>
-          <SSubTitle>Why should companies hold digital currencies?</SSubTitle>
-          <SFeatures>
-            {features.map(feature => (
-              <SFeatureBlock key={feature.name}>
-                <SFeatureIconWrapper>
-                  <img src={feature.icon} alt={feature.name} />
-                </SFeatureIconWrapper>
-                <SFeatureInfoWrapper>
-                  <STagline>{feature.tagline}</STagline>
-                  <SDescription>{feature.description}</SDescription>
-                </SFeatureInfoWrapper>
-              </SFeatureBlock>
-            ))}
-          </SFeatures>
-        </SContainer>
+          <SContainer>
+            <SSubTitle>Why should companies hold digital currencies?</SSubTitle>
+            <SFeatures>
+              {features.map(feature => (
+                <SFeatureBlock key={feature.name}>
+                  <SFeatureIconWrapper>
+                    <img src={feature.icon} alt={feature.name} />
+                  </SFeatureIconWrapper>
+                  <SFeatureInfoWrapper>
+                    <STagline>{feature.tagline}</STagline>
+                    <SDescription>{feature.description}</SDescription>
+                  </SFeatureInfoWrapper>
+                </SFeatureBlock>
+              ))}
+            </SFeatures>
+          </SContainer>
 
-        <SContainer>
-          <SSubTitle>How much do you want this?</SSubTitle>
-          <SCardsContainer>
-            <SCard>
-              <h3>Interested</h3>
-              <p>Let me know when you ship it</p>
-              <SCardButton>Subscribe</SCardButton>
-            </SCard>
-            <SCard>
-              <h3>Supportive</h3>
-              <p>I will pay for beta access</p>
-              <SCardButton>Pay $99</SCardButton>
-            </SCard>
-            <SCard>
-              <h3>Early Adopter</h3>
-              <p>I really need alpha access</p>
-              <SCardButton>Pay $999</SCardButton>
-            </SCard>
-          </SCardsContainer>
-        </SContainer>
+          <SContainer>
+            <SSubTitle>How much do you want this?</SSubTitle>
+            <SCardsContainer>
+              <SCard>
+                <h3>Interested</h3>
+                <p>Let me know when you ship it</p>
+                <SCardButton>Subscribe</SCardButton>
+              </SCard>
+              <SCard>
+                <h3>Supportive</h3>
+                <p>I will pay for beta access</p>
+                <SCardButton>Pay $99</SCardButton>
+              </SCard>
+              <SCard>
+                <h3>Early Adopter</h3>
+                <p>I really need alpha access</p>
+                <SCardButton>Pay $999</SCardButton>
+              </SCard>
+            </SCardsContainer>
+          </SContainer>
+        </SInner>
+        <Footer theme={layoutTheme} />
       </SContent>
-      <Footer theme={layoutTheme} />
-    </Section>
+    </SSection>
   );
 };
 
