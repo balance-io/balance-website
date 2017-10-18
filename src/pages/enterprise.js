@@ -14,7 +14,7 @@ import featureSecurity from '../assets/feature-security.svg';
 import featureSync from '../assets/feature-sync.svg';
 import { colors, fonts, responsive } from '../styles';
 
-const SContent = styled.div`padding-top: 68px;`;
+const SContent = styled.div`padding: 68px 0 34px;`;
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -30,7 +30,9 @@ const SBackgroundImage = styled.div`
 `;
 
 const STitle = styled.h1`
-  width: 28rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0 10px;
   font-size: 2.25rem;
   margin: 60px auto;
   font-weight: 400;
@@ -39,16 +41,20 @@ const STitle = styled.h1`
 
 const SSubTitle = styled.h3`
   font-weight: 400;
-  margin: 80px auto 40px;
+  margin: 60px auto 30px;
 `;
 
 const SAppPreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (${responsive.sm.max}) {
+    flex-direction: column;
+  }
 `;
 
 const SAppPreview = styled.div`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 250px;
   margin: 0;
   background: ${({ img }) => `url(${img}) no-repeat`};
@@ -57,23 +63,29 @@ const SAppPreview = styled.div`
 `;
 
 const SReconcileWrapper = styled.div`
+  min-width: 150px;
+  margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 150px;
   background: url(${circularArrows}) no-repeat;
   background-size: 100% 100%;
+  @media screen and (${responsive.sm.max}) {
+    height: 150px;
+  }
 `;
 
 const SGreenButton = styled.div`
   cursor: pointer;
   padding: 8px 12px;
+  color: rgb(${colors.white});
   border-radius: 8px;
+  text-align: center;
   background-image: linear-gradient(102deg, rgb(${colors.lightGreen}), rgb(${colors.darkGreen}));
   box-shadow: 0 2px 3px 0 rgba(${colors.black}, 0.1);
 `;
 
-const SFeaturesContainer = styled.div``;
+const SContainer = styled.div`padding: 20px;`;
 
 const SFeatures = styled.div`
   width: 100%;
@@ -87,6 +99,7 @@ const SFeatureBlock = styled.div`
   margin-bottom: 20px;
   @media screen and (${responsive.sm.max}) {
     width: 100%;
+    margin: 20px 0 40px;
   }
 `;
 
@@ -97,6 +110,10 @@ const SFeatureIconWrapper = styled.div`
   & img {
     width: 100%;
   }
+
+  @media screen and (${responsive.sm.max}) {
+    width: 50%;
+  }
 `;
 
 const SFeatureInfoWrapper = styled.div`padding: 0 10px;`;
@@ -106,11 +123,54 @@ const STagline = styled.p`
   font-size: ${fonts.large};
   line-height: 1.25;
   margin-bottom: 10px;
+  @media screen and (${responsive.sm.max}) {
+    font-size: ${fonts.h4};
+  }
 `;
 
 const SDescription = styled.p`
   font-size: ${fonts.h6};
   padding-right: 40px;
+  @media screen and (${responsive.sm.max}) {
+    padding-right: 0;
+    font-size: ${fonts.h5};
+  }
+`;
+
+const SCardsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media screen and (${responsive.sm.max}) {
+    flex-direction: column;
+  }
+`;
+
+const SCard = styled.div`
+  padding: 30px;
+  width: 100%;
+  border-radius: 8px;
+  background: rgb(${colors.white});
+  color: rgba(${colors.dark}, 0.9);
+  & > p {
+    margin: 15px 0;
+  }
+  &:nth-child(2) {
+    margin: 0 36px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    &:nth-child(2) {
+      margin: 36px 0;
+    }
+  }
+`;
+
+const SCardButton = styled(SGreenButton)`
+  padding: 10px 20px;
+  font-size: ${fonts.h4};
+  @media screen and (${responsive.sm.max}) {
+    padding: 12px;
+    font-size: ${fonts.h3};
+  }
 `;
 
 const layoutTheme = {
@@ -174,7 +234,7 @@ const Enterprise = ({ data }) => {
           <SAppPreview img={balanceXero} />
         </SAppPreviewContainer>
 
-        <SFeaturesContainer>
+        <SContainer>
           <SSubTitle>Why should companies hold digital currencies?</SSubTitle>
           <SFeatures>
             {features.map(feature => (
@@ -189,7 +249,28 @@ const Enterprise = ({ data }) => {
               </SFeatureBlock>
             ))}
           </SFeatures>
-        </SFeaturesContainer>
+        </SContainer>
+
+        <SContainer>
+          <SSubTitle>How much do you want this?</SSubTitle>
+          <SCardsContainer>
+            <SCard>
+              <h3>Interested</h3>
+              <p>Let me know when you ship it</p>
+              <SCardButton>Subscribe</SCardButton>
+            </SCard>
+            <SCard>
+              <h3>Supportive</h3>
+              <p>I will pay for beta access</p>
+              <SCardButton>Pay $99</SCardButton>
+            </SCard>
+            <SCard>
+              <h3>Early Adopter</h3>
+              <p>I really need alpha access</p>
+              <SCardButton>Pay $999</SCardButton>
+            </SCard>
+          </SCardsContainer>
+        </SContainer>
       </SContent>
       <Footer theme={layoutTheme} />
     </Section>
