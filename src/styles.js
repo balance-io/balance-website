@@ -30,6 +30,7 @@ export const fonts = {
   small: '12px',
   medium: '16px',
   large: '18px',
+  big: '22px',
   h1: '42px',
   h2: '32px',
   h3: '24px',

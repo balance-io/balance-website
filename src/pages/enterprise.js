@@ -32,11 +32,14 @@ const SSection = styled.section`
 
 const SBackground = styled.div`
   position: absolute;
-  top: calc((100vh - 550px) - 100vh);
+  top: -43%;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 0;
+  @media screen and (${responsive.sm.max}) {
+    top: -55%;
+  }
 `;
 
 const SContent = styled.div`
@@ -73,12 +76,13 @@ const STitle = styled.h1`
 
 const SSubTitle = styled.h3`
   font-weight: 400;
-  margin: 60px auto 30px;
+  margin-bottom: 40px;
 `;
 
 const SAppPreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 60px 0;
   @media screen and (${responsive.sm.max}) {
     flex-direction: column;
   }
@@ -117,7 +121,10 @@ const SGreenButton = styled.div`
   box-shadow: 0 2px 3px 0 rgba(${colors.black}, 0.1);
 `;
 
-const SContainer = styled.div`padding: 20px;`;
+const SContainer = styled.div`
+  margin-top: 20px;
+  padding: 20px;
+`;
 
 const SFeatures = styled.div`
   width: 100%;
@@ -128,7 +135,11 @@ const SFeatures = styled.div`
 const SFeatureBlock = styled.div`
   display: flex;
   width: 50%;
-  margin-bottom: 20px;
+  @media screen and (${responsive.sm.min}) {
+    &:nth-child(-n + 2) {
+      margin-bottom: 80px;
+    }
+  }
   @media screen and (${responsive.sm.max}) {
     width: 100%;
     margin: 20px 0 40px;
@@ -144,7 +155,8 @@ const SFeatureIconWrapper = styled.div`
   }
 
   @media screen and (${responsive.sm.max}) {
-    width: 50%;
+    width: 70%;
+    padding: 0;
   }
 `;
 
@@ -163,8 +175,10 @@ const STagline = styled.p`
 const SDescription = styled.p`
   font-size: ${fonts.h6};
   padding-right: 40px;
+  line-height: 1.4;
   @media screen and (${responsive.sm.max}) {
     padding-right: 0;
+    letter-spacing: -0.7px;
     font-size: ${fonts.h5};
   }
 `;
@@ -184,7 +198,11 @@ const SCard = styled.div`
   background: rgb(${colors.white});
   color: rgba(${colors.dark}, 0.9);
   & > p {
-    margin: 15px 0;
+    line-height: 2;
+    margin-bottom: 15px;
+    @media screen and (${responsive.sm.max}) {
+      letter-spacing: -0.5px;
+    }
   }
   &:nth-child(2) {
     margin: 0 36px;
@@ -197,8 +215,8 @@ const SCard = styled.div`
 `;
 
 const SCardButton = styled(SGreenButton)`
-  padding: 10px 20px;
-  font-size: ${fonts.h4};
+  padding: 15px;
+  font-size: ${fonts.big};
   @media screen and (${responsive.sm.max}) {
     padding: 12px;
     font-size: ${fonts.h3};
