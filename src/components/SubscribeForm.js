@@ -8,6 +8,7 @@ import { fonts, colors, responsive, transitions } from '../styles';
 const SFormWrapper = styled.div`
   position: relative;
   margin-bottom: 17px;
+  width: 100%;
 `;
 
 const SMessage = styled.p`
@@ -22,7 +23,6 @@ const SSuccess = styled.p`
   top: calc(50% - 9px);
   font-weight: 500;
   transition: ${transitions.base};
-  color: rgb(${colors.brightBlue});
 `;
 
 const SForm = styled.form`
@@ -31,13 +31,14 @@ const SForm = styled.form`
     margin: 0;
     font-size: ${fonts.large};
     padding: 18px 16px;
-    width: 360px;
+    width: 100%;
     border-radius: 10px;
-    background: rgb(${colors.blue});
-    color: rgb(${colors.white});
+    background ${({ white }) => (white ? `rgb(${colors.white})` : `rgb(${colors.blue})`)} ;
+    color: ${({ white }) => (white ? `rgb(${colors.blue})` : `rgb(${colors.white})`)} ;
     padding-left: 54px;
     border: none;
     border-style: none;
+    box-shadow: 0 10px 30px 0 rgba(${colors.black}, 0.1);
     transition: ${transitions.short};
     opacity: ${({ success }) => (success ? '0' : '1')};
     pointer-events: ${({ success }) => (success ? 'none' : 'auto')};
@@ -47,15 +48,20 @@ const SForm = styled.form`
     }
   }
   & input::placeholder {
-    color: rgba(${colors.white}, 0.5);
+    color: ${({ white }) => (white ? `rgba(${colors.blue}, 0.5)` : `rgba(${colors.white}, 0.5)`)} ;
   }
   &::before {
     content: '';
     transition: ${transitions.base};
     mask: url(${emailIcon}) no-repeat;
     mask-size: contain;
-    background: rgb(${colors.white});
-    background: ${({ success }) => (success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`)};
+    background: ${({ white, success }) => {
+      if (success) {
+        return `rgb(${colors.brightBlue})`;
+      } else {
+        return white ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`;
+      }
+    }};
     position: absolute;
     height: 20px;
     width: 20px;
@@ -63,6 +69,7 @@ const SForm = styled.form`
     top: calc(50% - 5px);
   }
   & ${SSuccess} {
+    color: rgb(${colors.brightBlue});
     opacity: ${({ success }) => (success ? '1' : '0')};
     pointer-events: ${({ success }) => (success ? 'auto' : 'none')};
     visibility: ${({ success }) => (success ? 'visible' : 'hidden')};
@@ -114,10 +121,17 @@ class SubscribeForm extends Component {
     );
   };
   render() {
-    const { messages, ...props } = this.props;
+    const { messages, white, ...props } = this.props;
     return (
       <SFormWrapper>
-        <SForm success={this.state.status === 'success'} onSubmit={this.onSubmit} method="POST" noValidate {...props}>
+        <SForm
+          white={white}
+          success={this.state.status === 'success'}
+          onSubmit={this.onSubmit}
+          method="POST"
+          noValidate
+          {...props}
+        >
           {this.state.status === 'success' && <SSuccess>Check your email</SSuccess>}
           <input
             value={this.state.input}
@@ -136,7 +150,8 @@ class SubscribeForm extends Component {
 
 SubscribeForm.propTypes = {
   messages: PropTypes.objectOf(PropTypes.string).isRequired,
-  options: PropTypes.objectOf(PropTypes.string).isRequired
+  options: PropTypes.objectOf(PropTypes.string).isRequired,
+  white: PropTypes.bool
 };
 
 SubscribeForm.defaultProps = {
@@ -145,7 +160,8 @@ SubscribeForm.defaultProps = {
     sending: 'Sending...',
     success: 'Thanks! Please click the link in the confirmation email to complete your subscription.',
     error: 'Oops, something went wrong'
-  }
+  },
+  white: false
 };
 
 export default SubscribeForm;

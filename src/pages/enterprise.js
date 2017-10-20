@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SubscribeForm from '../components/SubscribeForm';
 import balanceCoinbase from '../assets/balance-preview-coinbase.png';
 import balanceXero from '../assets/balance-preview-xero.png';
 import circularArrows from '../assets/circular-arrows.svg';
@@ -266,6 +267,13 @@ const features = [
   }
 ];
 
+const subscribeOptions = {
+  server: 'money.us11',
+  userId: 'a3f87e208a9f9896949b4f336',
+  listId: '38021a64b6',
+  origin: 'enterprise'
+};
+
 const Enterprise = ({ data }) => {
   const title = 'Enterprise';
   const siteTitle = data.site.siteMetadata.title;
@@ -314,7 +322,7 @@ const Enterprise = ({ data }) => {
               <SCard>
                 <h3>Interested</h3>
                 <p>Let me know when you ship it</p>
-                <SCardButton>Subscribe</SCardButton>
+                <SubscribeForm white options={subscribeOptions} />
               </SCard>
               <SCard>
                 <h3>Supportive</h3>

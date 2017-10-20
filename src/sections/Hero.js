@@ -119,6 +119,9 @@ const SSubscribe = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (${responsive.md.min}) {
+    padding-right: 42px;
+  }
   @media screen and (${responsive.sm.min}) {
     max-width: 420px;
   }
@@ -159,7 +162,7 @@ const subscribeOptions = {
   server: 'money.us11',
   userId: 'a3f87e208a9f9896949b4f336',
   listId: '38021a64b6',
-  origin: ''
+  origin: 'personal'
 };
 
 const Hero = ({ toggleVideo }) => (
