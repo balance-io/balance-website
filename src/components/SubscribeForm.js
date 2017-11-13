@@ -102,15 +102,15 @@ class SubscribeForm extends Component {
               status: 'error'
             });
           } else if (data.result !== 'success') {
-            if (data.msg.match(/already subscribed/gi)) {
+            if (data.msg.includes('already subscribed')) {
               this.setState({
                 status: 'error',
                 message: `Sorry, you've already signed up with this email`
               });
-            } else if (data.msg.match(/too many recent signup requests/gi)) {
+            } else if (data.msg.includes('too many recent signup requests')) {
               this.setState({
                 status: 'error',
-                message: `Too many recent signup requests, please try again later`
+                message: `Too many signup requests, please try again later`
               });
             } else {
               this.setState({
