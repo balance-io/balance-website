@@ -17,7 +17,7 @@ const SMessage = styled.p`
   margin-top: 10px;
 `;
 
-const SSuccess = styled.p`
+const SText = styled.p`
   position: absolute;
   left: 60px;
   top: calc(50% - 9px);
@@ -55,8 +55,10 @@ const SForm = styled.form`
     transition: ${transitions.base};
     mask: url(${emailIcon}) no-repeat;
     mask-size: contain;
-    background: ${({ white, success }) => {
-      if (success) {
+    background: ${({ white, success, hidden }) => {
+      if (hidden) {
+        return `rgb(${colors.lightGrey})`;
+      } else if (success) {
         return `rgb(${colors.brightBlue})`;
       } else {
         return white ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`;
@@ -68,11 +70,11 @@ const SForm = styled.form`
     left: 20px;
     top: calc(50% - 5px);
   }
-  & ${SSuccess} {
-    color: rgb(${colors.brightBlue});
-    opacity: ${({ success }) => (success ? '1' : '0')};
-    pointer-events: ${({ success }) => (success ? 'auto' : 'none')};
-    visibility: ${({ success }) => (success ? 'visible' : 'hidden')};
+  & ${SText} {
+    color: ${({ hidden }) => (hidden ? `rgb(${colors.lightGrey})` : `rgb(${colors.brightBlue})`)};
+    opacity: ${({ success, hidden }) => (success || hidden ? '1' : '0')};
+    pointer-events: ${({ success, hidden }) => (success || hidden ? 'auto' : 'none')};
+    visibility: ${({ success, hidden }) => (success || hidden ? 'visible' : 'hidden')};
   }
 `;
 
@@ -80,6 +82,7 @@ class SubscribeForm extends Component {
   state = {
     status: null,
     message: null,
+    hidden: this.props.hidden,
     input: ''
   };
   onSubmit = e => {
@@ -122,26 +125,29 @@ class SubscribeForm extends Component {
   };
   render() {
     const { messages, white, ...props } = this.props;
+    const { input, status, hidden } = this.state;
     return (
       <SFormWrapper>
         <SForm
+          hidden={this.state.hidden}
           white={white}
-          success={this.state.status === 'success'}
+          success={status === 'success'}
           onSubmit={this.onSubmit}
           method="POST"
           noValidate
           {...props}
         >
-          {this.state.status === 'success' && <SSuccess>Check your email</SSuccess>}
+          {status === 'success' && <SText>Check your email</SText>}
+          {hidden && <SText onClick={() => this.setState({ hidden: false })}>Get balance news</SText>}
           <input
-            value={this.state.input}
+            value={input}
             onChange={e => this.setState({ input: e.target.value })}
             type="email"
             required
             placeholder={messages.inputPlaceholder}
           />
-          {this.state.status === 'sending' && <SMessage color={colors.white}>{messages.sending}</SMessage>}
-          {this.state.status === 'error' && <SMessage color={colors.red}>{messages.error}</SMessage>}
+          {status === 'sending' && <SMessage color={colors.white}>{messages.sending}</SMessage>}
+          {status === 'error' && <SMessage color={colors.red}>{messages.error}</SMessage>}
         </SForm>
       </SFormWrapper>
     );
@@ -151,7 +157,8 @@ class SubscribeForm extends Component {
 SubscribeForm.propTypes = {
   messages: PropTypes.objectOf(PropTypes.string).isRequired,
   options: PropTypes.objectOf(PropTypes.string).isRequired,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  hidden: PropTypes.bool
 };
 
 SubscribeForm.defaultProps = {
@@ -161,7 +168,8 @@ SubscribeForm.defaultProps = {
     success: 'Thanks! Please click the link in the confirmation email to complete your subscription.',
     error: 'Oops, something went wrong'
   },
-  white: false
+  white: false,
+  hidden: false
 };
 
 export default SubscribeForm;

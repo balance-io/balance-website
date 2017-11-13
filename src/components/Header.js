@@ -105,7 +105,9 @@ const SMobileNavToggle = styled.div`
   background: ${({ theme }) => `rgba(${theme.mobileToggleColor}, ${theme.mobileToggleOpacity})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
-    reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
+    reveal
+      ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)'
+      : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
   pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
   @media (hover: hover) {
     &:hover {
@@ -241,6 +243,7 @@ class Header extends Component {
     return link.slug === 'blog' ? pathname.match(/\/blog\/?/g) : pathname === `/${link.slug}`;
   };
   render = () => {
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
     const { theme, ...props } = this.props;
     return (
       <SHeader theme={theme} {...props}>
@@ -251,22 +254,31 @@ class Header extends Component {
             </Link>
             <SNavList>
               {navigationLinks.map(link => (
-                <SNavLink active={this.isActive(link)} onClick={this.hideNavReveal} to={`/${link.slug}`}>
+                <SNavLink
+                  active={this.isActive(link)}
+                  onClick={this.hideNavReveal}
+                  to={`/${link.slug}`}
+                >
                   {link.name}
                 </SNavLink>
               ))}
             </SNavList>
-
-            <SExternalLink
-              href="https://github.com/balancemymoney/balance-open/releases/"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              Download
-            </SExternalLink>
+            {pathname !== '/enterprise' && (
+              <SExternalLink
+                href="https://github.com/balancemymoney/balance-open/releases/"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                Download
+              </SExternalLink>
+            )}
           </SNav>
 
-          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
+          <SMobileNavToggle
+            reveal={this.state.navReveal}
+            onClick={this.showNavReveal}
+            theme={theme}
+          />
           <SMobileNav reveal={this.state.navReveal}>
             {navigationLinks.map(link => (
               <SMobileNavLink
