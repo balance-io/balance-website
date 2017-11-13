@@ -57,7 +57,8 @@ const SForm = styled.form`
     mask-size: contain;
     -webkit-mask-size: contain;
     background: rgb(${colors.white});
-    background: ${({ success }) => (success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`)};
+    background: ${({ success }) =>
+      success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`};
     position: absolute;
     height: 20px;
     width: 20px;
@@ -98,18 +99,27 @@ class SubscribeForm extends Component {
         jsonp(url, { param: 'c' }, (err, data) => {
           if (err) {
             this.setState({
-              status: 'error',
-              msg: err
+              status: 'error'
             });
           } else if (data.result !== 'success') {
-            this.setState({
-              status: 'error',
-              msg: data.msg
-            });
+            if (data.msg.includes('already subscribed')) {
+              this.setState({
+                status: 'error',
+                message: `Sorry, you've already signed up with this email`
+              });
+            } else if (data.msg.includes('too many recent signup requests')) {
+              this.setState({
+                status: 'error',
+                message: `Too many signup requests, please try again later`
+              });
+            } else {
+              this.setState({
+                status: 'error'
+              });
+            }
           } else {
             this.setState({
-              status: 'success',
-              msg: data.msg
+              status: 'success'
             });
           }
         })
@@ -119,7 +129,13 @@ class SubscribeForm extends Component {
     const { messages, ...props } = this.props;
     return (
       <SFormWrapper>
-        <SForm success={this.state.status === 'success'} onSubmit={this.onSubmit} method="POST" noValidate {...props}>
+        <SForm
+          success={this.state.status === 'success'}
+          onSubmit={this.onSubmit}
+          method="POST"
+          noValidate
+          {...props}
+        >
           {this.state.status === 'success' && <SSuccess>Check your email</SSuccess>}
           <input
             value={this.state.input}
@@ -128,8 +144,14 @@ class SubscribeForm extends Component {
             required
             placeholder={messages.inputPlaceholder}
           />
-          {this.state.status === 'sending' && <SMessage color={colors.white}>{messages.sending}</SMessage>}
-          {this.state.status === 'error' && <SMessage color={colors.red}>{messages.error}</SMessage>}
+          {this.state.status === 'sending' && (
+            <SMessage color={colors.white}>{messages.sending}</SMessage>
+          )}
+          {this.state.status === 'error' && (
+            <SMessage color={colors.red}>
+              {this.state.message ? this.state.message : messages.error}
+            </SMessage>
+          )}
         </SForm>
       </SFormWrapper>
     );
@@ -145,7 +167,8 @@ SubscribeForm.defaultProps = {
   messages: {
     inputPlaceholder: 'type@your.email',
     sending: 'Sending...',
-    success: 'Thanks! Please click the link in the confirmation email to complete your subscription.',
+    success:
+      'Thanks! Please click the link in the confirmation email to complete your subscription.',
     error: 'Oops, something went wrong'
   }
 };
