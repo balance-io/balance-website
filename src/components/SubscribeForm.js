@@ -106,18 +106,27 @@ class SubscribeForm extends Component {
         jsonp(url, { param: 'c' }, (err, data) => {
           if (err) {
             this.setState({
-              status: 'error',
-              msg: err
+              status: 'error'
             });
           } else if (data.result !== 'success') {
-            this.setState({
-              status: 'error',
-              msg: data.msg
-            });
+            if (data.msg.includes('already subscribed')) {
+              this.setState({
+                status: 'error',
+                message: `Sorry, you've already signed up with this email`
+              });
+            } else if (data.msg.includes('too many recent signup requests')) {
+              this.setState({
+                status: 'error',
+                message: `Too many signup requests, please try again later`
+              });
+            } else {
+              this.setState({
+                status: 'error'
+              });
+            }
           } else {
             this.setState({
-              status: 'success',
-              msg: data.msg
+              status: 'success'
             });
           }
         })
@@ -125,7 +134,7 @@ class SubscribeForm extends Component {
   };
   render() {
     const { messages, white, ...props } = this.props;
-    const { input, status, hidden } = this.state;
+    const { input, status, hidden, message } = this.state;
     return (
       <SFormWrapper>
         <SForm
@@ -138,7 +147,9 @@ class SubscribeForm extends Component {
           {...props}
         >
           {status === 'success' && <SText>Check your email</SText>}
-          {hidden && <SText onClick={() => this.setState({ hidden: false })}>Get balance news</SText>}
+          {hidden && (
+            <SText onClick={() => this.setState({ hidden: false })}>Get balance news</SText>
+          )}
           <input
             value={input}
             onChange={e => this.setState({ input: e.target.value })}
@@ -147,7 +158,9 @@ class SubscribeForm extends Component {
             placeholder={messages.inputPlaceholder}
           />
           {status === 'sending' && <SMessage color={colors.white}>{messages.sending}</SMessage>}
-          {status === 'error' && <SMessage color={colors.red}>{messages.error}</SMessage>}
+          {status === 'error' && (
+            <SMessage color={colors.red}>{message ? message : messages.error}</SMessage>
+          )}
         </SForm>
       </SFormWrapper>
     );
@@ -165,7 +178,8 @@ SubscribeForm.defaultProps = {
   messages: {
     inputPlaceholder: 'type@your.email',
     sending: 'Sending...',
-    success: 'Thanks! Please click the link in the confirmation email to complete your subscription.',
+    success:
+      'Thanks! Please click the link in the confirmation email to complete your subscription.',
     error: 'Oops, something went wrong'
   },
   white: false,
