@@ -44,7 +44,11 @@ const SPageContent = styled.div`
   & a {
     display: inline-block;
     font-weight: 400;
-    background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.75) 50%, rgba(51, 51, 51, 0) 50%);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(51, 51, 51, 0.75) 50%,
+      rgba(51, 51, 51, 0) 50%
+    );
     background-repeat: repeat-x;
     background-size: 2px 0.1em;
     background-position: 0 1.25em;
@@ -65,7 +69,7 @@ const layoutTheme = {
   logoHover: colors.lightBlue
 };
 
-const Page = ({ children, title, siteTitle }) => (
+const Page = ({ children, title, notArticle, siteTitle }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
@@ -73,10 +77,14 @@ const Page = ({ children, title, siteTitle }) => (
     />
     <Header theme={layoutTheme} />
     <SPage maxWidth={700} fontColor={colors.white}>
-      <article>
-        <h1>{title}</h1>
+      {!!notArticle ? (
         <SPageContent>{children}</SPageContent>
-      </article>
+      ) : (
+        <article>
+          <h1>{title}</h1>
+          <SPageContent>{children}</SPageContent>
+        </article>
+      )}
     </SPage>
     <Footer theme={layoutTheme} />
   </div>
