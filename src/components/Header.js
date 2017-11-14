@@ -8,6 +8,7 @@ import mobileNavBlog from '../assets/mobile-nav-blog.svg';
 import mobileNavAbout from '../assets/mobile-nav-about.svg';
 import mobileNavSupport from '../assets/mobile-nav-support.svg';
 import mobileNavClose from '../assets/mobile-nav-close.svg';
+import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
@@ -108,7 +109,9 @@ const SMobileNavToggle = styled.div`
   background: ${({ theme }) => `rgba(${theme.mobileToggleColor}, ${theme.mobileToggleOpacity})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
-    reveal ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)' : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
+    reveal
+      ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)'
+      : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
   pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
   @media (hover: hover) {
     &:hover {
@@ -168,7 +171,8 @@ const SMobileNavLinks = styled(Link)`
   }
   & > div {
     margin-left: 20px;
-    background-color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
+    background-color: ${({ selected }) =>
+      selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
   }
   &:active {
     background: rgba(${colors.lightBlue}, 0.16);
@@ -216,6 +220,10 @@ class Header extends Component {
   hideNavReveal = () => {
     this.setState({ navReveal: false });
   };
+  onDownload = e => {
+    e.preventDefault();
+    downloadLatestRelease();
+  };
   render = () => {
     const { theme, ...props } = this.props;
     const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
@@ -247,12 +255,17 @@ class Header extends Component {
               href="https://github.com/balancemymoney/balance-open/releases/"
               rel="noreferrer noopener"
               target="_blank"
+              onClick={this.onDownload}
             >
               Download
             </SExternalLink>
           </SNav>
 
-          <SMobileNavToggle reveal={this.state.navReveal} onClick={this.showNavReveal} theme={theme} />
+          <SMobileNavToggle
+            reveal={this.state.navReveal}
+            onClick={this.showNavReveal}
+            theme={theme}
+          />
           <SMobileNav reveal={this.state.navReveal}>
             <SMobileNavLinks
               selected={pathname.match(/\/blog\/?/g)}
@@ -267,7 +280,11 @@ class Header extends Component {
               <SMobileNavIcons icon={mobileNavAbout} />
               <span>About</span>
             </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/support">
+            <SMobileNavLinks
+              reveal={this.state.navReveal}
+              onClick={this.hideNavReveal}
+              to="/support"
+            >
               <SMobileNavIcons icon={mobileNavSupport} />
               <span>Support</span>
             </SMobileNavLinks>

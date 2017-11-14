@@ -9,6 +9,7 @@ import { colors, responsive } from '../styles';
 const SPage = styled(Section)`
   padding: 56px 0 12px;
   font-size: 14px;
+  min-height: ${({ viewport }) => (viewport ? 'calc(100vh - 136px)' : 0)};
   & article * {
     padding-bottom: 20px;
     opacity: 0.9;
@@ -28,7 +29,11 @@ const SPage = styled(Section)`
     letter-spacing: -0.6px;
     line-height: 1.04;
   }
-  @media screen and (${responsive.sm.max}) {
+  ${({ viewport }) => `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  `} @media screen and (${responsive.sm.max}) {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -76,7 +81,7 @@ const Page = ({ children, title, notArticle, siteTitle }) => (
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage maxWidth={700} fontColor={colors.white}>
+    <SPage viewport={notArticle} maxWidth={700} fontColor={colors.white}>
       {!!notArticle ? (
         <SPageContent>{children}</SPageContent>
       ) : (

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import Page from '../templates/page';
+import { downloadLatestRelease } from '../utils/api';
 import { colors } from '../styles';
 
 const SFlex = styled.div`
+  height: 100%;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
   & h1 {
-    margin: 20px;
+    margin: 20px 0;
   }
 `;
 
@@ -35,27 +36,7 @@ const SGreenButton = styled.div`
 class Download extends Component {
   onDownload = e => {
     e.preventDefault();
-    const api = axios.create({
-      baseURL: 'https://wt-863e332a77d038d29fa50d15961b5367-0.run.webtask.io',
-      timeout: 20000,
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      }
-    });
-    api
-      .post('/github-latest-release', {
-        owner: 'balancemymoney',
-        repo: 'balance-open'
-      })
-      .then(({ data }) => {
-        const url = data.assets[0].browser_download_url;
-        const link = document.createElement('a');
-        document.body.appendChild(link);
-        link.href = url;
-        link.click();
-        link.remove();
-      });
+    downloadLatestRelease();
   };
   render = () => {
     const siteTitle = this.props.data.site.siteMetadata.title;
