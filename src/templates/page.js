@@ -9,6 +9,7 @@ import { colors, responsive } from '../styles';
 const SPage = styled(Section)`
   padding: 56px 0 12px;
   font-size: 14px;
+  min-height: ${({ viewport }) => (viewport ? 'calc(100vh - 136px)' : 0)};
   & article * {
     padding-bottom: 20px;
     opacity: 0.9;
@@ -28,7 +29,11 @@ const SPage = styled(Section)`
     letter-spacing: -0.6px;
     line-height: 1.04;
   }
-  @media screen and (${responsive.sm.max}) {
+  ${({ viewport }) => `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  `} @media screen and (${responsive.sm.max}) {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -44,7 +49,11 @@ const SPageContent = styled.div`
   & a {
     display: inline-block;
     font-weight: 400;
-    background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.75) 50%, rgba(51, 51, 51, 0) 50%);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(51, 51, 51, 0.75) 50%,
+      rgba(51, 51, 51, 0) 50%
+    );
     background-repeat: repeat-x;
     background-size: 2px 0.1em;
     background-position: 0 1.25em;
@@ -65,18 +74,22 @@ const layoutTheme = {
   logoHover: colors.lightBlue
 };
 
-const Page = ({ children, title, siteTitle }) => (
+const Page = ({ children, title, notArticle, siteTitle }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage maxWidth={700} fontColor={colors.white}>
-      <article>
-        <h1>{title}</h1>
+    <SPage viewport={notArticle} maxWidth={700} fontColor={colors.white}>
+      {!!notArticle ? (
         <SPageContent>{children}</SPageContent>
-      </article>
+      ) : (
+        <article>
+          <h1>{title}</h1>
+          <SPageContent>{children}</SPageContent>
+        </article>
+      )}
     </SPage>
     <Footer theme={layoutTheme} />
   </div>

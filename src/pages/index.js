@@ -37,7 +37,7 @@ const SVideoContainer = styled.div`
     }
   `};
   @media screen and (${responsive.md.max}) {
-    padding: 0 5%;
+    padding: 0 10%;
   }
 `;
 
@@ -99,8 +99,10 @@ class IndexPage extends Component {
     iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
   };
   render = () => {
-    const desktopIframe = 'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white';
-    const mobileIframe = 'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white';
+    const desktopIframe =
+      'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white';
+    const mobileIframe =
+      'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white';
     return (
       <div>
         <Header theme={layoutTheme} />
