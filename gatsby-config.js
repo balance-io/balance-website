@@ -24,6 +24,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `wiki`,
+        path: `${__dirname}/src/wiki`
+      }
+    },
+    {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `0in2z5jkbaay`,

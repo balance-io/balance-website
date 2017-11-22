@@ -5,19 +5,20 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
 
   const legacyFilePath = new RegExp(`${__dirname}/src/legacy`, 'gi');
+  const wikiFilePath = new RegExp(`${__dirname}/src/wiki`, 'gi');
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const fileNode = getNode(node.parent);
-    console.log(fileNode.relativePath);
-  }
-
-  if (node.id.match(legacyFilePath) && node.internal.type === `MarkdownRemark`) {
+  if (
+    (node.id.match(legacyFilePath) || node.id.match(wikiFilePath)) &&
+    node.internal.type === `MarkdownRemark`
+  ) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug
-    });
+    if (slug) {
+      createNodeField({
+        node,
+        name: `slug`,
+        value: slug
+      });
+    }
   }
 };
 
@@ -64,7 +65,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       });
       result.data.markdown.edges.map(({ node }) => {
         if (node.fields) {
-          // console.log(node.fields);
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/legacy.js`),
