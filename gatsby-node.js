@@ -6,6 +6,11 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
   const legacyFilePath = new RegExp(`${__dirname}/src/legacy`, 'gi');
 
+  if (node.internal.type === `MarkdownRemark`) {
+    const fileNode = getNode(node.parent);
+    console.log(`\n`, fileNode.relativePath);
+  }
+
   if (node.id.match(legacyFilePath) && node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
     createNodeField({
@@ -27,7 +32,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             campaigns
           }
         }
-        legacy: allMarkdownRemark {
+        markdown: allMarkdownRemark {
           edges {
             node {
               fields {
