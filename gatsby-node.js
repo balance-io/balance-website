@@ -3,7 +3,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
+
   const legacyFilePath = new RegExp(`${__dirname}/src/legacy`, 'gi');
+
   if (node.id.match(legacyFilePath) && node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
     createNodeField({
@@ -55,8 +57,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
         });
       });
-      result.data.legacy.edges.map(({ node }) => {
+      result.data.markdown.edges.map(({ node }) => {
         if (node.fields) {
+          // console.log(node.fields);
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/legacy.js`),
