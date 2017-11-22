@@ -8,7 +8,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const fileNode = getNode(node.parent);
-    console.log(`\n`, fileNode.relativePath);
+    console.log(fileNode.relativePath);
   }
 
   if (node.id.match(legacyFilePath) && node.internal.type === `MarkdownRemark`) {
