@@ -23,13 +23,16 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     (node.id.match(legacyFilePath) || node.id.match(wikiFilePath)) &&
     node.internal.type === `MarkdownRemark`
   ) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    let slug = createFilePath({ node, getNode, basePath: `pages` });
     const parent = getNode(node.parent).sourceInstanceName;
     const title = convertSlugToTitle(slug);
     if (parent.toLowerCase() === 'wiki') {
       node.frontmatter.title = title;
     }
     if (slug) {
+      if (parent.toLowerCase() === 'wiki' && slug === '/Home/') {
+        slug = '';
+      }
       createNodeField({
         node,
         name: `slug`,
@@ -89,20 +92,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       result.data.markdown.edges.map(({ node }) => {
         if (node.fields) {
           const origin = node.fields.markdownOrigin;
+          let slug = node.fields.slug;
           if (origin.toLowerCase() === 'wiki') {
             createPage({
-              path: `wiki${node.fields.slug}`,
+              path: `wiki${slug}`,
               component: path.resolve(`./src/templates/wiki.js`),
               context: {
-                slug: node.fields.slug
+                slug: slug
               }
             });
           } else {
             createPage({
-              path: node.fields.slug,
+              path: slug,
               component: path.resolve(`./src/templates/legacy.js`),
               context: {
-                slug: node.fields.slug
+                slug: slug
               }
             });
           }

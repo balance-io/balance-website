@@ -41,9 +41,12 @@ const Wiki = ({ data }) => {
     <Page title={'WIKI - Guides & Manuals for Balance Open'} siteTitle={siteTitle} maxWidth={1000}>
       <StyledFlex>
         <StyledSidebar>
-          {wiki.map(({ node }) => (
-            <a href={`/wiki${node.fields.slug}`}>{node.frontmatter.title}</a>
-          ))}
+          <a href={`/wiki`}>Home</a>
+          {wiki.map(({ node }) => {
+            if (node.fields.slug) {
+              return <a href={`/wiki${node.fields.slug}`}>{node.frontmatter.title}</a>;
+            }
+          })}
         </StyledSidebar>
         <StyledContent>
           <h1>{title}</h1>
