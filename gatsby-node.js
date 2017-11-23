@@ -1,6 +1,18 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+const convertSlugToTitle = slug => {
+  const words = slug
+    .replace(/\//gi, '')
+    .replace(/-/gi, ' ')
+    .split(' ');
+  const capitalisedWords = words.map(
+    word => word.substr(0, 1).toUpperCase() + word.toLowerCase().substring(1)
+  );
+  const title = capitalisedWords.join(' ');
+  return title;
+};
+
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
 
@@ -12,11 +24,21 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     node.internal.type === `MarkdownRemark`
   ) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const parent = getNode(node.parent).sourceInstanceName;
+    const title = convertSlugToTitle(slug);
+    if (parent.toLowerCase() === 'wiki') {
+      node.frontmatter.title = title;
+    }
     if (slug) {
       createNodeField({
         node,
         name: `slug`,
         value: slug
+      });
+      createNodeField({
+        node,
+        name: `markdownOrigin`,
+        value: parent
       });
     }
   }
@@ -38,6 +60,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               fields {
                 slug
+                markdownOrigin
               }
             }
           }
@@ -65,13 +88,24 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       });
       result.data.markdown.edges.map(({ node }) => {
         if (node.fields) {
-          createPage({
-            path: node.fields.slug,
-            component: path.resolve(`./src/templates/legacy.js`),
-            context: {
-              slug: node.fields.slug
-            }
-          });
+          const origin = node.fields.markdownOrigin;
+          if (origin.toLowerCase() === 'wiki') {
+            createPage({
+              path: `wiki${node.fields.slug}`,
+              component: path.resolve(`./src/templates/wiki.js`),
+              context: {
+                slug: node.fields.slug
+              }
+            });
+          } else {
+            createPage({
+              path: node.fields.slug,
+              component: path.resolve(`./src/templates/legacy.js`),
+              context: {
+                slug: node.fields.slug
+              }
+            });
+          }
         }
       });
       result.data.posts.edges.map(({ node }) => {

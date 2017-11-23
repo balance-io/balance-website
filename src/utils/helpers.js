@@ -9,10 +9,10 @@ export const ellipseText = (text = '', maxLength = false) =>
 
 /**
  * @desc   Returns String for date in
- * @param  {string} date
+ * @param  {String} date
  * @param  {boolean} short
  * @param  {number} current
- * @return {string}
+ * @return {String}
  */
 
 export const getTimeagoString = (date, short, current) => {
@@ -30,7 +30,20 @@ export const getTimeagoString = (date, short, current) => {
     'November',
     'December'
   ];
-  const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthsShort = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
   const limits = [60000, 3600000, 86400000, 604800000, 1209600000];
   if (!date) return null;
   let _current = current || Date.now();
@@ -66,7 +79,7 @@ export const getTimeagoString = (date, short, current) => {
 
 /**
  * @desc Returns reading time from body content
- * @param  {string} content
+ * @param  {String} content
  * @return {number}
  */
 
@@ -110,7 +123,39 @@ export const showIntercom = () => {
 
 /**
  * @desc capitalise string
- * @param {string} string
+ * @param {String} string
  * @return {Void}
  */
 export const capitalise = string => string.slice(0, 1).toUpperCase() + string.slice(1);
+
+/**
+ * @desc convert slug to title
+ * @param {String} slug
+ * @return {String}
+ */
+export const convertSlugToTitle = slug => {
+  const words = slug
+    .replace(/\//gi, '')
+    .replace(/-/gi, ' ')
+    .split(' ');
+  const capitalisedWords = words.map(
+    word => word.substr(0, 1).toUpperCase() + word.toLowerCase().substring(1)
+  );
+  const title = capitalisedWords.join(' ');
+  return title;
+};
+
+/**
+ * @desc convert title to slug
+ * @param {String} title
+ * @return {String}
+ */
+export const convertTitleToSlug = title => {
+  const slug = title
+    .replace(/&/gi, 'and')
+    .split(' ')
+    .filter(word => word.match(/\w/gi))
+    .join('-')
+    .toLowerCase();
+  return slug;
+};

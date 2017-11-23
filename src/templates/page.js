@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Section from '../components/Section';
@@ -74,14 +75,14 @@ const layoutTheme = {
   logoHover: colors.lightBlue
 };
 
-const Page = ({ children, title, notArticle, siteTitle }) => (
+const Page = ({ children, title, maxWidth, notArticle, siteTitle }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage viewport={notArticle} maxWidth={700} fontColor={colors.white}>
+    <SPage viewport={notArticle} maxWidth={maxWidth} fontColor={colors.white}>
       {!!notArticle ? (
         <SPageContent>{children}</SPageContent>
       ) : (
@@ -94,5 +95,18 @@ const Page = ({ children, title, notArticle, siteTitle }) => (
     <Footer theme={layoutTheme} />
   </div>
 );
+
+Page.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  maxWidth: PropTypes.number,
+  notArticle: PropTypes.bool,
+  siteTitle: PropTypes.string.isRequired
+};
+
+Page.defaultProps = {
+  maxWidth: 700,
+  notArticle: false
+};
 
 export default Page;
