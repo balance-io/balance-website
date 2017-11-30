@@ -128,7 +128,7 @@ const SAppPreview = styled.div`
   }
 `;
 
-const Campaign = ({ pathContext, data }) => {
+const CampaignEnded = ({ pathContext, data }) => {
   const layoutTheme = {
     fontWeight: '400',
     linkColor: colors.lightBlue,
@@ -177,14 +177,14 @@ const Campaign = ({ pathContext, data }) => {
   );
 };
 
-Campaign.propTypes = {
+CampaignEnded.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default Campaign;
+export default CampaignEnded;
 
 export const query = graphql`
-  query CampaignQuery {
+  query CampaignEndedQuery {
     site {
       siteMetadata {
         title
