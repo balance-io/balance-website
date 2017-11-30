@@ -4,7 +4,7 @@ import Section from '../components/Section';
 import triangleMask from '../assets/triangle-mask.svg';
 import trianglesWhite from '../assets/triangles-white.svg';
 import highSierra from '../assets/high-sierra.jpg';
-import balanceOpen from '../assets/balance-open.png';
+import balanceOpenLarge from '../assets/balance-open-large.png';
 import balanceOpenIcon from '../assets/balance-open-icon.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
@@ -48,6 +48,10 @@ const SSectionWrapper = styled.div`
 `;
 
 const SInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   @media screen and (${responsive.sm.min}) {
     max-width: 440px;
   }
@@ -78,18 +82,22 @@ const SAppIcon = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  width: 402px;
-  height: 271px;
-  background: url(${balanceOpen}) no-repeat;
+  width: 396px;
+  height: 600px;
+  background: url(${balanceOpenLarge}) no-repeat;
   background-size: 100% 100%;
-  margin-top: 5vw;
-  margin-right: -2vw;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.min}) and(${responsive.md.max}) {
     display: none;
+  }
+  @media screen and (${responsive.sm.max}) {
+    margin-top: 60px;
+    width: 320px;
+    height: 485px;
   }
 `;
 
 const SComboButton = styled.a`
+  display: block;
   position: relative;
   height: 49px;
   margin: 0 0 25px 0;
@@ -180,7 +188,7 @@ const SContribute = styled(SComboButton)`
 
 const STitle = styled.h1`
   position: relative;
-  display: inline-block;
+  display: inline-table;
   font-size: 1.625em;
   font-weight: 700;
   letter-spacing: -0.2px;
@@ -203,29 +211,43 @@ const STitle = styled.h1`
 `;
 
 const BalanceOpen = () => (
-  <Section id="balance-open" minHeight={780} color={colors.navyBlue} background={<SBackgroundImage />}>
+  <Section
+    id="balance-open"
+    minHeight={780}
+    color={colors.navyBlue}
+    background={<SBackgroundImage />}
+  >
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
         <STitle>Balance Open</STitle>
         <p>
-          A free, open source Mac app for checking Coinbase. Support for GDAX, Poloniex, BTCChina, and many other
-          exchanges is coming soon.
+          A free open source Mac app for checking multiple crypto exchanges such as Coinbase, GDAX
+          and Poloniex. Support for many other exchanges and full wallet support coming soon.
         </p>
-
-        <SButtonGithub href="https://github.com/balancemymoney/balance-open" target="_blank" rel="noreferrer noopener">
-          View on GitHub
-        </SButtonGithub>
-        <SButtonApple
-          href="https://github.com/balancemymoney/balance-open/releases"
+        <SButtonGithub
+          href="https://github.com/balancemymoney/balance-open"
           target="_blank"
           rel="noreferrer noopener"
         >
-          Get for Mac
-        </SButtonApple>
-        <SContribute href="https://github.com/balancemymoney/balance-open" target="_blank" rel="noreferrer noopener">
-          Contribute
-        </SContribute>
+          View on GitHub
+        </SButtonGithub>
+        <div>
+          <SButtonApple
+            href="https://github.com/balancemymoney/balance-open/releases"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Get for Mac
+          </SButtonApple>
+          <SContribute
+            href="https://github.com/balancemymoney/balance-open"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Contribute
+          </SContribute>
+        </div>
 
         <ul>
           <li>Read-only API access</li>

@@ -9,7 +9,9 @@ import playButton from '../assets/play-button.svg';
 import Section from '../components/Section';
 import { colors, responsive, transitions } from '../styles';
 
-const SSection = styled(Section)`z-index: 2;`;
+const SSection = styled(Section)`
+  z-index: 2;
+`;
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -71,8 +73,8 @@ const SPreviewWrapper = styled(SHalf)`
 `;
 
 const SPreview = styled.div`
-  width: ${({ mobile }) => (mobile ? '414px' : '432px')};
-  height: ${({ mobile }) => (mobile ? '274px' : '638px')};
+  width: ${({ mobile }) => (mobile ? '414px' : '396px')};
+  height: ${({ mobile }) => (mobile ? '274px' : '600px')};
   background: ${({ img }) => `url(${img})`};
   background-size: contain;
   background-repeat: no-repeat;
@@ -177,7 +179,9 @@ const Hero = ({ toggleVideo }) => (
           <SubscribeForm options={subscribeOptions} />
 
           <STitle>Get updates on Balance product releases</STitle>
-          <STagline>We're building a wallet for all the world's currencies, available soon for Mac and iOS.</STagline>
+          <STagline>
+            We're building a wallet for all the world's currencies, available soon for Mac and iOS.
+          </STagline>
         </SSubscribe>
       </SHalf>
 
