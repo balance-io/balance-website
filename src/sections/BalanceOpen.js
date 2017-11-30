@@ -42,7 +42,7 @@ const SSectionWrapper = styled.div`
     align-items: center;
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    padding: 220px 20px;
+    padding: 100px 20px;
     text-align: center;
   }
 `;
@@ -56,9 +56,6 @@ const SInfo = styled.div`
     max-width: 440px;
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
   & p {
@@ -86,11 +83,10 @@ const SAppPreview = styled.div`
   height: 600px;
   background: url(${balanceOpenLarge}) no-repeat;
   background-size: 100% 100%;
-  @media screen and (${responsive.sm.min}) and(${responsive.md.max}) {
-    display: none;
+  @media screen and (${responsive.md.max}) {
+    margin-top: 60px;
   }
   @media screen and (${responsive.sm.max}) {
-    margin-top: 60px;
     width: 320px;
     height: 485px;
   }

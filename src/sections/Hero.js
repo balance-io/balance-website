@@ -73,8 +73,8 @@ const SPreviewWrapper = styled(SHalf)`
 `;
 
 const SPreview = styled.div`
-  width: ${({ mobile }) => (mobile ? '414px' : '396px')};
-  height: ${({ mobile }) => (mobile ? '274px' : '600px')};
+  width: ${({ mobile }) => (mobile ? '360px' : '396px')};
+  height: ${({ mobile }) => (mobile ? '238px' : '600px')};
   background: ${({ img }) => `url(${img})`};
   background-size: contain;
   background-repeat: no-repeat;
