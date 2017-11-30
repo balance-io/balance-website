@@ -22,7 +22,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         site {
           siteMetadata {
             campaigns
-            campaignsEnded
           }
         }
         legacy: allMarkdownRemark {
@@ -46,28 +45,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       if (result.errors) {
         reject(result.errors);
       }
-      if (result.data.site.siteMetadata.campaigns.length) {
-        result.data.site.siteMetadata.campaigns.map(campaign => {
-          createPage({
-            path: campaign,
-            component: path.resolve(`./src/templates/campaign.js`),
-            context: {
-              slug: campaign
-            }
-          });
+      result.data.site.siteMetadata.campaigns.map(name => {
+        createPage({
+          path: name,
+          component: path.resolve(`./src/templates/campaignEnded.js`),
+          context: {
+            slug: name
+          }
         });
-      }
-      if (result.data.site.siteMetadata.campaignsEnded.length) {
-        result.data.site.siteMetadata.campaignsEnded.map(campaignEnded => {
-          createPage({
-            path: campaignEnded,
-            component: path.resolve(`./src/templates/campaignEnded.js`),
-            context: {
-              slug: campaignEnded
-            }
-          });
-        });
-      }
+      });
       result.data.legacy.edges.map(({ node }) => {
         if (node.fields) {
           createPage({

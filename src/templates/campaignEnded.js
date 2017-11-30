@@ -13,9 +13,11 @@ import { colors, responsive } from '../styles';
 
 const SSection = styled(Section)`
   min-height: 100vh;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.max}) {
     height: 100vh;
-    ${'' /* display: flex; */};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -35,7 +37,7 @@ const SBackgroundImage = styled.div`
 
 const SSectionWrapper = styled.div`
   width: 100%;
-  ${'' /* height: 100vh; */} display: flex;
+  display: flex;
   @media screen and (${responsive.md.max}) {
     padding: 0 34px;
     flex-direction: column;
@@ -48,9 +50,11 @@ const SBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25vh;
   padding: 34px;
   text-align: center;
+  @media screen and (${responsive.sm.min}) {
+    margin-top: 20vh;
+  }
 `;
 
 const SHalf = styled.div`
