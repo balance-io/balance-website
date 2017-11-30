@@ -164,7 +164,9 @@ const CampaignEnded = ({ pathContext, data }) => {
               <SubscribeForm options={subscribeOptions} />
               <SSubTitle>Subscribe to get updates on Balance product releases</SSubTitle>
               <STagline>
-                A free, open source Mac app for checking Coinbase, a simple digital currency wallet.
+                A free open source Mac app for checking multiple crypto exchanges such as Coinbase,
+                GDAX and Poloniex. Support for many other exchanges and full wallet support coming
+                soon.
               </STagline>
             </SSubscribe>
           </SHalf>
