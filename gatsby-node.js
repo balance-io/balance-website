@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       result.data.site.siteMetadata.campaigns.map(name => {
         createPage({
           path: name,
-          component: path.resolve(`./src/templates/campaignEnded.js`),
+          component: path.resolve(`./src/templates/campaign.js`),
           context: {
             slug: name
           }
