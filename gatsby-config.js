@@ -7,7 +7,8 @@ module.exports = {
     coverImage: `twitter-card-800-400.png`,
     twitterUsername: '@balancemymoney',
     facebookId: '1748891795369317',
-    campaigns: ['relay', 'appstories', 'macstories']
+    campaigns: ['relay', 'appstories', 'macstories'],
+    campaignsEnded: ['relay', 'appstories', 'macstories']
   },
   plugins: [
     {
