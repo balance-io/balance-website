@@ -21,7 +21,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       query {
         site {
           siteMetadata {
-            title
             campaigns
           }
         }
