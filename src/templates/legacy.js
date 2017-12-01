@@ -6,7 +6,7 @@ const Legacy = ({ data }) => {
   const title = data.page.frontmatter.title;
   const html = data.page.html;
   return (
-    <Page title={title} siteTitle={siteTitle}>
+    <Page title={title} siteTitle={siteTitle} article>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Page>
   );
