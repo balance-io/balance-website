@@ -147,7 +147,7 @@ const Campaign = ({ pathContext, data }) => {
     server: 'money.us11',
     userId: 'a3f87e208a9f9896949b4f336',
     listId: '3985713da6',
-    origin: name
+    origin: 'campaignEnded'
   };
   const siteTitle = data.site.siteMetadata.title;
   const title = `${capitalise(name)} - ${siteTitle}`;
