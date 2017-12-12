@@ -41,7 +41,7 @@ class Download extends Component {
   render = () => {
     const siteTitle = this.props.data.site.siteMetadata.title;
     return (
-      <Page title={'Download'} siteTitle={siteTitle}>
+      <Page title={'Download'} siteTitle={siteTitle} notArticle>
         <SFlex>
           <div>
             <h1>Download Balance Open for macOS</h1>

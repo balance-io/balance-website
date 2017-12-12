@@ -4,7 +4,7 @@ import Page from '../templates/page';
 const About = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
   return (
-    <Page title={'About'} siteTitle={siteTitle} article>
+    <Page title={'About'} siteTitle={siteTitle}>
       <p>Balance. What else?</p>
     </Page>
   );

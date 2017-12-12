@@ -74,15 +74,15 @@ const layoutTheme = {
   logoHover: colors.lightBlue
 };
 
-const Page = ({ children, title, article, siteTitle }) => (
+const Page = ({ children, title, notArticle, siteTitle }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage viewport={!article} maxWidth={700} fontColor={colors.white}>
-      {!article ? (
+    <SPage viewport={notArticle} maxWidth={700} fontColor={colors.white}>
+      {!!notArticle ? (
         <SPageContent>{children}</SPageContent>
       ) : (
         <article>
