@@ -14,6 +14,7 @@ const SMessage = styled.p`
   position: absolute;
   text-align: center;
   margin-top: 10px;
+  font-size: ${fonts.h6};
 `;
 
 const SSuccess = styled.p`
@@ -23,6 +24,27 @@ const SSuccess = styled.p`
   font-weight: 500;
   transition: ${transitions.base};
   color: rgb(${colors.brightBlue});
+`;
+
+const StyledSubmit = styled.button`
+  outline: none;
+  border-style: none;
+  border: none;
+  font-size: ${fonts.large};
+  padding: 6px 14px;
+  background: none;
+  color: rgb(${colors.white});
+  border: 2px solid rgb(${colors.white});
+  position: absolute;
+  border-radius: 8px;
+  top: 64px;
+  right: 0;
+  @media screen and (${responsive.md.min}) {
+    top: auto;
+    right: auto;
+    padding: 18px 24px;
+    margin: 0 8px;
+  }
 `;
 
 const SForm = styled.form`
@@ -87,9 +109,9 @@ class SubscribeForm extends Component {
       });
       return;
     }
-    const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${options.userId}&id=${options.listId}&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(
-      this.state.input
-    )}`;
+    const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${options.userId}&id=${
+      options.listId
+    }&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(this.state.input)}`;
     this.setState(
       {
         status: 'sending',
@@ -125,6 +147,7 @@ class SubscribeForm extends Component {
         })
     );
   };
+  getEmailClient = () => this.state.input.match(/@(\w|.)+/gi)[0].replace('@', '');
   render() {
     const { messages, ...props } = this.props;
     return (
@@ -136,14 +159,22 @@ class SubscribeForm extends Component {
           noValidate
           {...props}
         >
-          {this.state.status === 'success' && <SSuccess>Check your email</SSuccess>}
+          {this.state.status === 'success' && (
+            <SSuccess>
+              <a href={`http://${this.getEmailClient()}`} target="_blank">
+                Check your email
+              </a>
+            </SSuccess>
+          )}
           <input
             value={this.state.input}
-            onChange={e => this.setState({ input: e.target.value })}
+            onChange={e => this.setState({ status: null, input: e.target.value })}
             type="email"
             required
             placeholder={messages.inputPlaceholder}
           />
+          {!this.state.status &&
+            this.state.input && <StyledSubmit type="submit">Send</StyledSubmit>}
           {this.state.status === 'sending' && (
             <SMessage color={colors.white}>{messages.sending}</SMessage>
           )}
