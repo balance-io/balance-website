@@ -67,7 +67,7 @@ const SAppPreview = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     width: 320px;
-    height: 485px;
+    height: 405px;
   }
 `;
 
