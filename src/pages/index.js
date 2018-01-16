@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Hero from '../sections/Hero';
+import BalanceLaunch from '../sections/BalanceLaunch';
 import BalanceOpen from '../sections/BalanceOpen';
 import BalanceIOS from '../sections/BalanceIOS';
 import { colors, responsive } from '../styles';
@@ -106,6 +107,7 @@ class IndexPage extends Component {
     return (
       <div>
         <Header theme={layoutTheme} />
+        <BalanceLaunch />
         <Hero toggleVideo={this.toggleVideo} />
         <BalanceOpen />
         <BalanceIOS />
