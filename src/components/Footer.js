@@ -22,7 +22,9 @@ const SFooter = styled.footer`
   }
 `;
 
-const SFooterList = styled.ul`float: left;`;
+const SFooterList = styled.ul`
+  float: left;
+`;
 
 const SFooterLinks = styled(Link)`
   display: inline-block;
@@ -60,7 +62,7 @@ const Footer = ({ theme, ...props }) => (
 
     <SCopyright // eslint-disable-line
     >
-      © 2017<span> Balanced Software Inc.</span>
+      © 2018<span> Balanced Software Inc.</span>
     </SCopyright>
   </SFooter>
 );
