@@ -116,7 +116,7 @@ const BalanceiOS = () => (
       <SInfo>
         <SAppIcon />
         <STitle>Balance iOS</STitle>
-        <p>All of your digital currencies in one place. Coming late 2017.</p>
+        <p>All of your digital currencies in one place. Coming soon.</p>
       </SInfo>
     </SSectionWrapper>
   </Section>
