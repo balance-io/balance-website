@@ -16,7 +16,7 @@ firebase.initializeApp({
 /**
  * @desc Firebase database instance
  */
-export const database = firebase.database();
+const database = firebase.database();
 
 /**
  * @desc get database values
@@ -28,21 +28,53 @@ export const databaseGet = reference =>
     database
       .ref(reference)
       .once('value')
-      .then(result => resolve(result.val()))
+      .then(snapshot => resolve(snapshot.val()))
       .catch(error => reject(error))
   );
 
 /**
- * @desc set database values
- * @param  {String} reference
- * @param  {Any} data
+ * @desc update referral leaderboard score
+ * @param  {String}  referralID
+ * @param  {String}  type
  * @return {Promise}
  */
-export const databaseSet = (reference, data) =>
+export const updateLeaderboard = async (referralID, type) => {
+  const reference = database.ref(`referrals/id${referralID}`);
+  const snapshot = await reference.once('value');
+  let { traffic, score, downloads } = snapshot.val();
+  if (type === 'conversion') {
+    traffic += 1;
+    score += 5;
+  } else if (type === 'download') {
+    downloads += 1;
+    score += 50;
+  }
+  reference.set({ traffic, score, downloads });
+  database.ref(`scores/id${referralID}`).set(score);
+};
+
+/**
+ * @desc get referral leaderboard score
+ * @param  {String}  referralID
+ * @param  {String}  type
+ * @return {Promise}
+ */
+export const getLeaderboard = referralID =>
   new Promise((resolve, reject) =>
     database
-      .ref(reference)
-      .once('value')
-      .then(result => resolve(result.set(data)))
-      .catch(error => reject(error))
+      .ref(`scores`)
+      .orderByValue()
+      .once('value', snapshot => {
+        let scores = {};
+        snapshot.forEach(data => {
+          scores[data.key] = data.val();
+        });
+        const position = Object.keys(scores)
+          .reverse()
+          .indexOf(referralID);
+        databaseGet(`referrals/${referralID}`).then(referralData => {
+          const referral = { position, ...referralData };
+          resolve(referral);
+        });
+      })
   );

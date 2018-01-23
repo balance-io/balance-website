@@ -30,7 +30,20 @@ export const getTimeagoString = (date, short, current) => {
     'November',
     'December'
   ];
-  const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthsShort = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
   const limits = [60000, 3600000, 86400000, 604800000, 1209600000];
   if (!date) return null;
   let _current = current || Date.now();
@@ -114,3 +127,18 @@ export const showIntercom = () => {
  * @return {Void}
  */
 export const capitalise = string => string.slice(0, 1).toUpperCase() + string.slice(1);
+
+/**
+ * @desc returns url parameter value
+ * @param  {String} parameter
+ * @param  {String} url
+ * @return {String}
+ */
+export const getUrlParameter = (parameter, url = window.location.href) => {
+  let name = parameter.replace(/[[]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};

@@ -5,6 +5,8 @@ import Hero from '../sections/Hero';
 import BalanceOpen from '../sections/BalanceOpen';
 import BalanceIOS from '../sections/BalanceIOS';
 import { colors, responsive } from '../styles';
+import { updateLeaderboard } from '../utils/firebase';
+import { getUrlParameter } from '../utils/helpers';
 
 const SVideoContainer = styled.div`
   position: fixed;
@@ -86,6 +88,13 @@ const layoutTheme = {
 };
 
 class IndexPage extends Component {
+  componentDidMount() {
+    const referral = getUrlParameter('ref');
+    if (referral && !JSON.parse(localStorage.getItem('referral_link'))) {
+      localStorage.setItem('referral_link', referral);
+      updateLeaderboard(referral, 'conversion');
+    }
+  }
   state = {
     showVideo: false
   };

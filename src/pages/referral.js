@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Section from '../components/Section';
 import balanceReferralPreview from '../assets/balance-referral-preview.png';
 import { downloadLatestRelease } from '../utils/api';
+import { getLeaderboard, databaseGet } from '../utils/firebase';
+import { getUrlParameter } from '../utils/helpers';
 import { colors, responsive } from '../styles';
 
 const SSection = styled(Section)`
@@ -40,12 +42,13 @@ const SRight = styled(SHalf)`
   justify-content: flex-end;
 `;
 
-const SSubscribe = styled.div`
+const SContainer = styled.div`
   margin-top: 100px;
   float: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  opacity: ${({ hide }) => (hide ? 0 : 1)};
   @media screen and (${responsive.sm.min}) {
     max-width: 420px;
   }
@@ -93,6 +96,20 @@ const SAppPreview = styled.div`
 `;
 
 class Referral extends Component {
+  state = {
+    referralID: '',
+    leaderboard: {}
+  };
+  componentWillMount() {
+    const uniqueID = getUrlParameter('id');
+    databaseGet(`unique_id/${uniqueID}`).then(referralID => this.setState({ referralID }));
+  }
+
+  componentWillUpdate(newProps, newState) {
+    if (newState.referralID) {
+      getLeaderboard(newState.referralID).then(leaderboard => this.setState({ leaderboard }));
+    }
+  }
   onReferral = e => {
     e.preventDefault();
     downloadLatestRelease();
@@ -120,14 +137,22 @@ class Referral extends Component {
         <SSection id={name} color={colors.navyBlue}>
           <SSectionWrapper>
             <SHalf>
-              <SSubscribe>
-                <SSubTitle>Subscribe to get updates on Balance product releases</SSubTitle>
-                <STagline>
-                  A free open source Mac app for checking multiple crypto exchanges such as
-                  Coinbase, GDAX and Poloniex. Support for many other exchanges and full wallet
-                  support coming soon.
-                </STagline>
-              </SSubscribe>
+              <div>
+                <SContainer>
+                  <SSubTitle>Help Launch Balance. Invite friends and earn rewards</SSubTitle>
+                  <STagline>Use your unique link via Facebook, Twitter and email</STagline>
+                </SContainer>
+                <SContainer hide={!Object.keys(this.state.leaderboard).length}>
+                  <SSubTitle>{`${
+                    this.state.leaderboard.downloads
+                  } Friends downloaded so far. Sharing is Caring!`}</SSubTitle>
+                  <STagline>
+                    {`You're number ${
+                      this.state.leaderboard.position
+                    } on our leaderboard. The top 10 referrers will get a reward from our founders`}
+                  </STagline>
+                </SContainer>
+              </div>
             </SHalf>
             <SRight>
               <SAppPreview />
