@@ -31,7 +31,7 @@ const TemplateWrapper = ({ children, location, data }) => {
   const url = data.site.siteMetadata.baseUrl;
   const description = data.site.siteMetadata.description;
   const keywords = data.site.siteMetadata.keywords;
-  const coverImage = data.site.siteMetadata.coverImage;
+  const socialCard = data.site.siteMetadata.socialCard;
   const twitterUsername = data.site.siteMetadata.twitterUsername;
   const facebookId = data.site.siteMetadata.facebookId;
   return (
@@ -46,12 +46,12 @@ const TemplateWrapper = ({ children, location, data }) => {
           { name: 'twitter:site', content: twitterUsername },
           { name: 'twitter:title', content: title },
           { name: 'twitter:description', content: description },
-          { name: 'twitter:img:src', content: `${url}/${coverImage}` },
+          { name: 'twitter:img:src', content: `${url}/${socialCard}` },
 
           { name: 'og:title', content: title },
           { name: 'og:type', content: 'website' },
           { name: 'og:url', content: url },
-          { name: 'og:image', content: `${url}/${coverImage}` },
+          { name: 'og:image', content: `${url}/${socialCard}` },
           { name: 'og:description', content: description },
 
           { name: 'og:site_name', content: title },
@@ -78,7 +78,7 @@ export const query = graphql`
         baseUrl
         description
         keywords
-        coverImage
+        socialCard
         twitterUsername
         facebookId
       }

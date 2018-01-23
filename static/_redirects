@@ -1,1 +1,7 @@
 /future    https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848
+
+# Redirect domain aliases to primary domain
+https://bal.money/* https://balance.io/:splat 301!
+https://www.bal.money/* https://balance.io/:splat 301!
+https://balancemy.money/* https://balance.io/:splat 301!
+https://www.balancemy.money/* https://balance.io/:splat 301!
