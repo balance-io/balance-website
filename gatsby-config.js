@@ -4,7 +4,7 @@ module.exports = {
     baseUrl: `https://balance.io`,
     description: `We're building a wallet for all the world's currencies, available soon for Mac and iOS.`,
     keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
-    coverImage: `twitter-card-800-400.png`,
+    socialCard: `social-media-card.png`,
     twitterUsername: '@balancemymoney',
     facebookId: '1748891795369317',
     campaigns: ['relay', 'appstories', 'macstories']
