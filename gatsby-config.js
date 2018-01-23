@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Balance`,
-    baseUrl: `https://balancemy.money`,
+    baseUrl: `https://balance.io`,
     description: `We're building a wallet for all the world's currencies, available soon for Mac and iOS.`,
     keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
