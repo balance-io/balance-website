@@ -28,7 +28,6 @@ const STitle = styled.h1`
 
 const STagline = styled.p`
   font-size: 1.125em;
-  font-family: 'FF Mark Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: rgb(${colors.lighterBlue});
   line-height: 1.55em;
   @media screen and (${responsive.md.max}) {
@@ -73,7 +72,7 @@ class Download extends Component {
               We're building a wallet for all the world's currencies, available soon for Mac and
               iOS.
             </STagline>
-            <SGreenButton onClick={this.onDownload}>Download</SGreenButton>
+            <SGreenButton onClick={this.onDownload}>Download for macOS</SGreenButton>
           </div>
         </SFlex>
       </Page>
