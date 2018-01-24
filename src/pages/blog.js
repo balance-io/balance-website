@@ -104,7 +104,7 @@ const SPostInfo = styled.p`
   margin-bottom: 5px;
   font-size: 0.75em;
   font-weight: 500;
-  color: rgb(${colors.darkGrey});
+  color: rgb(${colors.fiftyGrey});
   letter-spacing: 0.2px;
   text-transform: uppercase;
 `;

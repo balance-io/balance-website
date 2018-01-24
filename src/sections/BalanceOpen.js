@@ -62,6 +62,8 @@ const SInfo = styled.div`
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
     line-height: 1.5em;
+  }
+  & p:last-of-type {
     margin-bottom: 34px;
   }
   & ul {
@@ -117,7 +119,7 @@ const SButtonGithub = styled(SComboButton)`
   width: 189px;
   background: linear-gradient(-45deg, #ccd4de, #ededf5);
   border-radius: 10px;
-  color: #383e49;
+  color: rgb(${colors.dark});
   padding: 0 0 4px 44px;
   display: flex;
   flex-direction: row;
@@ -131,7 +133,7 @@ const SButtonGithub = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonGithub}) no-repeat;
     -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: #383e49;
+    background-color: rgb(${colors.dark});
     opacity: 1;
   }
   @media screen and (${responsive.md.min}) {
@@ -142,7 +144,7 @@ const SButtonGithub = styled(SComboButton)`
 const SButtonApple = styled(SComboButton)`
   width: 155px;
   background: linear-gradient(-45deg, #ccd4de, #eeeef5);
-  color: rgb(${colors.darkBlue});
+  color: rgb(${colors.dark});
   margin-right: 13px;
   padding: 13px 18px 0 40px;
   &:before {
@@ -154,7 +156,7 @@ const SButtonApple = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonApple}) no-repeat;
     -webkit-mask: url(${buttonApple}) no-repeat;
-    background-color: rgb(${colors.darkBlue});
+    background-color: rgb(${colors.dark});
   }
   @media screen and (${responsive.md.max}) {
     display: none;
@@ -163,6 +165,7 @@ const SButtonApple = styled(SComboButton)`
 
 const SContribute = styled(SComboButton)`
   width: 155px;
+
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
   color: rgba(${colors.white}, 0.9);
@@ -218,9 +221,10 @@ const BalanceOpen = () => (
         <SAppIcon />
         <STitle>Balance Open</STitle>
         <p>
-          A free open source Mac app for checking multiple crypto exchanges such as Coinbase, GDAX
-          and Poloniex. Support for many other exchanges and full wallet support coming soon.
+          A free open source Mac app for tracking your portofolio on Coinbase, GDAX, Poloniex,
+          Bitfinex, Kraken, Bittrex and Ethereum addresses.
         </p>
+        <p>Support for many other exchanges and full wallet support coming soon.</p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
           target="_blank"

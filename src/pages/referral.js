@@ -114,7 +114,7 @@ const STagline = styled.p`
 
 const SReferral = styled.p`
   width: 98%;
-  background-color: rgb(${colors.subtleDarkGrey});
+  background-color: rgb(${colors.darkerGrey});
   padding: 14px;
   border-radius: 10px;
   margin: 10px 0;

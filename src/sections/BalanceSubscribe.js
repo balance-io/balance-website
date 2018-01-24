@@ -92,8 +92,7 @@ const SPlayButton = styled.div`
   height: 80px;
   margin: 258px auto;
   border-radius: 50%;
-  background: rgba(${colors.white}, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(${colors.dark}, 0.4);
   transition: transform 0.2s;
   ${({ mobile }) => mobile && `margin-top: 100px;`};
   &:after {
@@ -165,8 +164,13 @@ const subscribeOptions = {
   origin: ''
 };
 
-const Hero = ({ toggleVideo }) => (
-  <SSection id="hero" minHeight={860} color={colors.fadedBlue} background={<SBackgroundImage />}>
+const BalanceSubscribe = ({ toggleVideo }) => (
+  <SSection
+    id="balance-subscribe"
+    minHeight={860}
+    color={colors.fadedBlue}
+    background={<SBackgroundImage />}
+  >
     <SSectionWrapper>
       <SPreviewWrapper onClick={toggleVideo} mobile>
         <SPreview mobile img={previewMobile}>
@@ -182,6 +186,7 @@ const Hero = ({ toggleVideo }) => (
           <STagline>
             We're building a wallet for all the world's currencies, available soon for Mac and iOS.
           </STagline>
+          <STagline>Support for many other exchanges and full wallet support coming soon.</STagline>
         </SSubscribe>
       </SHalf>
 
@@ -194,8 +199,8 @@ const Hero = ({ toggleVideo }) => (
   </SSection>
 );
 
-Hero.propTypes = {
+BalanceSubscribe.propTypes = {
   toggleVideo: PropTypes.func.isRequired
 };
 
-export default Hero;
+export default BalanceSubscribe;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import Hero from '../sections/Hero';
-import BalanceOpen from '../sections/BalanceOpen';
+import BalanceSubscribe from '../sections/BalanceSubscribe';
+import BalanceLaunch from '../sections/BalanceLaunch';
 import BalanceIOS from '../sections/BalanceIOS';
 import { colors, responsive } from '../styles';
 import { updateLeaderboard } from '../utils/firebase';
@@ -115,8 +115,8 @@ class IndexPage extends Component {
     return (
       <div>
         <Header theme={layoutTheme} />
-        <Hero toggleVideo={this.toggleVideo} />
-        <BalanceOpen />
+        <BalanceLaunch />
+        <BalanceSubscribe toggleVideo={this.toggleVideo} />
         <BalanceIOS />
         <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
           <SVideoWrapper>

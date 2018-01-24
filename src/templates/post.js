@@ -66,7 +66,7 @@ const SInfo = styled.div`
   height: 60px;
   & p {
     font-size: 0.8125em;
-    color: rgb(${colors.darkGrey});
+    color: rgb(${colors.fiftyGrey});
   }
   & p:first-of-type {
     margin-bottom: 4px;

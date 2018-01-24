@@ -3,15 +3,34 @@ import styled from 'styled-components';
 import Section from '../components/Section';
 import { downloadLatestRelease } from '../utils/api';
 import balanceLaunchIcon from '../assets/balance-launch-icon.png';
-import balanceLaunchDemo from '../assets/balance-launch-demo.png';
+import triangleMask from '../assets/triangle-mask.svg';
+import highSierra from '../assets/high-sierra.jpg';
+import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
+
+const SBackgroundImage = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  @media screen and (${responsive.md.min}) {
+    width: 780px;
+    height: 780px;
+    mask-image: url(${triangleMask}) no-repeat;
+    -webkit-mask: url(${triangleMask}) no-repeat;
+    background-image: url(${highSierra});
+    background-size: 100% 100%;
+  }
+`;
 
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media screen and (${responsive.md.min}) {
+    margin: 120px auto;
+  }
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
   }
@@ -41,6 +60,8 @@ const SInfo = styled.div`
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
     line-height: 1.5em;
+  }
+  & p:last-of-type {
     margin-bottom: 34px;
   }
   & ul {
@@ -58,16 +79,16 @@ const SAppIcon = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  width: 395px;
-  height: 500px;
-  background: url(${balanceLaunchDemo}) no-repeat;
+  width: 396px;
+  height: 600px;
+  background: url(${balanceOpenBeta}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.md.max}) {
     margin-top: 60px;
   }
   @media screen and (${responsive.sm.max}) {
     width: 320px;
-    height: 405px;
+    height: 485px;
   }
 `;
 
@@ -96,7 +117,7 @@ const SButtonGithub = styled(SComboButton)`
   width: 189px;
   background: linear-gradient(-45deg, #ccd4de, #ededf5);
   border-radius: 10px;
-  color: #383e49;
+  color: rgb(${colors.dark});
   padding: 0 0 4px 44px;
   display: flex;
   flex-direction: row;
@@ -110,7 +131,7 @@ const SButtonGithub = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonGithub}) no-repeat;
     -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: #383e49;
+    background-color: rgb(${colors.dark});
     opacity: 1;
   }
   @media screen and (${responsive.md.min}) {
@@ -141,7 +162,7 @@ const SButtonApple = styled(SComboButton)`
 `;
 
 const SContribute = styled(SComboButton)`
-  width: 155px;
+  width: 160px;
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
   color: rgba(${colors.white}, 0.9);
@@ -171,14 +192,23 @@ const STitle = styled.h1`
 `;
 
 const BalanceLaunch = () => (
-  <Section id="balance-open" minHeight={780} color={colors.navyBlue}>
+  <Section
+    id="balance-launch"
+    minHeight={780}
+    color={colors.navyBlue}
+    background={<SBackgroundImage />}
+  >
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
         <STitle>A secure automatic portfolio tracker</STitle>
         <p>
-          Securely connect multiple exchanges to automatically keep track of your cryptocurrency and
-          token balances.
+          Securely connect to multiple exchanges to automatically keep track of your cryptocurrency
+          and token balances.
+        </p>
+        <p>
+          Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
+          addresses.
         </p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
@@ -204,7 +234,7 @@ const BalanceLaunch = () => (
             target="_blank"
             rel="noreferrer noopener"
           >
-            Contribute
+            Source Code
           </SContribute>
         </div>
 
