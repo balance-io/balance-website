@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Section from '../components/Section';
 import { downloadLatestRelease } from '../utils/api';
 import balanceLaunchIcon from '../assets/balance-launch-icon.png';
-import balanceLaunchDemo from '../assets/balance-launch-demo.png';
+// import balanceLaunchDemo from '../assets/balance-launch-demo.png';
+import balanceOpenLarge from '../assets/balance-open-large.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
@@ -12,6 +13,7 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 120px auto;
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
   }
@@ -60,9 +62,11 @@ const SAppIcon = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  width: 395px;
-  height: 500px;
-  background: url(${balanceLaunchDemo}) no-repeat;
+  ${'' /* width: 395px;
+  height: 500px; */};
+  width: 396px;
+  height: 600px;
+  background: url(${balanceOpenLarge}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.md.max}) {
     margin-top: 60px;
