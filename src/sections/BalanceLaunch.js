@@ -6,7 +6,7 @@ import balanceLaunchIcon from '../assets/balance-launch-icon.png';
 import triangleMask from '../assets/triangle-mask.svg';
 import trianglesWhite from '../assets/triangles-white.svg';
 import highSierra from '../assets/high-sierra.jpg';
-import balanceOpenLarge from '../assets/balance-open-large.png';
+import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
@@ -85,11 +85,9 @@ const SAppIcon = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  ${'' /* width: 395px;
-  height: 500px; */};
   width: 396px;
   height: 600px;
-  background: url(${balanceOpenLarge}) no-repeat;
+  background: url(${balanceOpenBeta}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.md.max}) {
     margin-top: 60px;
