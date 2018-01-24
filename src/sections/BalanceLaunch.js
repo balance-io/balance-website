@@ -203,8 +203,8 @@ const BalanceLaunch = () => (
         <SAppIcon />
         <STitle>A secure automatic portfolio tracker</STitle>
         <p>
-          Securely connect multiple exchanges to automatically keep track of your cryptocurrency and
-          token balances.
+          Securely connect to multiple exchanges to automatically keep track of your cryptocurrency
+          and token balances.
         </p>
         <p>
           Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
