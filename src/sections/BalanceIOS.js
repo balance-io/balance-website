@@ -104,7 +104,7 @@ const SComboButton = styled.a`
 const SButtonBeta = styled(SComboButton)`
   width: 185px;
   background: rgb(${colors.white});
-  color: rgb(${colors.darkGrey});
+  color: rgb(${colors.dark});
   margin-right: 13px;
   padding: 13px 18px 0 40px;
   &:before {
@@ -116,7 +116,7 @@ const SButtonBeta = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonApple}) no-repeat;
     -webkit-mask: url(${buttonApple}) no-repeat;
-    background-color: rgb(${colors.darkGrey});
+    background-color: rgb(${colors.dark});
   }
 `;
 
