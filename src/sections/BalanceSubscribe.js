@@ -92,8 +92,7 @@ const SPlayButton = styled.div`
   height: 80px;
   margin: 258px auto;
   border-radius: 50%;
-  background: rgba(${colors.white}, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(${colors.dark}, 0.4);
   transition: transform 0.2s;
   ${({ mobile }) => mobile && `margin-top: 100px;`};
   &:after {

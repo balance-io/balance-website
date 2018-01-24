@@ -62,6 +62,7 @@ const SNav = styled.nav`
 const SNavList = styled.ul`
   margin: 0 auto;
   position: absolute;
+  width: -moz-fit-content;
   width: fit-content;
   left: 0;
   right: 0;
