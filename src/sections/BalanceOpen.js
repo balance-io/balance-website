@@ -62,6 +62,8 @@ const SInfo = styled.div`
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
     line-height: 1.5em;
+  }
+  & p:last-of-type {
     margin-bottom: 34px;
   }
   & ul {
@@ -163,6 +165,7 @@ const SButtonApple = styled(SComboButton)`
 
 const SContribute = styled(SComboButton)`
   width: 155px;
+
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
   color: rgba(${colors.white}, 0.9);
@@ -219,9 +222,9 @@ const BalanceOpen = () => (
         <STitle>Balance Open</STitle>
         <p>
           A free open source Mac app for tracking your portofolio on Coinbase, GDAX, Poloniex,
-          Bitfinex, Kraken and Bittrex. Support for many other exchanges and full wallet support
-          coming soon.
+          Bitfinex, Kraken, Bittrex and Ethereum addresses.
         </p>
+        <p>Support for many other exchanges and full wallet support coming soon.</p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
           target="_blank"
