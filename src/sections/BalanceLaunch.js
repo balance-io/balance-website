@@ -173,7 +173,7 @@ const STitle = styled.h1`
 `;
 
 const BalanceLaunch = () => (
-  <Section id="balance-open" minHeight={780} color={colors.navyBlue}>
+  <Section id="balance-launch" minHeight={780} color={colors.navyBlue}>
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
