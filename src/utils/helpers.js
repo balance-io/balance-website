@@ -134,7 +134,10 @@ export const capitalise = string => string.slice(0, 1).toUpperCase() + string.sl
  * @param  {String} url
  * @return {String}
  */
-export const getUrlParameter = (parameter, url = window.location.href) => {
+export const getUrlParameter = (
+  parameter,
+  url = typeof window !== 'undefined' ? window.location.href : ''
+) => {
   let name = parameter.replace(/[[]]/g, '\\$&');
   const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   const results = regex.exec(url);
