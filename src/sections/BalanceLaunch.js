@@ -141,7 +141,7 @@ const SButtonApple = styled(SComboButton)`
 `;
 
 const SContribute = styled(SComboButton)`
-  width: 155px;
+  width: 160px;
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
   color: rgba(${colors.white}, 0.9);
@@ -204,7 +204,7 @@ const BalanceLaunch = () => (
             target="_blank"
             rel="noreferrer noopener"
           >
-            Contribute
+            Source Code
           </SContribute>
         </div>
 
