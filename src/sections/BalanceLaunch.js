@@ -13,7 +13,7 @@ import { responsive, colors } from '../styles';
 
 const SBackgroundImage = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   @media screen and (${responsive.md.min}) {
     width: 780px;
