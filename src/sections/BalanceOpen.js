@@ -218,8 +218,9 @@ const BalanceOpen = () => (
         <SAppIcon />
         <STitle>Balance Open</STitle>
         <p>
-          A free open source Mac app for checking multiple crypto exchanges such as Coinbase, GDAX
-          and Poloniex. Support for many other exchanges and full wallet support coming soon.
+          A free open source Mac app for tracking your portofolio on Coinbase, GDAX, Poloniex,
+          Bitfinex, Kraken and Bittrex. Support for many other exchanges and full wallet support
+          coming soon.
         </p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
