@@ -182,6 +182,7 @@ const Hero = ({ toggleVideo }) => (
           <STagline>
             We're building a wallet for all the world's currencies, available soon for Mac and iOS.
           </STagline>
+          <STagline>Support for many other exchanges and full wallet support coming soon.</STagline>
         </SSubscribe>
       </SHalf>
 

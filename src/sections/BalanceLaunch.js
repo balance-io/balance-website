@@ -41,6 +41,8 @@ const SInfo = styled.div`
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
     line-height: 1.5em;
+  }
+  & p:last-of-type {
     margin-bottom: 34px;
   }
   & ul {
@@ -179,6 +181,10 @@ const BalanceLaunch = () => (
         <p>
           Securely connect multiple exchanges to automatically keep track of your cryptocurrency and
           token balances.
+        </p>
+        <p>
+          Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
+          addresses.
         </p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
