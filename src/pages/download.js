@@ -28,7 +28,6 @@ const STitle = styled.h1`
 
 const STagline = styled.p`
   font-size: 1.125em;
-  font-family: 'FF Mark Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: rgb(${colors.lighterBlue});
   line-height: 1.55em;
   @media screen and (${responsive.md.max}) {
