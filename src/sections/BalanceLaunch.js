@@ -4,7 +4,6 @@ import Section from '../components/Section';
 import { downloadLatestRelease } from '../utils/api';
 import balanceLaunchIcon from '../assets/balance-launch-icon.png';
 import triangleMask from '../assets/triangle-mask.svg';
-import trianglesWhite from '../assets/triangles-white.svg';
 import highSierra from '../assets/high-sierra.jpg';
 import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
 import buttonGithub from '../assets/button-github.svg';
@@ -22,11 +21,6 @@ const SBackgroundImage = styled.div`
     -webkit-mask: url(${triangleMask}) no-repeat;
     background-image: url(${highSierra});
     background-size: 100% 100%;
-  }
-  @media screen and (${responsive.sm.max}) {
-    width: 100px;
-    height: 100px;
-    background: url(${trianglesWhite}) no-repeat;
   }
 `;
 
@@ -94,7 +88,7 @@ const SAppPreview = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     width: 320px;
-    height: 405px;
+    height: 485px;
   }
 `;
 
