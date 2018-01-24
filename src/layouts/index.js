@@ -27,7 +27,7 @@ const TemplateWrapper = ({ children, location, data }) => {
       document.body.style.background = `rgb(${colors.white})`;
     }
   }
-  const title = data.site.siteMetadata.title;
+  const title = data.site.siteMetadata.homepageTitle;
   const url = data.site.siteMetadata.baseUrl;
   const description = data.site.siteMetadata.description;
   const keywords = data.site.siteMetadata.keywords;
@@ -74,8 +74,8 @@ export const query = graphql`
   query LayoutQuery {
     site {
       siteMetadata {
-        title
         baseUrl
+        homepageTitle
         description
         keywords
         socialCard

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Page from '../templates/page';
 import { downloadLatestRelease } from '../utils/api';
-import { colors } from '../styles';
+import { colors, responsive } from '../styles';
 
 const SFlex = styled.div`
   height: 100%;
@@ -12,6 +12,30 @@ const SFlex = styled.div`
   justify-content: center;
   & h1 {
     margin: 20px 0;
+  }
+`;
+
+const STitle = styled.h1`
+  font-size: 2em;
+  letter-spacing: -0.25px;
+  margin: 40px 0 20px;
+  @media screen and (${responsive.md.max}) {
+    margin: 20px 0 0;
+    font-size: 1.875em;
+    letter-spacing: -0.2px;
+  }
+`;
+
+const STagline = styled.p`
+  font-size: 1.125em;
+  font-family: 'FF Mark Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: rgb(${colors.lighterBlue});
+  line-height: 1.55em;
+  @media screen and (${responsive.md.max}) {
+    margin: 12px auto 0 auto;
+    font-size: 1.1875em;
+    line-height: 1.47em;
+    color: rgba(${colors.white}, 0.8);
   }
 `;
 
@@ -44,8 +68,12 @@ class Download extends Component {
       <Page title={'Download'} siteTitle={siteTitle}>
         <SFlex>
           <div>
-            <h1>Download Balance Open for macOS</h1>
-            <SGreenButton onClick={this.onDownload}>Download</SGreenButton>
+            <STitle>Balance - A secure automatic portfolio tracker</STitle>
+            <STagline>
+              We're building a wallet for all the world's currencies, available soon for Mac and
+              iOS.
+            </STagline>
+            <SGreenButton onClick={this.onDownload}>Download for macOS</SGreenButton>
           </div>
         </SFlex>
       </Page>
