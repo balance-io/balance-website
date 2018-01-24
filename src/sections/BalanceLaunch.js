@@ -3,11 +3,32 @@ import styled from 'styled-components';
 import Section from '../components/Section';
 import { downloadLatestRelease } from '../utils/api';
 import balanceLaunchIcon from '../assets/balance-launch-icon.png';
-// import balanceLaunchDemo from '../assets/balance-launch-demo.png';
+import triangleMask from '../assets/triangle-mask.svg';
+import trianglesWhite from '../assets/triangles-white.svg';
+import highSierra from '../assets/high-sierra.jpg';
 import balanceOpenLarge from '../assets/balance-open-large.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
+
+const SBackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  @media screen and (${responsive.md.min}) {
+    width: 780px;
+    height: 780px;
+    mask-image: url(${triangleMask}) no-repeat;
+    -webkit-mask: url(${triangleMask}) no-repeat;
+    background-image: url(${highSierra});
+    background-size: 100% 100%;
+  }
+  @media screen and (${responsive.sm.max}) {
+    width: 100px;
+    height: 100px;
+    background: url(${trianglesWhite}) no-repeat;
+  }
+`;
 
 const SSectionWrapper = styled.div`
   width: 100%;
@@ -179,7 +200,12 @@ const STitle = styled.h1`
 `;
 
 const BalanceLaunch = () => (
-  <Section id="balance-launch" minHeight={780} color={colors.navyBlue}>
+  <Section
+    id="balance-launch"
+    minHeight={780}
+    color={colors.navyBlue}
+    background={<SBackgroundImage />}
+  >
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
