@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
+import { downloadLatestRelease } from '../utils/api';
+import balanceLaunchIcon from '../assets/balance-launch-icon.png';
 import triangleMask from '../assets/triangle-mask.svg';
 import trianglesWhite from '../assets/triangles-white.svg';
 import highSierra from '../assets/high-sierra.jpg';
-import balanceOpenLarge from '../assets/balance-open-large.png';
-import balanceOpenIcon from '../assets/balance-open-icon.png';
+import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
 import buttonGithub from '../assets/button-github.svg';
 import buttonApple from '../assets/button-apple.svg';
 import { responsive, colors } from '../styles';
 
 const SBackgroundImage = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   @media screen and (${responsive.md.min}) {
     width: 780px;
@@ -33,6 +34,9 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media screen and (${responsive.md.min}) {
+    margin: 120px auto;
+  }
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
   }
@@ -76,21 +80,21 @@ const SAppIcon = styled.div`
   margin: 25px 0;
   width: 80px;
   height: 80px;
-  background: url(${balanceOpenIcon}) no-repeat;
+  background: url(${balanceLaunchIcon}) no-repeat;
   background-size: 100% 100%;
 `;
 
 const SAppPreview = styled.div`
   width: 396px;
   height: 600px;
-  background: url(${balanceOpenLarge}) no-repeat;
+  background: url(${balanceOpenBeta}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.md.max}) {
     margin-top: 60px;
   }
   @media screen and (${responsive.sm.max}) {
     width: 320px;
-    height: 485px;
+    height: 405px;
   }
 `;
 
@@ -143,8 +147,8 @@ const SButtonGithub = styled(SComboButton)`
 
 const SButtonApple = styled(SComboButton)`
   width: 155px;
-  background: linear-gradient(-45deg, #ccd4de, #eeeef5);
-  color: rgb(${colors.darkBlue});
+  background-image: linear-gradient(102deg, rgb(${colors.lightGreen}), rgb(${colors.darkGreen}));
+  color: rgb(${colors.white});
   margin-right: 13px;
   padding: 13px 18px 0 40px;
   &:before {
@@ -156,7 +160,7 @@ const SButtonApple = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonApple}) no-repeat;
     -webkit-mask: url(${buttonApple}) no-repeat;
-    background-color: rgb(${colors.darkBlue});
+    background-color: rgb(${colors.white});
   }
   @media screen and (${responsive.md.max}) {
     display: none;
@@ -164,8 +168,7 @@ const SButtonApple = styled(SComboButton)`
 `;
 
 const SContribute = styled(SComboButton)`
-  width: 155px;
-
+  width: 160px;
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
   color: rgba(${colors.white}, 0.9);
@@ -192,26 +195,11 @@ const STitle = styled.h1`
   font-weight: 700;
   letter-spacing: -0.2px;
   margin-bottom: 8px;
-  &:after {
-    position: absolute;
-    top: calc(100% - 1.8em);
-    left: 105%;
-    display: flex;
-    align-items: center;
-    padding: 1.5px 3.5px;
-    content: 'NEW';
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    text-align: center;
-    background: rgb(${colors.orange});
-    border-radius: 4px;
-  }
 `;
 
-const BalanceOpen = () => (
+const BalanceLaunch = () => (
   <Section
-    id="balance-open"
+    id="balance-launch"
     minHeight={780}
     color={colors.navyBlue}
     background={<SBackgroundImage />}
@@ -219,12 +207,15 @@ const BalanceOpen = () => (
     <SSectionWrapper>
       <SInfo>
         <SAppIcon />
-        <STitle>Balance Open</STitle>
+        <STitle>A secure automatic portfolio tracker</STitle>
         <p>
-          A free open source Mac app for tracking your portofolio on Coinbase, GDAX, Poloniex,
-          Bitfinex, Kraken, Bittrex and Ethereum addresses.
+          Securely connect multiple exchanges to automatically keep track of your cryptocurrency and
+          token balances.
         </p>
-        <p>Support for many other exchanges and full wallet support coming soon.</p>
+        <p>
+          Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
+          addresses.
+        </p>
         <SButtonGithub
           href="https://github.com/balancemymoney/balance-open"
           target="_blank"
@@ -234,18 +225,22 @@ const BalanceOpen = () => (
         </SButtonGithub>
         <div>
           <SButtonApple
+            onClick={e => {
+              e.preventDefault();
+              downloadLatestRelease();
+            }}
             href="https://github.com/balancemymoney/balance-open/releases"
             target="_blank"
             rel="noreferrer noopener"
           >
-            Get for Mac
+            Download
           </SButtonApple>
           <SContribute
             href="https://github.com/balancemymoney/balance-open"
             target="_blank"
             rel="noreferrer noopener"
           >
-            Contribute
+            Source Code
           </SContribute>
         </div>
 
@@ -259,4 +254,4 @@ const BalanceOpen = () => (
   </Section>
 );
 
-export default BalanceOpen;
+export default BalanceLaunch;
