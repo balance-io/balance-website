@@ -73,7 +73,7 @@ class Download extends Component {
               We're building a wallet for all the world's currencies, available soon for Mac and
               iOS.
             </STagline>
-            <SGreenButton onClick={this.onDownload}>Download</SGreenButton>
+            <SGreenButton onClick={this.onDownload}>Download for macOS</SGreenButton>
           </div>
         </SFlex>
       </Page>
