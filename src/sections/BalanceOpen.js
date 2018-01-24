@@ -119,7 +119,7 @@ const SButtonGithub = styled(SComboButton)`
   width: 189px;
   background: linear-gradient(-45deg, #ccd4de, #ededf5);
   border-radius: 10px;
-  color: #383e49;
+  color: rgb(${colors.dark});
   padding: 0 0 4px 44px;
   display: flex;
   flex-direction: row;
@@ -133,7 +133,7 @@ const SButtonGithub = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonGithub}) no-repeat;
     -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: #383e49;
+    background-color: rgb(${colors.dark});
     opacity: 1;
   }
   @media screen and (${responsive.md.min}) {
@@ -144,7 +144,7 @@ const SButtonGithub = styled(SComboButton)`
 const SButtonApple = styled(SComboButton)`
   width: 155px;
   background: linear-gradient(-45deg, #ccd4de, #eeeef5);
-  color: rgb(${colors.darkBlue});
+  color: rgb(${colors.dark});
   margin-right: 13px;
   padding: 13px 18px 0 40px;
   &:before {
@@ -156,7 +156,7 @@ const SButtonApple = styled(SComboButton)`
     height: 21px;
     mask-image: url(${buttonApple}) no-repeat;
     -webkit-mask: url(${buttonApple}) no-repeat;
-    background-color: rgb(${colors.darkBlue});
+    background-color: rgb(${colors.dark});
   }
   @media screen and (${responsive.md.max}) {
     display: none;
