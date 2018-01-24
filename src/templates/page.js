@@ -9,7 +9,7 @@ import { colors, responsive } from '../styles';
 const SPage = styled(Section)`
   padding: 56px 0 12px;
   font-size: 14px;
-  min-height: ${({ viewport }) => (viewport ? 'calc(100vh - 136px)' : 0)};
+  min-height: ${({ article }) => (article ? 0 : 'calc(100vh - 136px)')};
   & article * {
     padding-bottom: 20px;
     opacity: 0.9;
@@ -42,7 +42,7 @@ const SPage = styled(Section)`
 const SPageContent = styled.div`
   & p {
     margin-bottom: 29px;
-    font-family: 'FreightText';
+    font-family: ${({ article }) => (article ? 'FreightText' : 'inherit')};
     font-size: 1.3125em;
     line-height: 1.5714285714;
   }
@@ -81,7 +81,7 @@ const Page = ({ children, title, article, siteTitle }) => (
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage viewport={!article} maxWidth={700} fontColor={colors.white}>
+    <SPage article={article} maxWidth={700} fontColor={colors.white}>
       {!article ? (
         <SPageContent>{children}</SPageContent>
       ) : (
