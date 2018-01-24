@@ -13,7 +13,9 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 120px auto;
+  @media screen and (${responsive.md.min}) {
+    margin: 120px auto;
+  }
   @media screen and (${responsive.sm.max}) {
     padding: 100px 34px 80px;
   }
