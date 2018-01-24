@@ -7,6 +7,7 @@ export const colors = {
   softerGrey: '120, 127, 140',
   darkGrey: '128, 128, 128',
   darkerGrey: '105, 113, 128',
+  subtleDarkGrey: '75, 83, 95',
   mediumGrey: '108, 117, 128',
   fadedBlue: '24, 32, 42',
   navyBlue: '17, 23, 31',
@@ -23,7 +24,9 @@ export const colors = {
   darkGreen: '0, 163, 106',
   lighterGreen: '10, 255, 162',
   purple: '50, 50, 93',
-  red: '221, 69, 65'
+  red: '221, 69, 65',
+  facebook: '68, 93, 147',
+  twitter: '0, 162, 249'
 };
 
 export const fonts = {

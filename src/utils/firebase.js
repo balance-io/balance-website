@@ -39,7 +39,8 @@ export const databaseGet = reference =>
  * @return {Promise}
  */
 export const updateLeaderboard = async (referralID, type) => {
-  const reference = database.ref(`referrals/id${referralID}`);
+  const _referralID = referralID.substr(0, 2) === 'id' ? referralID : `id${referralID}`;
+  const reference = database.ref(`referrals/${_referralID}`);
   const snapshot = await reference.once('value');
   let { traffic, score, downloads } = snapshot.val();
   if (type === 'conversion') {
@@ -69,10 +70,12 @@ export const getLeaderboard = referralID =>
         snapshot.forEach(data => {
           scores[data.key] = data.val();
         });
-        const position = Object.keys(scores)
-          .reverse()
-          .indexOf(referralID);
-        databaseGet(`referrals/${referralID}`).then(referralData => {
+        const _referralID = referralID.substr(0, 2) === 'id' ? referralID : `id${referralID}`;
+        const position =
+          Object.keys(scores)
+            .reverse()
+            .indexOf(_referralID) + 1;
+        databaseGet(`referrals/${_referralID}`).then(referralData => {
           const referral = { position, ...referralData };
           resolve(referral);
         });

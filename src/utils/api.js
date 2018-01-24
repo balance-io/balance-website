@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { updateLeaderboard } from './firebase';
 
 const webtask = axios.create({
   baseURL: 'https://wt-863e332a77d038d29fa50d15961b5367-0.run.webtask.io',
@@ -25,5 +26,9 @@ export const downloadLatestRelease = (repo = 'balance-open') =>
       document.body.appendChild(link);
       link.href = url;
       link.click();
+      const referral = JSON.parse(localStorage.getItem('referral_link'));
+      if (referral) {
+        updateLeaderboard(referral, 'download');
+      }
       link.remove();
     });
