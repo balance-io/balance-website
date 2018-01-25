@@ -47,6 +47,10 @@ export const transitions = {
 };
 
 export const responsive = {
+  xxs: {
+    min: 'min-width: 359px',
+    max: 'max-width: 360px'
+  },
   xs: {
     min: 'min-width: 479px',
     max: 'max-width: 480px'

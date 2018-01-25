@@ -4,20 +4,25 @@ import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Section from '../components/Section';
 import balanceLaunchIcon from '../assets/balance-launch-icon.png';
-import balanceReferralPreview from '../assets/balance-referral-preview.png';
-import buttonGithub from '../assets/button-github.svg';
-import buttonApple from '../assets/button-apple.svg';
-
+import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
+import twitter from '../assets/twitter.svg';
+import facebook from '../assets/facebook.svg';
+import email from '../assets/email-icon.svg';
+import windowResize from '../utils/windowResize';
 import { downloadLatestRelease } from '../utils/api';
 import { getLeaderboard, databaseGet } from '../utils/firebase';
 import { getUrlParameter } from '../utils/helpers';
-import { colors, responsive } from '../styles';
+import { colors, responsive, transitions } from '../styles';
 
 const SSection = styled(Section)`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (${responsive.xxs.max}) {
+    height: auto;
+    padding-top: 34px;
+  }
 `;
 
 const SSectionWrapper = styled.div`
@@ -30,13 +35,18 @@ const SSectionWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
   }
+  @media screen and (${responsive.sm.max}) {
+    padding: 0 20px;
+  }
 `;
 
 const SLeft = styled.div`
   width: 60%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   @media screen and (${responsive.md.max}) {
+    width: 100%
     justify-content: center;
     width: 100%;
   }
@@ -54,9 +64,9 @@ const SRight = styled.div`
 `;
 
 const SAppPreview = styled.div`
-  width: 400px;
-  height: 590px;
-  background: url(${balanceReferralPreview}) no-repeat;
+  width: 396px;
+  height: 600px;
+  background: url(${balanceOpenBeta}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.md.max}) {
     display: none;
@@ -69,9 +79,13 @@ const SAppIcon = styled.div`
   height: 80px;
   background: url(${balanceLaunchIcon}) no-repeat;
   background-size: 100% 100%;
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
 `;
 
 const SContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,28 +126,50 @@ const STagline = styled.p`
   }
 `;
 
-const SReferral = styled.p`
+const SReferralWrapper = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+const SNotification = styled.p`
+  position: absolute;
+  bottom: -14px;
+  left: 14px;
+  transition: ${transitions.base};
+  opacity: ${({ show }) => (show ? '1' : ' 0')};
+  pointer-events: ${({ show }) => (show ? 'auto' : ' none')};
+  visibility: ${({ show }) => (show ? 'visible' : ' hidden')};
+`;
+
+const SReferral = styled.input`
   width: 98%;
+  border: none;
+  border-style: none;
+  outline: none;
+  font-size: inherit;
+  color: rgb(${colors.white});
   background-color: rgb(${colors.darkerGrey});
   padding: 14px;
   border-radius: 10px;
   margin: 10px 0;
 `;
 
-const SActions = styled.div`
+const SFlex = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const SComboButton = styled.a`
   display: block;
   position: relative;
-  height: 50px;
-  margin: 25px 5px;
+  height: 49px;
+  margin: 25px 0;
+  padding: 14px 0 14px 44px;
   border-radius: 10px;
   float: none;
+  cursor: pointer;
   display: inline-block;
-  text-align: center;
-  width: 100%;
+  text-align: left;
   &:hover {
     transform: none;
     opacity: 1;
@@ -143,62 +179,105 @@ const SComboButton = styled.a`
     transform: translateY(2px);
     opacity: 0.6;
   }
+  @media screen and (${responsive.sm.max}) {
+    padding-left: 32px;
+    text-align: center;
+  }
 `;
 
 const SButtonFacebook = styled(SComboButton)`
   background-color: rgb(${colors.facebook});
   color: rgb(${colors.white});
-  margin-right: 13px;
+  margin-right: 14px;
+  width: 180px;
+  @media screen and (${responsive.sm.max}) {
+    margin-right: 0;
+  }
   &:before {
     content: '';
     position: absolute;
-    top: 11.5px;
-    left: 16px;
+    top: 14px;
+    left: 12px;
+    width: 21px;
     height: 21px;
-    mask-image: url(${buttonApple}) no-repeat;
-    -webkit-mask: url(${buttonApple}) no-repeat;
+    mask-image: url(${facebook}) no-repeat;
+    -webkit-mask: url(${facebook}) no-repeat;
+    mask-size: 100%;
     background-color: rgb(${colors.white});
+  }
+  @media screen and (${responsive.xxs.max}) {
+    padding-left: 24px;
+    &:before {
+      left: 8px;
+    }
   }
 `;
 
 const SButtonTwitter = styled(SComboButton)`
   background-color: rgb(${colors.twitter});
   color: rgb(${colors.white});
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  margin-right: 14px;
+  width: 160px;
+  @media screen and (${responsive.sm.max}) {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
   &:before {
     content: '';
     position: absolute;
-    top: 12.5px;
-    left: 16px;
+    top: 16px;
+    left: 12px;
+    width: 21px;
     height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
+    mask-image: url(${twitter}) no-repeat;
+    -webkit-mask: url(${twitter}) no-repeat;
+    mask-size: 100%;
     background-color: rgb(${colors.white});
     opacity: 1;
+  }
+  @media screen and (${responsive.xxs.max}) {
+    padding-left: 24px;
+    &:before {
+      left: 8px;
+    }
   }
 `;
 
 const SButtonEmail = styled(SComboButton)`
   background-color: rgb(${colors.white});
   color: rgb(${colors.dark});
+  margin-right: 14px;
+  width: 150px;
+  @media screen and (${responsive.sm.max}) {
+    margin-right: 0;
+  }
   &:before {
     content: '';
     position: absolute;
-    top: 12.5px;
-    left: 16px;
+    top: 17px;
+    left: 12px;
+    width: 21px;
     height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
+    mask-image: url(${email}) no-repeat;
+    -webkit-mask: url(${email}) no-repeat;
+    mask-size: 100%;
     background-color: rgb(${colors.dark});
   }
+  @media screen and (${responsive.xxs.max}) {
+    padding-left: 24px;
+    &:before {
+      left: 8px;
+    }
+  }
 `;
+
+let timeout = null;
 
 class Referral extends Component {
   state = {
     referralID: '',
-    leaderboard: {}
+    leaderboard: {},
+    notification: ''
   };
   componentWillMount() {
     const uniqueID = getUrlParameter('id');
@@ -206,7 +285,15 @@ class Referral extends Component {
       databaseGet(`unique_id/${uniqueID}`).then(referralID => this.setState({ referralID }));
     }
   }
-
+  copyToClipboard = ({ target }) => {
+    clearTimeout(timeout);
+    console.log(target.value);
+    target.select();
+    document.execCommand('Copy');
+    target.blur();
+    this.setState({ notification: 'Copied to clipboard' });
+    timeout = setTimeout(() => this.setState({ notification: '' }), 2000);
+  };
   componentWillUpdate(newProps, newState) {
     if (!Object.keys(this.state.leaderboard).length && newState.referralID) {
       getLeaderboard(newState.referralID).then(leaderboard => this.setState({ leaderboard }));
@@ -241,30 +328,37 @@ class Referral extends Component {
         <SSection id={name} color={colors.navyBlue}>
           <SSectionWrapper>
             <SLeft>
-              <div>
-                <SContainer>
-                  <SAppIcon />
-                  <SSubTitle>Help Launch Balance. Invite friends and earn rewards</SSubTitle>
-                  <STagline>Use your unique link via Facebook, Twitter and email</STagline>
-                  <SReferral>{`balance.io/?ref=${this.state.referralID.replace(
-                    'id',
-                    ''
-                  )}`}</SReferral>
-                  <SActions>
-                    <SButtonFacebook>Share Facebook</SButtonFacebook>
-                    <SButtonTwitter>Share Twitter</SButtonTwitter>
-                    <SButtonEmail>Share Email</SButtonEmail>
-                  </SActions>
-                </SContainer>
-                <SContainer hide={!Object.keys(this.state.leaderboard).length}>
-                  <SSubTitle>{`${
-                    downloads === 1 ? `${downloads} Friend` : `${downloads} Friends`
-                  } downloaded so far. Sharing is Caring!`}</SSubTitle>
-                  <STagline>
-                    {`You're number ${position} on our leaderboard. The top 10 referrers will get a reward from our founders`}
-                  </STagline>
-                </SContainer>
-              </div>
+              <SContainer>
+                <SAppIcon />
+                <SSubTitle>Help Launch Balance. Invite friends and earn rewards</SSubTitle>
+                <STagline>Use your unique link via Facebook, Twitter and email</STagline>
+                <SReferralWrapper>
+                  <SReferral
+                    onClick={this.copyToClipboard}
+                    value={`balance.io/?ref=${this.state.referralID.replace('id', '')}`}
+                  />
+                  <SNotification show={!!this.state.notification}>
+                    {this.state.notification}
+                  </SNotification>
+                </SReferralWrapper>
+                <SFlex>
+                  <SButtonFacebook>
+                    {this.props.width < 640 ? `Share` : `Share Facebook`}
+                  </SButtonFacebook>
+                  <SButtonTwitter>
+                    {this.props.width < 640 ? `Tweet` : `Share Twitter`}
+                  </SButtonTwitter>
+                  <SButtonEmail>{this.props.width < 640 ? `Email` : `Share Email`}</SButtonEmail>
+                </SFlex>
+              </SContainer>
+              <SContainer hide={!Object.keys(this.state.leaderboard).length}>
+                <SSubTitle>{`${
+                  downloads === 1 ? `${downloads} Friend` : `${downloads} Friends`
+                } downloaded so far. Sharing is Caring!`}</SSubTitle>
+                <STagline>
+                  {`You're number ${position} on our leaderboard. The top 10 referrers will get a reward from our founders`}
+                </STagline>
+              </SContainer>
             </SLeft>
             <SRight>
               <SAppPreview />
@@ -276,7 +370,7 @@ class Referral extends Component {
   };
 }
 
-export default Referral;
+export default windowResize(Referral);
 
 export const query = graphql`
   query ReferralQuery {
