@@ -279,7 +279,7 @@ class Referral extends Component {
     leaderboard: {},
     notification: ''
   };
-  componentWillMount() {
+  componentDidMount() {
     const uniqueID = getUrlParameter('id');
     const referrerID = localStorage.getItem('referrer_id');
     if (uniqueID && !referrerID) {
