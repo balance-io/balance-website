@@ -44,16 +44,14 @@ export const updateLeaderboard = async (referralID, type) => {
   const reference = database.ref(`referrals/${_referralID}`);
   const snapshot = await reference.once('value');
   let { traffic, score, downloads } = snapshot.val();
-  if (type === 'conversion') {
+  if (type === 'traffic') {
     traffic += 1;
-    // score += 5;
   } else if (type === 'download') {
     downloads += 1;
-    // score += 50;
     score += 1;
   }
   reference.set({ traffic, score, downloads });
-  database.ref(`scores/id${referralID}`).set(score);
+  database.ref(`scores/id${_referralID}`).set(score);
 };
 
 /**
@@ -88,20 +86,13 @@ export const getLeaderboard = referralID =>
  * @desc handle referrals
  */
 export const handleReferrals = () => {
-  const referral = getUrlParameter('ref');
-  if (referral && !localStorage.getItem('referral_link')) {
-    const uniqueID = localStorage.getItem('referrer_id');
-    if (uniqueID) {
-      databaseGet(`unique_id/${uniqueID}`).then(referralID => {
-        const _referralID = referralID.substr(0, 2) === 'id' ? referralID : `id${referralID}`;
-        if (referralID !== _referralID && !localStorage.getItem('referral_link')) {
-          localStorage.setItem('referral_link', referral);
-          updateLeaderboard(referral, 'conversion');
-        }
-      });
-    } else {
-      localStorage.setItem('referral_link', referral);
-      updateLeaderboard(referral, 'conversion');
+  const newReferral = getUrlParameter('ref');
+  const uniqueID = localStorage.getItem('referrer_id');
+  const referral = localStorage.getItem('referral_link');
+  if (newReferral && !uniqueID) {
+    if (newReferral !== referral) {
+      updateLeaderboard(newReferral, 'traffic');
     }
+    localStorage.setItem('referral_link', newReferral);
   }
 };
