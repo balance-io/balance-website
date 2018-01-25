@@ -281,13 +281,18 @@ class Referral extends Component {
   };
   componentWillMount() {
     const uniqueID = getUrlParameter('id');
-    if (uniqueID) {
+    const referrerID = localStorage.getItem('referrer_id');
+    console.log('uniqueID', uniqueID);
+    console.log('referrerID', referrerID);
+    if (uniqueID && !referrerID) {
+      localStorage.setItem('referrer_id', uniqueID);
       databaseGet(`unique_id/${uniqueID}`).then(referralID => this.setState({ referralID }));
+    } else {
+      databaseGet(`unique_id/${referrerID}`).then(referralID => this.setState({ referralID }));
     }
   }
   copyToClipboard = ({ target }) => {
     clearTimeout(timeout);
-    console.log(target.value);
     target.select();
     document.execCommand('Copy');
     target.blur();
@@ -318,6 +323,7 @@ class Referral extends Component {
     const title = `Referral - ${siteTitle}`;
     const downloads = this.state.leaderboard.downloads;
     const position = this.state.leaderboard.position;
+    const url = `balance.io/?ref=${this.state.referralID.replace('id', '')}`;
     return (
       <div>
         <Helmet
@@ -333,19 +339,25 @@ class Referral extends Component {
                 <SSubTitle>Help Launch Balance. Invite friends and earn rewards</SSubTitle>
                 <STagline>Use your unique link via Facebook, Twitter and email</STagline>
                 <SReferralWrapper>
-                  <SReferral
-                    onClick={this.copyToClipboard}
-                    value={`balance.io/?ref=${this.state.referralID.replace('id', '')}`}
-                  />
+                  <SReferral onClick={this.copyToClipboard} value={url} />
                   <SNotification show={!!this.state.notification}>
                     {this.state.notification}
                   </SNotification>
                 </SReferralWrapper>
                 <SFlex>
-                  <SButtonFacebook>
+                  <SButtonFacebook
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      `https://${url}`
+                    )}`}
+                    target="_blank"
+                  >
                     {this.props.width < 640 ? `Share` : `Share Facebook`}
                   </SButtonFacebook>
-                  <SButtonTwitter>
+                  <SButtonTwitter
+                    href="https://github.com/balancemymoney/balance-open"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
                     {this.props.width < 640 ? `Tweet` : `Share Twitter`}
                   </SButtonTwitter>
                   <SButtonEmail>{this.props.width < 640 ? `Email` : `Share Email`}</SButtonEmail>

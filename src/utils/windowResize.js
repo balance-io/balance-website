@@ -9,8 +9,8 @@ function windowResize(WrappedComponent) {
     updateDimensions = () => {
       const w = typeof window !== 'undefined' ? window : '';
       const d = typeof window !== 'undefined' ? document : '';
-      const documentElement = d.documentElement;
-      const body = d.getElementsByTagName('body')[0];
+      const documentElement = d ? d.documentElement : '';
+      const body = d ? d.body || d.getElementsByTagName('body')[0] : '';
       const width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
       const height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
       this.setState({ width, height });

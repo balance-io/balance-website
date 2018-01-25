@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Page from '../templates/page';
 import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive } from '../styles';
+import { handleReferrals } from '../utils/firebase';
 
 const SFlex = styled.div`
   height: 100%;
@@ -57,6 +58,9 @@ const SGreenButton = styled.div`
 `;
 
 class Download extends Component {
+  componentDidMount() {
+    handleReferrals();
+  }
   onDownload = e => {
     e.preventDefault();
     downloadLatestRelease();
