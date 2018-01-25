@@ -282,8 +282,6 @@ class Referral extends Component {
   componentWillMount() {
     const uniqueID = getUrlParameter('id');
     const referrerID = localStorage.getItem('referrer_id');
-    console.log('uniqueID', uniqueID);
-    console.log('referrerID', referrerID);
     if (uniqueID && !referrerID) {
       localStorage.setItem('referrer_id', uniqueID);
       databaseGet(`unique_id/${uniqueID}`).then(referralID => this.setState({ referralID }));
@@ -354,13 +352,21 @@ class Referral extends Component {
                     {this.props.width < 640 ? `Share` : `Share Facebook`}
                   </SButtonFacebook>
                   <SButtonTwitter
-                    href="https://github.com/balancemymoney/balance-open"
+                    href={`https://twitter.com/intent/tweet?text=Download%20Balance%2C%20a%20secure%20automatic%20portfolio%20tracker%20for%20your%20cryptocurrency%20and%20token%20balances%20by%20%40balancemymoney&url=${encodeURIComponent(
+                      `https://${url}`
+                    )}`}
                     target="_blank"
-                    rel="noreferrer noopener"
                   >
                     {this.props.width < 640 ? `Tweet` : `Share Twitter`}
                   </SButtonTwitter>
-                  <SButtonEmail>{this.props.width < 640 ? `Email` : `Share Email`}</SButtonEmail>
+                  <SButtonEmail
+                    href={`mailto:?subject=Download%20Balance&body=Balance%2C%20a%20secure%20automatic%20portfolio%20tracker%20for%20your%20cryptocurrency%20and%20token%20balances.%0ADownload%20at%20${encodeURIComponent(
+                      `https://${url}`
+                    )}`}
+                    target="_blank"
+                  >
+                    {this.props.width < 640 ? `Email` : `Share Email`}
+                  </SButtonEmail>
                 </SFlex>
               </SContainer>
               <SContainer hide={!Object.keys(this.state.leaderboard).length}>
