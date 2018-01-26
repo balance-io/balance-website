@@ -95,7 +95,7 @@ class IndexPage extends Component {
     let iframe;
     let viewport;
     if (typeof window !== 'undefined') {
-      viewport = window.innerWidth > 640 ? 'desktop' : 'mobile';
+      viewport = window.innerWidth > 640 ? 'Desktop' : 'Mobile';
       iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
     }
     ga('send', 'event', 'Video', command.replace('Video', ''), `Homepage - ${viewport}`);
