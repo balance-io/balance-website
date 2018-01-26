@@ -119,31 +119,38 @@ class SubscribeForm extends Component {
       },
       () =>
         jsonp(url, { param: 'c' }, (err, data) => {
+          let error = null;
+          let result = null;
           if (err) {
             this.setState({
               status: 'error'
             });
           } else if (data.result !== 'success') {
             if (data.msg.includes('already subscribed')) {
+              error = { message: 'EMAIL_ALREADY_SUBCRIBED' };
               this.setState({
                 status: 'error',
                 message: `Sorry, you've already signed up with this email`
               });
             } else if (data.msg.includes('too many recent signup requests')) {
+              error = { message: 'TOO_MANY_SIGNUP_REQUESTS' };
               this.setState({
                 status: 'error',
                 message: `Too many signup requests, please try again later`
               });
             } else {
+              error = { message: 'UNKNOWN_ERROR' };
               this.setState({
                 status: 'error'
               });
             }
           } else {
+            result = { email: this.state.input };
             this.setState({
               status: 'success'
             });
           }
+          this.props.options.callback(error, result);
         })
     );
   };
@@ -190,8 +197,8 @@ class SubscribeForm extends Component {
 }
 
 SubscribeForm.propTypes = {
-  messages: PropTypes.objectOf(PropTypes.string).isRequired,
-  options: PropTypes.objectOf(PropTypes.string).isRequired
+  options: PropTypes.objectOf(PropTypes.string).isRequired,
+  messages: PropTypes.objectOf(PropTypes.string)
 };
 
 SubscribeForm.defaultProps = {

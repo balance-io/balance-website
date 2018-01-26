@@ -211,6 +211,9 @@ const BalanceLaunch = () => (
           addresses.
         </p>
         <SButtonGithub
+          onClick={e =>
+            ga('send', 'event', 'Source Code', 'click', 'Homepage - click Source Code [Mobile]')
+          }
           href="https://github.com/balancemymoney/balance-open"
           target="_blank"
           rel="noreferrer noopener"
@@ -222,6 +225,7 @@ const BalanceLaunch = () => (
             onClick={e => {
               e.preventDefault();
               downloadLatestRelease();
+              ga('send', 'event', 'Download', 'click', 'Homepage - click Download');
             }}
             href="https://github.com/balancemymoney/balance-open/releases"
             target="_blank"
@@ -230,6 +234,9 @@ const BalanceLaunch = () => (
             Download
           </SButtonApple>
           <SContribute
+            onClick={e =>
+              ga('send', 'event', 'Source Code', 'click', 'Homepage - click Source Code [Desktop]')
+            }
             href="https://github.com/balancemymoney/balance-open"
             target="_blank"
             rel="noreferrer noopener"

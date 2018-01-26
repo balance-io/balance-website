@@ -90,13 +90,16 @@ class IndexPage extends Component {
     showVideo: false
   };
   toggleVideo = () => {
-    const command = this.state.showVideo ? 'pauseVideo' : 'playVideo';
+    const action = this.state.showVideo ? 'pause' : 'play';
     this.setState({ showVideo: !this.state.showVideo });
     let iframe;
+    let viewport;
     if (typeof window !== 'undefined') {
+      viewport = window.innerWidth > 640 ? 'Desktop' : 'Mobile';
       iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
     }
-    iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
+    ga('send', 'event', 'Video', action, `Homepage - ${action} Video [${viewport}]`);
+    iframe.contentWindow.postMessage(`{"event":"command","func":"${action}Video","args":""}`, '*');
   };
   render = () => {
     const desktopIframe =

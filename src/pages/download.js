@@ -60,6 +60,7 @@ class Download extends Component {
   onDownload = e => {
     e.preventDefault();
     downloadLatestRelease();
+    ga('send', 'event', 'Download', 'click', 'Download page - click Download');
   };
   render = () => {
     const siteTitle = this.props.data.site.siteMetadata.title;

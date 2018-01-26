@@ -161,7 +161,11 @@ const subscribeOptions = {
   server: 'money.us11',
   userId: 'a3f87e208a9f9896949b4f336',
   listId: '38021a64b6',
-  origin: ''
+  origin: '',
+  callback: (error, result) => {
+    if (error) return;
+    ga('send', 'event', 'Mailchimp', 'subscribe', `Homepage - subscribe ${result.email}`);
+  }
 };
 
 const BalanceSubscribe = ({ toggleVideo }) => (
