@@ -113,7 +113,7 @@ const SPlayButton = styled.div`
   &:hover {
     transform: scale(1.1);
   }
-  @media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  @media screen and (${responsive.sm.max}) {
     margin-top: 80px !important;
     background: rgba(${colors.grey}, 0.3) !important;
   }
