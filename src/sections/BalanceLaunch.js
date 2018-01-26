@@ -87,8 +87,8 @@ const SAppPreview = styled.div`
     margin-top: 60px;
   }
   @media screen and (${responsive.sm.max}) {
-    width: 320px;
-    height: 485px;
+    width: 100%;
+    height: calc((100vw - 68px) * 1.5156);
   }
 `;
 

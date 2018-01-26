@@ -22,8 +22,6 @@ const SVideoContainer = styled.div`
   cursor: pointer;
   background: rgba(${colors.dark}, 0.3);
   transition: opacity 0.225s cubic-bezier(0, 0, 0.2, 1);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
   opacity: ${({ show }) => (show ? 1 : 0)};
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
