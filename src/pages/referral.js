@@ -9,7 +9,6 @@ import twitter from '../assets/twitter.svg';
 import facebook from '../assets/facebook.svg';
 import email from '../assets/email-icon.svg';
 import windowResize from '../utils/windowResize';
-import { downloadLatestRelease } from '../utils/api';
 import { getLeaderboard, databaseGet } from '../utils/firebase';
 import { getUrlParameter } from '../utils/helpers';
 import { colors, responsive, transitions } from '../styles';
@@ -295,6 +294,13 @@ class Referral extends Component {
     document.execCommand('Copy');
     target.blur();
     this.setState({ notification: 'Copied to clipboard' });
+    ga(
+      'send',
+      'event',
+      'Referral',
+      'share',
+      `Referral - Copied to clipboard - ${this.state.referralID}`
+    );
     timeout = setTimeout(() => this.setState({ notification: '' }), 2000);
   };
   componentWillUpdate(newProps, newState) {
@@ -302,10 +308,6 @@ class Referral extends Component {
       getLeaderboard(newState.referralID).then(leaderboard => this.setState({ leaderboard }));
     }
   }
-  onReferral = e => {
-    e.preventDefault();
-    downloadLatestRelease();
-  };
   render = () => {
     const layoutTheme = {
       fontWeight: '400',
@@ -344,6 +346,15 @@ class Referral extends Component {
                 </SReferralWrapper>
                 <SFlex>
                   <SButtonFacebook
+                    onClick={() => {
+                      ga(
+                        'send',
+                        'event',
+                        'Referral',
+                        'share',
+                        `Referral - share Facebook - ${this.state.referralID}`
+                      );
+                    }}
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
                       `https://${url}`
                     )}`}
@@ -352,6 +363,15 @@ class Referral extends Component {
                     {this.props.width < 640 ? `Share` : `Share Facebook`}
                   </SButtonFacebook>
                   <SButtonTwitter
+                    onClick={() => {
+                      ga(
+                        'send',
+                        'event',
+                        'Referral',
+                        'share',
+                        `Referral - share Twitter - ${this.state.referralID}`
+                      );
+                    }}
                     href={`https://twitter.com/intent/tweet?text=Download%20Balance%2C%20a%20secure%20automatic%20portfolio%20tracker%20for%20your%20cryptocurrency%20and%20token%20balances%20by%20%40balancemymoney&url=${encodeURIComponent(
                       `https://${url}`
                     )}`}
@@ -360,6 +380,15 @@ class Referral extends Component {
                     {this.props.width < 640 ? `Tweet` : `Share Twitter`}
                   </SButtonTwitter>
                   <SButtonEmail
+                    onClick={() => {
+                      ga(
+                        'send',
+                        'event',
+                        'Referral',
+                        'share',
+                        `Referral - share Support - ${this.state.referralID}`
+                      );
+                    }}
                     href={`mailto:?subject=Download%20Balance&body=Balance%2C%20a%20secure%20automatic%20portfolio%20tracker%20for%20your%20cryptocurrency%20and%20token%20balances.%0ADownload%20at%20${encodeURIComponent(
                       `https://${url}`
                     )}`}
