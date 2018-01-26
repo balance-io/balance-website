@@ -224,6 +224,7 @@ class Header extends Component {
   onDownload = e => {
     e.preventDefault();
     downloadLatestRelease();
+    ga('send', 'event', 'Download', 'click', 'Header');
   };
   render = () => {
     const { theme, ...props } = this.props;
@@ -232,22 +233,43 @@ class Header extends Component {
       <SHeader theme={theme} {...props}>
         <STopSection>
           <SNav>
-            <Link onClick={this.hideNavReveal} to="/">
+            <Link
+              onClick={() => {
+                ga('send', 'event', 'Homepage', 'click', 'Header');
+                this.hideNavReveal();
+              }}
+              to="/"
+            >
               <SLogo theme={theme} />
             </Link>
             <SNavList>
-              <SNavLinks onClick={this.hideNavReveal} to="/blog">
+              <SNavLinks
+                onClick={() => {
+                  ga('send', 'event', 'Blog', 'click', 'Header');
+                  this.hideNavReveal();
+                }}
+                to="/blog"
+              >
                 Blog
               </SNavLinks>
               <SExternalLink
-                onClick={this.hideNavReveal}
+                onClick={() => {
+                  ga('send', 'event', 'About', 'click', 'Header');
+                  this.hideNavReveal();
+                }}
                 href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
                 rel="noreferrer noopener"
                 target="_blank"
               >
                 About
               </SExternalLink>
-              <SNavLinks onClick={this.hideNavReveal} to="/support">
+              <SNavLinks
+                onClick={() => {
+                  ga('send', 'event', 'Support', 'click', 'Header');
+                  this.hideNavReveal();
+                }}
+                to="/support"
+              >
                 Support
               </SNavLinks>
             </SNavList>
