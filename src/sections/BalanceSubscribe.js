@@ -73,8 +73,8 @@ const SPreviewWrapper = styled(SHalf)`
 `;
 
 const SPreview = styled.div`
-  width: ${({ mobile }) => (mobile ? '360px' : '396px')};
-  height: ${({ mobile }) => (mobile ? '238px' : '600px')};
+  width: ${({ mobile }) => (mobile ? 'calc(100% - 68px)' : '396px')};
+  height: ${({ mobile }) => (mobile ? 'calc((100vw - 68px) * 0.66)' : '600px')};
   background: ${({ img }) => `url(${img})`};
   background-size: contain;
   background-repeat: no-repeat;
@@ -83,6 +83,10 @@ const SPreview = styled.div`
   transition: ${transitions.base};
   &:hover > div {
     transform: scale(1.08);
+  }
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    width: ${({ mobile }) => (mobile ? '360px' : '396px')};
+    height: ${({ mobile }) => (mobile ? '238px' : '600px')};
   }
 `;
 
@@ -109,9 +113,12 @@ const SPlayButton = styled.div`
   &:hover {
     transform: scale(1.1);
   }
-  @media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-    backdrop-filter: none !important;
-    background: rgb(${colors.mediumGrey}) !important;
+  @media screen and (${responsive.sm.max}) {
+    margin-top: 80px !important;
+    background: rgba(${colors.grey}, 0.3) !important;
+  }
+  @media screen and (${responsive.xs.max}) {
+    margin-top: 60px !important;
   }
 `;
 
@@ -161,7 +168,11 @@ const subscribeOptions = {
   server: 'money.us11',
   userId: 'a3f87e208a9f9896949b4f336',
   listId: '38021a64b6',
-  origin: ''
+  origin: '',
+  callback: (error, result) => {
+    if (error) return;
+    ga('send', 'event', 'Mailchimp', 'subscribe', `Homepage - subscribe ${result.email}`);
+  }
 };
 
 const BalanceSubscribe = ({ toggleVideo }) => (

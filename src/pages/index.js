@@ -23,8 +23,6 @@ const SVideoContainer = styled.div`
   cursor: pointer;
   background: rgba(${colors.dark}, 0.3);
   transition: opacity 0.225s cubic-bezier(0, 0, 0.2, 1);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
   opacity: ${({ show }) => (show ? 1 : 0)};
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
@@ -94,13 +92,16 @@ class IndexPage extends Component {
     showVideo: false
   };
   toggleVideo = () => {
-    const command = this.state.showVideo ? 'pauseVideo' : 'playVideo';
+    const action = this.state.showVideo ? 'pause' : 'play';
     this.setState({ showVideo: !this.state.showVideo });
     let iframe;
+    let viewport;
     if (typeof window !== 'undefined') {
+      viewport = window.innerWidth > 640 ? 'Desktop' : 'Mobile';
       iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
     }
-    iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
+    ga('send', 'event', 'Video', action, `Homepage - ${action} Video [${viewport}]`);
+    iframe.contentWindow.postMessage(`{"event":"command","func":"${action}Video","args":""}`, '*');
   };
   render = () => {
     const desktopIframe =

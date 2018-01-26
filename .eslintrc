@@ -5,6 +5,7 @@
     "array-callback-return": "off"
   },
   "globals": {
+    "ga": true,
     "graphql": true,
     "document": true,
     "window": true,
