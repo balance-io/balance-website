@@ -158,14 +158,14 @@ const BalanceiOS = () => (
         <SAppIcon />
         <STitle>Balance iOS</STitle>
         <p>All of your digital currencies in one place. Coming soon.</p>
-        <a
+        <SButtonBeta
           onClick={e => ga('send', 'event', 'iOS Beta', 'click', 'Homepage - click iOS Beta')}
           href="https://iosbeta.balance.io"
           rel="noreferrer noopener"
           target="_blank"
         >
-          <SButtonBeta>Sign up for Beta</SButtonBeta>
-        </a>
+          Sign up for Beta
+        </SButtonBeta>
       </SInfo>
     </SSectionWrapper>
   </Section>
