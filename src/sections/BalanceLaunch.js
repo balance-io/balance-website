@@ -32,7 +32,7 @@ const SSectionWrapper = styled.div`
     margin: 120px auto;
   }
   @media screen and (${responsive.sm.max}) {
-    padding: 100px 34px 80px;
+    padding: 68px 34px 80px;
   }
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
@@ -87,8 +87,8 @@ const SAppPreview = styled.div`
     margin-top: 60px;
   }
   @media screen and (${responsive.sm.max}) {
-    width: 320px;
-    height: 485px;
+    width: 100%;
+    height: calc((100vw - 68px) * 1.5156);
   }
 `;
 

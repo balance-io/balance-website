@@ -9,7 +9,7 @@ import { colors, responsive } from '../styles';
 const SPage = styled(Section)`
   padding: 56px 0 12px;
   font-size: 14px;
-  min-height: ${({ article }) => (article ? 0 : 'calc(100vh - 136px)')};
+  min-height: ${({ article }) => (article ? 'calc(100vh - 136px)' : 0)};
   & article * {
     padding-bottom: 20px;
     opacity: 0.9;
@@ -33,7 +33,8 @@ const SPage = styled(Section)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-  `} @media screen and (${responsive.sm.max}) {
+  `};
+  @media screen and (${responsive.sm.max}) {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -74,14 +75,14 @@ const layoutTheme = {
   logoHover: colors.lightBlue
 };
 
-const Page = ({ children, title, article, siteTitle }) => (
+const Page = ({ children, title, article, siteTitle, ...props }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage article={article} maxWidth={700} fontColor={colors.white}>
+    <SPage article={article} maxWidth={700} fontColor={colors.white} {...props}>
       {!article ? (
         <SPageContent>{children}</SPageContent>
       ) : (

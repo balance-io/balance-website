@@ -4,6 +4,10 @@ import Page from '../templates/page';
 import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive } from '../styles';
 
+const StyledPage = styled(Page)`
+  min-height: calc(100vh - 136px);
+`;
+
 const SFlex = styled.div`
   height: 100%;
   display: flex;
@@ -65,7 +69,7 @@ class Download extends Component {
   render = () => {
     const siteTitle = this.props.data.site.siteMetadata.title;
     return (
-      <Page title={'Download'} siteTitle={siteTitle}>
+      <StyledPage title={'Download'} siteTitle={siteTitle}>
         <SFlex>
           <div>
             <STitle>Balance - A secure automatic portfolio tracker</STitle>
@@ -76,7 +80,7 @@ class Download extends Component {
             <SGreenButton onClick={this.onDownload}>Download for macOS</SGreenButton>
           </div>
         </SFlex>
-      </Page>
+      </StyledPage>
     );
   };
 }

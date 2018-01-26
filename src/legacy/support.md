@@ -2,6 +2,8 @@
 title: Support
 ---
 
-If you have any questions or concerns, please contact us at support@balancemy.money.
+If you have any questions or concerns, please contact us at
 
-Or reach us on Twitter @balancemymoney.
+**support@balancemy.money**
+
+Or reach us on Twitter `@balancemymoney`
