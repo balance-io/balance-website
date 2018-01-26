@@ -113,32 +113,6 @@ const SComboButton = styled.a`
   }
 `;
 
-const SButtonGithub = styled(SComboButton)`
-  width: 189px;
-  background: linear-gradient(-45deg, #ccd4de, #ededf5);
-  border-radius: 10px;
-  color: rgb(${colors.dark});
-  padding: 0 0 4px 44px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 12.5px;
-    left: 16px;
-    width: 20px;
-    height: 21px;
-    mask-image: url(${buttonGithub}) no-repeat;
-    -webkit-mask: url(${buttonGithub}) no-repeat;
-    background-color: rgb(${colors.dark});
-    opacity: 1;
-  }
-  @media screen and (${responsive.md.min}) {
-    display: none;
-  }
-`;
-
 const SButtonApple = styled(SComboButton)`
   width: 155px;
   background-image: linear-gradient(102deg, rgb(${colors.lightGreen}), rgb(${colors.darkGreen}));
@@ -156,12 +130,9 @@ const SButtonApple = styled(SComboButton)`
     -webkit-mask: url(${buttonApple}) no-repeat;
     background-color: rgb(${colors.white});
   }
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
 `;
 
-const SContribute = styled(SComboButton)`
+const SButtonGithub = styled(SComboButton)`
   width: 160px;
   background: linear-gradient(-45deg, #3c424d, #4e5662);
   padding: 13px 18px 0 40px;
@@ -176,9 +147,6 @@ const SContribute = styled(SComboButton)`
     mask-image: url(${buttonGithub}) no-repeat;
     -webkit-mask: url(${buttonGithub}) no-repeat;
     background-color: rgba(${colors.white}, 0.9);
-  }
-  @media screen and (${responsive.md.max}) {
-    display: none;
   }
 `;
 
@@ -210,16 +178,6 @@ const BalanceLaunch = () => (
           Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
           addresses.
         </p>
-        <SButtonGithub
-          onClick={e =>
-            ga('send', 'event', 'Source Code', 'click', 'Homepage - click Source Code [Mobile]')
-          }
-          href="https://github.com/balancemymoney/balance-open"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          View on GitHub
-        </SButtonGithub>
         <div>
           <SButtonApple
             onClick={e => {
@@ -233,16 +191,16 @@ const BalanceLaunch = () => (
           >
             Download
           </SButtonApple>
-          <SContribute
+          <SButtonGithub
             onClick={e =>
-              ga('send', 'event', 'Source Code', 'click', 'Homepage - click Source Code [Desktop]')
+              ga('send', 'event', 'Source Code', 'click', 'Homepage - click Source Code')
             }
             href="https://github.com/balancemymoney/balance-open"
             target="_blank"
             rel="noreferrer noopener"
           >
             Source Code
-          </SContribute>
+          </SButtonGithub>
         </div>
 
         <ul>
