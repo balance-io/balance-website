@@ -94,11 +94,12 @@ class IndexPage extends Component {
     this.setState({ showVideo: !this.state.showVideo });
     let iframe;
     let viewport;
+    const action = command.replace('Video', '');
     if (typeof window !== 'undefined') {
       viewport = window.innerWidth > 640 ? 'Desktop' : 'Mobile';
       iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
     }
-    ga('send', 'event', 'Video', command.replace('Video', ''), `Homepage - ${viewport}`);
+    ga('send', 'event', 'Video', action, `Homepage - ${action} Video [${viewport}]`);
     iframe.contentWindow.postMessage(`{"event":"command","func":"${command}","args":""}`, '*');
   };
   render = () => {

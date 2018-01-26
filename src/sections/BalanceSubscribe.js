@@ -164,7 +164,7 @@ const subscribeOptions = {
   origin: '',
   callback: (error, result) => {
     if (error) return;
-    ga('send', 'event', 'Mailchimp', 'subscribe', `Homepage - ${result.email}`);
+    ga('send', 'event', 'Mailchimp', 'subscribe', `Homepage - subscribe ${result.email}`);
   }
 };
 

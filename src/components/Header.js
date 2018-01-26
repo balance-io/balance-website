@@ -224,7 +224,7 @@ class Header extends Component {
   onDownload = e => {
     e.preventDefault();
     downloadLatestRelease();
-    ga('send', 'event', 'Download', 'click', 'Header');
+    ga('send', 'event', 'Download', 'click', 'Header - click Download');
   };
   render = () => {
     const { theme, ...props } = this.props;
@@ -235,7 +235,7 @@ class Header extends Component {
           <SNav>
             <Link
               onClick={() => {
-                ga('send', 'event', 'Homepage', 'click', 'Header');
+                ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage');
                 this.hideNavReveal();
               }}
               to="/"
@@ -245,7 +245,7 @@ class Header extends Component {
             <SNavList>
               <SNavLinks
                 onClick={() => {
-                  ga('send', 'event', 'Blog', 'click', 'Header');
+                  ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
                   this.hideNavReveal();
                 }}
                 to="/blog"
@@ -254,7 +254,7 @@ class Header extends Component {
               </SNavLinks>
               <SExternalLink
                 onClick={() => {
-                  ga('send', 'event', 'About', 'click', 'Header');
+                  ga('send', 'event', 'About', 'click', 'Header - click About');
                   this.hideNavReveal();
                 }}
                 href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
@@ -265,7 +265,7 @@ class Header extends Component {
               </SExternalLink>
               <SNavLinks
                 onClick={() => {
-                  ga('send', 'event', 'Support', 'click', 'Header');
+                  ga('send', 'event', 'Support', 'click', 'Header - click Support');
                   this.hideNavReveal();
                 }}
                 to="/support"

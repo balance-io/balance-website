@@ -159,7 +159,7 @@ const BalanceiOS = () => (
         <STitle>Balance iOS</STitle>
         <p>All of your digital currencies in one place. Coming soon.</p>
         <a
-          onClick={e => ga('send', 'event', 'iOS Beta', 'click', 'Homepage')}
+          onClick={e => ga('send', 'event', 'iOS Beta', 'click', 'Homepage - click iOS Beta')}
           href="https://iosbeta.balance.io"
           rel="noreferrer noopener"
           target="_blank"

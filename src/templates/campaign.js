@@ -150,7 +150,7 @@ const Campaign = ({ pathContext, data }) => {
     origin: 'campaignEnded',
     callback: (error, result) => {
       if (error) return;
-      ga('send', 'event', 'Mailchimp', 'subscribe', `Campaign - ${result.email}`);
+      ga('send', 'event', 'Mailchimp', 'subscribe', `Campaign - subscribe ${result.email}`);
     }
   };
   const siteTitle = data.site.siteMetadata.title;
