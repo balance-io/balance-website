@@ -3,7 +3,7 @@ module.exports = {
     title: `Balance`,
     baseUrl: `https://balance.io`,
     homepageTitle: `Balance - A secure automatic portfolio tracker`,
-    description: `We're building a wallet for all the world's currencies, available soon for Mac and iOS.`,
+    description: `Securely connect to multiple exchanges to automatically keep track of your cryptocurrency and token balances.`,
     keywords: `blockchain, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
     twitterUsername: '@balancemymoney',
