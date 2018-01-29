@@ -60,9 +60,11 @@ const SInfo = styled.div`
     font-size: 1.125em;
     color: rgba(${colors.white}, 0.8);
     line-height: 1.5em;
+    margin-bottom: 34px;
   }
   & p:last-of-type {
-    margin-bottom: 34px;
+    font-size: 1.1em;
+    opacity: 0.7;
   }
   & ul {
     color: rgba(${colors.grey}, 0.7);
@@ -174,10 +176,7 @@ const BalanceLaunch = () => (
           Securely connect to multiple exchanges to automatically keep track of your cryptocurrency
           and token balances.
         </p>
-        <p>
-          Track your portfolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
-          addresses.
-        </p>
+
         <div>
           <SButtonApple
             onClick={e => {
@@ -203,10 +202,10 @@ const BalanceLaunch = () => (
           </SButtonGithub>
         </div>
 
-        <ul>
-          <li>Read-only API access</li>
-          <li>Multi-currency support</li>
-        </ul>
+        <p>
+          Supports Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
+          addresses.
+        </p>
       </SInfo>
       <SAppPreview />
     </SSectionWrapper>
