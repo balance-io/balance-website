@@ -175,7 +175,7 @@ const BalanceLaunch = () => (
           and token balances.
         </p>
         <p>
-          Track your portofolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
+          Track your portfolio on Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
           addresses.
         </p>
         <div>
