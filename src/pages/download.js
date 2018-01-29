@@ -103,7 +103,7 @@ class Download extends Component {
           <div>
             <STitle>Balance - A secure automatic portfolio tracker</STitle>
             <STagline>
-              We're building a wallet for all the world's currencies, currently in Public Beta for
+              Securely connect to multiple exchanges to automatically keep track of your cryptocurrency and token balances, currently in Public Beta for
               Mac and iOS.
             </STagline>
             <SButtonDownload
