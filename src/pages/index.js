@@ -112,8 +112,8 @@ class IndexPage extends Component {
       <div>
         <Header theme={layoutTheme} />
         <BalanceLaunch />
-        <BalanceSubscribe toggleVideo={this.toggleVideo} />
         <BalanceIOS />
+        <BalanceSubscribe toggleVideo={this.toggleVideo} />
         <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
           <SVideoWrapper>
             <iframe

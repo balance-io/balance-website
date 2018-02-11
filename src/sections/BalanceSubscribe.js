@@ -194,9 +194,6 @@ const BalanceSubscribe = ({ toggleVideo }) => (
           <SubscribeForm options={subscribeOptions} />
 
           <STitle>Get updates on Balance product releases</STitle>
-          <STagline>
-            We're building a wallet for all the world's currencies, available soon for Mac and iOS.
-          </STagline>
           <STagline>Support for many other exchanges and full wallet support coming soon.</STagline>
         </SSubscribe>
       </SHalf>

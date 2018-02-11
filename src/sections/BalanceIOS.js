@@ -31,7 +31,9 @@ const SBackgroundImage = styled.div`
 const SSectionWrapper = styled.div`
   width: 100%;
   height: 780px;
-  padding: 0 34px;
+  @media screen and (${responsive.md.max}) {
+    padding: 0 34px;
+  }
   @media screen and (${responsive.sm.min}) {
     display: flex;
     align-items: center;
