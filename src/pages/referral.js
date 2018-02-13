@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Section from '../components/Section';
-import balanceLaunchIcon from '../assets/balance-launch-icon.png';
-import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
+import TokenAnimation from '../components/TokenAnimation';
+import balanceTokenIcon from '../assets/balance-token-icon.svg';
+import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import twitter from '../assets/twitter.svg';
 import facebook from '../assets/facebook.svg';
 import email from '../assets/email-icon.svg';
@@ -13,20 +14,20 @@ import { getLeaderboard, databaseGet } from '../utils/firebase';
 import { getUrlParameter } from '../utils/helpers';
 import { colors, responsive, transitions } from '../styles';
 
-const SSection = styled(Section)`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @media screen and (${responsive.xxs.max}) {
-    height: auto;
-    padding-top: 34px;
-  }
+const SBackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 700px;
+  background-image: url(${balanceTokenTriangles});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const SSectionWrapper = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   @media screen and (${responsive.md.max}) {
@@ -39,44 +40,11 @@ const SSectionWrapper = styled.div`
   }
 `;
 
-const SLeft = styled.div`
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media screen and (${responsive.md.max}) {
-    width: 100%
-    justify-content: center;
-    width: 100%;
-  }
-`;
-
-const SRight = styled.div`
-  width: 40%;
-  display: flex;
-  align-items: center;
-  @media screen and (${responsive.md.max}) {
-    justify-content: center;
-    width: 100%;
-  }
-  justify-content: flex-end;
-`;
-
-const SAppPreview = styled.div`
-  width: 396px;
-  height: 600px;
-  background: url(${balanceOpenBeta}) no-repeat;
-  background-size: 100% 100%;
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
-`;
-
 const SAppIcon = styled.div`
   margin: 25px 0;
   width: 80px;
   height: 80px;
-  background: url(${balanceLaunchIcon}) no-repeat;
+  background: url(${balanceTokenIcon}) no-repeat;
   background-size: 100% 100%;
   @media screen and (${responsive.sm.max}) {
     display: none;
@@ -99,6 +67,16 @@ const SContainer = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
+  }
+`;
+
+const STitle = styled.h1`
+  font-size: 2.7em;
+  letter-spacing: -0.25px;
+  margin: 10px 0;
+  @media screen and (${responsive.md.max}) {
+    font-size: 2em;
+    letter-spacing: -0.2px;
   }
 `;
 
@@ -154,8 +132,15 @@ const SReferral = styled.input`
 `;
 
 const SFlex = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SRight = styled(SFlex)`
+  position: relative;
+  transform: translate3d(calc((100vw - 1024px)*0.33), 0, 0);
 `;
 
 const SComboButton = styled.a`
@@ -331,13 +316,31 @@ class Referral extends Component {
           meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
         />
         <Header theme={layoutTheme} />
-        <SSection id={name} color={colors.navyBlue}>
+        <Section
+          id={`${name}-top`}
+          minHeight={700}
+          color={colors.navyBlue}
+          background={<SBackgroundImage />}
+        >
           <SSectionWrapper>
-            <SLeft>
+            <SFlex>
               <SContainer>
                 <SAppIcon />
-                <SSubTitle>Help Launch Balance. Invite friends and earn rewards</SSubTitle>
-                <STagline>Use your unique link via Facebook, Twitter and email</STagline>
+                <STitle>A place for your tokens</STitle>
+                <STagline>
+                  An Ethereum wallet that supports ERC-20 & ERC-721 token standards.
+                </STagline>
+              </SContainer>
+            </SFlex>
+            <SRight>
+              <TokenAnimation />
+            </SRight>
+          </SSectionWrapper>
+        </Section>
+        <Section id={`${name}-bottom`} minHeight={700} color={colors.fadedNavyBlue}>
+          <SSectionWrapper>
+            <SFlex>
+              <SContainer>
                 <SReferralWrapper>
                   <SReferral onClick={this.copyToClipboard} value={url} />
                   <SNotification show={!!this.state.notification}>
@@ -406,12 +409,9 @@ class Referral extends Component {
                   {`You're number ${position} on our leaderboard. The top 10 referrers will get a reward from our founders`}
                 </STagline>
               </SContainer>
-            </SLeft>
-            <SRight>
-              <SAppPreview />
-            </SRight>
+            </SFlex>
           </SSectionWrapper>
-        </SSection>
+        </Section>
       </div>
     );
   };

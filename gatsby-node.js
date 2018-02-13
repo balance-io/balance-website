@@ -33,13 +33,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
           }
         }
-        posts: allContentfulPost {
-          edges {
-            node {
-              slug
-            }
-          }
-        }
       }
     `).then(result => {
       if (result.errors) {
@@ -61,17 +54,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             component: path.resolve(`./src/templates/legacy.js`),
             context: {
               slug: node.fields.slug
-            }
-          });
-        }
-      });
-      result.data.posts.edges.map(({ node }) => {
-        if (node.slug) {
-          createPage({
-            path: `blog/${node.slug}`,
-            component: path.resolve(`./src/templates/post.js`),
-            context: {
-              slug: node.slug
             }
           });
         }

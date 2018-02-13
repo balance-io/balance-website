@@ -8,7 +8,6 @@ import mobileNavBlog from '../assets/mobile-nav-blog.svg';
 import mobileNavAbout from '../assets/mobile-nav-about.svg';
 import mobileNavSupport from '../assets/mobile-nav-support.svg';
 import mobileNavClose from '../assets/mobile-nav-close.svg';
-import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
@@ -60,12 +59,6 @@ const SNav = styled.nav`
 `;
 
 const SNavList = styled.ul`
-  margin: 0 auto;
-  position: absolute;
-  width: -moz-fit-content;
-  width: fit-content;
-  left: 0;
-  right: 0;
   cursor: default;
   @media screen and (${responsive.sm.max}) {
     display: none;
@@ -221,11 +214,6 @@ class Header extends Component {
   hideNavReveal = () => {
     this.setState({ navReveal: false });
   };
-  onDownload = e => {
-    e.preventDefault();
-    downloadLatestRelease();
-    ga('send', 'event', 'Download', 'click', 'Header - click Download');
-  };
   render = () => {
     const { theme, ...props } = this.props;
     const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
@@ -243,15 +231,17 @@ class Header extends Component {
               <SLogo theme={theme} />
             </Link>
             <SNavList>
-              <SNavLinks
+              <SExternalLink
                 onClick={() => {
                   ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
                   this.hideNavReveal();
                 }}
-                to="/blog"
+                href="https://medium.com/balancemymoney"
+                rel="noreferrer noopener"
+                target="_blank"
               >
                 Blog
-              </SNavLinks>
+              </SExternalLink>
               <SExternalLink
                 onClick={() => {
                   ga('send', 'event', 'About', 'click', 'Header - click About');
@@ -263,25 +253,7 @@ class Header extends Component {
               >
                 About
               </SExternalLink>
-              <SNavLinks
-                onClick={() => {
-                  ga('send', 'event', 'Support', 'click', 'Header - click Support');
-                  this.hideNavReveal();
-                }}
-                to="/support"
-              >
-                Support
-              </SNavLinks>
             </SNavList>
-
-            <SExternalLink
-              href="https://github.com/balancemymoney/balance-open/releases/"
-              rel="noreferrer noopener"
-              target="_blank"
-              onClick={this.onDownload}
-            >
-              Download
-            </SExternalLink>
           </SNav>
 
           <SMobileNavToggle

@@ -2,6 +2,7 @@ export const colors = {
   white: '255, 255, 255',
   black: '0, 0, 0',
   lightGrey: '215, 236, 255',
+  lighterGrey: '216, 216, 216',
   grey: '187, 187, 187',
   softerGrey: '120, 127, 140',
   fiftyGrey: '128, 128, 128',
@@ -10,6 +11,7 @@ export const colors = {
   dark: '51, 51, 51',
   fadedBlue: '24, 32, 42',
   navyBlue: '17, 23, 31',
+  fadedNavyBlue: '31, 43, 55',
   brightBlue: '58, 113, 242',
   blue: '58, 113, 242',
   fadedDarkBlue: '79, 98, 114',
@@ -28,6 +30,7 @@ export const colors = {
 };
 
 export const fonts = {
+  tiny: '8px',
   small: '12px',
   medium: '16px',
   large: '18px',
