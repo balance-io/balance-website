@@ -132,7 +132,7 @@ const STokenDescription = styled.div`
   border-radius: 0 8px 8px 0;
   font-size: ${fonts.small};
   color: rgb(${colors.white});
-  background: rgba(${colors.lighterGrey}, 0.1);
+  background: rgb(39, 44, 51);
   & > div:first-of-type {
     height: 100%;
     display: flex;
@@ -152,7 +152,7 @@ const STokenDescription = styled.div`
   & > div:last-of-type {
     height: 100%;
     border-radius: 0 8px 8px 0;
-    background: rgba(${colors.lighterGrey}, 0.2);
+    background: rgb(74, 78, 83);
     display: flex;
     padding: 0 10px;
     align-items: center;
