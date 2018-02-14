@@ -5,7 +5,7 @@ import trianglesIOS from '../assets/triangles-ios.svg';
 import trianglesIOSMobile from '../assets/triangles-ios-mobile.svg';
 import balanceIOSPreview from '../assets/balance-ios.png';
 import balanceIOSIcon from '../assets/balance-ios-icon.png';
-import buttonApple from '../assets/button-apple.svg';
+import buttonApple from '../assets/apple.svg';
 import { colors, responsive } from '../styles';
 
 const SBackgroundImage = styled.div`

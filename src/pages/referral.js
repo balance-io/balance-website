@@ -8,7 +8,7 @@ import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import twitter from '../assets/twitter.svg';
 import facebook from '../assets/facebook.svg';
-import email from '../assets/email-icon.svg';
+import email from '../assets/mail.svg';
 import windowResize from '../utils/windowResize';
 import { getLeaderboard, databaseGet } from '../utils/firebase';
 import { getUrlParameter } from '../utils/helpers';
@@ -92,13 +92,13 @@ const SSubTitle = styled.h2`
 `;
 
 const STagline = styled.p`
-  font-size: 1.125em;
+  font-size: 1.25em;
   color: rgb(${colors.lighterBlue});
-  line-height: 1.5555555556em;
+  line-height: 1.4em;
   @media screen and (${responsive.md.max}) {
-    margin: 12px auto 0 auto;
-    font-size: 1.1875em;
-    line-height: 1.47em;
+    margin-top: 12px;
+    font-size: 1em;
+    line-height: 1.2em;
     color: rgba(${colors.white}, 0.8);
   }
 `;

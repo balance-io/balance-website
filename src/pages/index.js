@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import BalanceToken from '../sections/BalanceToken';
 import { colors } from '../styles';
 import { handleReferrals } from '../utils/firebase';
@@ -23,6 +24,7 @@ class IndexPage extends Component {
       <div>
         <Header theme={layoutTheme} />
         <BalanceToken />
+        <Footer theme={layoutTheme} />
       </div>
     );
   };

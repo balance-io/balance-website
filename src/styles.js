@@ -10,6 +10,7 @@ export const colors = {
   darkerGrey: '75, 83, 95',
   dark: '51, 51, 51',
   fadedBlue: '24, 32, 42',
+  darkNavyBlue: '12, 19, 28',
   navyBlue: '17, 23, 31',
   fadedNavyBlue: '31, 43, 55',
   brightBlue: '58, 113, 242',
@@ -69,6 +70,10 @@ export const responsive = {
   lg: {
     min: 'min-width: 1023px',
     max: 'max-width: 1024px'
+  },
+  xl: {
+    min: 'min-width: 1399px',
+    max: 'max-width: 1400px'
   }
 };
 
@@ -158,6 +163,7 @@ export const globalStyles = `
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x:
   }
 
   #___gatsby, div[data-reactroot] {

@@ -90,7 +90,9 @@ const tokens = [
 ];
 
 const StyledWrapper = styled.div`
-  width: 100%;
+  width: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
+  height: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
+  overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
@@ -196,7 +198,7 @@ const STokenContent = styled.div`
 class TokenAnimation extends Component {
   render() {
     return (
-      <StyledWrapper>
+      <StyledWrapper circleSize={this.props.circleSize} itemSize={this.props.itemSize}>
         <SOuterCircle circleSize={this.props.circleSize}>
           {tokens.map((token, index, arr) => (
             <STokenLogo

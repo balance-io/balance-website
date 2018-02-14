@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import jsonp from 'jsonp';
-import emailIcon from '../assets/email-icon.svg';
+import emailIcon from '../assets/mail.svg';
 import { fonts, colors, responsive, transitions } from '../styles';
 
 const SFormWrapper = styled.div`
@@ -33,15 +33,14 @@ const StyledSubmit = styled.button`
   border-style: none;
   border: none;
   font-size: ${fonts.large};
-  padding: 6px 14px;
   background: none;
   background: rgb(${colors.dark});
   color: rgb(${colors.white});
   border: 2px solid rgb(${colors.dark});
   border-radius: 4px;
   position: absolute;
-  height: 48px;
-  margin: 5px 7px;
+  padding: 10px 14px;
+  margin: 4px;
   right: 0;
   top: 0;
 `;
@@ -51,7 +50,7 @@ const SForm = styled.form`
     outline: none;
     margin: 0;
     font-size: ${fonts.large};
-    padding: 18px 16px;
+    padding: 15px;
     width: 100%;
     border-radius: 4px;
     background: rgb(${colors.white});

@@ -17,6 +17,12 @@ const SBackgroundImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media screen and (${responsive.xl.min}) {
+    top: 0;
+    right: calc((100vw - 1400px)*0.5);
+    width: 700px;
+    height: 700px;
+  }
   @media screen and (${responsive.md.max}) {
     display: none;
   }
@@ -26,7 +32,7 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 120px auto;
+  min-height: calc(100vh - 68px);
 
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
@@ -68,11 +74,11 @@ const SContainer = styled.div`
 `;
 
 const STitle = styled.h1`
-  font-size: 2.7em;
+  font-size: 2.5em;
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.md.max}) {
-    font-size: 2em;
+    font-size: 1.85em;
     letter-spacing: -0.2px;
   }
 `;
@@ -90,7 +96,7 @@ const SSubTitle = styled.h2`
 `;
 
 const STagline = styled.p`
-  font-size: 1.125em;
+  font-size: 1.25em;
   color: rgb(${colors.lighterBlue});
   line-height: 1.4em;
   @media screen and (${responsive.md.max}) {
@@ -100,8 +106,8 @@ const STagline = styled.p`
     color: rgba(${colors.white}, 0.8);
   }
 `;
+
 const SFlex = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +115,10 @@ const SFlex = styled.div`
 
 const SRight = styled(SFlex)`
   position: relative;
-  transform: translate3d(calc((100vw - 1024px)*0.33), 0, 0);
+  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
+  @media screen and (${responsive.xl.min}) {
+    transform: translate3d(114px, 0, 0);
+  }
 `;
 
 const subscribeOptions = {

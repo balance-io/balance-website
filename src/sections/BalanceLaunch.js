@@ -6,8 +6,8 @@ import balanceLaunchIcon from '../assets/balance-launch-icon.png';
 import triangleMask from '../assets/triangle-mask.svg';
 import highSierra from '../assets/high-sierra.jpg';
 import balanceOpenBeta from '../assets/balance-open-beta-squared.png';
-import buttonGithub from '../assets/button-github.svg';
-import buttonApple from '../assets/button-apple.svg';
+import buttonGithub from '../assets/github.svg';
+import buttonApple from '../assets/apple.svg';
 import { responsive, colors } from '../styles';
 
 const SBackgroundImage = styled.div`
@@ -202,10 +202,7 @@ const BalanceLaunch = () => (
           </SButtonGithub>
         </div>
 
-        <p>
-          Supports Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum
-          addresses.
-        </p>
+        <p>Supports Coinbase, GDAX, Poloniex, Bitfinex, Kraken, Bittrex and Ethereum addresses.</p>
       </SInfo>
       <SAppPreview />
     </SSectionWrapper>
