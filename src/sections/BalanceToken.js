@@ -44,11 +44,15 @@ const SSectionWrapper = styled.div`
 `;
 
 const SAppIcon = styled.div`
-  margin-bottom: 25px;
-  width: 70px;
-  height: 70px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
   background: url(${balanceTokenIcon}) no-repeat;
   background-size: 100% 100%;
+  @media screen and (${responsive.sm.max}) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const SContainer = styled.div`
@@ -77,7 +81,7 @@ const STitle = styled.h1`
   font-size: 2.5em;
   letter-spacing: -0.25px;
   margin: 10px 0;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.max}) {
     font-size: 1.85em;
     letter-spacing: -0.2px;
   }
@@ -88,7 +92,7 @@ const SSubTitle = styled.h2`
   letter-spacing: -0.25px;
   font-weight: 400;
   margin: 40px 0 10px;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.max}) {
     font-size: 1.1em;
     margin: 20px 0 10px;
     letter-spacing: -0.2px;
@@ -99,7 +103,7 @@ const STagline = styled.p`
   font-size: 1.25em;
   color: rgb(${colors.lighterBlue});
   line-height: 1.4em;
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.max}) {
     margin-top: 12px;
     font-size: 1em;
     line-height: 1.2em;

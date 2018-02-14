@@ -22,19 +22,19 @@ const counterClockwise = keyframes`
   100% { transform: rotate(-360deg); }
 `;
 
-const expandAnimation = (index, circleSize, totalItems) =>
+const expandAnimation = (angle, circleSize) =>
   keyframes`
   0% {
     transform:
-      rotate(${(index ? index * (360 / totalItems) : index) - 90}deg)
+      rotate(${angle - 90}deg)
       translate(0)
-      rotate(${(index ? index * (360 / totalItems) : index) * -1 + 90}deg);
+      rotate(${-angle + 90}deg);
   }
   100% {
     transform:
-    rotate(${index ? index * (360 / totalItems) : index}deg)
+    rotate(${angle}deg)
     translate(calc(${circleSize}px / 2))
-    rotate(${(index ? index * (360 / totalItems) : index) * -1}deg)
+    rotate(${-angle}deg)
   }
 `;
 
@@ -92,7 +92,7 @@ const tokens = [
 const StyledWrapper = styled.div`
   width: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
   height: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
-  overflow: hidden;
+  ${'' /* overflow: hidden; */};
   position: relative;
   display: flex;
   justify-content: center;
@@ -125,12 +125,15 @@ const STokenDescription = styled.div`
   visibility: hidden;
   pointer-events: none;
   position: absolute;
-  top: 0;
   height: 100%;
   display: flex;
   align-items: center;
+  top: 0;
   left: 50%;
+  right: auto;
   padding-left: 60%;
+  padding-right: 0;
+  text-align: left;
   border-radius: 0 8px 8px 0;
   font-size: ${fonts.small};
   color: rgb(${colors.white});
@@ -169,12 +172,16 @@ const STokenLogo = styled.div`
   top: 50%;
   left: 50%;
   margin: calc((40px / 2) * -1);
-  animation: ${({ index, circleSize, totalItems }) =>
-    `${expandAnimation(index, circleSize, totalItems)} 2s ease 1`};
-  transform: ${({ index, circleSize, totalItems }) =>
-    `rotate(${index ? index * (360 / totalItems) : index}deg)
+  animation: ${({ index, circleSize, totalItems }) => {
+    const angle = index * (360 / totalItems);
+    return `${expandAnimation(angle, circleSize)} 2s ease 1`;
+  }};
+  transform: ${({ index, circleSize, totalItems }) => {
+    const angle = index * (360 / totalItems);
+    return `rotate(${angle}deg)
       translate(calc(${circleSize}px / 2))
-      rotate(${(index ? index * (360 / totalItems) : index) * -1}deg)`};
+      rotate(${-angle}deg)`;
+  }};
   &:hover {
     z-index: 10;
   }

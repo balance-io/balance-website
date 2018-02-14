@@ -13,7 +13,7 @@ const SSection = styled.section`
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${fontColor})`};
   position: relative;
-  overflow: ${({ overflow }) => (overflow ? 'auto' : 'hidden')};
+  overflow: hidden;
   @media screen and (${responsive.md.max}) {
     min-height: 0;
     height: auto;
@@ -36,8 +36,23 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({ children, background, maxWidth, minHeight, color, fontColor, overflow, ...props }) => (
-  <SSection minHeight={minHeight} color={color} fontColor={fontColor} overflow={overflow} {...props}>
+const Section = ({
+  children,
+  background,
+  maxWidth,
+  minHeight,
+  color,
+  fontColor,
+  overflow,
+  ...props
+}) => (
+  <SSection
+    minHeight={minHeight}
+    color={color}
+    fontColor={fontColor}
+    overflow={overflow}
+    {...props}
+  >
     <SBackground>{background}</SBackground>
     <SContent maxWidth={maxWidth} {...props}>
       {children}
