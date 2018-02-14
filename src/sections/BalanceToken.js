@@ -32,8 +32,8 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  min-height: calc(100vh - 68px);
-
+  min-height: 700px;
+  margin-bottom: calc(100vh - 768px);
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
