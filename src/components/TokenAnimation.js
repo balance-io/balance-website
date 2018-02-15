@@ -12,16 +12,55 @@ import maker from '../assets/tokens/maker.svg';
 import melonport from '../assets/tokens/melonport.svg';
 import { colors, fonts, transitions, responsive } from '../styles';
 
-const clockwise = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
+const generateAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise = true }) => {
+  const items = (Array(totalItems).join('0') + '0').split('');
+  const cycleDuration = pauseDuration + spinDuration;
+  const totalDuration = cycleDuration * totalItems;
+  const totalPercentage = 100;
+  const cyclePercentage = totalPercentage / totalItems;
+  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
+  const totalAngle = 360;
+  const cycleAngle = totalAngle / totalItems;
 
-const counterClockwise = keyframes`
-  0% { transform: rotate(0); }
-  100% { transform: rotate(-360deg); }
-`;
+  let animationString = items
+    .map((item, index, arr) => {
+      const cycleNumber = index + 1;
+      const currentCyclePercentage = cycleNumber * cyclePercentage;
 
+      const spinStartPercentage = currentCyclePercentage - cyclePercentage;
+      const spinStopPercentage = currentCyclePercentage - pausePercentage - 0.01;
+      const pauseStartPercentage = currentCyclePercentage - pausePercentage;
+      const pauseStopPercentage = currentCyclePercentage - 0.01;
+
+      const currentCycleAngle = cycleNumber * cycleAngle;
+      const spinStartAngle = currentCycleAngle - cycleAngle;
+      const spinStopAngle = currentCycleAngle;
+
+      const direction = clockwise ? 1 : -1;
+
+      return `
+      ${spinStartPercentage}% {
+        transform: rotate(${spinStartAngle * direction}deg);
+      }
+      ${spinStopPercentage}% {
+        transform: rotate(${spinStopAngle * direction}deg);
+      }
+      ${pauseStartPercentage}% {
+        transform: rotate(${spinStopAngle * direction}deg);
+      }
+      ${pauseStopPercentage}% {
+        transform: rotate(${spinStopAngle * direction}deg);
+      }
+    `;
+    })
+    .join('');
+
+  console.log(animationString);
+
+  const animation = keyframes`${animationString}`;
+
+  return `${animation} ${totalDuration}s ease infinite`;
+};
 const expandAnimation = (angle, circleSize) =>
   keyframes`
   0% {
@@ -38,7 +77,7 @@ const expandAnimation = (angle, circleSize) =>
   }
 `;
 
-const tokens = [
+const tokenList = [
   {
     name: 'Melonport',
     logo: melonport,
@@ -99,22 +138,6 @@ const StyledWrapper = styled.div`
   align-items: center;
   @media screen and (${responsive.md.max}) {
     display: none;
-  }
-`;
-
-const SInnerCircle = styled.img`
-  position: absolute;
-  width: ${({ circleSize }) => `${circleSize * 0.4}px`};
-  height: ${({ circleSize }) => `${circleSize * 0.4}px`};
-`;
-
-const SOuterCircle = styled.div`
-  position: relative;
-  width: ${({ circleSize }) => `${circleSize}px`};
-  height: ${({ circleSize }) => `${circleSize}px`};
-  animation: ${clockwise} 30s linear infinite;
-  &:hover {
-    z-index: 10;
   }
 `;
 
@@ -190,7 +213,6 @@ const STokenLogo = styled.div`
 const STokenContent = styled.div`
   width: 100%;
   height: 100%;
-  animation: ${counterClockwise} 30s linear infinite;
   & img {
     width: 100%;
     height: 100%;
@@ -202,12 +224,38 @@ const STokenContent = styled.div`
   }
 `;
 
+const SInnerCircle = styled.img`
+  position: absolute;
+  width: ${({ circleSize }) => `${circleSize * 0.4}px`};
+  height: ${({ circleSize }) => `${circleSize * 0.4}px`};
+`;
+
+const SOuterCircle = styled.div`
+  position: relative;
+  width: ${({ circleSize }) => `${circleSize}px`};
+  height: ${({ circleSize }) => `${circleSize}px`};
+  animation: ${({ totalItems, pauseDuration, spinDuration }) =>
+    generateAnimation({ totalItems, pauseDuration, spinDuration, clockwise: true })};
+  ${STokenContent} {
+    animation: ${({ totalItems, pauseDuration, spinDuration }) =>
+      generateAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
+  }
+  &:hover {
+    z-index: 10;
+  }
+`;
+
 class TokenAnimation extends Component {
   render() {
     return (
       <StyledWrapper circleSize={this.props.circleSize} itemSize={this.props.itemSize}>
-        <SOuterCircle circleSize={this.props.circleSize}>
-          {tokens.map((token, index, arr) => (
+        <SOuterCircle
+          circleSize={this.props.circleSize}
+          totalItems={this.props.tokens.length}
+          pauseDuration={this.props.pauseDuration}
+          spinDuration={this.props.spinDuration}
+        >
+          {this.props.tokens.map((token, index, arr) => (
             <STokenLogo
               index={index}
               totalItems={arr.length}
@@ -237,12 +285,18 @@ class TokenAnimation extends Component {
 
 TokenAnimation.propTypes = {
   circleSize: PropTypes.number,
-  itemSize: PropTypes.number
+  itemSize: PropTypes.number,
+  tokens: PropTypes.array,
+  pauseDuration: PropTypes.number,
+  spinDuration: PropTypes.number
 };
 
 TokenAnimation.defaultProps = {
   circleSize: 450,
-  itemSize: 50
+  itemSize: 50,
+  tokens: tokenList,
+  pauseDuration: 3,
+  spinDuration: 1
 };
 
 export default TokenAnimation;
