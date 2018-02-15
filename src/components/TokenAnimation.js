@@ -55,8 +55,6 @@ const generateAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise 
     })
     .join('');
 
-  console.log(animationString);
-
   const animation = keyframes`${animationString}`;
 
   return `${animation} ${totalDuration}s ease infinite`;
