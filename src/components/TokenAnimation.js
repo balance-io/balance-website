@@ -12,7 +12,7 @@ import maker from '../assets/tokens/maker.svg';
 import melonport from '../assets/tokens/melonport.svg';
 import { colors, fonts, transitions, responsive } from '../styles';
 
-const generateAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise = true }) => {
+const generateCycleAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise = true }) => {
   const items = (Array(totalItems).join('0') + '0').split('');
   const cycleDuration = pauseDuration + spinDuration;
   const totalDuration = cycleDuration * totalItems;
@@ -27,10 +27,12 @@ const generateAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise 
       const cycleNumber = index + 1;
       const currentCyclePercentage = cycleNumber * cyclePercentage;
 
-      const spinStartPercentage = currentCyclePercentage - cyclePercentage;
-      const spinStopPercentage = currentCyclePercentage - pausePercentage - 0.01;
-      const pauseStartPercentage = currentCyclePercentage - pausePercentage;
-      const pauseStopPercentage = currentCyclePercentage - 0.01;
+      const spinStartPercentage = Number(currentCyclePercentage - cyclePercentage).toPrecision(4);
+      const spinStopPercentage = Number(
+        currentCyclePercentage - pausePercentage - 0.01
+      ).toPrecision(4);
+      const pauseStartPercentage = Number(currentCyclePercentage - pausePercentage).toPrecision(4);
+      const pauseStopPercentage = Number(currentCyclePercentage - 0.01).toPrecision(4);
 
       const currentCycleAngle = cycleNumber * cycleAngle;
       const spinStartAngle = currentCycleAngle - cycleAngle;
@@ -59,6 +61,64 @@ const generateAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise 
 
   return `${animation} ${totalDuration}s ease infinite`;
 };
+
+const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, spinDuration }) => {
+  const cycleDuration = pauseDuration + spinDuration;
+  const totalDuration = cycleDuration * totalItems;
+  const totalPercentage = 100;
+  const cyclePercentage = totalPercentage / totalItems;
+  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
+
+  function shiftNumber(number, shift, max) {
+    const inc = number + shift;
+    if (inc < 1) {
+      return max - Math.abs(inc);
+    } else if (inc > max) {
+      return inc - max;
+    }
+    return inc;
+  }
+
+  const cycleNumber = shiftNumber(index + 1, popupShift, totalItems);
+  const indexedCyclePercentage = cyclePercentage - (cycleNumber - 1) * cyclePercentage;
+
+  const pauseStartPercentage = Number(indexedCyclePercentage - pausePercentage).toPrecision(4);
+  const beforePauseStartPercentage = Number(pauseStartPercentage - 0.01).toPrecision(4);
+  const pauseStopPercentage = Number(indexedCyclePercentage - 0.01).toPrecision(4);
+  const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(4);
+
+  const animationString = `
+      ${shiftNumber(beforePauseStartPercentage, 0, 100)}% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      ${shiftNumber(pauseStartPercentage, 0, 100)}% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      ${shiftNumber(pauseStopPercentage, 0, 100)}% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      ${shiftNumber(afterPauseStopPercentage, 0, 100)}% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    `;
+
+  // console.log('index', index);
+  // console.log('cycle', cycleNumber);
+  // console.log(animationString);
+
+  const animation = keyframes`${animationString}`;
+
+  return `${animation} ${totalDuration}s ease infinite`;
+};
+
 const expandAnimation = (angle, circleSize) =>
   keyframes`
   0% {
@@ -129,7 +189,6 @@ const tokenList = [
 const StyledWrapper = styled.div`
   width: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
   height: ${({ circleSize, itemSize }) => `${circleSize + itemSize * 2}px`};
-  ${'' /* overflow: hidden; */};
   position: relative;
   display: flex;
   justify-content: center;
@@ -141,8 +200,8 @@ const StyledWrapper = styled.div`
 
 const STokenDescription = styled.div`
   transition: ${transitions.base};
-  opacity: 0;
   z-index: -1;
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
   position: absolute;
@@ -203,6 +262,17 @@ const STokenLogo = styled.div`
       translate(calc(${circleSize}px / 2))
       rotate(${-angle}deg)`;
   }};
+  ${STokenDescription} {
+    animation: ${({ index, popupShift, totalItems, pauseDuration, spinDuration }) =>
+      generatePopupAnimation({
+        index,
+        popupShift,
+        totalItems,
+        pauseDuration,
+        spinDuration
+      })};
+  }
+
   &:hover {
     z-index: 10;
   }
@@ -216,9 +286,9 @@ const STokenContent = styled.div`
     height: 100%;
   }
   &:hover ${STokenDescription} {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 `;
 
@@ -233,10 +303,10 @@ const SOuterCircle = styled.div`
   width: ${({ circleSize }) => `${circleSize}px`};
   height: ${({ circleSize }) => `${circleSize}px`};
   animation: ${({ totalItems, pauseDuration, spinDuration }) =>
-    generateAnimation({ totalItems, pauseDuration, spinDuration, clockwise: true })};
+    generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: true })};
   ${STokenContent} {
     animation: ${({ totalItems, pauseDuration, spinDuration }) =>
-      generateAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
+      generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
   }
   &:hover {
     z-index: 10;
@@ -258,6 +328,9 @@ class TokenAnimation extends Component {
               index={index}
               totalItems={arr.length}
               circleSize={this.props.circleSize}
+              popupShift={this.props.popupShift}
+              pauseDuration={this.props.pauseDuration}
+              spinDuration={this.props.spinDuration}
               itemSize={this.props.itemSize}
             >
               <STokenContent>
@@ -293,6 +366,7 @@ TokenAnimation.defaultProps = {
   circleSize: 450,
   itemSize: 50,
   tokens: tokenList,
+  popupShift: 4,
   pauseDuration: 3,
   spinDuration: 1
 };
