@@ -110,9 +110,56 @@ const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, 
       }
     `;
 
-  // console.log('index', index);
-  // console.log('cycle', cycleNumber);
-  // console.log(animationString);
+  const animation = keyframes`${animationString}`;
+
+  return `${animation} ${totalDuration}s ease infinite`;
+};
+
+const generateZIndexAnimation = ({
+  index,
+  popupShift,
+  totalItems,
+  pauseDuration,
+  spinDuration
+}) => {
+  const cycleDuration = pauseDuration + spinDuration;
+  const totalDuration = cycleDuration * totalItems;
+  const totalPercentage = 100;
+  const cyclePercentage = totalPercentage / totalItems;
+  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
+
+  function shiftNumber(number, shift, max) {
+    const inc = number + shift;
+    if (inc < 1) {
+      return max - Math.abs(inc);
+    } else if (inc > max) {
+      return inc - max;
+    }
+    return inc;
+  }
+
+  const cycleNumber = shiftNumber(index + 1, popupShift, totalItems);
+  const indexedCyclePercentage = cyclePercentage - (cycleNumber - 1) * cyclePercentage;
+
+  const pauseStartPercentage = Number(indexedCyclePercentage - pausePercentage).toPrecision(4);
+  const beforePauseStartPercentage = Number(pauseStartPercentage - 0.01).toPrecision(4);
+  const pauseStopPercentage = Number(indexedCyclePercentage - 0.01).toPrecision(4);
+  const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(4);
+
+  const animationString = `
+      ${shiftNumber(beforePauseStartPercentage, 0, 100)}% {
+        z-index: 0;
+      }
+      ${shiftNumber(pauseStartPercentage, 0, 100)}% {
+        z-index: 10;
+      }
+      ${shiftNumber(pauseStopPercentage, 0, 100)}% {
+        z-index: 10;
+      }
+      ${shiftNumber(afterPauseStopPercentage, 0, 100)}% {
+        z-index: 0;
+      }
+    `;
 
   const animation = keyframes`${animationString}`;
 
@@ -272,9 +319,17 @@ const STokenLogo = styled.div`
         spinDuration
       })};
   }
-
+  animation: ${({ index, popupShift, totalItems, pauseDuration, spinDuration }) =>
+    generateZIndexAnimation({
+      index,
+      popupShift,
+      totalItems,
+      pauseDuration,
+      spinDuration
+    })};
   &:hover {
-    z-index: 10;
+    animation: none !important;
+    z-index: 10 !important;
   }
 `;
 
@@ -285,7 +340,11 @@ const STokenContent = styled.div`
     width: 100%;
     height: 100%;
   }
+  &:hover {
+    animation-play-state: paused !important;
+  }
   &:hover ${STokenDescription} {
+    animation: none !important;
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -309,7 +368,11 @@ const SOuterCircle = styled.div`
       generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
   }
   &:hover {
-    z-index: 10;
+    animation-play-state: paused !important;
+    z-index: 10 !important;
+  }
+  &:hover * {
+    animation-play-state: paused !important;
   }
 `;
 
