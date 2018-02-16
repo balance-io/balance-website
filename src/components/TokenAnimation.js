@@ -193,7 +193,7 @@ const tokenList = [
     name: 'Golem',
     logo: golem,
     description: 'World computer',
-    url: 'https://golem.io'
+    url: 'https://golem.network'
   },
   {
     name: 'Gnosis',
@@ -327,9 +327,11 @@ const STokenLogo = styled.div`
       pauseDuration,
       spinDuration
     })};
-  &:hover {
-    animation: none !important;
-    z-index: 10 !important;
+  @media (hover: hover) {
+    &:hover {
+      animation: none !important;
+      z-index: 10 !important;
+    }
   }
 `;
 
@@ -340,14 +342,16 @@ const STokenContent = styled.div`
     width: 100%;
     height: 100%;
   }
-  &:hover {
-    animation-play-state: paused !important;
-  }
-  &:hover ${STokenDescription} {
-    animation: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+  @media (hover: hover) {
+    &:hover {
+      animation-play-state: paused !important;
+    }
+    &:hover ${STokenDescription} {
+      animation: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
   }
 `;
 
@@ -367,12 +371,14 @@ const SOuterCircle = styled.div`
     animation: ${({ totalItems, pauseDuration, spinDuration }) =>
       generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
   }
-  &:hover {
-    animation-play-state: paused !important;
-    z-index: 10 !important;
-  }
-  &:hover * {
-    animation-play-state: paused !important;
+  @media (hover: hover) {
+    &:hover {
+      animation-play-state: paused !important;
+      z-index: 10 !important;
+    }
+    &:hover * {
+      animation-play-state: paused !important;
+    }
   }
 `;
 
@@ -404,7 +410,9 @@ class TokenAnimation extends Component {
                     <p>{token.description}</p>
                   </div>
                   <div>
-                    <a href={token.url}>{token.url.replace(/(https?:\/\/)/g, '')}</a>
+                    <a href={token.url} rel="noreferrer noopener" target="_blank">
+                      {token.url.replace(/(https?:\/\/)/g, '')}
+                    </a>
                   </div>
                 </STokenDescription>
               </STokenContent>
