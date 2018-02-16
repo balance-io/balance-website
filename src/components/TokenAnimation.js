@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import balanceCircleLogo from '../assets/balance-circle-logo.svg';
 import aragon from '../assets/tokens/aragon.svg';
 import augur from '../assets/tokens/augur.svg';
-import bat from '../assets/tokens/bat.svg';
+import zrx from '../assets/tokens/zrx.svg';
 import district0x from '../assets/tokens/district0x.svg';
 import gnosis from '../assets/tokens/gnosis.svg';
 import golem from '../assets/tokens/golem.svg';
@@ -115,57 +115,6 @@ const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, 
   return `${animation} ${totalDuration}s ease infinite`;
 };
 
-const generateZIndexAnimation = ({
-  index,
-  popupShift,
-  totalItems,
-  pauseDuration,
-  spinDuration
-}) => {
-  const cycleDuration = pauseDuration + spinDuration;
-  const totalDuration = cycleDuration * totalItems;
-  const totalPercentage = 100;
-  const cyclePercentage = totalPercentage / totalItems;
-  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
-
-  function shiftNumber(number, shift, max) {
-    const inc = number + shift;
-    if (inc < 1) {
-      return max - Math.abs(inc);
-    } else if (inc > max) {
-      return inc - max;
-    }
-    return inc;
-  }
-
-  const cycleNumber = shiftNumber(index + 1, popupShift, totalItems);
-  const indexedCyclePercentage = cyclePercentage - (cycleNumber - 1) * cyclePercentage;
-
-  const pauseStartPercentage = Number(indexedCyclePercentage - pausePercentage).toPrecision(4);
-  const beforePauseStartPercentage = Number(pauseStartPercentage - 0.01).toPrecision(4);
-  const pauseStopPercentage = Number(indexedCyclePercentage - 0.01).toPrecision(4);
-  const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(4);
-
-  const animationString = `
-      ${shiftNumber(beforePauseStartPercentage, 0, 100)}% {
-        z-index: 0;
-      }
-      ${shiftNumber(pauseStartPercentage, 0, 100)}% {
-        z-index: 10;
-      }
-      ${shiftNumber(pauseStopPercentage, 0, 100)}% {
-        z-index: 10;
-      }
-      ${shiftNumber(afterPauseStopPercentage, 0, 100)}% {
-        z-index: 0;
-      }
-    `;
-
-  const animation = keyframes`${animationString}`;
-
-  return `${animation} ${totalDuration}s ease infinite`;
-};
-
 const expandAnimation = (angle, circleSize) =>
   keyframes`
   0% {
@@ -208,10 +157,10 @@ const tokenList = [
     url: 'https://aragon.one'
   },
   {
-    name: 'Basic Attention Token',
-    logo: bat,
-    description: 'Fair advertising',
-    url: 'https://basicattentiontoken.org'
+    name: '0x Protocol',
+    logo: zrx,
+    description: 'Decentralized exchange',
+    url: 'https://0xproject.com'
   },
   {
     name: 'District 0x',
@@ -291,6 +240,27 @@ const STokenDescription = styled.div`
   }
 `;
 
+const STokenContent = styled.div`
+  width: 100%;
+  height: 100%;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+  @media (hover: hover) {
+    &:hover {
+      z-index: 10 !important;
+      animation-play-state: paused !important;
+    }
+    &:hover ${STokenDescription} {
+      animation: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  }
+`;
+
 const STokenLogo = styled.div`
   display: block;
   position: absolute;
@@ -318,40 +288,6 @@ const STokenLogo = styled.div`
         pauseDuration,
         spinDuration
       })};
-  }
-  animation: ${({ index, popupShift, totalItems, pauseDuration, spinDuration }) =>
-    generateZIndexAnimation({
-      index,
-      popupShift,
-      totalItems,
-      pauseDuration,
-      spinDuration
-    })};
-  @media (hover: hover) {
-    &:hover {
-      animation: none !important;
-      z-index: 10 !important;
-    }
-  }
-`;
-
-const STokenContent = styled.div`
-  width: 100%;
-  height: 100%;
-  & img {
-    width: 100%;
-    height: 100%;
-  }
-  @media (hover: hover) {
-    &:hover {
-      animation-play-state: paused !important;
-    }
-    &:hover ${STokenDescription} {
-      animation: none !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
   }
 `;
 
