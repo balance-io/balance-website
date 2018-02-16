@@ -1,5 +1,4 @@
 /future    https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848
-/blog      https://medium.com/balancemymoney
 
 # Redirect domain aliases to primary domain
 https://balancemy.money/* https://balance.io/:splat 301!
