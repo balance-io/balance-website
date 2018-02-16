@@ -36,23 +36,8 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({
-  children,
-  background,
-  maxWidth,
-  minHeight,
-  color,
-  fontColor,
-  overflow,
-  ...props
-}) => (
-  <SSection
-    minHeight={minHeight}
-    color={color}
-    fontColor={fontColor}
-    overflow={overflow}
-    {...props}
-  >
+const Section = ({ children, background, maxWidth, minHeight, color, fontColor, ...props }) => (
+  <SSection minHeight={minHeight} color={color} fontColor={fontColor} {...props}>
     <SBackground>{background}</SBackground>
     <SContent maxWidth={maxWidth} {...props}>
       {children}
@@ -66,8 +51,7 @@ Section.propTypes = {
   maxWidth: PropTypes.number,
   minHeight: PropTypes.number,
   color: PropTypes.string,
-  fontColor: PropTypes.string,
-  overflow: PropTypes.bool
+  fontColor: PropTypes.string
 };
 
 Section.defaultProps = {
@@ -75,8 +59,7 @@ Section.defaultProps = {
   maxWidth: 1000,
   minHeight: 0,
   color: null,
-  fontColor: colors.white,
-  overflow: true
+  fontColor: colors.white
 };
 
 export default Section;

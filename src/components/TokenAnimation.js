@@ -394,6 +394,7 @@ class TokenAnimation extends Component {
         >
           {this.props.tokens.map((token, index, arr) => (
             <STokenLogo
+              key={token.name}
               index={index}
               totalItems={arr.length}
               circleSize={this.props.circleSize}

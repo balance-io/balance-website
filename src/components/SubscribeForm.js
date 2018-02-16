@@ -192,7 +192,7 @@ class SubscribeForm extends Component {
 }
 
 SubscribeForm.propTypes = {
-  options: PropTypes.objectOf(PropTypes.string).isRequired,
+  options: PropTypes.object.isRequired,
   messages: PropTypes.objectOf(PropTypes.string)
 };
 
