@@ -9,6 +9,7 @@ const layoutTheme = {
   fontWeight: '400',
   linkColor: colors.lightBlue,
   linkHover: colors.lightBlue,
+  backgroundColor: colors.darkNavyBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
   logoColor: colors.lightBlue,

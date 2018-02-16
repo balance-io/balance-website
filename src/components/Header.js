@@ -75,7 +75,7 @@ const SNavLinks = styled(Link)`
   }
 `;
 
-const SExternalLink = SNavLinks.withComponent('a');
+// const SExternalLink = SNavLinks.withComponent('a');
 
 class Header extends Component {
   state = {
@@ -103,18 +103,16 @@ class Header extends Component {
               <SLogo theme={theme} />
             </Link>
             <SNavList>
-              <SExternalLink
+              <SNavLinks
                 onClick={() => {
                   ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
                   this.hideNavReveal();
                 }}
-                href="https://medium.com/balancemymoney"
-                rel="noreferrer noopener"
-                target="_blank"
+                to="/blog"
               >
                 Blog
-              </SExternalLink>
-              <SExternalLink
+              </SNavLinks>
+              {/* <SExternalLink
                 onClick={() => {
                   ga('send', 'event', 'About', 'click', 'Header - click About');
                   this.hideNavReveal();
@@ -124,7 +122,7 @@ class Header extends Component {
                 target="_blank"
               >
                 About
-              </SExternalLink>
+              </SExternalLink> */}
             </SNavList>
           </SNav>
         </STopSection>

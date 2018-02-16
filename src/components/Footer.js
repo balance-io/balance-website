@@ -7,7 +7,8 @@ import { colors, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
-  background-color: rgb(${colors.darkNavyBlue});
+  background-color: ${({ theme }) =>
+    theme.backgroundColor ? `rgb(${theme.backgroundColor})` : 'transparent'};
 `;
 
 const SFooter = styled.footer`
@@ -24,7 +25,7 @@ const SFooter = styled.footer`
     color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ theme }) => `rgb(${theme.linkHover})`};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
 `;
 
@@ -80,7 +81,7 @@ const SCopyright = styled.p`
 `;
 
 const Footer = ({ theme, ...props }) => (
-  <SFooterWrapper>
+  <SFooterWrapper theme={theme}>
     <SFooter theme={theme} {...props}>
       <SFooterList>
         <SFooterLinks
