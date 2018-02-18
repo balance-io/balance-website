@@ -34,18 +34,22 @@ const SBackgroundImage = styled.div`
   }
 `;
 
+const SSection = styled(Section)`
+  @media screen and (${responsive.md.min}) {
+    min-height: calc(100vh - 68px);
+  }
+`;
+
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
   min-height: 700px;
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     flex-direction: column;
-    justify-content: center;
   }
   @media screen and (${responsive.md.max}) {
-    padding: 68px 0 0;
     min-height: calc(100vh - 68px);
+    padding: 68px 0 0;
   }
 `;
 
@@ -63,8 +67,6 @@ const SRight = styled(SFlex)`
     transform: translate3d(114px, 0, 0);
   }
   @media screen and (${responsive.md.max}) {
-    ${'' /* transform: none;
-    padding-top: 100px; */};
     display: none;
   }
   @media screen and (${responsive.sm.max}) {
@@ -202,7 +204,7 @@ class IndexPage extends Component {
     return (
       <div>
         <Header theme={layoutTheme} />
-        <Section
+        <SSection
           id={`balance-token`}
           minHeight={700}
           color={colors.navyBlue}
@@ -236,7 +238,7 @@ class IndexPage extends Component {
             <SAppPreviewTablet src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
           </SSectionWrapper>
           <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-        </Section>
+        </SSection>
         <Footer theme={layoutTheme} />
       </div>
     );
