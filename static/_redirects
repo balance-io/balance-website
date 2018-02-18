@@ -1,4 +1,15 @@
-/future    https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848
+/future         https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848
+/relay          /
+/appstories     /
+/macstories     /
+/support        /
+/terms          /
+/beta-download  /
+/press          /
+/privacy        /
+/download       /
+
+/About           /
 
 # Redirect domain aliases to primary domain
 https://balancemy.money/* https://balance.io/:splat 301!

@@ -7,21 +7,13 @@ module.exports = {
     keywords: `blockchain, tokens, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
     twitterUsername: '@balancemymoney',
-    facebookId: '1748891795369317',
-    campaigns: ['relay', 'appstories', 'macstories']
+    facebookId: '1748891795369317'
   },
   plugins: [
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-77954108-1'
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `legacy`,
-        path: `${__dirname}/src/legacy`
       }
     },
     {
