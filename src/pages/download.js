@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Page from '../templates/page';
+import Page from '../layouts/page';
 import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive } from '../styles';
 

@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       result.data.site.siteMetadata.campaigns.map(name => {
         createPage({
           path: name,
-          component: path.resolve(`./src/templates/campaign.js`),
+          component: path.resolve(`./src/layouts/campaign.js`),
           context: {
             slug: name
           }
@@ -59,7 +59,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         if (node.fields) {
           createPage({
             path: node.fields.slug,
-            component: path.resolve(`./src/templates/legacy.js`),
+            component: path.resolve(`./src/layouts/legacy.js`),
             context: {
               slug: node.fields.slug
             }
@@ -70,7 +70,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         if (node.slug) {
           createPage({
             path: `blog/${node.slug}`,
-            component: path.resolve(`./src/templates/post.js`),
+            component: path.resolve(`./src/layouts/post.js`),
             context: {
               slug: node.slug
             }

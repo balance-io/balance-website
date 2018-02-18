@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from '../templates/page';
+import Page from '../layouts/page';
 
 const NotFound = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
