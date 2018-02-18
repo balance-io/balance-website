@@ -222,11 +222,28 @@ class IndexPage extends Component {
                 <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
                 <STitle>A place for your tokens</STitle>
                 <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
-                <STagline>A wallet that supports <a href="https://hackernoon.com/erc20-tokens-b3b50c95ad08" target="_blank" rel="noreferrer noopener">ERC-20</a> & <a href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24" target="_blank" rel="noreferrer noopener">ERC-721</a>.</STagline>
-                <SSubTitle>
-                  Want to get into the private beta?
-                </SSubTitle>
+                <STagline>
+                  A wallet that supports{' '}
+                  <a
+                    href="https://hackernoon.com/erc20-tokens-b3b50c95ad08"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    ERC-20
+                  </a>{' '}
+                  &{' '}
+                  <a
+                    href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    ERC-721
+                  </a>.
+                </STagline>
+                <SSubTitle>Want to get into the private beta?</SSubTitle>
                 <SViralLoops
+                  type="button"
+                  className="vrlps-trigger"
                   data-toggle="modal"
                   data-target="#vl_popup"
                   onClick={() => VL.openModal()}
