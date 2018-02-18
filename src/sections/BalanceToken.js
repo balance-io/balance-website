@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
 import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
+import { mailchimpMemberCount } from '../utils/api';
 import { colors, responsive } from '../styles';
 
 const SBackgroundImage = styled.div`
@@ -138,29 +139,44 @@ const SViralLoops = styled.div`
   display: flex;
   padding: 10px 0;
 `;
-const BalanceToken = () => (
-  <Section
-    id={`balance-token`}
-    minHeight={700}
-    color={colors.navyBlue}
-    background={<SBackgroundImage />}
-  >
-    <SSectionWrapper>
-      <SFlex>
-        <SContainer>
-          <SAppIcon />
-          <STitle>A place for your tokens</STitle>
-          <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
-          <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
-          <SSubTitle>2,530 are on the waitlist. Want to join?</SSubTitle>
-          <SViralLoops data-vl-widget="popupTrigger" />
-        </SContainer>
-      </SFlex>
-      <SRight>
-        <TokenAnimation />
-      </SRight>
-    </SSectionWrapper>
-  </Section>
-);
+
+class BalanceToken extends Component {
+  state = {
+    memberCount: ''
+  };
+  componentWillMount() {
+    mailchimpMemberCount()
+      .then(({ data }) => this.setState({ memberCount: data }))
+      .catch(error => console.error(error));
+  }
+  render = () => (
+    <Section
+      id={`balance-token`}
+      minHeight={700}
+      color={colors.navyBlue}
+      background={<SBackgroundImage />}
+    >
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <SAppIcon />
+            <STitle>A place for your tokens</STitle>
+            <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
+            <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
+            <SSubTitle>
+              {this.state.memberCount
+                ? `${this.state.memberCount} are on the waitlist. Want to join?`
+                : `Want to join?`}
+            </SSubTitle>
+            <SViralLoops data-vl-widget="popupTrigger" />
+          </SContainer>
+        </SFlex>
+        <SRight>
+          <TokenAnimation />
+        </SRight>
+      </SSectionWrapper>
+    </Section>
+  );
+}
 
 export default BalanceToken;
