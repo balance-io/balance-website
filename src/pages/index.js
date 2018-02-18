@@ -58,6 +58,9 @@ const SFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (${responsive.sm.max}) {
+    align-items: flex-start;
+  }
 `;
 
 const SRight = styled(SFlex)`
