@@ -9,7 +9,6 @@ const SSection = styled.section`
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 0)};
   background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
   display: flex;
-  align-items: center;
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${fontColor})`};
   position: relative;

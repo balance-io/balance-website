@@ -42,7 +42,7 @@ const SSectionWrapper = styled.div`
   @media screen and (${responsive.md.max}) {
     padding: 68px 34px 80px;
   }
-  @media screen and (${responsive.short.max}) {
+  @media screen and (${responsive.short.max}) and (${responsive.sm.max}) {
     align-items: flex-start;
   }
 `;
