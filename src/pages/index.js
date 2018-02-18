@@ -1,133 +1,243 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import BalanceSubscribe from '../sections/BalanceSubscribe';
-import BalanceLaunch from '../sections/BalanceLaunch';
-import BalanceIOS from '../sections/BalanceIOS';
-import { colors, responsive } from '../styles';
+import Footer from '../components/Footer';
+import Section from '../components/Section';
+import TokenAnimation from '../components/TokenAnimation';
+import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
+import balanceTokenPreview from '../assets/balance-token-preview.png';
+import balanceTokenMobile from '../assets/balance-token-mobile.png';
+import { mailchimpMemberCount } from '../utils/api';
+import { colors, fonts, responsive } from '../styles';
 
-const SVideoContainer = styled.div`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  left: 0;
+const SBackgroundImage = styled.div`
+  position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  padding: 0 10%;
-  z-index: 1000;
-  cursor: pointer;
-  background: rgba(${colors.dark}, 0.3);
-  transition: opacity 0.225s cubic-bezier(0, 0, 0.2, 1);
-  opacity: ${({ show }) => (show ? 1 : 0)};
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
-  will-change: transform;
-  ${({ show }) =>
-    show &&
-    `
-    & > div {
-      transition: .225s cubic-bezier(0.19, 1, 0.22, 1);
-      transform: scale(1.0) translateY(0);
-    }
-  `};
+  width: 50vw;
+  height: 700px;
+  background-image: url(${balanceTokenTriangles});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media screen and (${responsive.xl.min}) {
+    top: 0;
+    right: calc((100vw - 1400px)*0.5);
+    width: 700px;
+  }
   @media screen and (${responsive.md.max}) {
-    padding: 0 10%;
+    width: 100vw;
+    height: 800px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
   }
 `;
 
-const SVideoWrapper = styled.div`
-  position: relative;
-  padding-bottom: 56.25%;
+const SSectionWrapper = styled.div`
   width: 100%;
-  margin: 0 auto;
-  height: 0;
-  will-change: transform;
-  background: #090c0f;
-  & iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 700px;
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    flex-direction: column;
+    justify-content: center;
   }
-  @media screen and (${responsive.sm.min}) {
-    & iframe:first-child {
-      display: block;
-    }
-    & iframe:nth-child(2) {
-      display: none;
-    }
+  @media screen and (${responsive.md.max}) {
+    padding: 68px 0 0;
+    min-height: calc(100vh - 68px);
+  }
+`;
+
+const SFlex = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SRight = styled(SFlex)`
+  position: relative;
+  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
+  @media screen and (${responsive.xl.min}) {
+    transform: translate3d(114px, 0, 0);
+  }
+  @media screen and (${responsive.md.max}) {
+    ${'' /* transform: none;
+    padding-top: 100px; */};
+    display: none;
   }
   @media screen and (${responsive.sm.max}) {
-    padding-bottom: 177.77%;
-    & iframe:first-child {
-      display: none;
+    display: none;
+  }
+`;
+
+const SContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media screen and (${responsive.sm.min}) {
+    max-width: 550px;
+  }
+  @media screen and (${responsive.md.max}) {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const STitle = styled.h1`
+  font-size: 2.5em;
+  letter-spacing: -0.25px;
+  margin: 10px 0;
+  @media screen and (${responsive.sm.max}) {
+    font-size: 8vw;
+    letter-spacing: -0.2px;
+  }
+`;
+
+const SSubTitle = styled.h2`
+  font-size: 1.4em;
+  letter-spacing: -0.25px;
+  font-weight: 400;
+  margin: 40px 0 10px;
+  @media screen and (${responsive.sm.max}) {
+    font-size: 4.5vw;
+    letter-spacing: -0.2px;
+    margin: 1em 0;
+  }
+`;
+
+const STagline = styled.p`
+  font-size: 1.25em;
+  color: rgb(${colors.lighterBlue});
+  line-height: 1.4em;
+  @media screen and (${responsive.sm.max}) {
+    font-size: 4vw;
+    line-height: 1.5em;
+    &:first-of-type {
+      margin-top: 1em;
     }
-    & iframe:nth-child(2) {
-      display: block;
+  }
+`;
+
+const SViralLoops = styled.button`
+  display: block;
+  width: 175px;
+  margin: 10px 0;
+  padding: 1em 1.8em;
+  font-size: ${fonts.medium};
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 153, 255);
+  border-radius: 4px;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8 !important;
     }
+  }
+`;
+
+const STokenMobile = styled.img`
+  display: none;
+  width: 100vw;
+  margin: 0;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+  }
+`;
+
+const SAppPreview = styled.img`
+  width: 100%;
+  margin-bottom: 68px;
+  @media screen and (${responsive.md.max}) {
+    ${'' /* padding: 0 34px; */};
+    display: none;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
+`;
+
+const SAppPreviewTablet = styled.img`
+  display: none;
+  width: 100%;
+  margin: 68px 0;
+  padding-top: 34px;
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    display: block;
+  }
+`;
+
+const SAppPreviewMobile = styled.img`
+  display: none;
+  width: 100vw;
+  margin: 24px 0;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
   }
 `;
 
 const layoutTheme = {
   fontWeight: '400',
-  linkColor: colors.lightBlue,
-  linkHover: colors.lightBlue,
+  linkColor: colors.lightGrey,
+  linkHover: colors.lightGrey,
+  backgroundColor: colors.darkNavyBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
-  logoColor: colors.lightBlue,
-  logoHover: colors.lightBlue
+  logoColor: colors.lightGrey,
+  logoHover: colors.lightGrey
 };
 
 class IndexPage extends Component {
   state = {
-    showVideo: false
+    memberCount: ''
   };
-  toggleVideo = () => {
-    const action = this.state.showVideo ? 'pause' : 'play';
-    this.setState({ showVideo: !this.state.showVideo });
-    let iframe;
-    let viewport;
-    if (typeof window !== 'undefined') {
-      viewport = window.innerWidth > 640 ? 'Desktop' : 'Mobile';
-      iframe = window.innerWidth > 640 ? this.desktopIframe : this.mobileIframe;
-    }
-    ga('send', 'event', 'Video', action, `Homepage - ${action} Video [${viewport}]`);
-    iframe.contentWindow.postMessage(`{"event":"command","func":"${action}Video","args":""}`, '*');
-  };
+  componentWillMount() {
+    mailchimpMemberCount()
+      .then(({ data }) => this.setState({ memberCount: data }))
+      .catch(error => console.error(error));
+  }
   render = () => {
-    const desktopIframe =
-      'https://www.youtube.com/embed/05w-S5gY0Y4?enablejsapi=1&showinfo=0&rel=0&color=white';
-    const mobileIframe =
-      'https://www.youtube.com/embed/c4UGoACmhUE?enablejsapi=1&showinfo=0&rel=0&color=white';
     return (
       <div>
         <Header theme={layoutTheme} />
-        <BalanceLaunch />
-        <BalanceIOS />
-        <BalanceSubscribe toggleVideo={this.toggleVideo} />
-        <SVideoContainer show={this.state.showVideo} onClick={this.toggleVideo}>
-          <SVideoWrapper>
-            <iframe
-              ref={c => (this.desktopIframe = c)}
-              title="wefunder-youtube"
-              src={desktopIframe}
-              allowFullScreen
-              frameBorder="0"
-            />
-            <iframe
-              ref={c => (this.mobileIframe = c)}
-              title="wefunder-youtube"
-              src={mobileIframe}
-              allowFullScreen
-              frameBorder="0"
-            />
-          </SVideoWrapper>
-        </SVideoContainer>
+        <Section
+          id={`balance-token`}
+          minHeight={700}
+          color={colors.navyBlue}
+          background={<SBackgroundImage />}
+        >
+          <SSectionWrapper>
+            <SFlex>
+              <SContainer>
+                <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
+                <STitle>A place for your tokens</STitle>
+                <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
+                <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
+                <SSubTitle>
+                  {this.state.memberCount
+                    ? `${this.state.memberCount} are on the waitlist. Want to join?`
+                    : `2945 are on the waitlist. Want to join?`}
+                </SSubTitle>
+                <SViralLoops
+                  data-toggle="modal"
+                  data-target="#vl_popup"
+                  onClick={() => VL.openModal()}
+                >
+                  Join the waitlist
+                </SViralLoops>
+                <SAppPreviewMobile src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+              </SContainer>
+            </SFlex>
+            <SRight>
+              <TokenAnimation />
+            </SRight>
+            <SAppPreviewTablet src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SSectionWrapper>
+          <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+        </Section>
+        <Footer theme={layoutTheme} />
       </div>
     );
   };

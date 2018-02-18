@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 import styled from 'styled-components';
-import { colors, responsive, transitions } from '../styles';
+import twitter from '../assets/twitter.svg';
+import github from '../assets/github.svg';
+import { colors, fonts, responsive, transitions } from '../styles';
+
+const SFooterWrapper = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) =>
+    theme.backgroundColor ? `rgb(${theme.backgroundColor})` : 'transparent'};
+`;
 
 const SFooter = styled.footer`
   width: 100%;
@@ -18,16 +25,22 @@ const SFooter = styled.footer`
     color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ theme }) => `rgb(${theme.linkHover})`};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
 `;
 
-const SFooterList = styled.ul`
-  float: left;
+const SFooterList = styled.div`
+  display: flex;
+  @media screen and (${responsive.sm.max}) {
+    & span {
+      display: none;
+    }
+  }
 `;
 
-const SFooterLinks = styled(Link)`
-  display: inline-block;
+const SFooterLinks = styled.a`
+  display: flex;
+  align-items: center;
   padding: 10px;
   transition: ${transitions.short};
   &:first-child {
@@ -38,6 +51,16 @@ const SFooterLinks = styled(Link)`
   }
 `;
 
+const SIconLink = styled.div`
+  width: 25px;
+  height: 25px;
+  background-color: ${({ color }) => `rgb(${color})`};
+  mask-image: ${({ icon }) => `url(${icon}) center no-repeat`};
+  -webkit-mask: ${({ icon }) => `url(${icon}) center no-repeat`};
+  margin-right: 10px;
+  mask-size: 100%;
+`;
+
 const SCopyright = styled.p`
   display: inline-block;
   float: right;
@@ -46,25 +69,35 @@ const SCopyright = styled.p`
   color: rgb(${colors.grey});
   transition: ${transitions.short};
   @media screen and (${responsive.sm.max}) {
-    & span {
-      display: none;
-    }
+    font-size: ${fonts.small};
   }
 `;
 
 const Footer = ({ theme, ...props }) => (
-  <SFooter theme={theme} {...props}>
-    <SFooterList>
-      <SFooterLinks to="/press">Press</SFooterLinks>
-      <SFooterLinks to="/privacy">Privacy</SFooterLinks>
-      <SFooterLinks to="/terms">Terms</SFooterLinks>
-    </SFooterList>
+  <SFooterWrapper theme={theme}>
+    <SFooter theme={theme} {...props}>
+      <SFooterList>
+        <SFooterLinks
+          href="https://twitter.com/balancemymoney"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <SIconLink icon={twitter} color={colors.twitter} />
+          <span>@balancemymoney</span>
+        </SFooterLinks>
+        <SFooterLinks
+          href="https://github.com/balancemymoney"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <SIconLink icon={github} color={colors.lightGrey} />
+          <span>@balancemymoney</span>
+        </SFooterLinks>
+      </SFooterList>
 
-    <SCopyright // eslint-disable-line
-    >
-      © 2018<span> Balanced Software Inc.</span>
-    </SCopyright>
-  </SFooter>
+      <SCopyright>@ Balanced Software Inc.</SCopyright>
+    </SFooter>
+  </SFooterWrapper>
 );
 
 Footer.propTypes = {

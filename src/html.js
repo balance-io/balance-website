@@ -10,8 +10,18 @@ class Html extends React.Component {
           <meta charSet="utf-8" />
           <meta name="referrer" content="origin" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+          <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#26394d" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <meta name="msapplication-TileColor" content="#2b5797" />
+          <meta name="theme-color" content="#ffffff" />
 
           {headComponents}
 
@@ -19,6 +29,7 @@ class Html extends React.Component {
           <script type="text/javascript" src="/intercom.js" />
           <script type="text/javascript" src="/mailchimpTracking.js" />
           <script type="text/javascript" src="/mobileHelper.js" />
+          <script type="text/javascript" src="/viralLoops.js" />
         </head>
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />

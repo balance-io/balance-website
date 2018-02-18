@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import jsonp from 'jsonp';
-import emailIcon from '../assets/email-icon.svg';
+import emailIcon from '../assets/mail.svg';
 import { fonts, colors, responsive, transitions } from '../styles';
 
 const SFormWrapper = styled.div`
   position: relative;
   margin-bottom: 17px;
+  width: 100%;
+  max-width: 420px;
 `;
 
 const SMessage = styled.p`
@@ -31,20 +33,16 @@ const StyledSubmit = styled.button`
   border-style: none;
   border: none;
   font-size: ${fonts.large};
-  padding: 6px 14px;
   background: none;
+  background: rgb(${colors.dark});
   color: rgb(${colors.white});
-  border: 2px solid rgb(${colors.white});
+  border: 2px solid rgb(${colors.dark});
+  border-radius: 4px;
   position: absolute;
-  border-radius: 8px;
-  top: 64px;
+  padding: 10px 14px;
+  margin: 4px;
   right: 0;
-  @media screen and (${responsive.md.min}) {
-    top: auto;
-    right: auto;
-    padding: 18px 24px;
-    margin: 0 8px;
-  }
+  top: 0;
 `;
 
 const SForm = styled.form`
@@ -52,11 +50,11 @@ const SForm = styled.form`
     outline: none;
     margin: 0;
     font-size: ${fonts.large};
-    padding: 18px 16px;
-    width: 360px;
-    border-radius: 10px;
-    background: rgb(${colors.blue});
-    color: rgb(${colors.white});
+    padding: 15px;
+    width: 100%;
+    border-radius: 4px;
+    background: rgb(${colors.white});
+    color: rgb(${colors.dark});
     padding-left: 54px;
     border: none;
     border-style: none;
@@ -69,7 +67,7 @@ const SForm = styled.form`
     }
   }
   & input::placeholder {
-    color: rgba(${colors.white}, 0.5);
+    color: rgba(${colors.dark}, 0.5);
   }
   &::before {
     content: '';
@@ -78,9 +76,7 @@ const SForm = styled.form`
     -webkit-mask: url(${emailIcon}) no-repeat;
     mask-size: contain;
     -webkit-mask-size: contain;
-    background: rgb(${colors.white});
-    background: ${({ success }) =>
-      success ? `rgb(${colors.brightBlue})` : `rgb(${colors.white})`};
+    background: rgb(${colors.brightBlue});
     position: absolute;
     height: 20px;
     width: 20px;
@@ -180,8 +176,7 @@ class SubscribeForm extends Component {
             required
             placeholder={messages.inputPlaceholder}
           />
-          {!this.state.status &&
-            this.state.input && <StyledSubmit type="submit">Send</StyledSubmit>}
+          {!this.state.status && <StyledSubmit type="submit">Send</StyledSubmit>}
           {this.state.status === 'sending' && (
             <SMessage color={colors.white}>{messages.sending}</SMessage>
           )}
@@ -197,13 +192,13 @@ class SubscribeForm extends Component {
 }
 
 SubscribeForm.propTypes = {
-  options: PropTypes.objectOf(PropTypes.string).isRequired,
+  options: PropTypes.object.isRequired,
   messages: PropTypes.objectOf(PropTypes.string)
 };
 
 SubscribeForm.defaultProps = {
   messages: {
-    inputPlaceholder: 'type@your.email',
+    inputPlaceholder: 'your@email.com',
     sending: 'Sending...',
     success:
       'Thanks! Please click the link in the confirmation email to complete your subscription.',

@@ -27,3 +27,9 @@ export const downloadLatestRelease = (repo = 'balance-open') =>
       link.click();
       link.remove();
     });
+
+/**
+ * Downloads latest release from Github
+ * @returns {Promise}
+ */
+export const mailchimpMemberCount = () => webtask.get('/balance-mailchimp');

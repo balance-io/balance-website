@@ -9,7 +9,11 @@ import { getTimeagoString } from '../utils/helpers';
 import TrianglesLeft from '../assets/blog-triangles-left.svg';
 import TrianglesRight from '../assets/blog-triangles-right.svg';
 
-const SBackgroundTriangles = styled.div`@media screen and (${responsive.sm.max}) {display: none;}`;
+const SBackgroundTriangles = styled.div`
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
+`;
 
 const STrianglesLeft = styled.div`
   position: absolute;
@@ -105,7 +109,11 @@ const SPostContent = styled.div`
   & a {
     display: inline-block;
     font-weight: 400;
-    background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.75) 50%, rgba(51, 51, 51, 0) 50%);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(51, 51, 51, 0.75) 50%,
+      rgba(51, 51, 51, 0) 50%
+    );
     background-repeat: repeat-x;
     background-size: 2px 0.1em;
     background-position: 0 1.25em;
@@ -117,6 +125,7 @@ const SPostContent = styled.div`
 `;
 
 const layoutTheme = {
+  hideIcon: true,
   fontWeight: '400',
   linkColor: colors.green,
   linkHover: colors.dark,
