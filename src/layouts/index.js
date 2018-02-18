@@ -46,12 +46,12 @@ const TemplateWrapper = ({ children, location, data }) => {
           { name: 'twitter:site', content: twitterUsername },
           { name: 'twitter:title', content: title },
           { name: 'twitter:description', content: description },
-          { name: 'twitter:img:src', content: `${url}/${socialCard}` },
+          { name: 'twitter:img:src', content: `/${socialCard}` },
 
           { name: 'og:title', content: title },
           { name: 'og:type', content: 'website' },
           { name: 'og:url', content: url },
-          { name: 'og:image', content: `${url}/${socialCard}` },
+          { name: 'og:image', content: `/${socialCard}` },
           { name: 'og:description', content: description },
 
           { name: 'og:site_name', content: title },
