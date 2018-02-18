@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import SubscribeForm from '../components/SubscribeForm';
 import TokenAnimation from '../components/TokenAnimation';
 import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
@@ -21,11 +20,9 @@ const SBackgroundImage = styled.div`
     top: 0;
     right: calc((100vw - 1400px)*0.5);
     width: 700px;
-    height: 700px;
   }
   @media screen and (${responsive.md.max}) {
     width: 100vw;
-    height: 800px;
   }
   @media screen and (${responsive.sm.max}) {
     display: none;
@@ -137,17 +134,10 @@ const STagline = styled.p`
   }
 `;
 
-const subscribeOptions = {
-  server: 'money.us11',
-  userId: 'a3f87e208a9f9896949b4f336',
-  listId: '38021a64b6',
-  origin: '',
-  callback: (error, result) => {
-    if (error) return;
-    ga('send', 'event', 'Mailchimp', 'subscribe', `Homepage - subscribe ${result.email}`);
-  }
-};
-
+const SViralLoops = styled.div`
+  display: flex;
+  padding: 10px 0;
+`;
 const BalanceToken = () => (
   <Section
     id={`balance-token`}
@@ -163,7 +153,7 @@ const BalanceToken = () => (
           <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
           <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
           <SSubTitle>2,530 are on the waitlist. Want to join?</SSubTitle>
-          <SubscribeForm options={subscribeOptions} />
+          <SViralLoops data-vl-widget="popupTrigger" />
         </SContainer>
       </SFlex>
       <SRight>
