@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 import Section from '../components/Section';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import blogTriangles from '../assets/blog-directory-triangles.svg';
 import mediumLogo from '../assets/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
@@ -13,21 +12,6 @@ import { ellipseText, getTimeagoString } from '../utils/helpers';
 const SBlog = styled(Section)`
   padding: 48px 0 12px;
 `;
-
-const STriangles = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 132px;
-  height: 144px;
-  display: none;
-  pointer-events: none;
-  background: url(${blogTriangles}) no-repeat;
-  @media screen and (${responsive.sm.max}) {
-    display: block;
-  }
-`;
-
 const dividerColors = [
   '#A539BD',
   '#9251AC',
@@ -88,24 +72,24 @@ const SPostCards = styled.div`
   }
   ${({ i }) => {
     if (i === 0) {
-      return `	
-      margin-bottom: 32px;	
-      padding: 20px 22px 27px 22px;	
-      margin-left: -22px;	
-      width: calc(100% + 44px);	
-      background: #fff;	
-      border-radius: 5px;	
-      z-index: 5;	
-      box-shadow: 0 0 1px 0 rgba(49,49,93,.12), 0 5px 15px 0 rgba(49,49,93,.1), 0 15px 35px 0 rgba(49,49,93,0.15), 0 50px 100px 0 rgba(49,49,93,0.1);	
-      @media screen and (${responsive.sm.max}) {	
-        transform: scale(.96) rotate3d(0,0,0,0);	
-      	border-radius: 5px;	
-        padding: 20px 8% 27px;	
-      }	
-      &:active {	
-        transform: scale(.92) rotate3d(0,0,0,0);	
-    		border-radius: 6px;	
-      }	
+      return `
+      margin-bottom: 32px;
+      padding: 20px 22px 27px 22px;
+      margin-left: -22px;
+      width: calc(100% + 44px);
+      background: #fff;
+      border-radius: 5px;
+      z-index: 5;
+      box-shadow: 0 0 1px 0 rgba(49,49,93,.12), 0 5px 15px 0 rgba(49,49,93,.1), 0 15px 35px 0 rgba(49,49,93,0.15), 0 50px 100px 0 rgba(49,49,93,0.1);
+      @media screen and (${responsive.sm.max}) {
+        transform: scale(.96) rotate3d(0,0,0,0);
+      	border-radius: 5px;
+        padding: 20px 8% 27px;
+      }
+      &:active {
+        transform: scale(.92) rotate3d(0,0,0,0);
+    		border-radius: 6px;
+      }
       `;
     }
   }};
@@ -189,6 +173,7 @@ const mergePosts = (contentful, medium) => {
 };
 
 const layoutTheme = {
+  hideIcon: true,
   fontWeight: '400',
   linkColor: colors.dark,
   linkHover: colors.green,
@@ -207,7 +192,6 @@ const Blog = ({ data, errors }) => {
       <Helmet title={`${data.site.siteMetadata.title} Blog`} />
       <Header theme={layoutTheme} />
       <SBlog maxWidth={700} fontColor={colors.dark}>
-        <STriangles />
         {posts.map((post, idx) => {
           if (post.medium) {
             return (

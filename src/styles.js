@@ -1,8 +1,7 @@
 export const colors = {
   white: '255, 255, 255',
   black: '0, 0, 0',
-  lightGrey: '215, 236, 255',
-  lighterGrey: '216, 216, 216',
+  lightGrey: '216, 216, 216',
   grey: '187, 187, 187',
   softerGrey: '120, 127, 140',
   fiftyGrey: '128, 128, 128',
@@ -52,8 +51,8 @@ export const transitions = {
 
 export const responsive = {
   short: {
-    min: 'min-height: 639px',
-    max: 'max-height: 640px'
+    min: 'min-height: 479px',
+    max: 'max-height: 480px'
   },
   xxs: {
     min: 'min-width: 359px',

@@ -6,13 +6,13 @@ import { colors } from '../styles';
 
 const layoutTheme = {
   fontWeight: '400',
-  linkColor: colors.lightBlue,
-  linkHover: colors.lightBlue,
+  linkColor: colors.lightGrey,
+  linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
-  logoColor: colors.lightBlue,
-  logoHover: colors.lightBlue
+  logoColor: colors.lightGrey,
+  logoHover: colors.lightGrey
 };
 
 class IndexPage extends Component {

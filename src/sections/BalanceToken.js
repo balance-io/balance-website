@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
-import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
+import balanceTokenPreview from '../assets/balance-token-preview.png';
+import balanceTokenMobile from '../assets/balance-token-mobile.png';
 import { mailchimpMemberCount } from '../utils/api';
-import { colors, responsive } from '../styles';
+import { colors, fonts, responsive } from '../styles';
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -24,6 +25,7 @@ const SBackgroundImage = styled.div`
   }
   @media screen and (${responsive.md.max}) {
     width: 100vw;
+    height: 800px;
   }
   @media screen and (${responsive.sm.max}) {
     display: none;
@@ -35,20 +37,18 @@ const SSectionWrapper = styled.div`
   display: flex;
   align-items: center;
   min-height: 700px;
-  margin-bottom: calc(100vh - 768px);
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
   }
   @media screen and (${responsive.md.max}) {
-    padding: 68px 34px 80px;
-  }
-  @media screen and (${responsive.short.max}) and (${responsive.sm.max}) {
-    align-items: flex-start;
+    padding: 68px 0 0;
+    min-height: calc(100vh - 68px);
   }
 `;
 
 const SFlex = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,26 +61,12 @@ const SRight = styled(SFlex)`
     transform: translate3d(114px, 0, 0);
   }
   @media screen and (${responsive.md.max}) {
-    transform: none;
-    padding-top: 100px;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
-`;
-
-const SAppIcon = styled.div`
-  margin-bottom: 10px;
-  width: 60px;
-  height: 60px;
-  background: url(${balanceTokenIcon}) no-repeat;
-  background-size: 100% 100%;
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    ${'' /* transform: none;
+    padding-top: 100px; */};
     display: none;
   }
   @media screen and (${responsive.sm.max}) {
-    width: 40px;
-    height: 40px;
+    display: none;
   }
 `;
 
@@ -89,14 +75,10 @@ const SContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  opacity: ${({ hide }) => (hide ? 0 : 1)};
   @media screen and (${responsive.sm.min}) {
     max-width: 550px;
   }
   @media screen and (${responsive.md.max}) {
-    margin-top: 0;
-  }
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     align-items: center;
     text-align: center;
@@ -108,7 +90,7 @@ const STitle = styled.h1`
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.sm.max}) {
-    font-size: 1.85em;
+    font-size: 8vw;
     letter-spacing: -0.2px;
   }
 `;
@@ -119,8 +101,9 @@ const SSubTitle = styled.h2`
   font-weight: 400;
   margin: 40px 0 10px;
   @media screen and (${responsive.sm.max}) {
-    font-size: 1.1em;
+    font-size: 4.5vw;
     letter-spacing: -0.2px;
+    margin: 1em 0;
   }
 `;
 
@@ -129,17 +112,18 @@ const STagline = styled.p`
   color: rgb(${colors.lighterBlue});
   line-height: 1.4em;
   @media screen and (${responsive.sm.max}) {
-    margin-top: 1em;
-    font-size: 1em;
-    line-height: 1.2em;
+    font-size: 4vw;
+    line-height: 1.5em;
+    &:first-of-type {
+      margin-top: 1em;
+    }
   }
 `;
 
 const SViralLoops = styled.button`
-  width: 175px;
   margin: 10px 0;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 1em 1.8em;
+  font-size: ${fonts.medium};
   color: rgb(255, 255, 255);
   background-color: rgb(0, 153, 255);
   border-radius: 4px;
@@ -147,6 +131,45 @@ const SViralLoops = styled.button`
     &:hover {
       opacity: 0.8 !important;
     }
+  }
+`;
+
+const STokenMobile = styled.img`
+  display: none;
+  width: 100vw;
+  margin: 0;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+  }
+`;
+
+const SAppPreview = styled.img`
+  width: 100%;
+  margin-bottom: 68px;
+  @media screen and (${responsive.md.max}) {
+    ${'' /* padding: 0 34px; */};
+    display: none;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
+`;
+
+const SAppPreviewTablet = styled.img`
+  display: none;
+  width: 100%;
+  margin: 68px 0;
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    display: block;
+  }
+`;
+
+const SAppPreviewMobile = styled.img`
+  display: none;
+  width: 100vw;
+  margin: 24px 0;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
   }
 `;
 
@@ -169,7 +192,7 @@ class BalanceToken extends Component {
       <SSectionWrapper>
         <SFlex>
           <SContainer>
-            <SAppIcon />
+            <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
             <STitle>A place for your tokens</STitle>
             <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
             <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
@@ -181,12 +204,15 @@ class BalanceToken extends Component {
             <SViralLoops data-toggle="modal" data-target="#vl_popup" onClick={() => VL.openModal()}>
               Join the waitlist
             </SViralLoops>
+            <SAppPreviewMobile src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
           </SContainer>
         </SFlex>
         <SRight>
           <TokenAnimation />
         </SRight>
+        <SAppPreviewTablet src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
       </SSectionWrapper>
+      <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
     </Section>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import twitter from '../assets/twitter.svg';
 import github from '../assets/github.svg';
-import { colors, responsive, transitions } from '../styles';
+import { colors, fonts, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
@@ -51,23 +51,13 @@ const SFooterLinks = styled.a`
   }
 `;
 
-const SLogoTwitter = styled.div`
+const SIconLink = styled.div`
   width: 25px;
   height: 25px;
+  background-color: ${({ color }) => `rgb(${color})`};
+  mask-image: ${({ icon }) => `url(${icon}) center no-repeat`};
+  -webkit-mask: ${({ icon }) => `url(${icon}) center no-repeat`};
   margin-right: 10px;
-  background-color: rgb(${colors.twitter});
-  mask-image: url(${twitter}) center no-repeat;
-  -webkit-mask: url(${twitter}) center no-repeat;
-  mask-size: 100%;
-`;
-
-const SLogoGithub = styled.div`
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  background-color: rgb(${colors.lighterGrey});
-  mask-image: url(${github}) center no-repeat;
-  -webkit-mask: url(${github}) center no-repeat;
   mask-size: 100%;
 `;
 
@@ -78,6 +68,9 @@ const SCopyright = styled.p`
   font-weight: 400;
   color: rgb(${colors.grey});
   transition: ${transitions.short};
+  @media screen and (${responsive.sm.max}) {
+    font-size: ${fonts.small};
+  }
 `;
 
 const Footer = ({ theme, ...props }) => (
@@ -89,7 +82,7 @@ const Footer = ({ theme, ...props }) => (
           rel="noreferrer noopener"
           target="_blank"
         >
-          <SLogoTwitter />
+          <SIconLink icon={twitter} color={colors.twitter} />
           <span>@balancemymoney</span>
         </SFooterLinks>
         <SFooterLinks
@@ -97,14 +90,12 @@ const Footer = ({ theme, ...props }) => (
           rel="noreferrer noopener"
           target="_blank"
         >
-          <SLogoGithub />
+          <SIconLink icon={github} color={colors.lightGrey} />
           <span>@balancemymoney</span>
         </SFooterLinks>
       </SFooterList>
 
-      <SCopyright>
-        <span>@ Balanced Software Inc.</span>
-      </SCopyright>
+      <SCopyright>@ Balanced Software Inc.</SCopyright>
     </SFooter>
   </SFooterWrapper>
 );

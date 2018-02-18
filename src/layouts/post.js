@@ -125,6 +125,7 @@ const SPostContent = styled.div`
 `;
 
 const layoutTheme = {
+  hideIcon: true,
   fontWeight: '400',
   linkColor: colors.green,
   linkHover: colors.dark,
