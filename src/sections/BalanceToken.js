@@ -138,10 +138,16 @@ const STagline = styled.p`
 const SViralLoops = styled.button`
   width: 175px;
   margin: 10px 0;
+  padding: 12px 24px;
   font-size: 16px;
   color: rgb(255, 255, 255);
   background-color: rgb(0, 153, 255);
   border-radius: 4px;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8 !important;
+    }
+  }
 `;
 
 class BalanceToken extends Component {
@@ -172,12 +178,7 @@ class BalanceToken extends Component {
                 ? `${this.state.memberCount} are on the waitlist. Want to join?`
                 : `2945 are on the waitlist. Want to join?`}
             </SSubTitle>
-            <SViralLoops
-              data-toggle="modal"
-              data-target="#vl_popup"
-              onClick={() => VL.openModal()}
-              className="vl-reset-this vl-embedded-cta vrlps-trigger"
-            >
+            <SViralLoops data-toggle="modal" data-target="#vl_popup" onClick={() => VL.openModal()}>
               Join the waitlist
             </SViralLoops>
           </SContainer>
