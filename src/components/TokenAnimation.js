@@ -223,14 +223,14 @@ const STokenDescription = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 0 5px;
-    width: 130px;
+    width: 150px;
     & > p:first-of-type {
       font-weight: 700;
       padding-bottom: 0.2em;
       margin-top: -0.2em;
     }
     & > p:last-of-type {
-      font-size: ${fonts.tiny};
+      font-size: ${fonts.small};
     }
   }
   & > div:last-of-type {
