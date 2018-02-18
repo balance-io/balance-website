@@ -15,7 +15,7 @@ const Legacy = ({ data }) => {
 export default Legacy;
 
 export const query = graphql`
-  query LegacyQuery($slug: String!) {
+  query LegacyQuery($slug: String) {
     site {
       siteMetadata {
         title
