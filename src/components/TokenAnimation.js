@@ -10,7 +10,7 @@ import gnosis from '../assets/tokens/gnosis.svg';
 import golem from '../assets/tokens/golem.svg';
 import maker from '../assets/tokens/maker.svg';
 import melonport from '../assets/tokens/melonport.svg';
-import { colors, fonts, transitions, responsive } from '../styles';
+import { colors, fonts, transitions } from '../styles';
 
 const generateCycleAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise = true }) => {
   const items = (Array(totalItems).join('0') + '0').split('');
@@ -83,8 +83,8 @@ const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, 
   const indexedCyclePercentage = cyclePercentage - (cycleNumber - 1) * cyclePercentage;
 
   const pauseStartPercentage = Number(indexedCyclePercentage - pausePercentage).toPrecision(4);
-  const beforePauseStartPercentage = Number(pauseStartPercentage - 0.01).toPrecision(4);
-  const pauseStopPercentage = Number(indexedCyclePercentage - 0.01).toPrecision(4);
+  const beforePauseStartPercentage = Number(pauseStartPercentage - 1).toPrecision(4);
+  const pauseStopPercentage = Number(indexedCyclePercentage - 1).toPrecision(4);
   const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(4);
 
   const animationString = `
@@ -129,6 +129,12 @@ const expandAnimation = (angle, circleSize) =>
     translate(calc(${circleSize}px / 2))
     rotate(${-angle}deg)
   }
+`;
+
+const reverseZIndex = keyframes`
+  0% { z-index: 0; }
+  80% { z-index: -1; }
+  100% { z-index: -1; }
 `;
 
 const tokenList = [
@@ -192,7 +198,7 @@ const StyledWrapper = styled.div`
 `;
 
 const STokenDescription = styled.div`
-  transition: ${transitions.base};
+  transition: ${transitions.long};
   z-index: -1;
   opacity: 0;
   visibility: hidden;
@@ -237,6 +243,10 @@ const STokenDescription = styled.div`
   }
 `;
 
+const STokenDescriptionDuplicate = styled(STokenDescription)`
+  animation: none !important;
+`;
+
 const STokenContent = styled.div`
   width: 100%;
   height: 100%;
@@ -245,12 +255,7 @@ const STokenContent = styled.div`
     height: 100%;
   }
   @media (hover: hover) {
-    &:hover {
-      z-index: 10 !important;
-      animation-play-state: paused !important;
-    }
-    &:hover ${STokenDescription} {
-      animation: none !important;
+    &:hover ${STokenDescriptionDuplicate} {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
@@ -290,6 +295,8 @@ const STokenLogo = styled.div`
 
 const SInnerCircle = styled.img`
   position: absolute;
+  z-index: -1;
+  animation: ${reverseZIndex} 2s ease 1;
   width: ${({ circleSize }) => `${circleSize * 0.4}px`};
   height: ${({ circleSize }) => `${circleSize * 0.4}px`};
 `;
@@ -303,15 +310,6 @@ const SOuterCircle = styled.div`
   ${STokenContent} {
     animation: ${({ totalItems, pauseDuration, spinDuration }) =>
       generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
-  }
-  @media (hover: hover) {
-    &:hover {
-      animation-play-state: paused !important;
-      z-index: 10 !important;
-    }
-    &:hover * {
-      animation-play-state: paused !important;
-    }
   }
 `;
 
@@ -349,6 +347,17 @@ class TokenAnimation extends Component {
                     </a>
                   </div>
                 </STokenDescription>
+                <STokenDescriptionDuplicate>
+                  <div>
+                    <p>{token.name.toUpperCase()}</p>
+                    <p>{token.description}</p>
+                  </div>
+                  <div>
+                    <a href={token.url} rel="noreferrer noopener" target="_blank">
+                      {token.url.replace(/(https?:\/\/)/g, '')}
+                    </a>
+                  </div>
+                </STokenDescriptionDuplicate>
               </STokenContent>
             </STokenLogo>
           ))}
