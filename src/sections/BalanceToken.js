@@ -159,6 +159,7 @@ const SAppPreviewTablet = styled.img`
   display: none;
   width: 100%;
   margin: 68px 0;
+  padding-top: 34px;
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: block;
   }
