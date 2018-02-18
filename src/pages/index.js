@@ -115,12 +115,16 @@ const STagline = styled.p`
   font-size: 1.25em;
   color: rgb(${colors.lighterBlue});
   line-height: 1.4em;
+  & a {
+    color: rgb(${colors.blue});
+  }
   @media screen and (${responsive.sm.max}) {
     font-size: 4vw;
     line-height: 1.5em;
     &:first-of-type {
       margin-top: 1em;
     }
+
   }
 `;
 
@@ -216,11 +220,9 @@ class IndexPage extends Component {
                 <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
                 <STitle>A place for your tokens</STitle>
                 <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
-                <STagline>A wallet that supports ERC-20 & ERC-721.</STagline>
+                <STagline>A wallet that supports <a href="https://hackernoon.com/erc20-tokens-b3b50c95ad08">ERC-20</a> & <a href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24">ERC-721</a>.</STagline>
                 <SSubTitle>
-                  {this.state.memberCount
-                    ? `${this.state.memberCount} are on the waitlist. Want to join?`
-                    : `2945 are on the waitlist. Want to join?`}
+                  Want to get into the private beta?
                 </SSubTitle>
                 <SViralLoops
                   data-toggle="modal"
