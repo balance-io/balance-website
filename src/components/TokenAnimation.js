@@ -189,9 +189,6 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
 `;
 
 const STokenDescription = styled.div`

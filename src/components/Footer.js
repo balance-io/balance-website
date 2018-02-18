@@ -31,6 +31,11 @@ const SFooter = styled.footer`
 
 const SFooterList = styled.div`
   display: flex;
+  @media screen and (${responsive.sm.max}) {
+    & span {
+      display: none;
+    }
+  }
 `;
 
 const SFooterLinks = styled.a`
@@ -73,11 +78,6 @@ const SCopyright = styled.p`
   font-weight: 400;
   color: rgb(${colors.grey});
   transition: ${transitions.short};
-  @media screen and (${responsive.sm.max}) {
-    & span {
-      display: none;
-    }
-  }
 `;
 
 const Footer = ({ theme, ...props }) => (
@@ -90,7 +90,7 @@ const Footer = ({ theme, ...props }) => (
           target="_blank"
         >
           <SLogoTwitter />
-          @balancemymoney
+          <span>@balancemymoney</span>
         </SFooterLinks>
         <SFooterLinks
           href="https://github.com/balancemymoney"
@@ -98,7 +98,7 @@ const Footer = ({ theme, ...props }) => (
           target="_blank"
         >
           <SLogoGithub />
-          @balancemymoney
+          <span>@balancemymoney</span>
         </SFooterLinks>
       </SFooterList>
 

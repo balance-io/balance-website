@@ -24,6 +24,10 @@ const SBackgroundImage = styled.div`
     height: 700px;
   }
   @media screen and (${responsive.md.max}) {
+    width: 100vw;
+    height: 800px;
+  }
+  @media screen and (${responsive.sm.max}) {
     display: none;
   }
 `;
@@ -34,12 +38,36 @@ const SSectionWrapper = styled.div`
   align-items: center;
   min-height: 700px;
   margin-bottom: calc(100vh - 768px);
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     flex-direction: column;
     justify-content: center;
   }
-  @media screen and (${responsive.sm.max}) {
+  @media screen and (${responsive.md.max}) {
     padding: 68px 34px 80px;
+  }
+  @media screen and (${responsive.short.max}) {
+    align-items: flex-start;
+  }
+`;
+
+const SFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SRight = styled(SFlex)`
+  position: relative;
+  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
+  @media screen and (${responsive.xl.min}) {
+    transform: translate3d(114px, 0, 0);
+  }
+  @media screen and (${responsive.md.max}) {
+    transform: none;
+    padding-top: 100px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
   }
 `;
 
@@ -49,6 +77,9 @@ const SAppIcon = styled.div`
   height: 60px;
   background: url(${balanceTokenIcon}) no-repeat;
   background-size: 100% 100%;
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    display: none;
+  }
   @media screen and (${responsive.sm.max}) {
     width: 40px;
     height: 40px;
@@ -72,9 +103,6 @@ const SContainer = styled.div`
     align-items: center;
     text-align: center;
   }
-  @media screen and (${responsive.sm.max}) {
-    padding-top: 40px;
-  }
 `;
 
 const STitle = styled.h1`
@@ -94,7 +122,6 @@ const SSubTitle = styled.h2`
   margin: 40px 0 10px;
   @media screen and (${responsive.sm.max}) {
     font-size: 1.1em;
-    margin: 20px 0 10px;
     letter-spacing: -0.2px;
   }
 `;
@@ -104,24 +131,9 @@ const STagline = styled.p`
   color: rgb(${colors.lighterBlue});
   line-height: 1.4em;
   @media screen and (${responsive.sm.max}) {
-    margin-top: 12px;
+    margin-top: 1em;
     font-size: 1em;
     line-height: 1.2em;
-    color: rgba(${colors.white}, 0.8);
-  }
-`;
-
-const SFlex = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SRight = styled(SFlex)`
-  position: relative;
-  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
-  @media screen and (${responsive.xl.min}) {
-    transform: translate3d(114px, 0, 0);
   }
 `;
 
