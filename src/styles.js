@@ -1,14 +1,17 @@
 export const colors = {
   white: '255, 255, 255',
   black: '0, 0, 0',
-  lightGrey: '215, 236, 255',
+  lightGrey: '216, 216, 216',
   grey: '187, 187, 187',
   softerGrey: '120, 127, 140',
-  darkGrey: '128, 128, 128',
+  fiftyGrey: '128, 128, 128',
   mediumGrey: '108, 117, 128',
+  darkerGrey: '75, 83, 95',
   dark: '51, 51, 51',
   fadedBlue: '24, 32, 42',
+  darkNavyBlue: '12, 19, 28',
   navyBlue: '17, 23, 31',
+  fadedNavyBlue: '31, 43, 55',
   brightBlue: '58, 113, 242',
   blue: '58, 113, 242',
   fadedDarkBlue: '79, 98, 114',
@@ -21,10 +24,13 @@ export const colors = {
   darkGreen: '0, 163, 106',
   lighterGreen: '10, 255, 162',
   purple: '50, 50, 93',
-  red: '221, 69, 65'
+  red: '221, 69, 65',
+  facebook: '68, 93, 147',
+  twitter: '0, 162, 249'
 };
 
 export const fonts = {
+  tiny: '8px',
   small: '12px',
   medium: '16px',
   large: '18px',
@@ -44,6 +50,14 @@ export const transitions = {
 };
 
 export const responsive = {
+  short: {
+    min: 'min-height: 479px',
+    max: 'max-height: 480px'
+  },
+  xxs: {
+    min: 'min-width: 359px',
+    max: 'max-width: 360px'
+  },
   xs: {
     min: 'min-width: 479px',
     max: 'max-width: 480px'
@@ -59,6 +73,10 @@ export const responsive = {
   lg: {
     min: 'min-width: 1023px',
     max: 'max-width: 1024px'
+  },
+  xl: {
+    min: 'min-width: 1399px',
+    max: 'max-width: 1400px'
   }
 };
 

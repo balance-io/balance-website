@@ -5,28 +5,23 @@ import Helmet from 'react-helmet';
 import Section from '../components/Section';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import blogTriangles from '../assets/blog-directory-triangles.svg';
 import mediumLogo from '../assets/medium-logo.svg';
 import { colors, transitions, responsive } from '../styles';
 import { ellipseText, getTimeagoString } from '../utils/helpers';
 
-const SBlog = styled(Section)`padding: 48px 0 12px;`;
-
-const STriangles = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 132px;
-  height: 144px;
-  display: none;
-  pointer-events: none;
-  background: url(${blogTriangles}) no-repeat;
-  @media screen and (${responsive.sm.max}) {
-    display: block;
-  }
+const SBlog = styled(Section)`
+  padding: 48px 0 12px;
 `;
-
-const dividerColors = ['#A539BD', '#9251AC', '#32325D', '#3079C0', '#217AB7', '#00AEA5', '#517299', '#54606C'];
+const dividerColors = [
+  '#A539BD',
+  '#9251AC',
+  '#32325D',
+  '#3079C0',
+  '#217AB7',
+  '#00AEA5',
+  '#517299',
+  '#54606C'
+];
 
 const SDivider = styled.div`
   position: relative;
@@ -178,6 +173,7 @@ const mergePosts = (contentful, medium) => {
 };
 
 const layoutTheme = {
+  hideIcon: true,
   fontWeight: '400',
   linkColor: colors.dark,
   linkHover: colors.green,
@@ -196,7 +192,6 @@ const Blog = ({ data, errors }) => {
       <Helmet title={`${data.site.siteMetadata.title} Blog`} />
       <Header theme={layoutTheme} />
       <SBlog maxWidth={700} fontColor={colors.dark}>
-        <STriangles />
         {posts.map((post, idx) => {
           if (post.medium) {
             return (
@@ -205,10 +200,9 @@ const Blog = ({ data, errors }) => {
                   <SDivider i={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo i={idx}>{`${getTimeagoString(
-                    post.date,
-                    true
-                  )}  •  ${post.readingTime} min read`}</SPostInfo>
+                  <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${
+                    post.readingTime
+                  } min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>
                   <SPostSummary>
                     {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
@@ -224,10 +218,9 @@ const Blog = ({ data, errors }) => {
                   <SDivider i={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo i={idx}>{`${getTimeagoString(
-                    post.date,
-                    true
-                  )}  •  ${post.readingTime} min read`}</SPostInfo>
+                  <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${
+                    post.readingTime
+                  } min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>
                   <SPostSummary>
                     {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}

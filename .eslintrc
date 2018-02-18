@@ -6,6 +6,7 @@
   },
   "globals": {
     "ga": true,
+    "VL": true,
     "graphql": true,
     "document": true,
     "window": true,

@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
+import balanceTokenIcon from '../assets/balance-token-icon.svg';
+import square from '../assets/square.svg';
+// import circle from '../assets/circle.svg';
 import mobileLogo from '../assets/mobile-logo.svg';
-import mobileNavToggle from '../assets/mobile-nav-toggle.svg';
-import mobileNavBlog from '../assets/mobile-nav-blog.svg';
-import mobileNavAbout from '../assets/mobile-nav-about.svg';
-import mobileNavSupport from '../assets/mobile-nav-support.svg';
-import mobileNavClose from '../assets/mobile-nav-close.svg';
-import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive, transitions } from '../styles';
 
 const SHeader = styled.div`
@@ -31,9 +28,22 @@ const STopSection = styled.div`
   padding: 0 20px;
 `;
 
+const SLink = styled(Link)`
+  display: flex;
+`;
+
+const SAppIcon = styled.div`
+  width: 22px;
+  height: 22px;
+  display: ${({ hide }) => (hide ? 'none' : 'block')};
+  background: url(${balanceTokenIcon}) no-repeat;
+  background-size: 100% 100%;
+`;
+
 const SLogo = styled.div`
   width: 95px;
   height: 22px;
+  margin-left: 10px;
   mask-image: url(${mobileLogo}) center no-repeat;
   -webkit-mask: url(${mobileLogo}) center no-repeat;
   mask-size: 90%;
@@ -44,9 +54,6 @@ const SLogo = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     mask-size: 95%;
-  }
-  @media screen and (${responsive.md.min}) {
-    margin-left: -10px;
   }
 `;
 
@@ -60,25 +67,24 @@ const SNav = styled.nav`
 `;
 
 const SNavList = styled.ul`
-  margin: 0 auto;
-  position: absolute;
-  width: -moz-fit-content;
-  width: fit-content;
-  left: 0;
-  right: 0;
   cursor: default;
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
+  display: flex;
+  e: center;
 `;
 
 const SNavLinks = styled(Link)`
-  display: inline-block;
-  color: rgb(${colors.green});
+  display: flex;
+  align-items: center;
+  color: rgb(${colors.lightBlue});
   cursor: pointer;
-  padding: 10px 16px;
-  font-size: 1.1875em;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-weight: 500;
   transition: ${transitions.short};
+  & p {
+    line-height: 0;
+  }
   &:active {
     transform: scale(0.95) translate3d(0, 0, 0);
     transition: ${transitions.short};
@@ -86,241 +92,68 @@ const SNavLinks = styled(Link)`
   &:hover {
     color: rgb(${colors.dark});
   }
+`;
 
+const SIconLink = styled.div`
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-color: ${({ color }) => `rgb(${color})`};
+  mask-image: ${({ icon }) => `url(${icon}) center no-repeat`};
+  -webkit-mask: ${({ icon }) => `url(${icon}) center no-repeat`};
+  mask-size: 95%;
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
 `;
 
-const SMobileNavToggle = styled.div`
-  z-index: 200;
-  position: absolute;
-  display: none;
-  top: 17px;
-  right: 21px;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  mask-image: url(${mobileNavToggle}) center no-repeat;
-  -webkit-mask: url(${mobileNavToggle}) center no-repeat;
-  background-color: rgb(${colors.lightGrey});
-  cursor: pointer;
-  transition: ${transitions.base};
-  transform: scale(1);
-  background: ${({ theme }) => `rgba(${theme.mobileToggleColor}, ${theme.mobileToggleOpacity})`};
-  opacity: ${({ reveal }) => (reveal ? '0' : '1')};
-  transform: ${({ reveal }) =>
-    reveal
-      ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)'
-      : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
-  pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
-  @media (hover: hover) {
-    &:hover {
-      opacity: 0.5;
-      transition: ${transitions.short};
-    }
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: block;
-  }
-`;
+// const SExternalLink = SNavLinks.withComponent('a');
 
-const SMobileNav = styled.div`
-  z-index: 300;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 0 20px 20px;
-  padding: 20px;
-  top: 0;
-  right: 0;
-  width: 220px;
-  height: 220px;
-  border-radius: 0 0 0 10px;
-  background: rgb(${colors.white});
-  overflow: hidden;
-  box-shadow: 0 50px 100px rgba(${colors.purple}, 0.1), 0 15px 35px rgba(${colors.purple}, 0.15),
-    0 5px 15px rgba(${colors.black}, 0.1), 0 0 1px rgba(${colors.purple}, 0.12);
-  font-size: 1.125em;
-  font-weight: 500;
-  color: rgb(${colors.dark});
-  will-change: transform, opacity;
-  transition-property: transform, opacity;
-  opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
-  pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
-  transform-origin: 100% 0;
-  transition: ${transitions.base};
-`;
-
-const SMobileNavLinks = styled(Link)`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  opacity: 0;
-  cursor: pointer;
-  color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
-  transition: ${transitions.short};
-  opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
-  pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
-  & > span {
-    margin-left: 20px;
-  }
-  & > div {
-    margin-left: 20px;
-    background-color: ${({ selected }) =>
-      selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
-  }
-  &:active {
-    background: rgba(${colors.lightBlue}, 0.16);
-  }
-`;
-
-const SMobileNavIcons = styled.div`
-  height: 16px;
-  width: 16px;
-  margin-left: 20px;
-  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-`;
-
-const SMobileNavClose = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 73px;
-  height: 73px;
-  mask-image: url(${mobileNavClose}) no-repeat;
-  -webkit-mask: url(${mobileNavClose}) no-repeat;
-  mask-size: 16px 16px;
-  -webkit-mask-size: 16px 16px;
-  mask-position: 25px 28px;
-  -webkit-mask-position: 25px 28px;
-  background-color: rgb(${colors.dark});
-  transition: ${transitions.base};
-  transform: ${({ reveal }) => (reveal ? 'rotate(0)' : 'rotate(-20deg)')};
-  cursor: pointer;
-  &:active {
-    transform: scale(0.95);
-  }
-`;
-
-const SExternalLink = SNavLinks.withComponent('a');
-
-class Header extends Component {
-  state = {
-    navReveal: false
-  };
-  showNavReveal = () => {
-    this.setState({ navReveal: true });
-  };
-  hideNavReveal = () => {
-    this.setState({ navReveal: false });
-  };
-  onDownload = e => {
-    e.preventDefault();
-    downloadLatestRelease();
-    ga('send', 'event', 'Download', 'click', 'Header - click Download');
-  };
-  render = () => {
-    const { theme, ...props } = this.props;
-    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
-    return (
-      <SHeader theme={theme} {...props}>
-        <STopSection>
-          <SNav>
-            <Link
+const Header = ({ theme, ...props }) => (
+  <SHeader theme={theme} {...props}>
+    <STopSection>
+      <SNav>
+        <SLink
+          onClick={() => {
+            ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage');
+            this.hideNavReveal();
+          }}
+          to="/"
+        >
+          <SAppIcon hide={theme.hideIcon || false} />
+          <SLogo theme={theme} />
+        </SLink>
+        <SNavList>
+          <SNavLinks
+            onClick={() => {
+              ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
+              this.hideNavReveal();
+            }}
+            to="/blog"
+          >
+            <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
+            <p>Blog</p>
+          </SNavLinks>
+          {/* <SExternalLink
               onClick={() => {
-                ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage');
+                ga('send', 'event', 'About', 'click', 'Header - click About');
                 this.hideNavReveal();
               }}
-              to="/"
-            >
-              <SLogo theme={theme} />
-            </Link>
-            <SNavList>
-              <SNavLinks
-                onClick={() => {
-                  ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
-                  this.hideNavReveal();
-                }}
-                to="/blog"
-              >
-                Blog
-              </SNavLinks>
-              <SExternalLink
-                onClick={() => {
-                  ga('send', 'event', 'About', 'click', 'Header - click About');
-                  this.hideNavReveal();
-                }}
-                href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                About
-              </SExternalLink>
-              <SNavLinks
-                onClick={() => {
-                  ga('send', 'event', 'Support', 'click', 'Header - click Support');
-                  this.hideNavReveal();
-                }}
-                to="/support"
-              >
-                Support
-              </SNavLinks>
-            </SNavList>
-
-            <SExternalLink
-              href="https://github.com/balancemymoney/balance-open/releases/"
+              href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
               rel="noreferrer noopener"
               target="_blank"
-              onClick={this.onDownload}
             >
-              Download
-            </SExternalLink>
-          </SNav>
-
-          <SMobileNavToggle
-            reveal={this.state.navReveal}
-            onClick={this.showNavReveal}
-            theme={theme}
-          />
-          <SMobileNav reveal={this.state.navReveal}>
-            <SMobileNavLinks
-              selected={pathname.match(/\/blog\/?/g)}
-              reveal={this.state.navReveal}
-              onClick={this.hideNavReveal}
-              to="/blog"
-            >
-              <SMobileNavIcons icon={mobileNavBlog} />
-              <span>Blog</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks reveal={this.state.navReveal} onClick={this.hideNavReveal} to="/about">
-              <SMobileNavIcons icon={mobileNavAbout} />
-              <span>About</span>
-            </SMobileNavLinks>
-            <SMobileNavLinks
-              reveal={this.state.navReveal}
-              onClick={this.hideNavReveal}
-              to="/support"
-            >
-              <SMobileNavIcons icon={mobileNavSupport} />
-              <span>Support</span>
-            </SMobileNavLinks>
-            <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
-          </SMobileNav>
-        </STopSection>
-      </SHeader>
-    );
-  };
-}
+              <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
+              <p>About</p>
+            </SExternalLink> */}
+        </SNavList>
+      </SNav>
+    </STopSection>
+  </SHeader>
+);
 
 Header.propTypes = {
-  theme: PropTypes.objectOf(PropTypes.string).isRequired
+  theme: PropTypes.object.isRequired
 };
 
 export default Header;
