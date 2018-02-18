@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BalanceToken from '../sections/BalanceToken';
 import { colors } from '../styles';
-import { handleReferrals } from '../utils/firebase';
 
 const layoutTheme = {
   fontWeight: '400',
@@ -17,9 +16,6 @@ const layoutTheme = {
 };
 
 class IndexPage extends Component {
-  componentDidMount() {
-    handleReferrals();
-  }
   render = () => {
     return (
       <div>

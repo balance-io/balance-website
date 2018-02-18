@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Page from '../templates/page';
 import { downloadLatestRelease } from '../utils/api';
 import { colors, responsive } from '../styles';
-import { handleReferrals } from '../utils/firebase';
 
 const StyledPage = styled(Page)`
   min-height: calc(100vh - 136px);
@@ -91,9 +90,6 @@ const SButtonBeta = styled(SButton)`
 `;
 
 class Download extends Component {
-  componentDidMount() {
-    handleReferrals();
-  }
   onDownload = e => {
     e.preventDefault();
     downloadLatestRelease();
@@ -107,8 +103,8 @@ class Download extends Component {
           <div>
             <STitle>Balance - A secure automatic portfolio tracker</STitle>
             <STagline>
-              Securely connect to multiple exchanges to automatically keep track of your cryptocurrency and token balances, currently in Public Beta for
-              Mac and iOS.
+              Securely connect to multiple exchanges to automatically keep track of your
+              cryptocurrency and token balances, currently in Public Beta for Mac and iOS.
             </STagline>
             <SButtonDownload
               href="https://github.com/balancemymoney/balance-open/releases/"
