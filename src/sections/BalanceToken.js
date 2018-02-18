@@ -162,13 +162,3 @@ const BalanceToken = () => (
 );
 
 export default BalanceToken;
-
-export const query = graphql`
-  query BalanceTokenQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
