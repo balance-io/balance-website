@@ -121,6 +121,8 @@ const STagline = styled.p`
 `;
 
 const SViralLoops = styled.button`
+  display: block;
+  width: 175px;
   margin: 10px 0;
   padding: 1em 1.8em;
   font-size: ${fonts.medium};

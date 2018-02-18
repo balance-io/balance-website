@@ -120,7 +120,7 @@ const Header = ({ theme, ...props }) => (
           }}
           to="/"
         >
-          <SAppIcon hide={theme.hideIcon} />
+          <SAppIcon hide={theme.hideIcon || false} />
           <SLogo theme={theme} />
         </SLink>
         <SNavList>
@@ -153,7 +153,7 @@ const Header = ({ theme, ...props }) => (
 );
 
 Header.propTypes = {
-  theme: PropTypes.objectOf(PropTypes.string).isRequired
+  theme: PropTypes.object.isRequired
 };
 
 export default Header;
