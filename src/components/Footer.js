@@ -95,7 +95,7 @@ const Footer = ({ theme, ...props }) => (
         </SFooterLinks>
       </SFooterList>
 
-      <SCopyright>@ Balanced Software Inc.</SCopyright>
+      <SCopyright>© Balanced Software, Inc.</SCopyright>
     </SFooter>
   </SFooterWrapper>
 );
