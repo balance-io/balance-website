@@ -82,6 +82,7 @@ const SContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   @media screen and (${responsive.sm.min}) {
     max-width: 550px;
   }
@@ -132,7 +133,6 @@ const STagline = styled.p`
 
 const SViralLoops = styled.button`
   display: block;
-  width: 175px;
   margin: 10px 0;
   padding: 1em 1.8em;
   font-size: ${fonts.medium};
