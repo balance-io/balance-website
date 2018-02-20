@@ -382,7 +382,7 @@ TokenAnimation.defaultProps = {
   tokens: tokenList,
   popupShift: 4,
   pauseDuration: 3,
-  spinDuration: 1
+  spinDuration: 1.6
 };
 
 export default TokenAnimation;
