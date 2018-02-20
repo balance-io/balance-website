@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Balance`,
     baseUrl: `https://balance.io`,
-    homepageTitle: `Balance - An Ethereum wallet that supports ERC-20 tokens.`,
+    homepageTitle: `Balance - An Ethereum wallet that supports all ERC-20 tokens.`,
     description: `Store and secure all your ERC-20 tokens in one place`,
     keywords: `blockchain, tokens, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
