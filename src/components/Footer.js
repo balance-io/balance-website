@@ -86,12 +86,12 @@ const Footer = ({ theme, ...props }) => (
           <span>@balance_io</span>
         </SFooterLinks>
         <SFooterLinks
-          href="https://github.com/balancemymoney"
+          href="https://github.com/balance-io"
           rel="noreferrer noopener"
           target="_blank"
         >
           <SIconLink icon={github} color={colors.lightGrey} />
-          <span>@balancemymoney</span>
+          <span>balance-io</span>
         </SFooterLinks>
       </SFooterList>
 

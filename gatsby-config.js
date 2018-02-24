@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: `gatsby-source-medium`,
       options: {
-        username: `balance_io`
+        username: `balancemymoney`
       }
     },
     `gatsby-transformer-remark`,
