@@ -6,7 +6,7 @@ module.exports = {
     description: `Store and secure all your ERC-20 tokens in one place`,
     keywords: `blockchain, tokens, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
-    twitterUsername: '@balancemymoney',
+    twitterUsername: '@balance_io',
     facebookId: '1748891795369317'
   },
   plugins: [
@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: `gatsby-source-medium`,
       options: {
-        username: `balancemymoney`
+        username: `balance_io`
       }
     },
     `gatsby-transformer-remark`,

@@ -78,12 +78,12 @@ const Footer = ({ theme, ...props }) => (
     <SFooter theme={theme} {...props}>
       <SFooterList>
         <SFooterLinks
-          href="https://twitter.com/balancemymoney"
+          href="https://twitter.com/balance_io"
           rel="noreferrer noopener"
           target="_blank"
         >
           <SIconLink icon={twitter} color={colors.twitter} />
-          <span>@balancemymoney</span>
+          <span>@balance_io</span>
         </SFooterLinks>
         <SFooterLinks
           href="https://github.com/balancemymoney"
