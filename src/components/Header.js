@@ -139,7 +139,7 @@ const Header = ({ theme, ...props }) => (
                 ga('send', 'event', 'About', 'click', 'Header - click About');
                 this.hideNavReveal();
               }}
-              href="https://medium.com/balancemymoney/launching-balance-open-11ec6b7bc848"
+              href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
               rel="noreferrer noopener"
               target="_blank"
             >
