@@ -195,7 +195,7 @@ const Blog = ({ data, errors }) => {
         {posts.map((post, idx) => {
           if (post.medium) {
             return (
-              <a key={post.id} href={`https://medium.com/balancemymoney/${post.slug}-${post.id}`}>
+              <a key={post.id} href={`https://medium.com/balance-io/${post.slug}-${post.id}`}>
                 <SPostCards medium={post.medium} i={idx}>
                   <SDivider i={idx}>
                     <div />
