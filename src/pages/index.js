@@ -134,6 +134,7 @@ const STagline = styled.p`
 const SViralLoops = styled.button`
   display: block;
   margin: 10px 0;
+  cursor: pointer;
   padding: 1em 1.8em;
   font-size: ${fonts.medium};
   color: rgb(255, 255, 255);
