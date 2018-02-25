@@ -16,7 +16,7 @@ const webtask = axios.create({
 export const downloadLatestRelease = (repo = 'balance-open') =>
   webtask
     .post('/github-latest-release', {
-      owner: 'balancemymoney',
+      owner: 'balance-io',
       repo
     })
     .then(({ data }) => {
