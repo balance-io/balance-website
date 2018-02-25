@@ -115,28 +115,6 @@ const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, 
   return `${animation} ${totalDuration}s ease infinite`;
 };
 
-const expandAnimation = (angle, circleSize) =>
-  keyframes`
-  0% {
-    transform:
-      rotate(${angle - 90}deg)
-      translate(0)
-      rotate(${-angle + 90}deg);
-  }
-  100% {
-    transform:
-    rotate(${angle}deg)
-    translate(calc(${circleSize}px / 2))
-    rotate(${-angle}deg)
-  }
-`;
-
-const reverseZIndex = keyframes`
-  0% { z-index: 0; }
-  80% { z-index: -1; }
-  100% { z-index: -1; }
-`;
-
 const tokenList = [
   {
     name: 'Melonport',
@@ -271,10 +249,6 @@ const STokenLogo = styled.div`
   top: 50%;
   left: 50%;
   margin: calc((40px / 2) * -1);
-  animation: ${({ index, circleSize, totalItems }) => {
-    const angle = index * (360 / totalItems);
-    return `${expandAnimation(angle, circleSize)} 2s ease 1`;
-  }};
   transform: ${({ index, circleSize, totalItems }) => {
     const angle = index * (360 / totalItems);
     return `rotate(${angle}deg)
@@ -296,7 +270,6 @@ const STokenLogo = styled.div`
 const SInnerCircle = styled.img`
   position: absolute;
   z-index: -1;
-  animation: ${reverseZIndex} 2s ease 1;
   width: ${({ circleSize }) => `${circleSize * 0.4}px`};
   height: ${({ circleSize }) => `${circleSize * 0.4}px`};
 `;
