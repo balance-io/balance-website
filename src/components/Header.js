@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 import balanceTokenIcon from '../assets/balance-token-icon.svg';
+import rhombus from '../assets/rhombus.svg';
 import square from '../assets/square.svg';
 // import circle from '../assets/circle.svg';
 import mobileLogo from '../assets/mobile-logo.svg';
@@ -126,13 +127,13 @@ const Header = ({ theme, ...props }) => (
         <SNavList>
           <SNavLinks
             onClick={() => {
-              ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
+              ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens');
               this.hideNavReveal();
             }}
-            to="/blog"
+            to="/tokens"
           >
-            <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
-            <p>Blog</p>
+            <SIconLink icon={rhombus} color={theme.linkColor} alt="tokens logo" />
+            <p>Tokens</p>
           </SNavLinks>
           {/* <SExternalLink
               onClick={() => {
@@ -146,6 +147,16 @@ const Header = ({ theme, ...props }) => (
               <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
               <p>About</p>
             </SExternalLink> */}
+          <SNavLinks
+            onClick={() => {
+              ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
+              this.hideNavReveal();
+            }}
+            to="/blog"
+          >
+            <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
+            <p>Blog</p>
+          </SNavLinks>
         </SNavList>
       </SNav>
     </STopSection>

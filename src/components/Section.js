@@ -21,7 +21,7 @@ const SSection = styled.section`
 
 const SContent = styled.div`
   width: 100%;
-  max-width: ${({ maxWidth }) => `${maxWidth}px`};
+  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'auto')};
   margin: 0 auto;
   z-index: 0;
 `;
