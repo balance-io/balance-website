@@ -1,11 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
 import ethereumLogo from '../assets/ethereum-logo.png';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import { colors, responsive } from '../styles';
+
+const floating = keyframes`
+  0%, 100% { transform: translateY(10%); }
+  45%, 55%  { transform: translateY(0); }
+`;
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -67,6 +72,8 @@ const SFloatingLogo = styled.img`
   opacity: ${({ opacity }) => (opacity ? opacity : '1.0')};
   left: ${({ left }) => (left ? `${Number(left / 1280 * 100).toFixed(2)}%` : 'auto')};
   right: ${({ right }) => (right ? `${Number(right / 1280 * 100).toFixed(2)}%` : 'auto')};
+  animation: ${({ delay }) =>
+    delay ? `${floating} 4s -${delay}s infinite` : `${floating} 4s -1s infinite`};
 `;
 
 const SFlex = styled.div`
@@ -172,6 +179,7 @@ const IndexPage = () => (
         <SStaticLogo src={ethereumLogo} alt="Ethereum" />
 
         <SFloatingLogo
+          delay={2}
           height={49}
           top={450}
           right={1}
@@ -180,6 +188,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={3}
           height={45}
           top={146}
           right={25}
@@ -188,6 +197,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={1}
           height={87}
           top={371}
           right={75}
@@ -196,6 +206,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={4}
           height={49}
           top={194}
           right={133}
@@ -204,6 +215,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={2}
           height={82}
           top={290}
           right={245}
@@ -212,6 +224,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={1}
           height={26}
           top={155}
           right={367}
@@ -220,6 +233,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={5}
           height={30}
           top={362}
           right={394}
@@ -228,6 +242,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={1.5}
           height={27}
           top={117}
           left={544}
@@ -236,6 +251,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={2.5}
           height={72}
           top={290}
           left={370}
@@ -244,6 +260,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={6}
           height={49}
           top={174}
           left={327}
@@ -252,6 +269,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={7.5}
           height={49}
           top={337}
           left={147}
@@ -260,6 +278,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={3.5}
           height={28}
           top={171}
           left={98}
@@ -268,6 +287,7 @@ const IndexPage = () => (
           alt="Ethereum Logo"
         />
         <SFloatingLogo
+          delay={1}
           height={16}
           top={74}
           left={37}
