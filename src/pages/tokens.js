@@ -3,9 +3,20 @@ import styled, { keyframes } from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
+import aragon from '../assets/tokens/aragon.svg';
+import augur from '../assets/tokens/augur.svg';
+import zrx from '../assets/tokens/zrx.svg';
+import district0x from '../assets/tokens/district0x.svg';
+import gnosis from '../assets/tokens/gnosis.svg';
+import golem from '../assets/tokens/golem.svg';
+import maker from '../assets/tokens/maker.svg';
+import melonport from '../assets/tokens/melonport.svg';
+import solidityExample from '../assets/solidity-example.png';
 import ethereumLogo from '../assets/ethereum-logo.png';
+import balanceTokenPreview from '../assets/balance-token-preview2.png';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
-import { colors, responsive } from '../styles';
+import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
+import { colors, fonts, responsive } from '../styles';
 
 const floating = keyframes`
   0%, 100% { transform: translateY(10%); }
@@ -36,16 +47,33 @@ const SBackgroundImage = styled.div`
   }
 `;
 
+const SBackgroundImageTwo = styled.div`
+  position: absolute;
+  top: -250px;
+  left: 0;
+  width: 640px;
+  height: 640px;
+  background-image: url(${balanceTokenTrianglesTwo});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
-  min-height: 700px;
+  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
+  @media screen and (${responsive.sm.min}) {
+    & div:nth-child(2) {
+      padding-left: 30px;
+    }
+  }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     flex-direction: column;
   }
   @media screen and (${responsive.md.max}) {
-    min-height: calc(100vh - 68px);
     padding: 68px 0 0;
+    flex-wrap: wrap;
   }
 `;
 
@@ -58,6 +86,9 @@ const SPageHeader = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  @media screen and (${responsive.sm.min}) {
+    margin-bottom: 68px;
+  }
 `;
 
 const SStaticLogo = styled.img`
@@ -86,20 +117,6 @@ const SFlex = styled.div`
   }
 `;
 
-const SRight = styled(SFlex)`
-  position: relative;
-  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
-  @media screen and (${responsive.xl.min}) {
-    transform: translate3d(114px, 0, 0);
-  }
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
-`;
-
 const SContainer = styled.div`
   width: 100%;
   display: flex;
@@ -117,7 +134,7 @@ const SContainer = styled.div`
 `;
 
 const STitle = styled.h1`
-  font-size: 2.5em;
+  font-size: 2em;
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.sm.max}) {
@@ -130,7 +147,7 @@ const SSubTitle = styled.h2`
   font-size: 1.4em;
   letter-spacing: -0.25px;
   font-weight: 400;
-  margin: 40px 0 10px;
+  margin: 20px 0;
   @media screen and (${responsive.sm.max}) {
     font-size: 4.5vw;
     letter-spacing: -0.2px;
@@ -139,9 +156,9 @@ const SSubTitle = styled.h2`
 `;
 
 const STagline = styled.p`
-  font-size: 1.25em;
+  font-size: 1em;
   color: rgb(${colors.lighterBlue});
-  line-height: 1.4em;
+  line-height: 1.8em;
   & a {
     color: rgb(${colors.blue});
   }
@@ -151,6 +168,38 @@ const STagline = styled.p`
     &:first-of-type {
       margin-top: 1em;
     }
+  }
+`;
+
+const SViralLoops = styled.button`
+  display: block;
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 1em 1.8em;
+  font-size: ${fonts.medium};
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 153, 255);
+  border-radius: 4px;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8 !important;
+    }
+  }
+`;
+
+const STokenLogos = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  & img {
+    width: 50px;
+    height: 50px;
+    margin: 30px;
+  }
+`;
+
+const SImageWrapper = styled.div`
+  & img {
+    width: 100%;
   }
 `;
 
@@ -305,34 +354,109 @@ const IndexPage = () => (
         />
       </SPageHeader>
     </Section>
-    <Section id={`balance-token-intro`} minHeight={700} color={colors.navyBlue}>
+    <Section id={`balance-token-intro`} minHeight={350} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
-            <STitle>A place for your tokens</STitle>
-            <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
+            <STitle>What is an ERC-20 token?</STitle>
             <STagline>
-              A wallet that supports{' '}
-              <a
-                href="https://hackernoon.com/erc20-tokens-b3b50c95ad08"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                ERC-20
-              </a>{' '}
-              &{' '}
-              <a
-                href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                ERC-721
-              </a>.
+              Right now, the most popular form of “token” is the ERC-20 token. This is a standard of
+              token that lives on the Ethereum blockchain. The term ERC-20 stands for an Ethereum
+              Request for Comment number 20, which effectively means it was the 20th major
+              improvement proposed by one of the Ethereum contributors.
             </STagline>
-            <SSubTitle>Want to get into the private beta?</SSubTitle>
           </SContainer>
         </SFlex>
-        <SRight />
+        <SFlex>
+          <STokenLogos>
+            <img src={aragon} alt="aragon" />
+            <img src={augur} alt="augur" />
+            <img src={zrx} alt="zrx" />
+            <img src={district0x} alt="district0x" />
+            <img src={gnosis} alt="gnosis" />
+            <img src={golem} alt="golem" />
+            <img src={maker} alt="maker" />
+            <img src={melonport} alt="melonport" />
+          </STokenLogos>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+    <Section
+      id={`balance-token-solidity`}
+      minHeight={350}
+      color={colors.navyBlue}
+      background={<SBackgroundImageTwo />}
+    >
+      <SSectionWrapper>
+        <SFlex>
+          <SImageWrapper>
+            <img src={solidityExample} alt="solidity" />
+          </SImageWrapper>
+        </SFlex>
+        <SFlex>
+          <SContainer>
+            <STitle>How are they created?</STitle>
+            <STagline>
+              Every day, thousands of ERC-20 tokens are created on the Ethereum network by
+              developers around the world. They are built with code which is then published on
+              Ethereum. The code conforms to the ERC-20 standard which defines things like the
+              number of tokens, ticker symbol, and how to transfer them from one wallet to another.
+            </STagline>
+          </SContainer>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+    <Section id={`balance-token-info`} minHeight={350} color={colors.navyBlue}>
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <STitle>What are tokens used for?</STitle>
+            <STagline>
+              Tokens can represent anything: from a part of a new protocol to a share in a company.
+              Today, lots of tokens are being created in Initial Coin Offerings (ICOs) where you are
+              investing into a new project in the crypto-currency space. Each of these projects has
+              a different reason for launching a token. The vast majority of them are useless. Some
+              of them have the potential to be incredibly valuable.
+            </STagline>
+          </SContainer>
+        </SFlex>
+        <SFlex>
+          <SContainer>
+            <STitle>How can I tell if it is ERC-20?</STitle>
+            <STagline>
+              Although lots of tokens live on the Ethereum blockchain, many do not. Some tokens
+              exist on other blockchain platforms like Neo, Omni and NXT. There are many coins that
+              exist on their own chain. For example, Bitcoin, Litecoin, Ripple and Dogecoin are all
+              coins that are totally separate. A quick way to find out if a token is running on
+              Ethereum is to check CoinMarketCap.com and see the platform section.
+            </STagline>
+          </SContainer>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+    <Section id={`balance-token-join`} minHeight={500} color={colors.navyBlue}>
+      <SSectionWrapper minHeight={500}>
+        <SFlex>
+          <SContainer>
+            <STitle>Want a wallet for your ERC-20 tokens?</STitle>
+            <SSubTitle>Want to get into the private beta?</SSubTitle>
+            <SViralLoops
+              type="button"
+              className="vrlps-trigger"
+              data-toggle="modal"
+              data-target="#vl_popup"
+              onClick={() => VL.openModal()}
+            >
+              Join the waitlist
+            </SViralLoops>
+          </SContainer>
+        </SFlex>
+        <SFlex>
+          <SImageWrapper>
+            {' '}
+            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SImageWrapper>
+        </SFlex>
       </SSectionWrapper>
     </Section>
     <Footer theme={layoutTheme} />
