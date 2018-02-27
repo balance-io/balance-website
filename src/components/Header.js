@@ -143,6 +143,15 @@ const Header = ({ theme, ...props }) => (
             <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
             <p>Blog</p>
           </SNavLinks>
+          {/* <SExternalLink
+              onClick={() => ga('send', 'event', 'About', 'click', 'Header - click About')}
+              href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
+              <p>About</p>
+            </SExternalLink> */}
         </SNavList>
       </SNav>
     </STopSection>
