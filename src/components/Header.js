@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import rhombus from '../assets/rhombus.svg';
 import square from '../assets/square.svg';
-// import circle from '../assets/circle.svg';
+import circle from '../assets/circle.svg';
 import mobileLogo from '../assets/mobile-logo.svg';
 import { colors, responsive, transitions } from '../styles';
 
@@ -135,18 +135,16 @@ const Header = ({ theme, ...props }) => (
             <SIconLink icon={rhombus} color={theme.linkColor} alt="tokens logo" />
             <p>Tokens</p>
           </SNavLinks>
-          {/* <SExternalLink
-              onClick={() => {
-                ga('send', 'event', 'About', 'click', 'Header - click About');
-                this.hideNavReveal();
-              }}
-              href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
-              <p>About</p>
-            </SExternalLink> */}
+          <SNavLinks
+            onClick={() => {
+              ga('send', 'event', 'About', 'click', 'Header - click About');
+              this.hideNavReveal();
+            }}
+            to="/about"
+          >
+            <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
+            <p>About</p>
+          </SNavLinks>
           <SNavLinks
             onClick={() => {
               ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
