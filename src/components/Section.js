@@ -24,6 +24,8 @@ const SContent = styled.div`
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
   margin: 0 auto;
   z-index: 0;
+  display: flex;
+  align-items: center;
 `;
 
 const SBackground = styled.div`

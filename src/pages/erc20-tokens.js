@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
+import EthereumPageHeader from '../components/EthereumPageHeader';
 import aragon from '../assets/tokens/aragon.svg';
 import augur from '../assets/tokens/augur.svg';
 import zrx from '../assets/tokens/zrx.svg';
@@ -12,47 +13,16 @@ import golem from '../assets/tokens/golem.svg';
 import maker from '../assets/tokens/maker.svg';
 import melonport from '../assets/tokens/melonport.svg';
 import solidityExample from '../assets/solidity-example.png';
-import ethereumLogo from '../assets/ethereum-logo.png';
 import balanceTokenPreview from '../assets/balance-token-preview2.png';
-import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
 import { colors, fonts, responsive } from '../styles';
 
-const floating = keyframes`
-  0%, 100% { transform: translateY(10%); }
-  45%, 55%  { transform: translateY(0); }
-`;
-
-const SBackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50vw;
-  height: 550px;
-  background-image: url(${balanceTokenTriangles});
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  @media screen and (${responsive.xl.min}) {
-    top: 0;
-    right: calc((100vw - 1400px)*0.5);
-    width: 550px;
-  }
-  @media screen and (${responsive.md.max}) {
-    width: 100vw;
-    height: 550px;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
-`;
-
 const SBackgroundImageTwo = styled.div`
   position: absolute;
-  top: -250px;
+  top: -50%;
   left: 0;
-  width: 640px;
-  height: 640px;
+  width: 50%;
+  height: 200%;
   background-image: url(${balanceTokenTrianglesTwo});
   background-size: cover;
   background-repeat: no-repeat;
@@ -64,47 +34,26 @@ const SSectionWrapper = styled.div`
   display: flex;
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
   @media screen and (${responsive.sm.min}) {
-    & div:nth-child(2) {
-      padding-left: 30px;
+    & > div:first-child {
+      order: ${({ left }) => (left ? 1 : 0)};
+      padding-left: ${({ left }) => (left ? '30px' : 0)};
+    }
+    & > div:nth-child(2) {
+      padding-left: ${({ left }) => (left ? 0 : '30px')};
     }
   }
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.max}) {
     flex-direction: column;
+    & > div:first-child {
+      order: 0;
+    }
+    & > div:nth-child(2) {
+      order: 1;
+    }
+    & > div {
+      padding: 34px;
+    }
   }
-  @media screen and (${responsive.md.max}) {
-    padding: 68px 0 0;
-    flex-wrap: wrap;
-  }
-`;
-
-const SPageHeader = styled.div`
-  width: 100%;
-  height: 550px;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  @media screen and (${responsive.sm.min}) {
-    margin-bottom: 68px;
-  }
-`;
-
-const SStaticLogo = styled.img`
-  height: 189px;
-`;
-
-const SFloatingLogo = styled.img`
-  position: absolute;
-  height: ${({ height }) => (height ? `${height}px` : 'auto')};
-  top: ${({ top }) => (top ? `${top}px` : 'auto')};
-  bottom: ${({ bottom }) => (bottom ? `${bottom}px` : 'auto')};
-  opacity: ${({ opacity }) => (opacity ? opacity : '1.0')};
-  left: ${({ left }) => (left ? `${Number(left / 1280 * 100).toFixed(2)}%` : 'auto')};
-  right: ${({ right }) => (right ? `${Number(right / 1280 * 100).toFixed(2)}%` : 'auto')};
-  animation: ${({ delay }) =>
-    delay ? `${floating} 4s -${delay}s infinite` : `${floating} 4s -1s infinite`};
 `;
 
 const SFlex = styled.div`
@@ -112,9 +61,6 @@ const SFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media screen and (${responsive.sm.max}) {
-    align-items: flex-start;
-  }
 `;
 
 const SContainer = styled.div`
@@ -126,7 +72,7 @@ const SContainer = styled.div`
   @media screen and (${responsive.sm.min}) {
     max-width: 550px;
   }
-  @media screen and (${responsive.md.max}) {
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
     align-items: center;
     text-align: center;
@@ -138,7 +84,7 @@ const STitle = styled.h1`
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.sm.max}) {
-    font-size: 8vw;
+    font-size: 6.6vw;
     letter-spacing: -0.2px;
   }
 `;
@@ -151,23 +97,20 @@ const SSubTitle = styled.h2`
   @media screen and (${responsive.sm.max}) {
     font-size: 4.5vw;
     letter-spacing: -0.2px;
-    margin: 1em 0;
   }
 `;
 
 const STagline = styled.p`
-  font-size: 1em;
+  font-size: 1.1em;
   color: rgb(${colors.lighterBlue});
-  line-height: 1.8em;
+  line-height: 1.98em;
   & a {
     color: rgb(${colors.blue});
   }
   @media screen and (${responsive.sm.max}) {
-    font-size: 4vw;
-    line-height: 1.5em;
-    &:first-of-type {
-      margin-top: 1em;
-    }
+    font-size: 3.8vw;
+    letter-spacing: 0.2px;
+    color: rgb(${colors.lightGrey});
   }
 `;
 
@@ -190,10 +133,13 @@ const SViralLoops = styled.button`
 const STokenLogos = styled.div`
   display: flex;
   flex-wrap: wrap;
-  & img {
-    width: 50px;
-    height: 50px;
-    margin: 30px;
+  justify-content: space-around;
+  & div {
+    width: 25%;
+    padding: 20px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    margin: 20px auto;
   }
 `;
 
@@ -214,147 +160,11 @@ const layoutTheme = {
   logoHover: colors.lightGrey
 };
 
-const IndexPage = () => (
+const Erc20Page = () => (
   <div>
     <Header theme={layoutTheme} />
-    <Section
-      id={`balance-token-header`}
-      minHeight={500}
-      maxWidth={null}
-      color={colors.navyBlue}
-      background={<SBackgroundImage />}
-    >
-      <SPageHeader>
-        <SStaticLogo src={ethereumLogo} alt="Ethereum" />
-
-        <SFloatingLogo
-          delay={2}
-          height={49}
-          top={450}
-          right={1}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={3}
-          height={45}
-          top={146}
-          right={25}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={1}
-          height={87}
-          top={371}
-          right={75}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={4}
-          height={49}
-          top={194}
-          right={133}
-          opacity={0.3}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={2}
-          height={82}
-          top={290}
-          right={245}
-          opacity={0.9}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={1}
-          height={26}
-          top={155}
-          right={367}
-          opacity={0.4}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={5}
-          height={30}
-          top={362}
-          right={394}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={1.5}
-          height={27}
-          top={117}
-          left={544}
-          opacity={0.7}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={2.5}
-          height={72}
-          top={290}
-          left={370}
-          opacity={0.8}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={6}
-          height={49}
-          top={174}
-          left={327}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={7.5}
-          height={49}
-          top={337}
-          left={147}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={3.5}
-          height={28}
-          top={171}
-          left={98}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          delay={1}
-          height={16}
-          top={74}
-          left={37}
-          opacity={1.0}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-        <SFloatingLogo
-          height={96}
-          top={430}
-          left={-10}
-          opacity={0.9}
-          src={ethereumLogo}
-          alt="Ethereum Logo"
-        />
-      </SPageHeader>
-    </Section>
-    <Section id={`balance-token-intro`} minHeight={350} color={colors.navyBlue}>
+    <EthereumPageHeader />
+    <Section id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
@@ -373,32 +183,45 @@ const IndexPage = () => (
             </STagline>
           </SContainer>
         </SFlex>
+
         <SFlex>
           <STokenLogos>
-            <img src={aragon} alt="aragon" />
-            <img src={augur} alt="augur" />
-            <img src={zrx} alt="zrx" />
-            <img src={district0x} alt="district0x" />
-            <img src={gnosis} alt="gnosis" />
-            <img src={golem} alt="golem" />
-            <img src={maker} alt="maker" />
-            <img src={melonport} alt="melonport" />
+            <SImageWrapper>
+              <img src={aragon} alt="aragon" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={augur} alt="augur" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={zrx} alt="zrx" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={district0x} alt="district0x" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={gnosis} alt="gnosis" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={golem} alt="golem" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={maker} alt="maker" />
+            </SImageWrapper>
+            <SImageWrapper>
+              <img src={melonport} alt="melonport" />
+            </SImageWrapper>
           </STokenLogos>
         </SFlex>
       </SSectionWrapper>
     </Section>
+
     <Section
       id={`balance-token-solidity`}
-      minHeight={350}
+      minHeight={450}
       color={colors.navyBlue}
       background={<SBackgroundImageTwo />}
     >
-      <SSectionWrapper>
-        <SFlex>
-          <SImageWrapper>
-            <img src={solidityExample} alt="solidity" />
-          </SImageWrapper>
-        </SFlex>
+      <SSectionWrapper left>
         <SFlex>
           <SContainer>
             <STitle>How are they created?</STitle>
@@ -412,9 +235,16 @@ const IndexPage = () => (
             </STagline>
           </SContainer>
         </SFlex>
+
+        <SFlex>
+          <SImageWrapper>
+            <img src={solidityExample} alt="solidity" />
+          </SImageWrapper>
+        </SFlex>
       </SSectionWrapper>
     </Section>
-    <Section id={`balance-token-info`} minHeight={350} color={colors.navyBlue}>
+
+    <Section id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
@@ -435,6 +265,7 @@ const IndexPage = () => (
             </STagline>
           </SContainer>
         </SFlex>
+
         <SFlex>
           <SContainer>
             <STitle>How can I tell if it is ERC-20?</STitle>
@@ -465,8 +296,9 @@ const IndexPage = () => (
         </SFlex>
       </SSectionWrapper>
     </Section>
-    <Section id={`balance-token-join`} minHeight={500} color={colors.navyBlue}>
-      <SSectionWrapper minHeight={500}>
+
+    <Section id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper minHeight={450}>
         <SFlex>
           <SContainer>
             <STitle>Want a wallet for your ERC-20 tokens?</STitle>
@@ -482,6 +314,7 @@ const IndexPage = () => (
             </SViralLoops>
           </SContainer>
         </SFlex>
+
         <SFlex>
           <SImageWrapper>
             {' '}
@@ -494,4 +327,4 @@ const IndexPage = () => (
   </div>
 );
 
-export default IndexPage;
+export default Erc20Page;
