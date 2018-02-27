@@ -83,13 +83,22 @@ const SImageWrapper = styled.div`
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
-  padding-top: 68px;
   flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'nowrap')};
+  @media screen and (${responsive.sm.min}) {
+    padding-top: 68px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    flex-direction: column;
+    &:first-child {
+      padding-top: 68px;
+    }
+  }
 `;
 
 const SContainer = styled.div`
   width: 100%;
   display: flex;
+  margin: 10px;
   flex-direction: column;
   & ${STitle} {
     margin: 10px 0;
@@ -105,10 +114,19 @@ const SContainer = styled.div`
 const SAbout = styled(SContainer)`
   width: 70%;
   padding-right: 24px;
+  @media screen and (${responsive.sm.max}) {
+    width: 100%;
+    margin: 25px;
+  }
 `;
 
 const SContact = styled(SContainer)`
   width: 30%;
+  @media screen and (${responsive.sm.max}) {
+    width: 100%;
+    margin: 25px;
+    margin-bottom: 34px;
+  }
 `;
 
 const SCardsContainer = styled.div`
@@ -142,6 +160,9 @@ const SCard = styled.div`
       margin-bottom: 12px;
     }
   `};
+  @media screen and (${responsive.sm.max}) {
+    width: 100%;
+  }
 `;
 
 const SCardHeader = styled.div`
@@ -216,7 +237,7 @@ const AboutPage = () => (
         <STitle>Team</STitle>
         <SCardsContainer>
           {team.map(member => (
-            <SCard>
+            <SCard key={member.name}>
               <SCardHeader>
                 <SProfileImage>
                   <img src={member.profileImg} alt={member.name} />
@@ -229,7 +250,11 @@ const AboutPage = () => (
                   <div>{member.role}</div>
                 </SProfile>
               </SCardHeader>
-              <SCardEmojis>{member.emojis.map(emoji => <SEmoji>{emoji}</SEmoji>)}</SCardEmojis>
+              <SCardEmojis>
+                {member.emojis.map(emoji => (
+                  <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
+                ))}
+              </SCardEmojis>
               <SCardDescription>{member.description}</SCardDescription>
             </SCard>
           ))}
@@ -264,7 +289,7 @@ const AboutPage = () => (
           <STitle>Advisors</STitle>
           <SCardsContainer>
             {advisors.map(member => (
-              <SCard>
+              <SCard key={member.name}>
                 <SCardHeader>
                   <SProfileImage>
                     <img src={member.profileImg} alt={member.name} />
@@ -277,7 +302,11 @@ const AboutPage = () => (
                     <div>{member.role}</div>
                   </SProfile>
                 </SCardHeader>
-                <SCardEmojis>{member.emojis.map(emoji => <SEmoji>{emoji}</SEmoji>)}</SCardEmojis>
+                <SCardEmojis>
+                  {member.emojis.map(emoji => (
+                    <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
+                  ))}
+                </SCardEmojis>
                 <SCardDescription>{member.description}</SCardDescription>
               </SCard>
             ))}
