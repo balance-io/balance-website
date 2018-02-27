@@ -19,7 +19,7 @@ export const colors = {
 };
 
 export const fonts = {
-  tiny: '8px',
+  tiny: '10px',
   small: '12px',
   medium: '16px',
   large: '18px',

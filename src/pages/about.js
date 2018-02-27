@@ -193,12 +193,23 @@ const SProfile = styled.div`
     margin-top: 5px;
     text-transform: uppercase;
   }
+  @media screen and (${responsive.sm.max}) {
+    & div:first-child {
+      font-size: ${fonts.large};
+    }
+    & div:nth-child(2) {
+      font-size: ${fonts.medium};
+    }
+    & div:nth-child(3) {
+      font-size: ${fonts.tiny};
+    }
+  }
 `;
 
 const SCardEmojis = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 12px 0;
+  margin: 6px 0;
 `;
 
 const SEmoji = styled.div`
