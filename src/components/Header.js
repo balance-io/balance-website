@@ -11,6 +11,12 @@ import square from '../assets/square.svg';
 import circle from '../assets/circle.svg';
 import { colors, responsive, transitions } from '../styles';
 
+const SHeader = styled.div`
+  width: 100%;
+  z-index: 10;
+  position: absolute;
+`;
+
 const STopSection = styled.div`
   width: 100%;
   max-width: 1028px;
@@ -60,6 +66,12 @@ const SNavList = styled.ul`
   cursor: default;
   display: flex;
   align-items: center;
+  & a {
+    color: ${({ theme }) => `rgb(${theme.linkColor})`};
+  }
+  & a:hover {
+    color: ${({ theme }) => `rgb(${theme.linkHover})`};
+  }
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
@@ -102,19 +114,6 @@ const SIconLink = styled.div`
 
 // const SExternalLink = SNavLinks.withComponent('a');
 
-const SHeader = styled.div`
-  width: 100%;
-  z-index: 10;
-  position: absolute;
-  & ${SNavList} a {
-    font-weight: ${({ theme }) => theme.fontWeight};
-    color: ${({ theme }) => `rgb(${theme.linkColor})`};
-  }
-  & ${SNavList} a:hover {
-    color: ${({ theme }) => `rgb(${theme.linkHover})`};
-  }
-`;
-
 const SMobileNavToggle = styled.div`
   z-index: 200;
   position: absolute;
@@ -130,7 +129,7 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
-  background: ${({ theme }) => `rgba(${theme.mobileToggleColor}, ${theme.mobileToggleOpacity})`};
+  background: ${({ theme }) => `rgb(${theme.mobileToggleColor})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal
@@ -161,13 +160,13 @@ const SMobileNav = styled.div`
   width: 220px;
   height: 220px;
   border-radius: 0 0 0 10px;
+  color: rgb(${colors.dark});
   background: rgb(${colors.white});
+  font-size: 1.125em;
+  font-weight: 500;
   overflow: hidden;
   box-shadow: 0 50px 100px rgba(${colors.purple}, 0.1), 0 15px 35px rgba(${colors.purple}, 0.15),
     0 5px 15px rgba(${colors.black}, 0.1), 0 0 1px rgba(${colors.purple}, 0.12);
-  font-size: 1.125em;
-  font-weight: 500;
-  color: rgb(${colors.dark});
 
   will-change: transform, opacity;
   transition-property: transform, opacity;
@@ -178,16 +177,6 @@ const SMobileNav = styled.div`
   transition: ${transitions.base};
 `;
 
-const SMobileNavIcons = styled.div`
-  height: 20px;
-  width: 20px;
-  margin-left: 12px;
-  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  mask-size: contain;
-  mask-position: center;
-`;
-
 const SMobileNavLinks = styled(Link)`
   box-sizing: border-box;
   display: flex;
@@ -196,8 +185,9 @@ const SMobileNavLinks = styled(Link)`
   height: 50px;
   opacity: 0;
   cursor: pointer;
+  color: rgb(${colors.dark});
   color: ${({ selected, activeColor }) =>
-    selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
+    activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
 
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
@@ -207,10 +197,18 @@ const SMobileNavLinks = styled(Link)`
   & > span {
     margin-left: 20px;
   }
-  & > ${SMobileNavIcons} {
-    background-color: ${({ selected, activeColor }) =>
-      selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
-  }
+`;
+
+const SMobileNavIcons = styled.div`
+  height: 20px;
+  width: 20px;
+  margin-left: 12px;
+  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
+  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  background-color: ${({ selected, activeColor }) =>
+    activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
 `;
 
 const SMobileNavClose = styled.div`
@@ -248,7 +246,7 @@ class Header extends Component {
     const { theme, ...props } = this.props;
     const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
     return (
-      <SHeader theme={theme} {...props}>
+      <SHeader {...props}>
         <STopSection>
           <SNav>
             <SLink
@@ -258,7 +256,7 @@ class Header extends Component {
               <SAppIcon hide={theme.hideIcon || false} />
               <SLogo theme={theme} />
             </SLink>
-            <SNavList>
+            <SNavList theme={theme}>
               <SNavLinks
                 onClick={() => ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens')}
                 to="/erc20-tokens"
@@ -295,7 +293,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/erc20-tokens"
               >
-                <SMobileNavIcons icon={rhombus} />
+                <SMobileNavIcons icon={rhombus} activeColor={theme.mobileActiveColor} />
                 <span>Tokens</span>
               </SMobileNavLinks>
               <SMobileNavLinks
@@ -305,7 +303,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/about"
               >
-                <SMobileNavIcons icon={circle} />
+                <SMobileNavIcons icon={circle} activeColor={theme.mobileActiveColor} />
                 <span>About</span>
               </SMobileNavLinks>
               <SMobileNavLinks
@@ -315,7 +313,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/blog"
               >
-                <SMobileNavIcons icon={square} />
+                <SMobileNavIcons icon={square} activeColor={theme.mobileActiveColor} />
                 <span>Blog</span>
               </SMobileNavLinks>
               <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />

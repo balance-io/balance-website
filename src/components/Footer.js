@@ -25,7 +25,7 @@ const SFooter = styled.footer`
     color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.6)`};
   }
 `;
 
@@ -94,14 +94,14 @@ const Footer = ({ theme, ...props }) => (
           <span>balance-io</span>
         </SFooterLinks>
       </SFooterList>
-
+      {/* eslint-disable-next-line */}
       <SCopyright>© Balanced Software, Inc.</SCopyright>
     </SFooter>
   </SFooterWrapper>
 );
 
 Footer.propTypes = {
-  theme: PropTypes.objectOf(PropTypes.string).isRequired
+  theme: PropTypes.object.isRequired
 };
 
 export default Footer;

@@ -126,12 +126,10 @@ const SPostContent = styled.div`
 
 const layoutTheme = {
   hideIcon: true,
-  fontWeight: '400',
   linkColor: colors.green,
   linkHover: colors.dark,
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
-  mobileToggleOpacity: '1',
   logoColor: colors.green,
   logoHover: colors.dark
 };

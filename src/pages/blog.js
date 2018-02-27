@@ -174,12 +174,10 @@ const mergePosts = (contentful, medium) => {
 
 const layoutTheme = {
   hideIcon: true,
-  fontWeight: '400',
   linkColor: colors.dark,
   linkHover: colors.green,
   mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
-  mobileToggleOpacity: '0.8',
   logoColor: colors.dark,
   logoHover: colors.green
 };
