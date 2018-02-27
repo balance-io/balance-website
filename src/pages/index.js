@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
-import balanceTokenPreview from '../assets/balance-token-preview.png';
+import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
 import balanceTokenMobile from '../assets/balance-token-mobile.png';
 import { colors, fonts, responsive } from '../styles';
 
