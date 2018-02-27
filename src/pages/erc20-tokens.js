@@ -186,7 +186,7 @@ const Erc20Page = ({ data, ...props }) => (
         <SFlex>
           <STokenLogos>
             {tokenList.map(token => (
-              <SImageWrapper>
+              <SImageWrapper key={token.name}>
                 <img src={token.logo} alt={token.name} />
               </SImageWrapper>
             ))}
