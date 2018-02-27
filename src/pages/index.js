@@ -214,7 +214,7 @@ const IndexPage = () => (
             <STitle>A place for your tokens</STitle>
             <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
             <STagline>
-              A wallet that supports <Link to="/tokens">ERC-20</Link> &{' '}
+              A wallet that supports <Link to="/erc20-tokens">ERC-20</Link> &{' '}
               <a
                 href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
                 target="_blank"
