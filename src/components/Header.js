@@ -115,10 +115,7 @@ const Header = ({ theme, ...props }) => (
     <STopSection>
       <SNav>
         <SLink
-          onClick={() => {
-            ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage');
-            this.hideNavReveal();
-          }}
+          onClick={() => ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage')}
           to="/"
         >
           <SAppIcon hide={theme.hideIcon || false} />
@@ -126,30 +123,21 @@ const Header = ({ theme, ...props }) => (
         </SLink>
         <SNavList>
           <SNavLinks
-            onClick={() => {
-              ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens');
-              this.hideNavReveal();
-            }}
+            onClick={() => ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens')}
             to="/erc20-tokens"
           >
             <SIconLink icon={rhombus} color={theme.linkColor} alt="tokens logo" />
             <p>Tokens</p>
           </SNavLinks>
           <SNavLinks
-            onClick={() => {
-              ga('send', 'event', 'About', 'click', 'Header - click About');
-              this.hideNavReveal();
-            }}
+            onClick={() => ga('send', 'event', 'About', 'click', 'Header - click About')}
             to="/about"
           >
             <SIconLink icon={circle} color={theme.linkColor} alt="about logo" />
             <p>About</p>
           </SNavLinks>
           <SNavLinks
-            onClick={() => {
-              ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
-              this.hideNavReveal();
-            }}
+            onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
             to="/blog"
           >
             <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
