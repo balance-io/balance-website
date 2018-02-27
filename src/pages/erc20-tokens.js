@@ -4,17 +4,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
-import aragon from '../assets/tokens/aragon.svg';
-import augur from '../assets/tokens/augur.svg';
-import zrx from '../assets/tokens/zrx.svg';
-import district0x from '../assets/tokens/district0x.svg';
-import gnosis from '../assets/tokens/gnosis.svg';
-import golem from '../assets/tokens/golem.svg';
-import maker from '../assets/tokens/maker.svg';
-import melonport from '../assets/tokens/melonport.svg';
 import solidityExample from '../assets/solidity-example.png';
 import balanceTokenPreview from '../assets/balance-token-preview2.png';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
+import tokenList from '../data/tokens';
 import { colors, fonts, responsive } from '../styles';
 
 const SBackgroundImageTwo = styled.div`
@@ -189,30 +182,11 @@ const Erc20Page = () => (
 
         <SFlex>
           <STokenLogos>
-            <SImageWrapper>
-              <img src={aragon} alt="aragon" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={augur} alt="augur" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={zrx} alt="zrx" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={district0x} alt="district0x" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={gnosis} alt="gnosis" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={golem} alt="golem" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={maker} alt="maker" />
-            </SImageWrapper>
-            <SImageWrapper>
-              <img src={melonport} alt="melonport" />
-            </SImageWrapper>
+            {tokenList.map(token => (
+              <SImageWrapper>
+                <img src={token.logo} alt={token.name} />
+              </SImageWrapper>
+            ))}
           </STokenLogos>
         </SFlex>
       </SSectionWrapper>

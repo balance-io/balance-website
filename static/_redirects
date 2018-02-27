@@ -9,7 +9,7 @@
 /privacy        /
 /download       /
 
-/About           /
+/tokens         /erc20-tokens
 
 # Redirect domain aliases to primary domain
 https://balancemy.money/* https://balance.io/:splat 301!
