@@ -43,6 +43,6 @@ export default [
     twitter: `ricburton`,
     role: `designer`,
     description: `Richard bumped into Gavin and Vitalik in 2014 and spent time designing interface concepts for Ethereum before the sale.`,
-    emojis: [`😃`, `🏄‍♂️`, `🛠`, `👨‍🎤`]
+    emojis: [`😃`, `🏄‍`, `🛠`, `👨‍🎤`]
   }
 ];

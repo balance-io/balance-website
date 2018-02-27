@@ -45,35 +45,6 @@ const SBackgroundImageTwo = styled.div`
   background-position: center;
 `;
 
-const SSectionWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  padding-top: ${({ paddingTop }) => (paddingTop ? `${paddingTop}px` : 'auto')};
-  flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'nowrap')};
-  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
-`;
-
-const SContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-`;
-
-const SAbout = styled(SContainer)`
-  width: 70%;
-`;
-
-const SContact = styled(SContainer)`
-  width: 30%;
-`;
-
 const STitle = styled.h1`
   width: 100%;
   font-size: 2em;
@@ -86,9 +57,13 @@ const STitle = styled.h1`
 `;
 
 const STagline = styled.p`
-  font-size: 1.1em;
-  color: rgb(${colors.lighterBlue});
-  line-height: 1.98em;
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0.9;
+  color: rgb(${colors.white});
+  letter-spacing: -0.2px;
+  font-size: 0.9em;
+  line-height: 2em;
   & a {
     color: rgb(${colors.blue});
   }
@@ -103,6 +78,37 @@ const SImageWrapper = styled.div`
   & img {
     width: 100%;
   }
+`;
+
+const SSectionWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding-top: 68px;
+  flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'nowrap')};
+`;
+
+const SContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  & ${STitle} {
+    margin: 10px 0;
+  }
+  margin-bottom: 34px;
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const SAbout = styled(SContainer)`
+  width: 70%;
+  padding-right: 24px;
+`;
+
+const SContact = styled(SContainer)`
+  width: 30%;
 `;
 
 const SCardsContainer = styled.div`
@@ -123,12 +129,19 @@ const SCard = styled.div`
   border-radius: 6px;
   background-color: ${({ transparent }) =>
     transparent ? 'transparent' : `rgb(${colors.blueishGrey})`};
-  & h1 {
-    font-size: ${fonts.large};
+  & h3 {
+    margin-top: 12px;
   }
   & a {
     color: rgb(${colors.blue});
   }
+  ${({ transparent }) =>
+    transparent &&
+    `
+    & > * {
+      margin-bottom: 12px;
+    }
+  `};
 `;
 
 const SCardHeader = styled.div`
@@ -199,7 +212,7 @@ const AboutPage = () => (
       color={colors.navyBlue}
       background={<SBackgroundImage />}
     >
-      <SSectionWrapper paddingTop={68} wrap>
+      <SSectionWrapper wrap>
         <STitle>Team</STitle>
         <SCardsContainer>
           {team.map(member => (
@@ -221,7 +234,7 @@ const AboutPage = () => (
             </SCard>
           ))}
           <SCard transparent>
-            <h1>Want to join us?</h1>
+            <h3>Want to join us?</h3>
             <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
             <a
               href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
@@ -241,13 +254,12 @@ const AboutPage = () => (
     </Section>
 
     <Section
-      center
       id={`balance-about-bottom`}
       minHeight={900}
       color={colors.navyBlue}
       background={<SBackgroundImageTwo />}
     >
-      <SSectionWrapper wrap minHeight={900}>
+      <SSectionWrapper wrap>
         <SSectionWrapper wrap>
           <STitle>Advisors</STitle>
           <SCardsContainer>
@@ -293,8 +305,10 @@ const AboutPage = () => (
               <strong>Registered address</strong>
             </STagline>
             <STagline>
-              548 Market St #90291 <br />San Francisco, California 94104-5401
+              548 Market St #90291 <br />
+              San Francisco, California 94104-5401
             </STagline>
+            <br />
             <STagline>
               <strong>Contact email</strong>
             </STagline>
