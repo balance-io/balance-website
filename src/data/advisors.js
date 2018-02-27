@@ -25,6 +25,6 @@ export default [
     twitter: `joshbuckley`,
     role: `founder`,
     description: `Josh took his company, Mino Games, through YC as the youngest founder. He has since invested in a range of amazing companies.`,
-    emojis: [`😁`, `🏋️‍♂️`, `🎢`, `🕺`]
+    emojis: [`😁`, `🏋️‍`, `🎢`, `🕺`]
   }
 ];

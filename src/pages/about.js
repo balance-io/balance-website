@@ -78,7 +78,7 @@ const STitle = styled.h1`
   width: 100%;
   font-size: 2em;
   letter-spacing: -0.25px;
-  margin: 10px 0;
+  margin: 10px;
   @media screen and (${responsive.sm.max}) {
     font-size: 6.6vw;
     letter-spacing: -0.2px;
