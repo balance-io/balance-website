@@ -129,6 +129,7 @@ const layoutTheme = {
   fontWeight: '400',
   linkColor: colors.green,
   linkHover: colors.dark,
+  mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
   mobileToggleOpacity: '1',
   logoColor: colors.green,

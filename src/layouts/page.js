@@ -26,6 +26,7 @@ const layoutTheme = {
   linkColor: colors.lightGrey,
   linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
+  mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
   logoColor: colors.lightGrey,

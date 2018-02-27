@@ -13,6 +13,7 @@ export const colors = {
   lightBlue: '147, 160, 178',
   lighterBlue: '157, 171, 187',
   green: '11, 176, 113',
+  lightPurple: '139, 78, 167',
   purple: '50, 50, 93',
   red: '221, 69, 65',
   twitter: '0, 162, 249'

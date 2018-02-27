@@ -196,7 +196,8 @@ const SMobileNavLinks = styled(Link)`
   height: 50px;
   opacity: 0;
   cursor: pointer;
-  color: ${({ selected }) => (selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`)};
+  color: ${({ selected, activeColor }) =>
+    selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
 
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
@@ -207,8 +208,8 @@ const SMobileNavLinks = styled(Link)`
     margin-left: 20px;
   }
   & > ${SMobileNavIcons} {
-    background-color: ${({ selected }) =>
-      selected ? `rgb(${colors.green})` : `rgb(${colors.dark})`};
+    background-color: ${({ selected, activeColor }) =>
+      selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
   }
 `;
 
@@ -288,6 +289,8 @@ class Header extends Component {
             />
             <SMobileNav reveal={this.state.navReveal}>
               <SMobileNavLinks
+                activeColor={theme.mobileActiveColor}
+                selected={pathname.match(/\/erc20-tokens\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
                 to="/erc20-tokens"
@@ -296,6 +299,8 @@ class Header extends Component {
                 <span>Tokens</span>
               </SMobileNavLinks>
               <SMobileNavLinks
+                activeColor={theme.mobileActiveColor}
+                selected={pathname.match(/\/about\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
                 to="/about"
@@ -304,6 +309,7 @@ class Header extends Component {
                 <span>About</span>
               </SMobileNavLinks>
               <SMobileNavLinks
+                activeColor={theme.mobileActiveColor}
                 selected={pathname.match(/\/blog\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
