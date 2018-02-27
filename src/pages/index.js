@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Page from '../layouts/page';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
@@ -187,20 +186,8 @@ const SAppPreviewMobile = styled.img`
   }
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightGrey,
-  linkHover: colors.lightGrey,
-  backgroundColor: colors.darkNavyBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightGrey,
-  logoHover: colors.lightGrey
-};
-
 const IndexPage = () => (
-  <div>
-    <Header theme={layoutTheme} />
+  <Page>
     <SSection
       id={`balance-token`}
       minHeight={700}
@@ -243,8 +230,7 @@ const IndexPage = () => (
       </SSectionWrapper>
       <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
     </SSection>
-    <Footer theme={layoutTheme} />
-  </div>
+  </Page>
 );
 
 export default IndexPage;

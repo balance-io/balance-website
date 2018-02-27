@@ -7,8 +7,7 @@ import Footer from '../components/Footer';
 import { colors, responsive } from '../styles';
 
 const SPage = styled.div`
-  padding: 56px 0 12px;
-  font-size: 14px;
+  padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
   margin: 0 auto;
   min-height: ${({ article }) => (article ? 'calc(100vh - 68px)' : 0)};
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
@@ -23,7 +22,7 @@ const SPage = styled.div`
 `;
 
 const layoutTheme = {
-  fontWeight: '500',
+  fontWeight: '400',
   linkColor: colors.lightGrey,
   linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
@@ -35,10 +34,12 @@ const layoutTheme = {
 
 const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...props }) => (
   <div>
-    <Helmet
-      title={`${title} - ${siteTitle}`}
-      meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
-    />
+    {!!(title && siteTitle) && (
+      <Helmet
+        title={`${title} - ${siteTitle}`}
+        meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
+      />
+    )}
     <Header theme={layoutTheme} />
     <SPage article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
       {!article ? (
@@ -56,17 +57,19 @@ const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...pro
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  siteTitle: PropTypes.string,
   fontColor: PropTypes.string,
   article: PropTypes.bool,
   maxWidth: PropTypes.number
 };
 
 Page.defaultProps = {
+  title: '',
+  siteTitle: '',
   fontColor: 'white',
   article: false,
-  maxWidth: 700
+  maxWidth: null
 };
 
 export default Page;

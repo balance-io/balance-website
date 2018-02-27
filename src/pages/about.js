@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Helmet from 'react-helmet';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Page from '../layouts/page';
 import Section from '../components/Section';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
@@ -36,7 +34,7 @@ const SBackgroundImage = styled.div`
 
 const SBackgroundImageTwo = styled.div`
   position: absolute;
-  top: -25%;
+  top: -27%;
   left: 0;
   width: 50%;
   height: 100%;
@@ -91,14 +89,19 @@ const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: ${({ wrap }) => (wrap ? 'wrap' : 'nowrap')};
-  @media screen and (${responsive.sm.min}) {
-    padding-top: 68px;
-  }
   @media screen and (${responsive.sm.max}) {
     flex-direction: column;
-    &:first-child {
-      padding-top: 68px;
-    }
+  }
+`;
+
+const SFirstSection = styled(SSectionWrapper)`
+  padding-top: 68px;
+`;
+
+const SSecondSection = styled(SSectionWrapper)`
+  padding-top: 48px;
+  @media screen and (${responsive.md.max}) {
+    padding-top: 34px;
   }
 `;
 
@@ -110,7 +113,7 @@ const SContainer = styled.div`
   & ${STitle} {
     margin: 10px 0;
   }
-  margin-bottom: 34px;
+  margin-bottom: 68px;
   @media screen and (${responsive.md.max}) {
     margin: 20px;
   }
@@ -234,38 +237,71 @@ const SCardDescription = styled.div`
   margin: 12px 0;
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightGrey,
-  linkHover: colors.lightGrey,
-  backgroundColor: colors.darkNavyBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightGrey,
-  logoHover: colors.lightGrey
-};
+const AboutPage = ({ data, ...props }) => (
+  <Page title="About" siteTitle={data.site.siteMetadata.title}>
+    <Section
+      center
+      id={`balance-about-top`}
+      minHeight={500}
+      color={colors.navyBlue}
+      background={<SBackgroundImage />}
+    >
+      <SFirstSection wrap>
+        <STitle>Team</STitle>
+        <SCardsContainer>
+          {team.map(member => (
+            <SCard key={member.name}>
+              <SCardHeader>
+                <SProfileImage>
+                  <img src={member.profileImg} alt={member.name} />
+                </SProfileImage>
+                <SProfile>
+                  <div>{member.name}</div>
+                  <div>
+                    <a href={`https://twitter.com/${member.twitter}`}>{`@${member.twitter}`}</a>
+                  </div>
+                  <div>{member.role}</div>
+                </SProfile>
+              </SCardHeader>
+              <SCardEmojis>
+                {member.emojis.map(emoji => (
+                  <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
+                ))}
+              </SCardEmojis>
+              <SCardDescription>{member.description}</SCardDescription>
+            </SCard>
+          ))}
+          <SCard transparent>
+            <h3>Want to join us?</h3>
+            <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
+            <a
+              href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >{`🔐 Application Security Engineer`}</a>
+            <SCardDescription>
+              We also would love to talk to any great people who are interested in making tokens
+              easier to use. Just email:{' '}
+              <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
+                richard@balance.io
+              </a>
+            </SCardDescription>
+          </SCard>
+        </SCardsContainer>
+      </SFirstSection>
+    </Section>
 
-const AboutPage = ({ data, ...props }) => {
-  const title = 'About';
-  const siteTitle = data.site.siteMetadata.title;
-  return (
-    <div>
-      <Helmet
-        title={`${title} - ${siteTitle}`}
-        meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
-      />
-      <Header theme={layoutTheme} />
-      <Section
-        center
-        id={`balance-about-top`}
-        minHeight={450}
-        color={colors.navyBlue}
-        background={<SBackgroundImage />}
-      >
-        <SSectionWrapper wrap>
-          <STitle>Team</STitle>
+    <Section
+      id={`balance-about-bottom`}
+      minHeight={500}
+      color={colors.navyBlue}
+      background={<SBackgroundImageTwo />}
+    >
+      <SSectionWrapper wrap>
+        <SSecondSection wrap>
+          <STitle>Advisors</STitle>
           <SCardsContainer>
-            {team.map(member => (
+            {advisors.map(member => (
               <SCard key={member.name}>
                 <SCardHeader>
                   <SProfileImage>
@@ -287,103 +323,48 @@ const AboutPage = ({ data, ...props }) => {
                 <SCardDescription>{member.description}</SCardDescription>
               </SCard>
             ))}
-            <SCard transparent>
-              <h3>Want to join us?</h3>
-              <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
-              <a
-                href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
-                target="_blank"
-                rel="noopener noreferrer"
-              >{`🔐 Application Security Engineer`}</a>
-              <SCardDescription>
-                We also would love to talk to any great people who are interested in making tokens
-                easier to use. Just email:{' '}
-                <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
-                  richard@balance.io
-                </a>
-              </SCardDescription>
-            </SCard>
           </SCardsContainer>
-        </SSectionWrapper>
-      </Section>
+        </SSecondSection>
 
-      <Section
-        id={`balance-about-bottom`}
-        minHeight={800}
-        color={colors.navyBlue}
-        background={<SBackgroundImageTwo />}
-      >
-        <SSectionWrapper wrap>
-          <SSectionWrapper wrap>
-            <STitle>Advisors</STitle>
-            <SCardsContainer>
-              {advisors.map(member => (
-                <SCard key={member.name}>
-                  <SCardHeader>
-                    <SProfileImage>
-                      <img src={member.profileImg} alt={member.name} />
-                    </SProfileImage>
-                    <SProfile>
-                      <div>{member.name}</div>
-                      <div>
-                        <a href={`https://twitter.com/${member.twitter}`}>{`@${member.twitter}`}</a>
-                      </div>
-                      <div>{member.role}</div>
-                    </SProfile>
-                  </SCardHeader>
-                  <SCardEmojis>
-                    {member.emojis.map(emoji => (
-                      <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
-                    ))}
-                  </SCardEmojis>
-                  <SCardDescription>{member.description}</SCardDescription>
-                </SCard>
-              ))}
-            </SCardsContainer>
-          </SSectionWrapper>
+        <SSecondSection>
+          <SAbout>
+            <STitle>About Us</STitle>
+            <STagline>
+              Balance began life as a side project. Ben, Christian and Richard built a personal
+              finance tool for macOS. We launched the app in early 2017 and Apple featured the
+              product on the front of the Mac App Store. We then started thinking about adding
+              support for digital currencies. After building out a prototype we successfully raised
+              a round of crowd funding.
+            </STagline>
+            <STagline>
+              Our focus now is to build a great wallet and interface for the token economy.
+            </STagline>
+          </SAbout>
 
-          <SSectionWrapper>
-            <SAbout>
-              <STitle>About Us</STitle>
-              <STagline>
-                Balance began life as a side project. Ben, Christian and Richard built a personal
-                finance tool for macOS. We launched the app in early 2017 and Apple featured the
-                product on the front of the Mac App Store. We then started thinking about adding
-                support for digital currencies. After building out a prototype we successfully
-                raised a round of crowd funding.
-              </STagline>
-              <STagline>
-                Our focus now is to build a great wallet and interface for the token economy.
-              </STagline>
-            </SAbout>
-
-            <SContact>
-              <STitle>Contact</STitle>
-              <STagline>
-                <strong>Registered address</strong>
-              </STagline>
-              <STagline>
-                548 Market St #90291 <br />
-                San Francisco, California 94104-5401
-              </STagline>
-              <br />
-              <STagline>
-                <strong>Contact email</strong>
-              </STagline>
-              <STagline>
-                <a href="mailto:support@balance.io" target="_blank" rel="noopener noreferrer">
-                  support@balance.io
-                </a>
-              </STagline>
-            </SContact>
-          </SSectionWrapper>
-        </SSectionWrapper>
-      </Section>
-
-      <Footer theme={layoutTheme} />
-    </div>
-  );
-};
+          <SContact>
+            <STitle>Contact</STitle>
+            <STagline>
+              <strong>Registered address</strong>
+            </STagline>
+            <STagline>
+              548 Market St #90291 <br />
+              San Francisco, California 94104-5401
+            </STagline>
+            <br />
+            <STagline>
+              <strong>Contact email</strong>
+            </STagline>
+            <STagline>
+              <a href="mailto:support@balance.io" target="_blank" rel="noopener noreferrer">
+                support@balance.io
+              </a>
+            </STagline>
+          </SContact>
+        </SSecondSection>
+      </SSectionWrapper>
+    </Section>
+  </Page>
+);
 
 export default AboutPage;
 

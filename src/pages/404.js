@@ -5,6 +5,7 @@ const NotFound = ({ data }) => (
   <Page
     title={'Page Not Found'}
     fontColor="white"
+    maxWidth={700}
     siteTitle={data.site.siteMetadata.title}
     article
   />

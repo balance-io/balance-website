@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Helmet from 'react-helmet';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Page from '../layouts/page';
 import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
 import solidityExample from '../assets/solidity-example.png';
@@ -162,177 +160,152 @@ const SImageWrapper = styled.div`
   }
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightGrey,
-  linkHover: colors.lightGrey,
-  backgroundColor: colors.darkNavyBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightGrey,
-  logoHover: colors.lightGrey
-};
-
-const Erc20Page = ({ data, ...props }) => {
-  const title = 'ERC-20 Tokens';
-  const siteTitle = data.site.siteMetadata.title;
-  return (
-    <div>
-      <Helmet
-        title={`${title} - ${siteTitle}`}
-        meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
-      />
-      <Header theme={layoutTheme} />
-      <EthereumPageHeader />
-      <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
-        <SSectionWrapper>
-          <SFlex>
-            <SContainer>
-              <STitle>What is an ERC-20 token?</STitle>
-              <STagline>
-                Right now, the most popular form of “token” is the ERC-20 token. This is a standard
-                of token that lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
-                <a
-                  href="https://github.com/ethereum/eips/issues/20"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Ethereum Request for Comment number 20
-                </a>, which effectively means it was the 20th major improvement proposed by one of
-                the Ethereum contributors.
-              </STagline>
-            </SContainer>
-          </SFlex>
-
-          <SFlex>
-            <STokenLogos>
-              {tokenList.map(token => (
-                <SImageWrapper>
-                  <img src={token.logo} alt={token.name} />
-                </SImageWrapper>
-              ))}
-            </STokenLogos>
-          </SFlex>
-        </SSectionWrapper>
-      </Section>
-
-      <Section
-        center
-        id={`balance-token-solidity`}
-        minHeight={450}
-        color={colors.navyBlue}
-        background={<SBackgroundImageTwo />}
-      >
-        <SSectionWrapper left>
-          <SFlex>
-            <SContainer>
-              <STitle>How are they created?</STitle>
-              <STagline>
-                Every day, thousands of ERC-20 tokens are created on the Ethereum network by
-                developers around the world. They are built with code which is then{' '}
-                <a href="https://ethereum.org/token" target="_blank" rel="noreferrer noopener">
-                  published on Ethereum
-                </a>. The code conforms to the ERC-20 standard which defines things like the number
-                of tokens, ticker symbol, and how to transfer them from one wallet to another.
-              </STagline>
-            </SContainer>
-          </SFlex>
-
-          <SFlex>
-            <SImageWrapper>
-              <img src={solidityExample} alt="solidity" />
-            </SImageWrapper>
-          </SFlex>
-        </SSectionWrapper>
-      </Section>
-
-      <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
-        <SSectionWrapper>
-          <SFlex>
-            <SContainer>
-              <STitle>What are tokens used for?</STitle>
-              <STagline>
-                Tokens can represent anything: from a part of a new protocol to a share in a
-                company. Today, lots of tokens are being created in{' '}
-                <a
-                  href="https://en.wikipedia.org/wiki/Initial_coin_offering"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Initial Coin Offerings (ICOs)
-                </a>{' '}
-                where you are investing into a new project in the crypto-currency space. Each of
-                these projects has a different reason for launching a token. The vast majority of
-                them are useless. Some of them have the potential to be incredibly valuable.
-              </STagline>
-            </SContainer>
-          </SFlex>
-
-          <SFlex>
-            <SContainer>
-              <STitle>How can I tell if it is ERC-20?</STitle>
-              <STagline>
-                Although lots of tokens live on the Ethereum blockchain, many do not. Some tokens
-                exist on other blockchain platforms like{' '}
-                <a href="https://neo.org/" target="_blank" rel="noreferrer noopener">
-                  Neo
-                </a>,{' '}
-                <a href="http://www.omnilayer.org/" target="_blank" rel="noreferrer noopener">
-                  Omni
-                </a>,{' '}
-                <a href="https://nxtplatform.org/" target="_blank" rel="noreferrer noopener">
-                  Nxt
-                </a>{' '}
-                and{' '}
-                <a href="https://www.stellar.org/" target="_blank" rel="noreferrer noopener">
-                  Stellar
-                </a>. There are many coins that exist on their own chain. For example, Bitcoin,
-                Litecoin, Ripple and Dogecoin are all coins that are totally separate. A quick way
-                to find out if a token is running on Ethereum is to check{' '}
-                <a
-                  href="https://coinmarketcap.com/tokens/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  CoinMarketCap.com/tokens
-                </a>{' '}
-                and see the platform section.
-              </STagline>
-            </SContainer>
-          </SFlex>
-        </SSectionWrapper>
-      </Section>
-
-      <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-        <SSectionWrapper minHeight={450}>
-          <SFlex>
-            <SContainer>
-              <STitle>Want a wallet for your ERC-20 tokens?</STitle>
-              <SSubTitle>Want to get into the private beta?</SSubTitle>
-              <SViralLoops
-                type="button"
-                className="vrlps-trigger"
-                data-toggle="modal"
-                data-target="#vl_popup"
-                onClick={() => VL.openModal()}
+const Erc20Page = ({ data, ...props }) => (
+  <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title}>
+    <EthereumPageHeader />
+    <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <STitle>What is an ERC-20 token?</STitle>
+            <STagline>
+              Right now, the most popular form of “token” is the ERC-20 token. This is a standard of
+              token that lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
+              <a
+                href="https://github.com/ethereum/eips/issues/20"
+                target="_blank"
+                rel="noreferrer noopener"
               >
-                Join the waitlist
-              </SViralLoops>
-            </SContainer>
-          </SFlex>
+                Ethereum Request for Comment number 20
+              </a>, which effectively means it was the 20th major improvement proposed by one of the
+              Ethereum contributors.
+            </STagline>
+          </SContainer>
+        </SFlex>
 
-          <SFlex>
-            <SImageWrapper>
-              {' '}
-              <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-            </SImageWrapper>
-          </SFlex>
-        </SSectionWrapper>
-      </Section>
-      <Footer theme={layoutTheme} />
-    </div>
-  );
-};
+        <SFlex>
+          <STokenLogos>
+            {tokenList.map(token => (
+              <SImageWrapper>
+                <img src={token.logo} alt={token.name} />
+              </SImageWrapper>
+            ))}
+          </STokenLogos>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+
+    <Section
+      center
+      id={`balance-token-solidity`}
+      minHeight={450}
+      color={colors.navyBlue}
+      background={<SBackgroundImageTwo />}
+    >
+      <SSectionWrapper left>
+        <SFlex>
+          <SContainer>
+            <STitle>How are they created?</STitle>
+            <STagline>
+              Every day, thousands of ERC-20 tokens are created on the Ethereum network by
+              developers around the world. They are built with code which is then{' '}
+              <a href="https://ethereum.org/token" target="_blank" rel="noreferrer noopener">
+                published on Ethereum
+              </a>. The code conforms to the ERC-20 standard which defines things like the number of
+              tokens, ticker symbol, and how to transfer them from one wallet to another.
+            </STagline>
+          </SContainer>
+        </SFlex>
+
+        <SFlex>
+          <SImageWrapper>
+            <img src={solidityExample} alt="solidity" />
+          </SImageWrapper>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+
+    <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <STitle>What are tokens used for?</STitle>
+            <STagline>
+              Tokens can represent anything: from a part of a new protocol to a share in a company.
+              Today, lots of tokens are being created in{' '}
+              <a
+                href="https://en.wikipedia.org/wiki/Initial_coin_offering"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Initial Coin Offerings (ICOs)
+              </a>{' '}
+              where you are investing into a new project in the crypto-currency space. Each of these
+              projects has a different reason for launching a token. The vast majority of them are
+              useless. Some of them have the potential to be incredibly valuable.
+            </STagline>
+          </SContainer>
+        </SFlex>
+
+        <SFlex>
+          <SContainer>
+            <STitle>How can I tell if it is ERC-20?</STitle>
+            <STagline>
+              Although lots of tokens live on the Ethereum blockchain, many do not. Some tokens
+              exist on other blockchain platforms like{' '}
+              <a href="https://neo.org/" target="_blank" rel="noreferrer noopener">
+                Neo
+              </a>,{' '}
+              <a href="http://www.omnilayer.org/" target="_blank" rel="noreferrer noopener">
+                Omni
+              </a>,{' '}
+              <a href="https://nxtplatform.org/" target="_blank" rel="noreferrer noopener">
+                Nxt
+              </a>{' '}
+              and{' '}
+              <a href="https://www.stellar.org/" target="_blank" rel="noreferrer noopener">
+                Stellar
+              </a>. There are many coins that exist on their own chain. For example, Bitcoin,
+              Litecoin, Ripple and Dogecoin are all coins that are totally separate. A quick way to
+              find out if a token is running on Ethereum is to check{' '}
+              <a href="https://coinmarketcap.com/tokens/" target="_blank" rel="noreferrer noopener">
+                CoinMarketCap.com/tokens
+              </a>{' '}
+              and see the platform section.
+            </STagline>
+          </SContainer>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+
+    <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper minHeight={450}>
+        <SFlex>
+          <SContainer>
+            <STitle>Want a wallet for your ERC-20 tokens?</STitle>
+            <SSubTitle>Want to get into the private beta?</SSubTitle>
+            <SViralLoops
+              type="button"
+              className="vrlps-trigger"
+              data-toggle="modal"
+              data-target="#vl_popup"
+              onClick={() => VL.openModal()}
+            >
+              Join the waitlist
+            </SViralLoops>
+          </SContainer>
+        </SFlex>
+
+        <SFlex>
+          <SImageWrapper>
+            {' '}
+            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SImageWrapper>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+  </Page>
+);
 
 export default Erc20Page;
 
