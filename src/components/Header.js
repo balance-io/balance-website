@@ -114,10 +114,7 @@ const Header = ({ theme, ...props }) => (
     <STopSection>
       <SNav>
         <SLink
-          onClick={() => {
-            ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage');
-            this.hideNavReveal();
-          }}
+          onClick={() => ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage')}
           to="/"
         >
           <SAppIcon hide={theme.hideIcon || false} />
@@ -125,20 +122,14 @@ const Header = ({ theme, ...props }) => (
         </SLink>
         <SNavList>
           <SNavLinks
-            onClick={() => {
-              ga('send', 'event', 'Blog', 'click', 'Header - click Blog');
-              this.hideNavReveal();
-            }}
+            onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
             to="/blog"
           >
             <SIconLink icon={square} color={theme.linkColor} alt="blog logo" />
             <p>Blog</p>
           </SNavLinks>
           {/* <SExternalLink
-              onClick={() => {
-                ga('send', 'event', 'About', 'click', 'Header - click About');
-                this.hideNavReveal();
-              }}
+              onClick={() => ga('send', 'event', 'About', 'click', 'Header - click About')}
               href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
               rel="noreferrer noopener"
               target="_blank"
