@@ -130,7 +130,7 @@ const Header = ({ theme, ...props }) => (
               ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens');
               this.hideNavReveal();
             }}
-            to="/tokens"
+            to="/erc20-tokens"
           >
             <SIconLink icon={rhombus} color={theme.linkColor} alt="tokens logo" />
             <p>Tokens</p>
