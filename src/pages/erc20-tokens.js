@@ -43,7 +43,7 @@ const SSectionWrapper = styled.div`
       order: 1;
     }
     & > div {
-      padding: 34px;
+      padding: 24px;
     }
   }
 `;
@@ -66,7 +66,7 @@ const SContainer = styled.div`
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
-    padding: 34px;
+    padding: 24px;
   }
 `;
 
@@ -133,20 +133,29 @@ const SViralLoops = styled.button`
 const STokenLogos = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   & div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 25%;
-    padding: 35px;
+    margin: 24px 0;
+  }
+  & img {
+    width: 50px;
+    height: 50px;
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    & div {
-      padding: 25px;
+    & img {
+      width: 50px;
+      height: 50px;
     }
   }
   @media screen and (${responsive.sm.max}) {
     margin: 20px auto;
-    & div {
-      padding: 20px;
+    & img {
+      width: 35px;
+      height: 35px;
     }
   }
 `;
@@ -156,7 +165,7 @@ const SImageWrapper = styled.div`
     width: 100%;
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    padding: 34px;
+    padding: 24px;
   }
 `;
 
@@ -186,9 +195,9 @@ const Erc20Page = ({ data, ...props }) => (
         <SFlex>
           <STokenLogos>
             {tokenList.map(token => (
-              <SImageWrapper key={token.name}>
+              <div key={token.name}>
                 <img src={token.logo} alt={token.name} />
-              </SImageWrapper>
+              </div>
             ))}
           </STokenLogos>
         </SFlex>
@@ -279,7 +288,14 @@ const Erc20Page = ({ data, ...props }) => (
     </Section>
 
     <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapper minHeight={450}>
+      <SSectionWrapper minHeight={450} left>
+        <SFlex>
+          <SImageWrapper>
+            {' '}
+            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SImageWrapper>
+        </SFlex>
+
         <SFlex>
           <SContainer>
             <STitle>Want a wallet for your ERC-20 tokens?</STitle>
@@ -294,13 +310,6 @@ const Erc20Page = ({ data, ...props }) => (
               Join the waitlist
             </SViralLoops>
           </SContainer>
-        </SFlex>
-
-        <SFlex>
-          <SImageWrapper>
-            {' '}
-            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SImageWrapper>
         </SFlex>
       </SSectionWrapper>
     </Section>

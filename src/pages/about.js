@@ -56,7 +56,7 @@ const STitle = styled.h1`
     margin: 20px;
   }
   @media screen and (${responsive.sm.max}) {
-    font-size: 6.6vw;
+    font-size: 9vw;
     letter-spacing: -0.2px;
   }
 `;
@@ -73,7 +73,7 @@ const STagline = styled.p`
     color: rgb(${colors.blue});
   }
   @media screen and (${responsive.sm.max}) {
-    font-size: 3.8vw;
+    font-size: 4vw;
     letter-spacing: 0.2px;
     color: rgb(${colors.lightGrey});
   }
@@ -105,6 +105,14 @@ const SSecondSection = styled(SSectionWrapper)`
   }
 `;
 
+const SThirdSection = styled(SSectionWrapper)`
+  padding-top: 48px;
+  @media screen and (${responsive.md.max}) {
+    padding: 20px;
+    padding-top: 34px;
+  }
+`;
+
 const SContainer = styled.div`
   width: 100%;
   display: flex;
@@ -114,9 +122,6 @@ const SContainer = styled.div`
     margin: 10px 0;
   }
   margin-bottom: 68px;
-  @media screen and (${responsive.md.max}) {
-    margin: 20px;
-  }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
   }
@@ -126,16 +131,15 @@ const SAbout = styled(SContainer)`
   width: 70%;
   padding-right: 24px;
   @media screen and (${responsive.sm.max}) {
-    width: 100%;
-    margin: 25px;
+    width: auto;
+    padding-right: 0;
   }
 `;
 
 const SContact = styled(SContainer)`
   width: 30%;
   @media screen and (${responsive.sm.max}) {
-    width: 100%;
-    margin: 25px;
+    width: auto;
     margin-bottom: 34px;
   }
 `;
@@ -173,7 +177,7 @@ const SCard = styled.div`
   @media screen and (${responsive.md.max}) {
     width: calc(50% - 40px);
     margin: 20px;
-    padding: 16px 30px;
+    padding: ${({ transparent }) => (transparent ? '16px 20px' : '16px 24px')};
   }
   @media screen and (${responsive.sm.max}) {
     width: 100%;
@@ -190,6 +194,9 @@ const SProfileImage = styled(SImageWrapper)`
   width: 64px;
   height: 64px;
   margin-right: 24px;
+  @media screen and (${responsive.sm.max}) {
+    margin-right: 16px;
+  }
 `;
 
 const SProfile = styled.div`
@@ -326,7 +333,7 @@ const AboutPage = ({ data, ...props }) => (
           </SCardsContainer>
         </SSecondSection>
 
-        <SSecondSection>
+        <SThirdSection>
           <SAbout>
             <STitle>About Us</STitle>
             <STagline>
@@ -360,7 +367,7 @@ const AboutPage = ({ data, ...props }) => (
               </a>
             </STagline>
           </SContact>
-        </SSecondSection>
+        </SThirdSection>
       </SSectionWrapper>
     </Section>
   </Page>

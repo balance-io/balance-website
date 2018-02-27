@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { colors, responsive } from '../styles';
+import { colors } from '../styles';
 
 const SPage = styled.div`
   padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
@@ -15,10 +15,6 @@ const SPage = styled.div`
   flex-direction: column;
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${colors[fontColor]})`};
-  @media screen and (${responsive.sm.max}) {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 `;
 
 const layoutTheme = {
