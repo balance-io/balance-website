@@ -163,9 +163,9 @@ const SImageWrapper = styled.div`
 `;
 
 const layoutTheme = {
-  fontWeight: '500',
-  linkColor: colors.dark,
-  linkHover: colors.dark,
+  fontWeight: '400',
+  linkColor: colors.lightGrey,
+  linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
