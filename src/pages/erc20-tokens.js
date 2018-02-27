@@ -67,8 +67,7 @@ const SContainer = styled.div`
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
-    align-items: center;
-    text-align: center;
+    padding: 34px;
   }
 `;
 
@@ -76,6 +75,9 @@ const STitle = styled.h1`
   font-size: 2em;
   letter-spacing: -0.25px;
   margin: 10px 0;
+  @media screen and (${responsive.md.max}) {
+    font-size: 1.6em;
+  }
   @media screen and (${responsive.sm.max}) {
     font-size: 6.6vw;
     letter-spacing: -0.2px;
@@ -87,6 +89,9 @@ const SSubTitle = styled.h2`
   letter-spacing: -0.25px;
   font-weight: 400;
   margin: 20px 0;
+  @media screen and (${responsive.md.max}) {
+    font-size: 1.125em;
+  }
   @media screen and (${responsive.sm.max}) {
     font-size: 4.5vw;
     letter-spacing: -0.2px;
@@ -99,6 +104,9 @@ const STagline = styled.p`
   line-height: 1.98em;
   & a {
     color: rgb(${colors.blue});
+  }
+  @media screen and (${responsive.md.max}) {
+    font-size: 0.88em;
   }
   @media screen and (${responsive.sm.max}) {
     font-size: 3.8vw;
@@ -131,6 +139,11 @@ const STokenLogos = styled.div`
     width: 25%;
     padding: 35px;
   }
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    & div {
+      padding: 25px;
+    }
+  }
   @media screen and (${responsive.sm.max}) {
     margin: 20px auto;
     & div {
@@ -142,6 +155,9 @@ const STokenLogos = styled.div`
 const SImageWrapper = styled.div`
   & img {
     width: 100%;
+  }
+  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
+    padding: 34px;
   }
 `;
 
