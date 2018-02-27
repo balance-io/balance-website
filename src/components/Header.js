@@ -177,6 +177,16 @@ const SMobileNav = styled.div`
   transition: ${transitions.base};
 `;
 
+const SMobileNavIcons = styled.div`
+  height: 20px;
+  width: 20px;
+  margin-left: 12px;
+  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
+  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
+  mask-size: contain;
+  mask-position: center;
+`;
+
 const SMobileNavLinks = styled(Link)`
   box-sizing: border-box;
   display: flex;
@@ -197,18 +207,11 @@ const SMobileNavLinks = styled(Link)`
   & > span {
     margin-left: 20px;
   }
-`;
 
-const SMobileNavIcons = styled.div`
-  height: 20px;
-  width: 20px;
-  margin-left: 12px;
-  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  mask-size: contain;
-  mask-position: center;
-  background-color: ${({ selected, activeColor }) =>
-    activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
+  & > div {
+    background-color: ${({ selected, activeColor }) =>
+      activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
+  }
 `;
 
 const SMobileNavClose = styled.div`
@@ -293,7 +296,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/erc20-tokens"
               >
-                <SMobileNavIcons icon={rhombus} activeColor={theme.mobileActiveColor} />
+                <SMobileNavIcons icon={rhombus} />
                 <span>Tokens</span>
               </SMobileNavLinks>
               <SMobileNavLinks
@@ -303,7 +306,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/about"
               >
-                <SMobileNavIcons icon={circle} activeColor={theme.mobileActiveColor} />
+                <SMobileNavIcons icon={circle} />
                 <span>About</span>
               </SMobileNavLinks>
               <SMobileNavLinks
@@ -313,7 +316,7 @@ class Header extends Component {
                 onClick={this.hideNavReveal}
                 to="/blog"
               >
-                <SMobileNavIcons icon={square} activeColor={theme.mobileActiveColor} />
+                <SMobileNavIcons icon={square} />
                 <span>Blog</span>
               </SMobileNavLinks>
               <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
