@@ -2,7 +2,12 @@ import React from 'react';
 import Page from '../layouts/page';
 
 const NotFound = ({ data }) => (
-  <Page title={'404 - Page Not Found'} siteTitle={data.site.siteMetadata.title} article />
+  <Page
+    title={'Page Not Found'}
+    fontColor="white"
+    siteTitle={data.site.siteMetadata.title}
+    article
+  />
 );
 
 export default NotFound;

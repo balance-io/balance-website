@@ -235,7 +235,7 @@ const SCardDescription = styled.div`
 `;
 
 const layoutTheme = {
-  fontWeight: '500',
+  fontWeight: '400',
   linkColor: colors.lightGrey,
   linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
