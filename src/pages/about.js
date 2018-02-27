@@ -43,6 +43,9 @@ const SBackgroundImageTwo = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
 `;
 
 const STitle = styled.h1`
@@ -50,6 +53,9 @@ const STitle = styled.h1`
   font-size: 2em;
   letter-spacing: -0.25px;
   margin: 10px;
+  @media screen and (${responsive.md.max}) {
+    margin: 20px;
+  }
   @media screen and (${responsive.sm.max}) {
     font-size: 6.6vw;
     letter-spacing: -0.2px;
@@ -104,10 +110,11 @@ const SContainer = styled.div`
     margin: 10px 0;
   }
   margin-bottom: 34px;
+  @media screen and (${responsive.md.max}) {
+    margin: 20px;
+  }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     display: flex;
-    align-items: center;
-    text-align: center;
   }
 `;
 
@@ -139,7 +146,6 @@ const SCard = styled.div`
   width: calc(33% - 20px);
   display: flex;
   flex-direction: column;
-
   margin: 10px;
   padding: 14px 20px;
   border: ${({ transparent }) =>
@@ -160,6 +166,11 @@ const SCard = styled.div`
       margin-bottom: 12px;
     }
   `};
+  @media screen and (${responsive.md.max}) {
+    width: calc(50% - 40px);
+    margin: 20px;
+    padding: 16px 30px;
+  }
   @media screen and (${responsive.sm.max}) {
     width: 100%;
   }
@@ -291,7 +302,7 @@ const AboutPage = () => (
 
     <Section
       id={`balance-about-bottom`}
-      minHeight={900}
+      minHeight={800}
       color={colors.navyBlue}
       background={<SBackgroundImageTwo />}
     >
