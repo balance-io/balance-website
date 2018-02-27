@@ -136,10 +136,13 @@ const STokenLogos = styled.div`
   justify-content: space-around;
   & div {
     width: 25%;
-    padding: 20px;
+    padding: 35px;
   }
   @media screen and (${responsive.sm.max}) {
     margin: 20px auto;
+    & div {
+      padding: 20px;
+    }
   }
 `;
 
@@ -164,7 +167,7 @@ const Erc20Page = () => (
   <div>
     <Header theme={layoutTheme} />
     <EthereumPageHeader />
-    <Section id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
+    <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
@@ -216,6 +219,7 @@ const Erc20Page = () => (
     </Section>
 
     <Section
+      center
       id={`balance-token-solidity`}
       minHeight={450}
       color={colors.navyBlue}
@@ -244,7 +248,7 @@ const Erc20Page = () => (
       </SSectionWrapper>
     </Section>
 
-    <Section id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
+    <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
@@ -297,7 +301,7 @@ const Erc20Page = () => (
       </SSectionWrapper>
     </Section>
 
-    <Section id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
+    <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper minHeight={450}>
         <SFlex>
           <SContainer>

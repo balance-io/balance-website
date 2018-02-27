@@ -24,8 +24,12 @@ const SContent = styled.div`
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
   margin: 0 auto;
   z-index: 0;
-  display: flex;
-  align-items: center;
+  ${({ center }) =>
+    center &&
+    `
+    display: flex;
+    align-items: center;
+  `};
 `;
 
 const SBackground = styled.div`
@@ -37,10 +41,19 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({ children, background, maxWidth, minHeight, color, fontColor, ...props }) => (
+const Section = ({
+  children,
+  background,
+  center,
+  maxWidth,
+  minHeight,
+  color,
+  fontColor,
+  ...props
+}) => (
   <SSection minHeight={minHeight} color={color} fontColor={fontColor} {...props}>
     <SBackground>{background}</SBackground>
-    <SContent maxWidth={maxWidth} {...props}>
+    <SContent center={center} maxWidth={maxWidth} {...props}>
       {children}
     </SContent>
   </SSection>
@@ -49,6 +62,7 @@ const Section = ({ children, background, maxWidth, minHeight, color, fontColor, 
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   background: PropTypes.node,
+  center: PropTypes.bool,
   maxWidth: PropTypes.number,
   minHeight: PropTypes.number,
   color: PropTypes.string,
@@ -57,6 +71,7 @@ Section.propTypes = {
 
 Section.defaultProps = {
   background: null,
+  center: false,
   maxWidth: 1000,
   minHeight: 0,
   color: null,
