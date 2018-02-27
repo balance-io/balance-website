@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Section from '../components/Section';
@@ -234,7 +235,7 @@ const SCardDescription = styled.div`
 `;
 
 const layoutTheme = {
-  fontWeight: '400',
+  fontWeight: '500',
   linkColor: colors.lightGrey,
   linkHover: colors.lightGrey,
   backgroundColor: colors.darkNavyBlue,
@@ -244,73 +245,27 @@ const layoutTheme = {
   logoHover: colors.lightGrey
 };
 
-const AboutPage = () => (
-  <div>
-    <Header theme={layoutTheme} />
-
-    <Section
-      center
-      id={`balance-about-top`}
-      minHeight={450}
-      color={colors.navyBlue}
-      background={<SBackgroundImage />}
-    >
-      <SSectionWrapper wrap>
-        <STitle>Team</STitle>
-        <SCardsContainer>
-          {team.map(member => (
-            <SCard key={member.name}>
-              <SCardHeader>
-                <SProfileImage>
-                  <img src={member.profileImg} alt={member.name} />
-                </SProfileImage>
-                <SProfile>
-                  <div>{member.name}</div>
-                  <div>
-                    <a href={`https://twitter.com/${member.twitter}`}>{`@${member.twitter}`}</a>
-                  </div>
-                  <div>{member.role}</div>
-                </SProfile>
-              </SCardHeader>
-              <SCardEmojis>
-                {member.emojis.map(emoji => (
-                  <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
-                ))}
-              </SCardEmojis>
-              <SCardDescription>{member.description}</SCardDescription>
-            </SCard>
-          ))}
-          <SCard transparent>
-            <h3>Want to join us?</h3>
-            <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
-            <a
-              href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >{`🔐 Application Security Engineer`}</a>
-            <SCardDescription>
-              We also would love to talk to any great people who are interested in making tokens
-              easier to use. Just email:{' '}
-              <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
-                richard@balance.io
-              </a>
-            </SCardDescription>
-          </SCard>
-        </SCardsContainer>
-      </SSectionWrapper>
-    </Section>
-
-    <Section
-      id={`balance-about-bottom`}
-      minHeight={800}
-      color={colors.navyBlue}
-      background={<SBackgroundImageTwo />}
-    >
-      <SSectionWrapper wrap>
+const AboutPage = ({ data, ...props }) => {
+  const title = 'About';
+  const siteTitle = data.site.siteMetadata.title;
+  return (
+    <div>
+      <Helmet
+        title={`${title} - ${siteTitle}`}
+        meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
+      />
+      <Header theme={layoutTheme} />
+      <Section
+        center
+        id={`balance-about-top`}
+        minHeight={450}
+        color={colors.navyBlue}
+        background={<SBackgroundImage />}
+      >
         <SSectionWrapper wrap>
-          <STitle>Advisors</STitle>
+          <STitle>Team</STitle>
           <SCardsContainer>
-            {advisors.map(member => (
+            {team.map(member => (
               <SCard key={member.name}>
                 <SCardHeader>
                   <SProfileImage>
@@ -332,49 +287,112 @@ const AboutPage = () => (
                 <SCardDescription>{member.description}</SCardDescription>
               </SCard>
             ))}
+            <SCard transparent>
+              <h3>Want to join us?</h3>
+              <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
+              <a
+                href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >{`🔐 Application Security Engineer`}</a>
+              <SCardDescription>
+                We also would love to talk to any great people who are interested in making tokens
+                easier to use. Just email:{' '}
+                <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
+                  richard@balance.io
+                </a>
+              </SCardDescription>
+            </SCard>
           </SCardsContainer>
         </SSectionWrapper>
+      </Section>
 
-        <SSectionWrapper>
-          <SAbout>
-            <STitle>About Us</STitle>
-            <STagline>
-              Balance began life as a side project. Ben, Christian and Richard built a personal
-              finance tool for macOS. We launched the app in early 2017 and Apple featured the
-              product on the front of the Mac App Store. We then started thinking about adding
-              support for digital currencies. After building out a prototype we successfully raised
-              a round of crowd funding.
-            </STagline>
-            <STagline>
-              Our focus now is to build a great wallet and interface for the token economy.
-            </STagline>
-          </SAbout>
+      <Section
+        id={`balance-about-bottom`}
+        minHeight={800}
+        color={colors.navyBlue}
+        background={<SBackgroundImageTwo />}
+      >
+        <SSectionWrapper wrap>
+          <SSectionWrapper wrap>
+            <STitle>Advisors</STitle>
+            <SCardsContainer>
+              {advisors.map(member => (
+                <SCard key={member.name}>
+                  <SCardHeader>
+                    <SProfileImage>
+                      <img src={member.profileImg} alt={member.name} />
+                    </SProfileImage>
+                    <SProfile>
+                      <div>{member.name}</div>
+                      <div>
+                        <a href={`https://twitter.com/${member.twitter}`}>{`@${member.twitter}`}</a>
+                      </div>
+                      <div>{member.role}</div>
+                    </SProfile>
+                  </SCardHeader>
+                  <SCardEmojis>
+                    {member.emojis.map(emoji => (
+                      <SEmoji key={`${member.name}-${emoji}`}>{emoji}</SEmoji>
+                    ))}
+                  </SCardEmojis>
+                  <SCardDescription>{member.description}</SCardDescription>
+                </SCard>
+              ))}
+            </SCardsContainer>
+          </SSectionWrapper>
 
-          <SContact>
-            <STitle>Contact</STitle>
-            <STagline>
-              <strong>Registered address</strong>
-            </STagline>
-            <STagline>
-              548 Market St #90291 <br />
-              San Francisco, California 94104-5401
-            </STagline>
-            <br />
-            <STagline>
-              <strong>Contact email</strong>
-            </STagline>
-            <STagline>
-              <a href="mailto:support@balance.io" target="_blank" rel="noopener noreferrer">
-                support@balance.io
-              </a>
-            </STagline>
-          </SContact>
+          <SSectionWrapper>
+            <SAbout>
+              <STitle>About Us</STitle>
+              <STagline>
+                Balance began life as a side project. Ben, Christian and Richard built a personal
+                finance tool for macOS. We launched the app in early 2017 and Apple featured the
+                product on the front of the Mac App Store. We then started thinking about adding
+                support for digital currencies. After building out a prototype we successfully
+                raised a round of crowd funding.
+              </STagline>
+              <STagline>
+                Our focus now is to build a great wallet and interface for the token economy.
+              </STagline>
+            </SAbout>
+
+            <SContact>
+              <STitle>Contact</STitle>
+              <STagline>
+                <strong>Registered address</strong>
+              </STagline>
+              <STagline>
+                548 Market St #90291 <br />
+                San Francisco, California 94104-5401
+              </STagline>
+              <br />
+              <STagline>
+                <strong>Contact email</strong>
+              </STagline>
+              <STagline>
+                <a href="mailto:support@balance.io" target="_blank" rel="noopener noreferrer">
+                  support@balance.io
+                </a>
+              </STagline>
+            </SContact>
+          </SSectionWrapper>
         </SSectionWrapper>
-      </SSectionWrapper>
-    </Section>
+      </Section>
 
-    <Footer theme={layoutTheme} />
-  </div>
-);
+      <Footer theme={layoutTheme} />
+    </div>
+  );
+};
 
 export default AboutPage;
+
+export const query = graphql`
+  query AboutQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

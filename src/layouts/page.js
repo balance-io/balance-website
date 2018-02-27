@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import Section from '../components/Section';
@@ -9,7 +10,7 @@ import { colors, responsive } from '../styles';
 const SPage = styled(Section)`
   padding: 56px 0 12px;
   font-size: 14px;
-  min-height: ${({ article }) => (article ? 'calc(100vh - 136px)' : 0)};
+  max: ${({ article }) => (article ? 'calc(100vh - 136px)' : 0)};
   & article * {
     padding-bottom: 20px;
     opacity: 0.9;
@@ -67,22 +68,23 @@ const SPageContent = styled.div`
 
 const layoutTheme = {
   fontWeight: '400',
-  linkColor: colors.lightBlue,
-  linkHover: colors.lightBlue,
+  linkColor: colors.lightGrey,
+  linkHover: colors.lightGrey,
+  backgroundColor: colors.darkNavyBlue,
   mobileToggleColor: colors.lightGrey,
   mobileToggleOpacity: '1',
-  logoColor: colors.lightBlue,
-  logoHover: colors.lightBlue
+  logoColor: colors.lightGrey,
+  logoHover: colors.lightGrey
 };
 
-const Page = ({ children, title, article, siteTitle, ...props }) => (
+const Page = ({ children, title, siteTitle, article, maxWidth, ...props }) => (
   <div>
     <Helmet
       title={`${title} - ${siteTitle}`}
       meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
     />
     <Header theme={layoutTheme} />
-    <SPage article={article} maxWidth={700} fontColor={colors.white} {...props}>
+    <SPage article={article} maxWidth={maxWidth} fontColor={colors.white} {...props}>
       {!article ? (
         <SPageContent>{children}</SPageContent>
       ) : (
@@ -95,5 +97,18 @@ const Page = ({ children, title, article, siteTitle, ...props }) => (
     <Footer theme={layoutTheme} />
   </div>
 );
+
+Page.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired,
+  article: PropTypes.bool,
+  maxWidth: PropTypes.number
+};
+
+Page.defaultProps = {
+  article: false,
+  maxWidth: 700
+};
 
 export default Page;
