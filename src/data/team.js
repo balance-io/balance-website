@@ -11,7 +11,7 @@ export default [
     twitter: `jinrummie`,
     role: `engineer`,
     description: `Jin met Richard at Hacker School (now Recurse Center). Then she worked on machine learning infrastructure at eBay.`,
-    emojis: [`🤓`, `🏍`, `🔐`, `🧚‍`]
+    emojis: [`🤔`, `🏍`, `🔐`, `🚀`]
   },
   {
     name: `Christian Baroni`,
@@ -27,14 +27,14 @@ export default [
     twitter: `pedrouid`,
     role: `engineer`,
     description: `Pedro has built out ecommerce stores and banking interfaces. He loves React and blockchains in equal measure.`,
-    emojis: [`😎`, `📷`, `💻`, `🧙‍`]
+    emojis: [`😎`, `📷`, `💻`, `👨‍🔬`]
   },
   {
     name: `Ben Baron`,
     profileImg: ben,
     twitter: `benbaron`,
     role: `engineer`,
-    description: `Ben built a popular music streaming app and worked on the Spotify of the middle East before joining Apple to work on Photos team.`,
+    description: `Ben built a popular music streaming app and worked on Anghami before joining Apple to work on Photos team.`,
     emojis: [`😆`, `🏍`, `🎛`, `👨‍💻`]
   },
   {

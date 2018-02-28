@@ -280,7 +280,7 @@ const AboutPage = ({ data, ...props }) => (
           ))}
           <SCard transparent>
             <h3>Want to join us?</h3>
-            <SCardDescription>We are currently hiring for the following rolls:</SCardDescription>
+            <SCardDescription>We are currently hiring for the following roles:</SCardDescription>
             <a
               href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
               target="_blank"
