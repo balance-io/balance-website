@@ -23,7 +23,7 @@ export default [
     name: `Josh Buckley`,
     profileImg: josh,
     twitter: `joshbuckley`,
-    role: `founder`,
+    role: `entrepreneur`,
     description: `Josh took his company, Mino Games, through YC as the youngest founder. He has since invested in a range of amazing companies.`,
     emojis: [`😁`, `🏋️‍`, `🎢`, `🕺`]
   }
