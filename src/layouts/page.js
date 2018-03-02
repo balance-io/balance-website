@@ -19,12 +19,12 @@ const SPage = styled.div`
 
 const layoutTheme = {
   linkColor: colors.lightGrey,
-  linkHover: colors.lightGrey,
+  linkHover: colors.white,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.lightGrey,
   logoColor: colors.lightGrey,
-  logoHover: colors.lightGrey
+  logoHover: colors.white
 };
 
 const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...props }) => (

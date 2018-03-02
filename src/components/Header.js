@@ -72,6 +72,9 @@ const SNavList = styled.ul`
   & a:hover {
     color: ${({ theme }) => `rgb(${theme.linkHover})`};
   }
+  & a:hover > div {
+    background-color: ${({ theme }) => `rgb(${theme.linkHover})`};
+  }
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
@@ -100,6 +103,7 @@ const SNavLinks = styled(Link)`
 `;
 
 const SIconLink = styled.div`
+  transition: ${transitions.short};
   width: 16px;
   height: 16px;
   margin-right: 8px;
