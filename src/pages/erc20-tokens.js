@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import Page from '../layouts/page';
 import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
+import tokenSet from '../assets/token-set.png';
 import solidityExample from '../assets/solidity-example.png';
+import erc20vsCoin from '../assets/erc20-vs-coin.png';
+import tokenUses from '../assets/token-uses.png';
 import balanceTokenPreview from '../assets/balance-token-preview2.png';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
 import tokenList from '../data/tokens';
@@ -178,7 +181,7 @@ const Erc20Page = ({ data, ...props }) => (
           <SContainer>
             <STitle>What is an ERC-20 token?</STitle>
             <STagline>
-              Right now, the most popular form of “token” is the ERC-20 token. This is a standard of
+              The most popular form of “token” is the ERC-20 token. This is a standard of
               token that lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
               <a
                 href="https://github.com/ethereum/eips/issues/20"
@@ -193,13 +196,9 @@ const Erc20Page = ({ data, ...props }) => (
         </SFlex>
 
         <SFlex>
-          <STokenLogos>
-            {tokenList.map(token => (
-              <div key={token.name}>
-                <img src={token.logo} alt={token.name} />
-              </div>
-            ))}
-          </STokenLogos>
+          <SImageWrapper>
+            <img src={tokenSet} alt="erc 20 tokens" />
+          </SImageWrapper>
         </SFlex>
       </SSectionWrapper>
     </Section>
@@ -258,6 +257,25 @@ const Erc20Page = ({ data, ...props }) => (
 
         <SFlex>
           <SContainer>
+            <SImageWrapper>
+              <img src={tokenUses} alt="erc 20 token use cases" />
+            </SImageWrapper>
+          </SContainer>
+        </SFlex>
+      </SSectionWrapper>
+    </Section>
+
+    <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <SImageWrapper>
+              <img src={erc20vsCoin} alt="erc 20 tokens vs coins" />
+            </SImageWrapper>
+          </SContainer>
+        </SFlex>
+        <SFlex>
+          <SContainer>
             <STitle>How can I tell if it is ERC-20?</STitle>
             <STagline>
               Although lots of tokens live on the Ethereum blockchain, many do not. Some tokens
@@ -272,10 +290,30 @@ const Erc20Page = ({ data, ...props }) => (
                 Nxt
               </a>{' '}
               and{' '}
+              <a href="https://wavesplatform.com/" target="_blank" rel="noreferrer noopener">
+                Waves
+              </a>
+              . There are many coins that exist on their own chain. For example,{' '}
+              <a href="https://bitcoin.org/en/" target="_blank" rel="noreferrer noopener">
+                Bitcoin
+              </a>,{' '}
+              <a href="https://litecoin.com/" target="_blank" rel="noreferrer noopener">
+                Litecoin
+              </a>,{' '}
+              <a href="https://z.cash/" target="_blank" rel="noreferrer noopener">
+                Zcash
+              </a>,{' '}
               <a href="https://www.stellar.org/" target="_blank" rel="noreferrer noopener">
                 Stellar
-              </a>. There are many coins that exist on their own chain. For example, Bitcoin,
-              Litecoin, Ripple and Dogecoin are all coins that are totally separate. A quick way to
+              </a>,{' '}
+              <a href="https://www.decred.org/" target="_blank" rel="noreferrer noopener">
+              DCred
+              </a>{' '}
+              and{' '}
+              <a href="https://www.tezos.com/" target="_blank" rel="noreferrer noopener">
+              Tezos
+              </a>{' '}
+              are all coins that are totally separate. A quick way to
               find out if a token is running on Ethereum is to check{' '}
               <a href="https://coinmarketcap.com/tokens/" target="_blank" rel="noreferrer noopener">
                 CoinMarketCap.com/tokens
@@ -284,6 +322,7 @@ const Erc20Page = ({ data, ...props }) => (
             </STagline>
           </SContainer>
         </SFlex>
+
       </SSectionWrapper>
     </Section>
 
@@ -298,8 +337,8 @@ const Erc20Page = ({ data, ...props }) => (
 
         <SFlex>
           <SContainer>
-            <STitle>Want a wallet for your ERC-20 tokens?</STitle>
-            <SSubTitle>Want to get into the private beta?</SSubTitle>
+            <STitle>Want a wallet for your tokens?</STitle>
+            <SSubTitle>Get early access to our private beta</SSubTitle>
             <SViralLoops
               type="button"
               className="vrlps-trigger"
