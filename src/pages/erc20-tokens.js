@@ -9,7 +9,6 @@ import erc20vsCoin from '../assets/erc20-vs-coin.png';
 import tokenUses from '../assets/token-uses.png';
 import balanceTokenPreview from '../assets/balance-token-preview2.png';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
-import tokenList from '../data/tokens';
 import { colors, fonts, responsive } from '../styles';
 
 const SBackgroundImageTwo = styled.div`
@@ -27,6 +26,8 @@ const SBackgroundImageTwo = styled.div`
 const SSectionWrapper = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
   @media screen and (${responsive.sm.min}) {
     & > div:first-child {
@@ -38,6 +39,7 @@ const SSectionWrapper = styled.div`
     }
   }
   @media screen and (${responsive.sm.max}) {
+    min-height: 0;
     flex-direction: column;
     & > div:first-child {
       order: 0;
@@ -133,37 +135,8 @@ const SViralLoops = styled.button`
   }
 `;
 
-const STokenLogos = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  & div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-    margin: 24px 0;
-  }
-  & img {
-    width: 50px;
-    height: 50px;
-  }
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    & img {
-      width: 50px;
-      height: 50px;
-    }
-  }
-  @media screen and (${responsive.sm.max}) {
-    margin: 20px auto;
-    & img {
-      width: 35px;
-      height: 35px;
-    }
-  }
-`;
-
 const SImageWrapper = styled.div`
+  padding: 10px;
   & img {
     width: 100%;
   }
@@ -181,8 +154,8 @@ const Erc20Page = ({ data, ...props }) => (
           <SContainer>
             <STitle>What is an ERC-20 token?</STitle>
             <STagline>
-              The most popular form of “token” is the ERC-20 token. This is a standard of
-              token that lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
+              The most popular form of “token” is the ERC-20 token. This is a standard of token that
+              lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
               <a
                 href="https://github.com/ethereum/eips/issues/20"
                 target="_blank"
@@ -233,7 +206,7 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
+    <Section center id={`balance-token-utility`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
           <SContainer>
@@ -265,15 +238,8 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-info`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapper>
-        <SFlex>
-          <SContainer>
-            <SImageWrapper>
-              <img src={erc20vsCoin} alt="erc 20 tokens vs coins" />
-            </SImageWrapper>
-          </SContainer>
-        </SFlex>
+    <Section center id={`balance-token-vs-coin`} minHeight={450} color={colors.navyBlue}>
+      <SSectionWrapper left>
         <SFlex>
           <SContainer>
             <STitle>How can I tell if it is ERC-20?</STitle>
@@ -307,14 +273,14 @@ const Erc20Page = ({ data, ...props }) => (
                 Stellar
               </a>,{' '}
               <a href="https://www.decred.org/" target="_blank" rel="noreferrer noopener">
-              DCred
+                DCred
               </a>{' '}
               and{' '}
               <a href="https://www.tezos.com/" target="_blank" rel="noreferrer noopener">
-              Tezos
+                Tezos
               </a>{' '}
-              are all coins that are totally separate. A quick way to
-              find out if a token is running on Ethereum is to check{' '}
+              are all coins that are totally separate. A quick way to find out if a token is running
+              on Ethereum is to check{' '}
               <a href="https://coinmarketcap.com/tokens/" target="_blank" rel="noreferrer noopener">
                 CoinMarketCap.com/tokens
               </a>{' '}
@@ -323,18 +289,18 @@ const Erc20Page = ({ data, ...props }) => (
           </SContainer>
         </SFlex>
 
+        <SFlex>
+          <SContainer>
+            <SImageWrapper>
+              <img src={erc20vsCoin} alt="erc 20 tokens vs coins" />
+            </SImageWrapper>
+          </SContainer>
+        </SFlex>
       </SSectionWrapper>
     </Section>
 
     <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapper minHeight={450} left>
-        <SFlex>
-          <SImageWrapper>
-            {' '}
-            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SImageWrapper>
-        </SFlex>
-
+      <SSectionWrapper minHeight={450}>
         <SFlex>
           <SContainer>
             <STitle>Want a wallet for your tokens?</STitle>
@@ -349,6 +315,13 @@ const Erc20Page = ({ data, ...props }) => (
               Join the waitlist
             </SViralLoops>
           </SContainer>
+        </SFlex>
+
+        <SFlex>
+          <SImageWrapper>
+            {' '}
+            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SImageWrapper>
         </SFlex>
       </SSectionWrapper>
     </Section>
