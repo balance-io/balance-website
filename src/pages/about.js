@@ -142,7 +142,6 @@ const SSectionWrapper = styled.div`
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 68px;
   & a {
     color: rgb(${colors.lightBrightBlue});
   }
@@ -341,18 +340,21 @@ const SSidebar = styled.div`
   @media screen and (${responsive.md.max}) {
     display: flex;
     width: 585px;
-    margin: 34px 10px;
+    margin: 34px 10px 102px;
   }
   @media screen and (${responsive.sm.max}) {
     display: flex;
     width: 100%;
     flex-direction: column;
-    margin-bottom: 102px;
   }
 `;
 
 const SOpenRoles = styled(SContainer)`
   padding-bottom: 30px;
+  & a {
+    font-weight: 500;
+    color: rgb(${colors.lightBrightBlue});
+  }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     width: 50%;
     padding-bottom: 0;
@@ -365,6 +367,7 @@ const SOpenRoles = styled(SContainer)`
 `;
 
 const SRole = styled.div`
+  margin-bottom: 20px;
   & img {
     margin-right: 10px;
   }
@@ -399,6 +402,7 @@ const STagline = styled(SParagraph)`
     strong ? `rgba(${colors.lightGrey}, 0.9)` : `rgba(${colors.lightGrey}, 0.6)`};
   font-weight: ${({ strong }) => (strong ? 500 : 400)};
   line-height: ${({ strong }) => (strong ? '1.5' : '1.63')};
+  margin-bottom: 4px;
 `;
 
 const layoutTheme = {
