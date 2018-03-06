@@ -206,6 +206,7 @@ const STeamMember = styled(SImageWrapper)`
   width: 64px;
   height: 64px;
   padding: 4px;
+  cursor: pointer;
   border-radius: 50%;
   border-width: 2px;
   border-style: solid;
