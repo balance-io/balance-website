@@ -48,6 +48,7 @@ const SPageHeader = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     height: 100vw;
+    max-height: 400px;
   }
 `;
 
