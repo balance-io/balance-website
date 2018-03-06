@@ -126,10 +126,10 @@ const SSection = styled(Section)`
 
 const SSectionWrapper = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 68px);
   display: flex;
   padding-top: 102px;
-  margin-bottom: 34px;
+  padding-bottom: 34px;
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     align-items: center;
