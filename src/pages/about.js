@@ -41,6 +41,9 @@ const SPurpleBackground = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  @media screen and (${responsive.sm.max}) {
+    opacity: 0.3;
+  }
 `;
 
 const SYellowBackground = styled.div`
