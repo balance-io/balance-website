@@ -446,7 +446,7 @@ class AboutPage extends Component {
     selected: 0
   };
   componentDidMount() {
-    // this.setTimeoutChangeSelected();
+    this.setTimeoutChangeSelected();
   }
   onChangeSelected = index => {
     clearTimeout(timeout);
@@ -456,7 +456,7 @@ class AboutPage extends Component {
       let next = this.state.selected + 1 > team.length - 1 ? 0 : this.state.selected + 1;
       this.setState({ selected: next });
     }
-    // this.setTimeoutChangeSelected();
+    this.setTimeoutChangeSelected();
   };
   setTimeoutChangeSelected = () => {
     timeout = setTimeout(this.onChangeSelected, 5000);
