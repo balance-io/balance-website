@@ -56,7 +56,7 @@ const Page = ({
         </article>
       )}
     </SPage>
-    {noFooter && <Footer theme={layout} />}
+    {!noFooter && <Footer theme={layout} />}
   </div>
 );
 
