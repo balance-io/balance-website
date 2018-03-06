@@ -69,14 +69,6 @@ const SBackground = () => (
   </SBackgroundWrapper>
 );
 
-const StyledFooter = styled(Footer)`
-  width: 100vw;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-`;
-
 const STitle = styled.h1`
   width: 100%;
   margin: 10px auto;
@@ -128,11 +120,16 @@ const SImageWrapper = styled.div`
   }
 `;
 
+const SSection = styled(Section)`
+  flex-direction: column;
+`;
+
 const SSectionWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
   padding-top: 102px;
+  margin-bottom: 34px;
   @media screen and (${responsive.md.max}) {
     flex-direction: column;
     align-items: center;
@@ -365,7 +362,7 @@ const SSidebar = styled.div`
   @media screen and (${responsive.md.max}) {
     display: flex;
     width: 585px;
-    margin: 34px 10px 102px;
+    margin: 34px 10px 34px;
   }
   @media screen and (${responsive.sm.max}) {
     display: flex;
@@ -464,8 +461,13 @@ class AboutPage extends Component {
   };
   render() {
     return (
-      <Page title="About" layout={layoutTheme} siteTitle={this.props.data.site.siteMetadata.title}>
-        <Section
+      <Page
+        title="About"
+        layout={layoutTheme}
+        noFooter
+        siteTitle={this.props.data.site.siteMetadata.title}
+      >
+        <SSection
           center
           id={`balance-about-top`}
           minHeight={500}
@@ -568,8 +570,8 @@ class AboutPage extends Component {
               </SContact>
             </SSidebar>
           </SSectionWrapper>
-        </Section>
-        <StyledFooter layout={layoutTheme} />
+          <Footer layout={layoutTheme} />
+        </SSection>
       </Page>
     );
   }
