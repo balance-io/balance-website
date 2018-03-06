@@ -11,6 +11,11 @@ import cardArrow from '../assets/card-arrow.png';
 import team from '../data/team';
 import { colors, fonts, responsive } from '../styles';
 
+const SFooter = styled(Footer)`
+  width: 100vw;
+  background: rgba(${colors.darkTwo}, 0.1);
+`;
+
 const SBlackBackground = styled.div`
   position: absolute;
   top: 0px;
@@ -570,7 +575,7 @@ class AboutPage extends Component {
               </SContact>
             </SSidebar>
           </SSectionWrapper>
-          <Footer layout={layoutTheme} />
+          <SFooter layout={layoutTheme} />
         </SSection>
       </Page>
     );
