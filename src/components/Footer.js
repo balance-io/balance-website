@@ -42,6 +42,7 @@ const SFooterLinks = styled.a`
   display: flex;
   align-items: center;
   padding: 10px;
+  color: rgb(${colors.grey});
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -74,8 +75,8 @@ const SCopyright = styled.p`
 `;
 
 const Footer = ({ theme, ...props }) => (
-  <SFooterWrapper theme={theme}>
-    <SFooter theme={theme} {...props}>
+  <SFooterWrapper theme={theme} {...props}>
+    <SFooter theme={theme}>
       <SFooterList>
         <SFooterLinks
           href="https://twitter.com/balance_io"

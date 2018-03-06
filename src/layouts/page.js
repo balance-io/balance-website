@@ -27,7 +27,17 @@ const layoutTheme = {
   logoHover: colors.white
 };
 
-const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...props }) => (
+const Page = ({
+  children,
+  title,
+  siteTitle,
+  fontColor,
+  article,
+  maxWidth,
+  layout,
+  noFooter,
+  ...props
+}) => (
   <div>
     {!!(title && siteTitle) && (
       <Helmet
@@ -35,7 +45,7 @@ const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...pro
         meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
       />
     )}
-    <Header theme={layoutTheme} />
+    <Header theme={layout} />
     <SPage article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
       {!article ? (
         <div>{children}</div>
@@ -46,7 +56,7 @@ const Page = ({ children, title, siteTitle, fontColor, article, maxWidth, ...pro
         </article>
       )}
     </SPage>
-    <Footer theme={layoutTheme} />
+    {noFooter && <Footer theme={layout} />}
   </div>
 );
 
@@ -56,7 +66,9 @@ Page.propTypes = {
   siteTitle: PropTypes.string,
   fontColor: PropTypes.string,
   article: PropTypes.bool,
-  maxWidth: PropTypes.number
+  maxWidth: PropTypes.number,
+  layout: PropTypes.object,
+  noFooter: PropTypes.bool
 };
 
 Page.defaultProps = {
@@ -64,7 +76,9 @@ Page.defaultProps = {
   siteTitle: '',
   fontColor: 'white',
   article: false,
-  maxWidth: null
+  maxWidth: null,
+  layout: layoutTheme,
+  noFooter: false
 };
 
 export default Page;
