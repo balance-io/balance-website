@@ -196,6 +196,10 @@ const STeam = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 12px;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    max-width: none;
+  }
 `;
 
 const STeamMember = styled(SImageWrapper)`
@@ -213,6 +217,10 @@ const STeamMember = styled(SImageWrapper)`
 const SCardWrapper = styled.div`
   width: 100%;
   max-width: 395px;
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    max-width: none;
+  }
 `;
 
 const SCard = styled.div`
@@ -267,13 +275,29 @@ const SCard = styled.div`
   & a {
     color: rgb(${colors.lightBrightBlue});
   }
-  ${({ transparent }) =>
-    transparent &&
-    `
-    & > * {
-      margin-bottom: 12px;
+  @media screen and (max-width: 400px) {
+    width: calc(100% - 20px);
+    max-width: none;
+    transform: none;
+    & > img {
+      left: ${({ selected }) => {
+        switch (selected) {
+          case 0:
+            return `calc(6% - 15px)`;
+          case 1:
+            return `calc(28% - 15px)`;
+          case 2:
+            return `calc(50% - 15px)`;
+          case 3:
+            return `calc(71% - 15px)`;
+          case 4:
+            return `calc(94% - 15px)`;
+          default:
+            return `calc(50% - 15px)`;
+        }
+      }};
     }
-  `};
+  }
 `;
 
 const SCardHeader = styled.div`
@@ -422,7 +446,7 @@ class AboutPage extends Component {
     selected: 0
   };
   componentDidMount() {
-    this.setTimeoutChangeSelected();
+    // this.setTimeoutChangeSelected();
   }
   onChangeSelected = index => {
     clearTimeout(timeout);
@@ -432,7 +456,7 @@ class AboutPage extends Component {
       let next = this.state.selected + 1 > team.length - 1 ? 0 : this.state.selected + 1;
       this.setState({ selected: next });
     }
-    this.setTimeoutChangeSelected();
+    // this.setTimeoutChangeSelected();
   };
   setTimeoutChangeSelected = () => {
     timeout = setTimeout(this.onChangeSelected, 5000);
