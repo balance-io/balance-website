@@ -9,7 +9,7 @@ import purpleTriangles from '../assets/purple-triangles.png';
 import padlock from '../assets/padlock.svg';
 import cardArrow from '../assets/card-arrow.png';
 import team from '../data/team';
-import { colors, fonts, responsive } from '../styles';
+import { colors, fonts, transitions, responsive } from '../styles';
 
 const SFooter = styled(Footer)`
   width: 100vw;
@@ -233,6 +233,7 @@ const SCardWrapper = styled.div`
 `;
 
 const SCard = styled.div`
+  transition: ${transitions.base};
   width: 100%;
   position: relative;
   max-width: 320px;
@@ -258,6 +259,7 @@ const SCard = styled.div`
     }
   }};
   & > img {
+    transition: ${transitions.base};
     width: 30px;
     top: -4px;
     position: absolute;
