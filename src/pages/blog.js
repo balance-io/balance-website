@@ -29,7 +29,7 @@ const SDivider = styled.div`
   height: 4px;
   overflow: hidden;
   margin-bottom: 18px;
-  display: ${({ i }) => (i === 0 ? 'none' : 'block')};
+  display: ${({ idx }) => (idx === 0 ? 'none' : 'block')};
   background: rgb(${colors.dark});
   @media screen and (${responsive.sm.max}) {
     width: 110%;
@@ -43,7 +43,7 @@ const SDivider = styled.div`
     height: 100%;
     opacity: 1;
     transition: ${transitions.short};
-    background: ${({ i }) => dividerColors[i % 8]};
+    background: ${({ idx }) => dividerColors[idx % 8]};
   }
 `;
 
@@ -70,8 +70,8 @@ const SPostCards = styled.div`
       -webkit-filter: blur(6px);
     }
   }
-  ${({ i }) => {
-    if (i === 0) {
+  ${({ idx }) => {
+    if (idx === 0) {
       return `
       margin-bottom: 32px;
       padding: 20px 22px 27px 22px;
@@ -118,8 +118,8 @@ const SPostSummary = styled.p`
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
-  ${({ i }) => {
-    if (i === 0) {
+  ${({ idx }) => {
+    if (idx === 0) {
       return `margin-bottom: 7px;`;
     }
   }};
@@ -129,8 +129,8 @@ const SMediumLogo = styled.img`
   position: absolute;
   height: 44px;
   width: 44px;
-  right: 5px;
-  bottom: 0;
+  right: ${({ first }) => (first ? '20px' : '5px')};
+  bottom: ${({ first }) => (first ? '10px' : '0')};
 `;
 
 const mergePosts = (contentful, medium) => {
@@ -174,11 +174,10 @@ const mergePosts = (contentful, medium) => {
 
 const layoutTheme = {
   hideIcon: true,
-  fontWeight: '400',
   linkColor: colors.dark,
   linkHover: colors.green,
+  mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
-  mobileToggleOpacity: '0.8',
   logoColor: colors.dark,
   logoHover: colors.green
 };
@@ -196,29 +195,29 @@ const Blog = ({ data, errors }) => {
           if (post.medium) {
             return (
               <a key={post.id} href={`https://medium.com/balance-io/${post.slug}-${post.id}`}>
-                <SPostCards medium={post.medium} i={idx}>
-                  <SDivider i={idx}>
+                <SPostCards medium={post.medium} idx={idx}>
+                  <SDivider idx={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${
+                  <SPostInfo idx={idx}>{`${getTimeagoString(post.date, true)}  •  ${
                     post.readingTime
                   } min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>
                   <SPostSummary>
                     {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
                   </SPostSummary>
-                  <SMediumLogo src={mediumLogo} alt="medium" />
+                  <SMediumLogo first={idx === 0} src={mediumLogo} alt="medium" />
                 </SPostCards>
               </a>
             );
           } else {
             return (
               <Link key={post.id} to={`blog/${post.slug}`}>
-                <SPostCards medium={post.medium} i={idx}>
-                  <SDivider i={idx}>
+                <SPostCards medium={post.medium} idx={idx}>
+                  <SDivider idx={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo i={idx}>{`${getTimeagoString(post.date, true)}  •  ${
+                  <SPostInfo idx={idx}>{`${getTimeagoString(post.date, true)}  •  ${
                     post.readingTime
                   } min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>

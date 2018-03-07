@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Link from 'gatsby-link';
+import Page from '../layouts/page';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
 import balanceTokenMobile from '../assets/balance-token-mobile.png';
-import { mailchimpMemberCount } from '../utils/api';
 import { colors, fonts, responsive } from '../styles';
 
 const SBackgroundImage = styled.div`
@@ -187,84 +186,51 @@ const SAppPreviewMobile = styled.img`
   }
 `;
 
-const layoutTheme = {
-  fontWeight: '400',
-  linkColor: colors.lightGrey,
-  linkHover: colors.lightGrey,
-  backgroundColor: colors.darkNavyBlue,
-  mobileToggleColor: colors.lightGrey,
-  mobileToggleOpacity: '1',
-  logoColor: colors.lightGrey,
-  logoHover: colors.lightGrey
-};
-
-class IndexPage extends Component {
-  state = {
-    memberCount: ''
-  };
-  componentWillMount() {
-    mailchimpMemberCount()
-      .then(({ data }) => this.setState({ memberCount: data }))
-      .catch(error => console.error(error));
-  }
-  render = () => {
-    return (
-      <div>
-        <Header theme={layoutTheme} />
-        <SSection
-          id={`balance-token`}
-          minHeight={700}
-          color={colors.navyBlue}
-          background={<SBackgroundImage />}
-        >
-          <SSectionWrapper>
-            <SFlex>
-              <SContainer>
-                <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
-                <STitle>A place for your tokens</STitle>
-                <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
-                <STagline>
-                  A wallet that supports{' '}
-                  <a
-                    href="https://hackernoon.com/erc20-tokens-b3b50c95ad08"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    ERC-20
-                  </a>{' '}
-                  &{' '}
-                  <a
-                    href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    ERC-721
-                  </a>.
-                </STagline>
-                <SSubTitle>Want to get into the private beta?</SSubTitle>
-                <SViralLoops
-                  type="button"
-                  className="vrlps-trigger"
-                  data-toggle="modal"
-                  data-target="#vl_popup"
-                  onClick={() => VL.openModal()}
-                >
-                  Join the waitlist
-                </SViralLoops>
-                <SAppPreviewMobile src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-              </SContainer>
-            </SFlex>
-            <SRight>
-              <TokenAnimation />
-            </SRight>
-            <SAppPreviewTablet src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SSectionWrapper>
-          <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-        </SSection>
-        <Footer theme={layoutTheme} />
-      </div>
-    );
-  };
-}
+const IndexPage = () => (
+  <Page>
+    <SSection
+      id={`balance-token`}
+      minHeight={700}
+      color={colors.navyBlue}
+      background={<SBackgroundImage />}
+    >
+      <SSectionWrapper>
+        <SFlex>
+          <SContainer>
+            <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
+            <STitle>A place for your tokens</STitle>
+            <STagline>Buy, store and secure Ethereum-based tokens.</STagline>
+            <STagline>
+              A wallet that supports <Link to="/erc20-tokens">ERC-20</Link> &{' '}
+              <a
+                href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                ERC-721
+              </a>.
+            </STagline>
+            <SSubTitle>Want to get into the private beta?</SSubTitle>
+            <SViralLoops
+              type="button"
+              className="vrlps-trigger"
+              data-toggle="modal"
+              data-target="#vl_popup"
+              onClick={() => VL.openModal()}
+            >
+              Join the waitlist
+            </SViralLoops>
+            <SAppPreviewMobile src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+          </SContainer>
+        </SFlex>
+        <SRight>
+          <TokenAnimation />
+        </SRight>
+        <SAppPreviewTablet src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+      </SSectionWrapper>
+      <SAppPreview src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
+    </SSection>
+  </Page>
+);
 
 export default IndexPage;

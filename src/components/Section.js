@@ -12,7 +12,7 @@ const SSection = styled.section`
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${fontColor})`};
   position: relative;
-  overflow: hidden;
+  overflow: ${({ overflow }) => (overflow ? 'visible' : 'hidden')};
   @media screen and (${responsive.md.max}) {
     min-height: 0;
     height: auto;
@@ -21,9 +21,15 @@ const SSection = styled.section`
 
 const SContent = styled.div`
   width: 100%;
-  max-width: ${({ maxWidth }) => `${maxWidth}px`};
+  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
   margin: 0 auto;
   z-index: 0;
+  ${({ center }) =>
+    center &&
+    `
+    display: flex;
+    align-items: center;
+  `};
 `;
 
 const SBackground = styled.div`
@@ -35,10 +41,26 @@ const SBackground = styled.div`
   z-index: 0;
 `;
 
-const Section = ({ children, background, maxWidth, minHeight, color, fontColor, ...props }) => (
-  <SSection minHeight={minHeight} color={color} fontColor={fontColor} {...props}>
+const Section = ({
+  children,
+  background,
+  overflow,
+  center,
+  maxWidth,
+  minHeight,
+  color,
+  fontColor,
+  ...props
+}) => (
+  <SSection
+    minHeight={minHeight}
+    overflow={overflow}
+    color={color}
+    fontColor={fontColor}
+    {...props}
+  >
     <SBackground>{background}</SBackground>
-    <SContent maxWidth={maxWidth} {...props}>
+    <SContent center={center} maxWidth={maxWidth} {...props}>
       {children}
     </SContent>
   </SSection>
@@ -47,6 +69,8 @@ const Section = ({ children, background, maxWidth, minHeight, color, fontColor, 
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   background: PropTypes.node,
+  center: PropTypes.bool,
+  overflow: PropTypes.bool,
   maxWidth: PropTypes.number,
   minHeight: PropTypes.number,
   color: PropTypes.string,
@@ -55,6 +79,8 @@ Section.propTypes = {
 
 Section.defaultProps = {
   background: null,
+  center: false,
+  overflow: false,
   maxWidth: 1000,
   minHeight: 0,
   color: null,
