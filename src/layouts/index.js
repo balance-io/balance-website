@@ -21,7 +21,11 @@ const TemplateWrapper = ({ children, location, data }) => {
   if (typeof window !== 'undefined') {
     if (location.pathname.indexOf('blog') === -1) {
       showIntercom();
-      document.body.style.background = `rgb(${colors.navyBlue})`;
+      if (location.pathname.indexOf('about') === -1) {
+        document.body.style.background = `rgb(${colors.navyBlue})`;
+      } else {
+        document.body.style.background = `rgb(${colors.darkerNavyBlue})`;
+      }
     } else {
       hideIntercom();
       document.body.style.background = `rgb(${colors.white})`;

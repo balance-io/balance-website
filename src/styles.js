@@ -3,21 +3,28 @@ export const colors = {
   black: '0, 0, 0',
   lightGrey: '216, 216, 216',
   grey: '187, 187, 187',
+  softGrey: '161, 161, 172',
+  blueishGrey: '28, 34, 42',
   dark: '51, 51, 51',
+  darkTwo: '47, 49, 55',
+  darkerNavyBlue: '12, 12, 13',
   darkNavyBlue: '12, 19, 28',
   navyBlue: '17, 23, 31',
+  lightNavyBlue: '44, 49, 51',
   brightBlue: '58, 113, 242',
+  lightBrightBlue: '89, 158, 255',
   blue: '58, 113, 242',
   lightBlue: '147, 160, 178',
   lighterBlue: '157, 171, 187',
   green: '11, 176, 113',
+  lightPurple: '139, 78, 167',
   purple: '50, 50, 93',
   red: '221, 69, 65',
   twitter: '0, 162, 249'
 };
 
 export const fonts = {
-  tiny: '8px',
+  tiny: '10px',
   small: '12px',
   medium: '16px',
   large: '18px',
@@ -149,8 +156,8 @@ export const globalStyles = `
 
 
   html, body {
-    height: 100%;
     width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
   }

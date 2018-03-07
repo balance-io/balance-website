@@ -25,7 +25,7 @@ const SFooter = styled.footer`
     color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
+    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.6)`};
   }
 `;
 
@@ -42,6 +42,7 @@ const SFooterLinks = styled.a`
   display: flex;
   align-items: center;
   padding: 10px;
+  color: rgb(${colors.grey});
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -74,8 +75,8 @@ const SCopyright = styled.p`
 `;
 
 const Footer = ({ theme, ...props }) => (
-  <SFooterWrapper theme={theme}>
-    <SFooter theme={theme} {...props}>
+  <SFooterWrapper theme={theme} {...props}>
+    <SFooter theme={theme}>
       <SFooterList>
         <SFooterLinks
           href="https://twitter.com/balance_io"
@@ -94,14 +95,14 @@ const Footer = ({ theme, ...props }) => (
           <span>balance-io</span>
         </SFooterLinks>
       </SFooterList>
-
+      {/* eslint-disable-next-line */}
       <SCopyright>© Balanced Software, Inc.</SCopyright>
     </SFooter>
   </SFooterWrapper>
 );
 
 Footer.propTypes = {
-  theme: PropTypes.objectOf(PropTypes.string).isRequired
+  theme: PropTypes.object.isRequired
 };
 
 export default Footer;
