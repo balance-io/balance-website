@@ -458,9 +458,6 @@ class AboutPage extends Component {
   state = {
     selected: 0
   };
-  componentDidMount() {
-    this.setTimeoutChangeSelected();
-  }
   onChangeSelected = index => {
     clearTimeout(timeout);
     if (index || index === 0) {
@@ -469,10 +466,6 @@ class AboutPage extends Component {
       let next = this.state.selected + 1 > team.length - 1 ? 0 : this.state.selected + 1;
       this.setState({ selected: next });
     }
-    this.setTimeoutChangeSelected();
-  };
-  setTimeoutChangeSelected = () => {
-    timeout = setTimeout(this.onChangeSelected, 5000);
   };
   render() {
     return (
