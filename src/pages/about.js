@@ -218,6 +218,9 @@ const STeamMember = styled(SImageWrapper)`
   border-color: ${({ selected }) =>
     selected ? `rgba(${colors.brightBlue}, 0.8)` : `rgba(${colors.brightBlue}, 0)`};
   }
+  & img {
+    border-radius: 50%;
+  }
 `;
 
 const SCardWrapper = styled.div`
@@ -315,7 +318,7 @@ const SCardHeader = styled.div`
 
 const SProfile = styled.div`
   display: flex;
-  width: 75%;
+  width: 60%;
   flex-direction: column;
   & p {
     color: rgb(${colors.darkTwo});
@@ -344,14 +347,18 @@ const SProfile = styled.div`
 
 const SCardEmojis = styled.div`
   display: flex;
-  width: 25%;
+  width: 40%;
   justify-content: space-between;
   align-items: center;
 `;
 
 const SEmoji = styled.div`
-  font-size: ${fonts.h5};
-  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 16px;
+  & img {
+    height: 100%;
+  }
 `;
 
 const SCardDescription = styled.div`
@@ -512,8 +519,8 @@ class AboutPage extends Component {
                       </SProfile>
                       <SCardEmojis>
                         {team[this.state.selected].emojis.map(emoji => (
-                          <SEmoji key={`${team[this.state.selected].name}-${emoji}`}>
-                            {emoji}
+                          <SEmoji key={emoji.name}>
+                            <img src={emoji.img} alt={emoji.name} />
                           </SEmoji>
                         ))}
                       </SCardEmojis>
