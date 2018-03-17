@@ -33,7 +33,7 @@ class Html extends React.Component {
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
           {postBodyComponents}
-          <script type="text/javascript" src="/viralLoops.js" />
+          <script type="text/javascript" src="/ViralLoops.js" />
         </body>
       </html>
     );
