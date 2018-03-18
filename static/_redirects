@@ -11,6 +11,12 @@
 
 /tokens         /erc20-tokens
 
+/manager                 https://manager.balance.io
+/manager/wallet          https://manager.balance.io/wallet
+/manager/metamask        https://manager.balance.io/metamask
+/manager/ledger          https://manager.balance.io/ledger
+/manager/trezor          https://manager.balance.io/trezor
+
 # Redirect domain aliases to primary domain
 https://balancemy.money/* https://balance.io/:splat 301!
 https://www.balancemy.money/* https://balance.io/:splat 301!
