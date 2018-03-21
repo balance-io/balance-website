@@ -14,8 +14,52 @@ import metamaskLookUp from '../assets/metamask-look-up.png';
 import walletPreview from '../assets/wallet-preview.png';
 import arrowRightCircle from '../assets/arrow-right-circle.svg';
 import openLetter from '../assets/open-letter.svg';
+import app from '../assets/app.png';
+import cancelLabel from '../assets/cancel-label.png';
+import receiveLabel from '../assets/receive-label.png';
+import sendLabel from '../assets/send-label.png';
+import sendModal from '../assets/send-modal.png';
+import sendSymbol from '../assets/send-symbol.svg';
+import tabBackground from '../assets/tab-background.png';
+import tabBalances from '../assets/tab-balances.png';
+import tabTransactions from '../assets/tab-transactions.png';
+import wallet from '../assets/wallet.png';
 import { colors, fonts, responsive } from '../styles';
 
+const step1 = keyframes`
+  0 {
+    background: #5983FF;
+    transform: scale(1);
+  }
+  20% {
+    background: #546ABF;
+    transform: scale(0.88);
+  }
+  100% {
+    background: #5983FF;
+    transform: scale(1);
+  }
+`;
+
+const step2 = keyframes`
+  0 {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+`;
+
+const step3 = keyframes`
+  0 {
+    transform: scale(.95) translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+`;
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -29,7 +73,7 @@ const SBackgroundImage = styled.div`
   background-position: center;
   @media screen and (${responsive.xl.min}) {
     top: 0;
-    right: calc((100vw - 1400px)*0.5);
+    right: calc((100vw - 1400px) * 0.5);
     width: 700px;
   }
   @media screen and (${responsive.md.max}) {
@@ -62,8 +106,9 @@ const SSectionWrapper = styled.div`
 const SFlex = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  ${'' /* background-color: red; */} justify-content: center;
   @media screen and (${responsive.sm.max}) {
     align-items: flex-start;
   }
@@ -71,20 +116,6 @@ const SFlex = styled.div`
 
 const SColumn = SFlex.extend`
   flex-direction: column;
-`
-
-const SRight = styled(SFlex)`
-  position: relative;
-  transform: translate3d(calc((100vw - 1024px)*0.3), 0, 0);
-  @media screen and (${responsive.xl.min}) {
-    transform: translate3d(114px, 0, 0);
-  }
-  @media screen and (${responsive.md.max}) {
-    display: none;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
 `;
 
 const SContainer = styled.div`
@@ -94,7 +125,7 @@ const SContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   @media screen and (${responsive.sm.min}) {
-    max-width: 550px;
+    max-width: 600px;
   }
   @media screen and (${responsive.md.max}) {
     display: flex;
@@ -120,23 +151,12 @@ const STitle = styled.h1`
   }
 `;
 
-const SSubTitle = styled.h2`
-  font-size: 1.4em;
-  letter-spacing: -0.25px;
-  font-weight: 400;
-  margin: 40px 0 10px;
-  @media screen and (${responsive.sm.max}) {
-    font-size: 4.5vw;
-    letter-spacing: -0.2px;
-    margin: 1em 0;
-  }
-`;
-
 const STagline = styled.p`
   font-size: 1.25em;
   text-align: center;
+  margin: 1em 0;
   color: rgb(${colors.lighterBlue});
-  line-height: 1.4em;
+  line-height: 1.6em;
   & a {
     color: rgb(${colors.blue});
   }
@@ -144,108 +164,14 @@ const STagline = styled.p`
     font-size: 4vw;
     line-height: 1.5em;
     &:first-of-type {
-      margin-top: 1em;
+      margin-top: 1em 0;
     }
   }
 `;
 
-const SProducts = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  // flex-direction: column;
-  // margin: 100px 0px 0px 0px;
-  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
-  @media screen and (${responsive.sm.min}) {
-    & > div:first-child {
-      order: ${({ left }) => (left ? 1 : 0)};
-      padding-left: ${({ left }) => (left ? '30px' : 0)};
-    }
-    & > div:nth-child(2) {
-      padding-left: ${({ left }) => (left ? 0 : '30px')};
-    }
-  }
-  @media screen and (${responsive.sm.max}) {
-    min-height: 0;
-    flex-direction: column;
-    & > div:first-child {
-      order: 0;
-    }
-    & > div:nth-child(2) {
-      order: 1;
-    }
-    & > div {
-      padding: 24px;
-    }
-  }
-`;
-
-const SWalletContainer = styled.div`
-  width: 500px;
-  display: flex;
-  background-color: white;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 15px;
-  border-top: 6px solid #5983FF;
-  margin: 10px;
-  overflow: hidden;
-  z-index: 1;
-  align-items: flex-start;
-  @media screen and (${responsive.sm.min}) {
-    max-width: 550px;
-  }
-  @media screen and (${responsive.md.max}) {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const SCircle = styled.div`
-  width: 40px;
-  height: 40px;
-  top: -30px;
-  margin: 0 auto;
-  border-radius: 20px;
-  background-color: #5983FF
-`;
-
-const SProductTitle = styled.div`
-  font-size: 1.8em;
-  color: black;
-  font-weight: 500;
-  text-align: center;
-  margin: 25px auto;
-  // text-align: center;
-  // letter-spacing: -0.25px;
-  // margin: 10px 0;
-  // @media screen and (${responsive.sm.max}) {
-  //   font-size: 8vw;
-  //   letter-spacing: -0.2px;
-  // }
-`;
-
-const SBetaTag = styled.div`
-  font-size: 0.35em;
-  display: inline-block;
-  padding: 2px 4px;
-  position: relative;
-  // margin: 0px 10px;
-  top: -10px;
-  color: white;
-  font-weight: 400;
-  text-align: center;
-  background-color: green;
-  border-radius: 3px;
-`;
-
-const SWalletTag = SBetaTag.extend`
-  background-color: black;
-`;
-
-const SProductSubTitle = styled.h4`
+const SPitch = styled.h4`
   font-size: 1.4em;
-  text-align: center;
+  text-align: left;
   letter-spacing: -0.25px;
   color: grey;
   font-weight: 400;
@@ -257,63 +183,61 @@ const SProductSubTitle = styled.h4`
   }
 `;
 
-const SOpenManagerButton = styled.button`
-
-`;
-
 const SButtonLink = styled.a`
   margin: 0 auto;
-  background-clip:border-box;
-  background-color:rgb(0, 153, 255);
-  background-image:none;
-  background-origin:padding-box;
-  background-position-x:0%;
-  background-position-y:0%;background-repeat-x:;background-repeat-y:;
-  background-size:auto;
-  border-bottom-left-radius:4px;
-  border-bottom-right-radius:4px;
-  border-top-left-radius:4px;
-  border-top-right-radius:4px;
+  background-clip: border-box;
+  background-color: rgb(0, 153, 255);
+  background-image: none;
+  background-origin: padding-box;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat-x: ;
+  background-repeat-y: ;
+  background-size: auto;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   // box-shadow:rgba(50, 50, 93, 0.11) 0px 4px 6px 0px, rgba(0, 0, 0, 0.08) 0px 1px 3px 0px;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.15s ease-in-out;
-  box-sizing:border-box;
-  color:rgb(238,242,255);
-  cursor:pointer;
-  display:inline-block;
-  font-family:Camphor, "Open Sans", "Segoe UI", sans-serif;
-  font-feature-settings:'pnum' 1;
-  font-size:15px;
-  font-style:normal;
-  font-variant-numeric:proportional-nums;
-  font-weight:600;
-  height:40px;
-  letter-spacing:0.375px;
-  line-height:40px;
-  list-style-image:none;
-  list-style-position:outside;
-  list-style-type:none;
-  outline-color:rgb(103, 114, 229);
-  outline-style:none;
-  outline-width:0px;
-  padding-bottom:0px;
-  padding-left:14px;
-  padding-right:14px;
-  padding-top:0px;
-  text-align:left;
-  text-decoration-color:rgb(103, 114, 229);
-  text-decoration-line:none;
-  text-decoration-style:solid;
-  text-rendering:optimizeLegibility;
-  text-size-adjust:100%;
-  text-transform:uppercase;
-  white-space:nowrap;
-  width:auto;
-  -webkit-font-smoothing:antialiased;
-  -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: rgb(238, 242, 255) !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Camphor, 'Open Sans', 'Segoe UI', sans-serif;
+  font-feature-settings: 'pnum' 1;
+  font-size: 15px;
+  font-style: normal;
+  font-variant-numeric: proportional-nums;
+  font-weight: 600;
+  height: 40px;
+  letter-spacing: 0.375px;
+  line-height: 40px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  outline-color: rgb(103, 114, 229);
+  outline-style: none;
+  outline-width: 0px;
+  padding-bottom: 0px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-top: 0px;
+  text-align: left;
+  text-decoration-color: rgb(103, 114, 229);
+  text-decoration-line: none;
+  text-decoration-style: solid;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: auto;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   // position: relative;
 
-  >img {
+  > img {
     //ask pedro how to position this correctly
     // position: absolute;
     margin: 0px 0px 0px 8px;
@@ -329,55 +253,70 @@ const SButtonLink = styled.a`
   //   opacity: 1;
   // }
 
-  &:hover, &:focus, &:active, &:hover::after {
+  &:hover,
+  &:focus,
+  &:active,
+  &:hover::after {
     // box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,.3);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
     -webkit-transform: translateY(-1px);
     transform: translateY(-1px);
-    transition: all .15s ease;
+    transition: all 0.15s ease;
     opacity: 1;
   }
 
-  &:hover::before, &:focus::before, &:active::before {
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+  &:hover::before,
+  &:focus::before,
+  &:active::before {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
     -webkit-transform: translateY(1px);
     transform: translateY(1px);
-    transition: all .15s ease;
-  }
-`
-
-const SActionButton = styled.button`
-  display: block;
-  margin: 10px auto;
-  cursor: pointer;
-  padding: 1em 1.8em;
-  font-size: ${fonts.medium};
-  color: rgb(255, 255, 255);
-  background-color: rgb(0, 153, 255);
-  border-radius: 4px;
-  @media (hover: hover) {
-    &:hover {
-      opacity: 0.8 !important;
-    }
+    transition: all 0.15s ease;
   }
 `;
 
-const SActionButtonManager = SActionButton.extend`
-  background-color: rgb(89, 131, 255);
-`;
+const SSignupContainer = styled.div`
+  width: 100%;
+  min-width: 980px
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: left;
+  border-radius: 15px;
+  border-top: 6px solid #5983ff;
+  margin: 10px;
+  overflow: hidden;
+  align-items: flex-start;
+  z-index: 1;
 
-// .modal:hover .ledger `[
-//
-// ]`
+  &:hover ${SLedgerWire} {
+    transform: translate3D(35px, 0, 0);
+  }
+
+  &:hover ${SLedgerShield} {
+    transform-origin: 166px 28px;
+    transform: rotate3D(0, 0, 50, 50deg);
+  }
+
+  &:hover ${SLedgerBody} {
+    transform: translate3D(0, 0, 0);
+  }
+
+  @media screen and (${responsive.sm.min}) {
+    max-width: 550px;
+  }
+  @media screen and (${responsive.md.max}) {
+    display: flex;
+    align-items: center;
+  }
+`;
 
 const SLedger = styled.div`
-  width: 50%;
+  width: 280px;
+  order: 3;
   height: 200px;
-  // background: red;
-`
-
-/*TODO get all the animations to kick off when you hover over the product div */
-/*TODO ask pedro why the animation only works when i change the code*/
+  background: red;
+`;
 
 const SLedgerWire = styled.div`
   background-image: url(${ledgerWire});
@@ -402,7 +341,7 @@ const SLedgerBody = styled.div`
   background-position: center right;
   position: absolute;
   bottom: 50px;
-  left:70px;
+  left: 70px;
   transition: all 0.3s ease;
 `;
 
@@ -417,208 +356,275 @@ const SLedgerShield = styled.div`
 
   transition: transform 0.15s ease-in;
   transform-origin: 166px 28px;
-  transform: rotate3D(0,0,0,0deg);
+  transform: rotate3D(0, 0, 0, 0deg);
 `;
 
-const SManagerContainer = styled.div`
-  width: 500px;
+const SPitchTextContainer = styled.div`
   display: flex;
-  background-color: white;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 15px;
-  border-top: 6px solid #5983FF;
-  margin: 10px;
+  background-color: green;
+`;
+
+const SPitchImageContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+const SAppContainer = styled.div`
+  position: relative;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 938px;
+  height: 621px;
+`;
+
+const SApp = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 938px;
+  height: 621px;
+  background: url(${app});
+  background-size: 100%;
+  animation: ${step2} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
+`;
+
+const STabs = styled.div`
+  position: absolute;
+  top: 85px;
+  left: 35px;
+  width: 272px;
+  height: 92px;
   overflow: hidden;
-  align-items: flex-start;
-  z-index: 1;
-
-  &:hover ${SLedgerWire} {
-    transform: translate3D(35px, 0, 0);
-  }
-
-  &:hover ${SLedgerShield} {
-    transform-origin: 166px 28px;
-    transform: rotate3D(0,0,50,50deg);
-  }
-
-  &:hover ${SLedgerBody} {
-    transform: translate3D(0, 0, 0);
-  }
-
-  @media screen and (${responsive.sm.min}) {
-    max-width: 550px;
-  }
-  @media screen and (${responsive.md.max}) {
-    display: flex;
-    align-items: center;
-  }
 `;
 
-const SAppPreview = styled.img`
-  width: 100%;
-  margin-bottom: 68px;
-  @media screen and (${responsive.md.max}) {
-    ${'' /* padding: 0 34px; */};
-    display: none;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
-`;
-
-const SAppPreviewTablet = styled.img`
-  display: none;
-  width: 100%;
-  margin: 68px 0;
-  padding-top: 34px;
-  @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-    display: block;
-  }
-`;
-
-const SAppPreviewMobile = styled.img`
-  display: none;
-  width: 100vw;
-  margin: 24px 0;
-  @media screen and (${responsive.sm.max}) {
-    display: block;
-  }
-`;
-
-const SManagerImagesContainer = styled.div`
-  width: 100%;
-  position:relative;
-  height: 250px;
-`;
-
-const SImageWrapper = styled.div`
+const STabBackground = styled.div`
   position: absolute;
-  bottom: 25px;
-  left:-10px;
-  // padding: 10px;
-  // & img {
-  //   width: 100%;
-  // }
-  // @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
-  //   padding: 24px;
-  // }
+  top: 0;
+  left: -47px;
+  width: 181px;
+  height: 46px;
+  background: url(${tabBackground});
+  background-size: 100%;
+  background-repeat: no-repeat;
 `;
 
-const SMetaMaskLookUpImageWrapper = styled.div`
+const STabBalances = styled.div`
   position: absolute;
-  width: 200px;
-  right: -7px;
-bottom: -10px;
-  & img {
-    width: 100%;
+  left: 20px;
+  top: 19px;
+  width: 75px;
+  height: 14px;
+  background: url(${tabBalances});
+  background-size: 100%;
+  background-repeat: no-repeat;
+`;
+
+const STabTransactions = styled.div`
+  position: absolute;
+  left: 129px;
+  top: 19px;
+  width: 104px;
+  height: 13px;
+  background: url(${tabTransactions});
+  background-size: 100%;
+  background-repeat: no-repeat;
+  opacity: ${props => (props.inactive ? 0.8 : 1)};
+`;
+
+const SButton = styled.div`
+  position: absolute;
+  height: 32px;
+  /* box-shadow: 0 1px 3px 0 rgba(2,2,3,.06), 0 2px 6px 0 rgba(2,2,3,.04); */
+  box-shadow: 0 5px 10px 0 rgba(59, 59, 92, 0.04), 0 0 1px 0 rgba(50, 50, 93, 0.02),
+    0 3px 6px 0 rgba(0, 0, 0, 0.06), inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+`;
+
+const SButtonSend = SButton.extend`
+  top: 36px;
+  right: 51px;
+  width: 74px;
+  background: #5983ff;
+  animation: ${step1} 0.7s 2s ease;
+
+  &:active {
+    background: #5076e6;
+  }
+
+  & div {
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    width: 53px;
+    height: 15px;
+    background: url(${sendLabel});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
   }
 `;
 
-const SWalletImagesContainer = SManagerImagesContainer.extend`
-  height: 240px;
+const SButtonReceive = SButton.extend`
+  top: 36px;
+  right: 133px;
+  width: 95px;
+  background: #5983ff;
+
+  &:active {
+    background: #5076e6;
+  }
+
+  & div {
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    width: 74px;
+    height: 15px;
+    background: url(${receiveLabel});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
 `;
 
-const SWalletPreviewImageWrapper = styled.div`
+const SSendModal = styled.div`
   position: absolute;
-  bottom: -100px;
-  left: -35px;
+  top: 63px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 494px;
+  height: 465px;
+  background: #f5f6fa;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15), 0 15px 35px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  /* transition: .4s cubic-bezier(0.19, 1, 0.22, 1); */
+  animation: ${step3} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+  transform: scale(0.95) translateY(50px);
+  opacity: 0;
 `;
 
+const SSendModalContents = styled.div`
+  position: absolute;
+  top: 21px;
+  left: 0;
+  width: 494px;
+  height: 426px;
+  background: url(${sendModal});
+  background-size: 100%;
+  transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+`;
+
+const SCancel = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 103px;
+  width: 68px;
+  height: 30px;
+  background: #71778a;
+  box-shadow: 0 1px 3px 0 rgba(2, 2, 3, 0.06), 0 2px 6px 0 rgba(2, 2, 3, 0.04);
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:active {
+    background: #606575;
+  }
+
+  & div {
+    position: absolute;
+    left: 11px;
+    top: 9px;
+    width: 46px;
+    height: 12px;
+    background: url(${cancelLabel});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+`;
 
 const IndexPage = () => (
   <Page>
     <SSection
       id={`balance-token`}
-      minHeight={700}
+      // minHeight={700}
       color={colors.navyBlue}
       background={<SBackgroundImage />}
     >
       <SSectionWrapper>
         <SColumn>
-        {/*  <EthereumPageHeader />*/}
+          {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
               <STitleCenter>
-                <STitle>Powerful tools for tokens</STitle>
+                <STitle>Manage Your Tokens</STitle>
               </STitleCenter>
-              <STagline>Simple interfaces to help people interact with the {'\n'} {/*ask pedro why this doesn't work: https://stackoverflow.com/questions/32469570/how-can-i-insert-a-line-break-into-a-text-component-in-react-native/40714065*/}
-                <a
-                  href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-              Ethereum blockchain{' '}
-              </a>
-              & <Link to="/erc20-tokens">ERC-20 tokens</Link></STagline>
+              <STagline>
+                Connect to your {'\n'}{' '}
+                {/*ask pedro why this doesn't work: https://stackoverflow.com/questions/32469570/how-can-i-insert-a-line-break-into-a-text-component-in-react-native/40714065*/}
+                <a href="https://ethereum.org" target="_blank" rel="noreferrer noopener">
+                  Ethereum wallet{' '}
+                </a>
+                to see your <Link to="/erc20-tokens">ERC-20 token</Link> balances, check your
+                transactions, and send tokens.
+              </STagline>
+              <SButtonLink>
+                OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
+              </SButtonLink>
             </SContainer>
           </SHero>
         </SColumn>
       </SSectionWrapper>
-      </SSection>
-      <SSection
-        id={`balance-token`}
-        minHeight={700}
-        color={colors.navyBlue}
-        background={<SBackgroundImage />}
-      >
-      <SSectionWrapper>
-        <SProducts>
-          <SFlex>
-            <SManagerContainer>
-              {/*<SCircle></SCircle>*/}
-              <SProductTitle>Manager <SBetaTag>BETA</SBetaTag></SProductTitle>
-              <SProductSubTitle>Interact with the tokens stored in your hardware & browser-based wallets</SProductSubTitle>
-                {/*}<SActionButtonManager>
-                  OPEN MANAGER
-                </SActionButtonManager>*/}
-                <SButtonLink>
-                  OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right"/>
-                </SButtonLink>
-                <SManagerImagesContainer>
-                  <SLedger>
-                    <SLedgerWire>
-                    </SLedgerWire>
-                    <SLedgerBody>
-                    </SLedgerBody>
-                    <SLedgerShield>
-                    </SLedgerShield>
-                  </SLedger>
-                  {/*<SImageWrapper>
-                    <img src={ledger} alt="ledger wallet image" />
-                  </SImageWrapper>*/}
-                  <SMetaMaskLookUpImageWrapper>
-                    {/* ask pedro about https://github.com/KyleAMathews/react-retina-image */}
-                     <img src={metamaskLookUp} alt="metamask fox logo looking up" />
-                  </SMetaMaskLookUpImageWrapper>
-                </SManagerImagesContainer>
-            </SManagerContainer>
-          </SFlex>
-          <SFlex>
-            <SWalletContainer>
-              {/*<SCircle></SCircle>*/}
-              <SProductTitle>Wallet <SWalletTag>ALPHA</SWalletTag></SProductTitle>
-              <SProductSubTitle>An Ethereum wallet for the web & mobile devices with token support & secure sync</SProductSubTitle>
-                <SButtonLink
-                  className="vrlps-trigger"
-                  data-toggle="modal"
-                  data-target="#vl_popup"
-                  onClick={() => VL.openModal()}
-                >
-                  JOIN THE WAITLIST
-                  <img src={openLetter} alt="open letter icon" />
-                </SButtonLink>
-              <SWalletImagesContainer>
-                <SWalletPreviewImageWrapper>
-                  <img src={walletPreview} alt="balance wallet preview on desktop and iphone" />
-                </SWalletPreviewImageWrapper>
-              </SWalletImagesContainer>
-            </SWalletContainer>
-          </SFlex>
-        </SProducts>
-      </SSectionWrapper>
-      </SSection>
+    </SSection>
 
+    <SSection>
+      <SSectionWrapper>
+        <SAppContainer>
+          <SApp>
+            <STabs>
+              <STabBackground />
+              <STabBalances />
+              <STabTransactions />
+              {/* How to make inactive */}
+            </STabs>
+            <SButtonSend>
+              <div />
+            </SButtonSend>
+            <SButtonReceive>
+              <div />
+            </SButtonReceive>
+          </SApp>
+          <SSendModal>
+            <SSendModalContents>
+              <SCancel>
+                <div />
+              </SCancel>
+            </SSendModalContents>
+          </SSendModal>
+        </SAppContainer>
+      </SSectionWrapper>
+    </SSection>
+
+    {/* <SSectionWrapper>
+      <SFlex>
+        <SSignupContainer>
+          <SPitchImageContainer>
+            <SLedger>
+              <SLedgerWire />
+              <SLedgerBody />
+              <SLedgerShield />
+            </SLedger>
+          </SPitchImageContainer>
+          <SPitchTextContainer>
+            <SPitch>Ledger support & mobile wallet coming soon.</SPitch>
+          </SPitchTextContainer>
+        </SSignupContainer>
+      </SFlex>
+    </SSectionWrapper> */}
   </Page>
 );
 
