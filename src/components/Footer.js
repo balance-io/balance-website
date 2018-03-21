@@ -53,13 +53,13 @@ const SFooterLinks = styled.a`
 `;
 
 const SIconLink = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   background-color: ${({ color }) => `rgb(${color})`};
   mask-image: ${({ icon }) => `url(${icon}) center no-repeat`};
   -webkit-mask: ${({ icon }) => `url(${icon}) center no-repeat`};
+  mask-size: 95%;
   margin-right: 10px;
-  mask-size: 100%;
 `;
 
 const SCopyright = styled.p`

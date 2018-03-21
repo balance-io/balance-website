@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="185px" height="57px" viewBox="0 0 185 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>ledger-body</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-2" transform="translate(-310.000000, -286.000000)">
+            <g id="ledger-body" transform="translate(310.000000, 286.000000)">
+                <path d="M1.28,1.28 L183.68,1.28 C184.386924,1.28 184.96,1.85307552 184.96,2.56 L184.96,55.68 C184.96,56.3869245 184.386924,56.96 183.68,56.96 L1.28,56.96 C0.57307552,56.96 4.7420021e-15,56.3869245 8.8817842e-16,55.68 L0,2.56 C-8.65732801e-17,1.85307552 0.57307552,1.28 1.28,1.28 Z M156.16,40.96 C162.875783,40.96 168.32,35.5157826 168.32,28.8 C168.32,22.0842174 162.875783,16.64 156.16,16.64 C149.444217,16.64 144,22.0842174 144,28.8 C144,35.5157826 149.444217,40.96 156.16,40.96 Z" id="Combined-Shape-Copy-8" fill="#23262D"></path>
+                <rect id="Rectangle-2-Copy-17" fill="#121212" x="21.12" y="0.0100083778" width="23.04" height="1.28"></rect>
+                <rect id="Rectangle-2-Copy-16" fill="#121212" x="29.44" y="16.6500084" width="81.28" height="24.96" rx="1.28"></rect>
+                <rect id="Rectangle-2-Copy-15" fill="#121212" x="96" y="0.0100083778" width="23.04" height="1.28"></rect>
+                <text id="Welcome-Copy-3" font-family="pixelated_verdana_bold_12pt" font-size="8.96" font-weight="bold" fill="#58E7F9">
+                    <tspan x="53.32" y="31.3300084">Welcome</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

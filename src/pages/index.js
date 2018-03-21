@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Link from 'gatsby-link';
 import Page from '../layouts/page';
 import Section from '../components/Section';
@@ -7,9 +7,15 @@ import EthereumPageHeader from '../components/EthereumPageHeader';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
 import ledger from '../assets/ledger.svg';
+import ledgerBody from '../assets/ledger-body.svg';
+import ledgerShield from '../assets/ledger-shield.svg';
+import ledgerWire from '../assets/ledger-wire.svg';
 import metamaskLookUp from '../assets/metamask-look-up.png';
 import walletPreview from '../assets/wallet-preview.png';
+import arrowRightCircle from '../assets/arrow-right-circle.svg';
+import openLetter from '../assets/open-letter.svg';
 import { colors, fonts, responsive } from '../styles';
+
 
 const SBackgroundImage = styled.div`
   position: absolute;
@@ -52,7 +58,6 @@ const SSectionWrapper = styled.div`
     padding: 68px 0 0;
   }
 `;
-
 
 const SFlex = styled.div`
   width: 100%;
@@ -175,7 +180,7 @@ const SProducts = styled.div`
   }
 `;
 
-const SProductContainer = styled.div`
+const SWalletContainer = styled.div`
   width: 500px;
   display: flex;
   background-color: white;
@@ -185,6 +190,7 @@ const SProductContainer = styled.div`
   border-top: 6px solid #5983FF;
   margin: 10px;
   overflow: hidden;
+  z-index: 1;
   align-items: flex-start;
   @media screen and (${responsive.sm.min}) {
     max-width: 550px;
@@ -243,7 +249,7 @@ const SProductSubTitle = styled.h4`
   letter-spacing: -0.25px;
   color: grey;
   font-weight: 400;
-  margin: 0px 0 10px;
+  margin: 0px 0px 30px 0px;
   @media screen and (${responsive.sm.max}) {
     font-size: 4.5vw;
     letter-spacing: -0.2px;
@@ -254,6 +260,91 @@ const SProductSubTitle = styled.h4`
 const SOpenManagerButton = styled.button`
 
 `;
+
+const SButtonLink = styled.a`
+  margin: 0 auto;
+  background-clip:border-box;
+  background-color:rgb(0, 153, 255);
+  background-image:none;
+  background-origin:padding-box;
+  background-position-x:0%;
+  background-position-y:0%;background-repeat-x:;background-repeat-y:;
+  background-size:auto;
+  border-bottom-left-radius:4px;
+  border-bottom-right-radius:4px;
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+  // box-shadow:rgba(50, 50, 93, 0.11) 0px 4px 6px 0px, rgba(0, 0, 0, 0.08) 0px 1px 3px 0px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+  transition: box-shadow 0.15s ease-in-out;
+  box-sizing:border-box;
+  color:rgb(238,242,255);
+  cursor:pointer;
+  display:inline-block;
+  font-family:Camphor, "Open Sans", "Segoe UI", sans-serif;
+  font-feature-settings:'pnum' 1;
+  font-size:15px;
+  font-style:normal;
+  font-variant-numeric:proportional-nums;
+  font-weight:600;
+  height:40px;
+  letter-spacing:0.375px;
+  line-height:40px;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  outline-color:rgb(103, 114, 229);
+  outline-style:none;
+  outline-width:0px;
+  padding-bottom:0px;
+  padding-left:14px;
+  padding-right:14px;
+  padding-top:0px;
+  text-align:left;
+  text-decoration-color:rgb(103, 114, 229);
+  text-decoration-line:none;
+  text-decoration-style:solid;
+  text-rendering:optimizeLegibility;
+  text-size-adjust:100%;
+  text-transform:uppercase;
+  white-space:nowrap;
+  width:auto;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  // position: relative;
+
+  >img {
+    //ask pedro how to position this correctly
+    // position: absolute;
+    margin: 0px 0px 0px 8px;
+    // bottom: -2px;
+  }
+  // &::after {
+  //   box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.1);
+  //   opacity: 0;
+  //   transition: opacity 0.3s ease-in-out;
+  // }
+  //
+  // &:hover::after {
+  //   opacity: 1;
+  // }
+
+  &:hover, &:focus, &:active, &:hover::after {
+    // box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,.3);
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
+    transition: all .15s ease;
+    opacity: 1;
+  }
+
+  &:hover::before, &:focus::before, &:active::before {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    transition: all .15s ease;
+  }
+`
 
 const SActionButton = styled.button`
   display: block;
@@ -273,6 +364,95 @@ const SActionButton = styled.button`
 
 const SActionButtonManager = SActionButton.extend`
   background-color: rgb(89, 131, 255);
+`;
+
+// .modal:hover .ledger `[
+//
+// ]`
+
+const SLedger = styled.div`
+  width: 50%;
+  height: 200px;
+  // background: red;
+`
+
+/*TODO get all the animations to kick off when you hover over the product div */
+/*TODO ask pedro why the animation only works when i change the code*/
+
+const SLedgerWire = styled.div`
+  background-image: url(${ledgerWire});
+  background-repeat: no-repeat;
+  width: 144px;
+  height: 31px;
+  position: absolute;
+  bottom: 62px;
+  left: -90px;
+
+  transform: translate3D(0, 0, 0);
+  transition: all 0.3s ease;
+  // transition-delay: 0.5s;
+`;
+
+const SLedgerBody = styled.div`
+  width: 185px;
+  height: 57px;
+  position: absolute;
+  background-image: url(${ledgerBody});
+  background-repeat: no-repeat;
+  background-position: center right;
+  position: absolute;
+  bottom: 50px;
+  left:70px;
+  transition: all 0.3s ease;
+`;
+
+const SLedgerShield = styled.div`
+  background-image: url(${ledgerShield});
+  background-repeat: no-repeat;
+  width: 195px;
+  height: 56px;
+  position: absolute;
+  bottom: 50px;
+  left: 60px;
+
+  transition: transform 0.15s ease-in;
+  transform-origin: 166px 28px;
+  transform: rotate3D(0,0,0,0deg);
+`;
+
+const SManagerContainer = styled.div`
+  width: 500px;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  border-top: 6px solid #5983FF;
+  margin: 10px;
+  overflow: hidden;
+  align-items: flex-start;
+  z-index: 1;
+
+  &:hover ${SLedgerWire} {
+    transform: translate3D(35px, 0, 0);
+  }
+
+  &:hover ${SLedgerShield} {
+    transform-origin: 166px 28px;
+    transform: rotate3D(0,0,50,50deg);
+  }
+
+  &:hover ${SLedgerBody} {
+    transform: translate3D(0, 0, 0);
+  }
+
+  @media screen and (${responsive.sm.min}) {
+    max-width: 550px;
+  }
+  @media screen and (${responsive.md.max}) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const SAppPreview = styled.img`
@@ -354,10 +534,9 @@ const IndexPage = () => (
       color={colors.navyBlue}
       background={<SBackgroundImage />}
     >
-
       <SSectionWrapper>
         <SColumn>
-          <EthereumPageHeader />
+        {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
               <STitleCenter>
@@ -386,44 +565,55 @@ const IndexPage = () => (
       <SSectionWrapper>
         <SProducts>
           <SFlex>
-            <SProductContainer>
+            <SManagerContainer>
               {/*<SCircle></SCircle>*/}
               <SProductTitle>Manager <SBetaTag>BETA</SBetaTag></SProductTitle>
               <SProductSubTitle>Interact with the tokens stored in your hardware & browser-based wallets</SProductSubTitle>
-                <SActionButtonManager>
+                {/*}<SActionButtonManager>
                   OPEN MANAGER
-                </SActionButtonManager>
+                </SActionButtonManager>*/}
+                <SButtonLink>
+                  OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right"/>
+                </SButtonLink>
                 <SManagerImagesContainer>
-                  <SImageWrapper>
+                  <SLedger>
+                    <SLedgerWire>
+                    </SLedgerWire>
+                    <SLedgerBody>
+                    </SLedgerBody>
+                    <SLedgerShield>
+                    </SLedgerShield>
+                  </SLedger>
+                  {/*<SImageWrapper>
                     <img src={ledger} alt="ledger wallet image" />
-                  </SImageWrapper>
+                  </SImageWrapper>*/}
                   <SMetaMaskLookUpImageWrapper>
                     {/* ask pedro about https://github.com/KyleAMathews/react-retina-image */}
-                    <img src={metamaskLookUp} alt="metamask fox logo looking up" />
+                     <img src={metamaskLookUp} alt="metamask fox logo looking up" />
                   </SMetaMaskLookUpImageWrapper>
                 </SManagerImagesContainer>
-            </SProductContainer>
+            </SManagerContainer>
           </SFlex>
           <SFlex>
-            <SProductContainer>
+            <SWalletContainer>
               {/*<SCircle></SCircle>*/}
               <SProductTitle>Wallet <SWalletTag>ALPHA</SWalletTag></SProductTitle>
               <SProductSubTitle>An Ethereum wallet for the web & mobile devices with token support & secure sync</SProductSubTitle>
-                <SActionButton
-                  type="button"
+                <SButtonLink
                   className="vrlps-trigger"
                   data-toggle="modal"
                   data-target="#vl_popup"
                   onClick={() => VL.openModal()}
                 >
                   JOIN THE WAITLIST
-                </SActionButton>
+                  <img src={openLetter} alt="open letter icon" />
+                </SButtonLink>
               <SWalletImagesContainer>
                 <SWalletPreviewImageWrapper>
                   <img src={walletPreview} alt="balance wallet preview on desktop and iphone" />
                 </SWalletPreviewImageWrapper>
               </SWalletImagesContainer>
-            </SProductContainer>
+            </SWalletContainer>
           </SFlex>
         </SProducts>
       </SSectionWrapper>
