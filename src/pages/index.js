@@ -15,6 +15,11 @@ import walletPreview from '../assets/wallet-preview.png';
 import arrowRightCircle from '../assets/arrow-right-circle.svg';
 import openLetter from '../assets/open-letter.svg';
 import app from '../assets/app.png';
+import appBalances from '../assets/app-balances.png';
+import appTransactions from '../assets/app-transactions.png';
+import sendingStatus from '../assets/sending-status.png';
+import sendingSpinner from '../assets/sending-spinner.png';
+import sentStatus from '../assets/sent-status.png';
 import cancelLabel from '../assets/cancel-label.png';
 import receiveLabel from '../assets/receive-label.png';
 import sendLabel from '../assets/send-label.png';
@@ -96,7 +101,7 @@ const step6 = keyframes`
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 `;
 
@@ -183,6 +188,84 @@ const step13 = keyframes`
     opacity: 0.4;
   }
   to {
+    opacity: 1;
+  }
+`;
+
+const step14 = keyframes`
+  0 {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  20% {
+    opacity: 0.8;
+    transform: scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+const step15 = keyframes`
+  0 {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+`;
+
+const step16 = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(138px);
+  }
+`;
+
+const step17 = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const step18 = keyframes`
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+`;
+
+const step19 = keyframes`
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 `;
@@ -502,6 +585,7 @@ const SAppContainer = styled.div`
   margin: 0 auto;
   width: 938px;
   height: 621px;
+  margin-bottom: 150px;
 `;
 
 const SApp = styled.div`
@@ -515,12 +599,67 @@ const SApp = styled.div`
   background: url(${app});
   opacity: 1;
   background-size: 100%;
-  // animation: ${step2} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
   animation-name: ${step2}, ${step13};
   animation-duration: 0.7s, 0.7s;
   animation-delay: 2.35s, 9.5s;
   animation-fill-mode: forwards, forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), ease;
+`;
+
+const SAppBalances = styled.div`
+  position: absolute;
+  top: 131px;
+  left: 35px;
+  width: 868px;
+  height: 426px;
+  background: url(${appBalances});
+  background-size: 100%;
+`;
+
+const SAppTransactions = styled.div`
+  position: absolute;
+  top: 131px;
+  left: 35px;
+  width: 868px;
+  height: 426px;
+  background: url(${appTransactions});
+  background-size: 100%;
+  opacity: 0;
+  animation: ${step17} 0.5s 11.35s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+`;
+
+const SSendingStatus = styled.div`
+  position: absolute;
+  top: 54px;
+  left: 246px;
+  width: 84px;
+  height: 25px;
+  background: url(${sendingStatus});
+  background-size: 100%;
+  animation: ${step18} 0.4s 15.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+`;
+
+const SSendingSpinner = styled.div`
+  position: absolute;
+  top: 7px;
+  left: 65px;
+  width: 13px;
+  height: 12px;
+  background: url(${sendingSpinner});
+  background-size: 100%;
+  animation: ${spin} 0.8s linear infinite;
+`;
+
+const SSentStatus = styled.div`
+  position: absolute;
+  top: 60px;
+  left: 281px;
+  width: 42px;
+  height: 12px;
+  background: url(${sentStatus});
+  background-size: 100%;
+  opacity: 0;
+  animation: ${step19} 0.5s 15.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 `;
 
 const STabs = styled.div`
@@ -541,6 +680,7 @@ const STabBackground = styled.div`
   background: url(${tabBackground});
   background-size: 100%;
   background-repeat: no-repeat;
+  animation: ${step16} 0.5s 11.35s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 `;
 
 const STabBalances = styled.div`
@@ -552,6 +692,7 @@ const STabBalances = styled.div`
   background: url(${tabBalances});
   background-size: 100%;
   background-repeat: no-repeat;
+  animation: ${step15} 0.7s 11s ease forwards;
 `;
 
 const STabTransactions = styled.div`
@@ -564,6 +705,7 @@ const STabTransactions = styled.div`
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 0.8;
+  animation: ${step14} 0.7s 11s ease forwards;
 `;
 
 const SButton = styled.div`
@@ -856,8 +998,14 @@ const IndexPage = () => (
               <STabBackground />
               <STabBalances />
               <STabTransactions />
-              {/* How to make inactive */}
             </STabs>
+            <SAppBalances />
+            <SAppTransactions>
+              <SSentStatus />
+              <SSendingStatus>
+                <SSendingSpinner />
+              </SSendingStatus>
+            </SAppTransactions>
             <SButtonSend>
               <div />
             </SButtonSend>
