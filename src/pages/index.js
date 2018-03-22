@@ -23,12 +23,19 @@ import sendSymbol from '../assets/send-symbol.svg';
 import tabBackground from '../assets/tab-background.png';
 import tabBalances from '../assets/tab-balances.png';
 import tabTransactions from '../assets/tab-transactions.png';
-import wallet from '../assets/wallet.png';
+import ethAddress from '../assets/eth-address.png';
+import tokenAmount from '../assets/token-amount.png';
+import usdAmount from '../assets/usd-amount.png';
+import sendMax from '../assets/send-max.png';
+import feeAverage from '../assets/fee-average.png';
+import feeAverageSelected from '../assets/fee-average-selected.png';
+import feeFast from '../assets/fee-fast.png';
+import feeFastSelected from '../assets/fee-fast-selected.png';
 import { colors, fonts, responsive } from '../styles';
 
 const step1 = keyframes`
   0 {
-    background: #5983FF;
+    background: #657FE6;
     transform: scale(1);
   }
   20% {
@@ -36,27 +43,146 @@ const step1 = keyframes`
     transform: scale(0.88);
   }
   100% {
-    background: #5983FF;
+    background: #657FE6;
     transform: scale(1);
   }
 `;
 
 const step2 = keyframes`
-  0 {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0.4;
   }
 `;
 
 const step3 = keyframes`
-  0 {
+  from {
     transform: scale(.95) translateY(50px);
     opacity: 0;
   }
-  100% {
+  to {
     transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+`;
+
+const step4 = keyframes`
+  0 {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const step5 = keyframes`
+  0 {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const step6 = keyframes`
+  0 {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const cursor = keyframes`
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+`;
+
+const step7 = keyframes`
+  0 {
+    transform: scaleX(1);
+    background: #FABC2D;
+    border-radius: 0 1px 1px 0;
+  }
+  100% {
+    transform: scaleX(1.5015197568);
+    background: #54D192;
+    border-radius: 0;
+  }
+`;
+
+const step8 = keyframes`
+  from {
+    background: #C0C4D1;
+  }
+  to {
+    background: #657FE6;
+  }
+`;
+
+const step9 = keyframes`
+  0 {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.88);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const step10 = keyframes`
+  0 {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const step11 = keyframes`
+  0 {
+    background: #657FE6;
+    transform: scale(1);
+  }
+  20% {
+    background: #546ABF;
+    transform: scale(0.88);
+  }
+  100% {
+    background: #657FE6;
+    transform: scale(1);
+  }
+`;
+
+const step12 = keyframes`
+  0 {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-220px) scale(0.8);
+    opacity: 0;
+  }
+`;
+
+const step13 = keyframes`
+  from {
+    opacity: 0.4;
+  }
+  to {
     opacity: 1;
   }
 `;
@@ -387,8 +513,14 @@ const SApp = styled.div`
   width: 938px;
   height: 621px;
   background: url(${app});
+  opacity: 1;
   background-size: 100%;
-  animation: ${step2} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  // animation: ${step2} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  animation-name: ${step2}, ${step13};
+  animation-duration: 0.7s, 0.7s;
+  animation-delay: 2.35s, 9.5s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), ease;
 `;
 
 const STabs = styled.div`
@@ -431,13 +563,12 @@ const STabTransactions = styled.div`
   background: url(${tabTransactions});
   background-size: 100%;
   background-repeat: no-repeat;
-  opacity: ${props => (props.inactive ? 0.8 : 1)};
+  opacity: 0.8;
 `;
 
 const SButton = styled.div`
   position: absolute;
   height: 32px;
-  /* box-shadow: 0 1px 3px 0 rgba(2,2,3,.06), 0 2px 6px 0 rgba(2,2,3,.04); */
   box-shadow: 0 5px 10px 0 rgba(59, 59, 92, 0.04), 0 0 1px 0 rgba(50, 50, 93, 0.02),
     0 3px 6px 0 rgba(0, 0, 0, 0.06), inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
   border-radius: 8px;
@@ -447,12 +578,8 @@ const SButtonSend = SButton.extend`
   top: 36px;
   right: 51px;
   width: 74px;
-  background: #5983ff;
+  background: #657FE6;
   animation: ${step1} 0.7s 2s ease;
-
-  &:active {
-    background: #5076e6;
-  }
 
   & div {
     position: absolute;
@@ -471,11 +598,7 @@ const SButtonReceive = SButton.extend`
   top: 36px;
   right: 133px;
   width: 95px;
-  background: #5983ff;
-
-  &:active {
-    background: #5076e6;
-  }
+  background: #657FE6;
 
   & div {
     position: absolute;
@@ -501,11 +624,12 @@ const SSendModal = styled.div`
   background: #f5f6fa;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15), 0 15px 35px 0 rgba(0, 0, 0, 0.06);
   border-radius: 10px;
-  /* transition: .4s cubic-bezier(0.19, 1, 0.22, 1); */
-  animation: ${step3} 0.7s 2.35s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  animation-name: ${step3}, ${step12};
+  animation-duration: 0.7s, 0.4s;
+  animation-delay: 2.35s, 9.25s;
+  animation-fill-mode: backwards, forwards;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), cubic-bezier(0.6, -0.28, 0.735, 0.045);
   will-change: transform;
-  transform: scale(0.95) translateY(50px);
-  opacity: 0;
 `;
 
 const SSendModalContents = styled.div`
@@ -513,38 +637,181 @@ const SSendModalContents = styled.div`
   top: 21px;
   left: 0;
   width: 494px;
-  height: 426px;
+  height: 434px;
   background: url(${sendModal});
   background-size: 100%;
   transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 `;
 
-const SCancel = styled.div`
+const SFakeInput = styled.div`
   position: absolute;
-  bottom: 8px;
-  right: 103px;
-  width: 68px;
-  height: 30px;
-  background: #71778a;
-  box-shadow: 0 1px 3px 0 rgba(2, 2, 3, 0.06), 0 2px 6px 0 rgba(2, 2, 3, 0.04);
-  border-radius: 6px;
-  cursor: pointer;
+  height: 38px;
+  background: #fff;
+  border-radius: 5px;
+`;
 
-  &:active {
-    background: #606575;
-  }
+const SFakeInputAddress = SFakeInput.extend`
+  top: 138px;
+  left: 23px;
+  width: 408px;
+  opacity: 0;
+  animation: ${step4} 0s 3.95s forwards;
 
   & div {
     position: absolute;
-    left: 11px;
-    top: 9px;
-    width: 46px;
-    height: 12px;
-    background: url(${cancelLabel});
+    top: 11px;
+    left: 9px;
+    width: 389px;
+    height: 13px;
+    background: url(${ethAddress}) no-repeat;
     background-size: 100%;
-    background-repeat: no-repeat;
+  }
+`;
+
+const SFakeInputTokenAmount = SFakeInput.extend`
+  top: 226px;
+  left: 23px;
+  width: 158px;
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: ${step6} 0.8s 5.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+  & div {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    width: 92px;
+    height: 15px;
+    background: url(${tokenAmount}) no-repeat;
+    background-size: 100%;
+  }
+`;
+
+const SFakeInputUSDAmount = SFakeInput.extend`
+  top: 226px;
+  left: 273px;
+  width: 145px;
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: ${step6} 0.8s 5.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+  & div {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    width: 72px;
+    height: 15px;
+    background: url(${usdAmount}) no-repeat;
+    background-size: 100%;
+  }
+`;
+
+const SInputCursor = styled.div`
+  position: absolute;
+  top: 147px;
+  left: 33px;
+  width: 1px;
+  height: 18px;
+  border-radius: 1px;
+  background: #2F3137;
+  animation: ${cursor} 1s step-end infinite;
+`;
+
+const SSendMax = styled.div`
+  position: absolute;
+  top: 202px;
+  left: 167px;
+  width: 57px;
+  height: 11px;
+  background: url(${sendMax}) no-repeat;
+  background-size: 100%;
+  animation: ${step5} 0.7s 4.75s ease;
+`;
+
+const STransactionSpeedBar = styled.div`
+  position: absolute;
+  top: 297px;
+  left: 0;
+  width: 329px;
+  height: 2px;
+  background: #FABC2D;
+  border-radius: 0 1px 1px 0;
+  transform-origin: left;
+  animation: ${step7} 0.6s 6.85s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+`;
+
+const SButtonSendTransaction = SButton.extend`
+  top: 387px;
+  right: 20px;
+  width: 74px;
+  background: #657FE6;
+  animation-name: ${step8}, ${step11};
+  animation-duration: 1.6s, .7s;
+  animation-delay: 5.1s, 8.45s;
+  animation-fill-mode: backwards, forwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1), ease;
+
+  & div {
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    width: 53px;
+    height: 15px;
+    background: url(${sendLabel}) no-repeat;
+    background-size: 100%;
     pointer-events: none;
   }
+`;
+
+const SFeeAverageContainer = styled.div`
+  position: absolute;
+  top: 314px;
+  left: 198px;
+  width: 98px;
+  height: 33px;
+`;
+
+const SFeeAverage = styled.div`
+  position: absolute;
+  width: 98px;
+  height: 33px;
+  background: url(${feeAverage});
+  background-size: 100%;
+`;
+
+const SFeeAverageSelected = styled.div`
+  position: absolute;
+  width: 98px;
+  height: 33px;
+  background: url(${feeAverageSelected});
+  background-size: 100%;
+  animation: ${step10} 0.35s 6.85s ease forwards;
+`;
+
+const SFeeFastContainer = styled.div`
+  position: absolute;
+  top: 314px;
+  left: 372px;
+  width: 78px;
+  height: 33px;
+  animation: ${step9} 0.7s 6.5s ease;
+`;
+
+const SFeeFast = styled.div`
+  position: absolute;
+  width: 78px;
+  height: 33px;
+  background: url(${feeFast});
+  background-size: 100%;
+  animation: ${step10} 0.35s 6.85s ease forwards;
+`;
+
+const SFeeFastSelected = styled.div`
+  position: absolute;
+  width: 78px;
+  height: 33px;
+  background: url(${feeFastSelected});
+  background-size: 100%;
 `;
 
 const IndexPage = () => (
@@ -600,9 +867,29 @@ const IndexPage = () => (
           </SApp>
           <SSendModal>
             <SSendModalContents>
-              <SCancel>
+              <SInputCursor />
+              <SFakeInputAddress>
                 <div />
-              </SCancel>
+              </SFakeInputAddress>
+              <SFakeInputTokenAmount>
+                <div />
+              </SFakeInputTokenAmount>
+              <SFakeInputUSDAmount>
+                <div />
+              </SFakeInputUSDAmount>
+              <SSendMax />
+              <SButtonSendTransaction>
+                <div />
+              </SButtonSendTransaction>
+              <STransactionSpeedBar />
+              <SFeeAverageContainer>
+                <SFeeAverage />
+                <SFeeAverageSelected />
+              </SFeeAverageContainer>
+              <SFeeFastContainer>
+                <SFeeFastSelected />
+                <SFeeFast />
+              </SFeeFastContainer>
             </SSendModalContents>
           </SSendModal>
         </SAppContainer>
