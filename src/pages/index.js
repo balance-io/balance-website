@@ -193,7 +193,7 @@ const step13 = keyframes`
 `;
 
 const step14 = keyframes`
-  0 {
+  from {
     opacity: 0.8;
     transform: scale(1);
   }
@@ -201,20 +201,20 @@ const step14 = keyframes`
     opacity: 0.8;
     transform: scale(0.88);
   }
-  100% {
+  to {
     opacity: 1;
     transform: scale(1);
   }
 `;
 
 const step15 = keyframes`
-  0 {
+  from {
     opacity: 1;
   }
   20% {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0.8;
   }
 `;
@@ -267,6 +267,60 @@ const step19 = keyframes`
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+`;
+
+const step20 = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+const step21 = keyframes`
+  from {
+    transform: translateX(-18px);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const step22 = keyframes`
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  20% {
+    opacity: 0.8;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+const step23 = keyframes`
+  from {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+  }
+`;
+
+const step24 = keyframes`
+  from {
+    transform: translateX(138px);
+  }
+  to {
+    transform: translateX(0);
   }
 `;
 
@@ -608,24 +662,34 @@ const SApp = styled.div`
 
 const SAppBalances = styled.div`
   position: absolute;
-  top: 131px;
-  left: 35px;
   width: 868px;
   height: 426px;
   background: url(${appBalances});
   background-size: 100%;
+  animation: ${step21} 0.5s 17s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 `;
 
-const SAppTransactions = styled.div`
+const SAppSectionContainer = styled.div`
   position: absolute;
   top: 131px;
   left: 35px;
   width: 868px;
   height: 426px;
+  overflow: hidden;
+`;
+
+const SAppTransactions = styled.div`
+  position: absolute;
+  width: 868px;
+  height: 426px;
   background: url(${appTransactions});
   background-size: 100%;
   opacity: 0;
-  animation: ${step17} 0.5s 11.35s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-name: ${step17}, ${step20};
+  animation-duration: 0.5s, 0.5s;
+  animation-delay: 11.35s, 17s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1), cubic-bezier(0.77, 0, 0.175, 1);
 `;
 
 const SSendingStatus = styled.div`
@@ -680,7 +744,11 @@ const STabBackground = styled.div`
   background: url(${tabBackground});
   background-size: 100%;
   background-repeat: no-repeat;
-  animation: ${step16} 0.5s 11.35s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-name: ${step16}, ${step24};
+  animation-duration: 0.5s, 0.5s;
+  animation-delay: 11.35s, 17s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease, ease;
 `;
 
 const STabBalances = styled.div`
@@ -692,7 +760,11 @@ const STabBalances = styled.div`
   background: url(${tabBalances});
   background-size: 100%;
   background-repeat: no-repeat;
-  animation: ${step15} 0.7s 11s ease forwards;
+  animation-name: ${step15}, ${step22};
+  animation-duration: 0.7s, 0.7s;
+  animation-delay: 11s, 16.65s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease, ease;
 `;
 
 const STabTransactions = styled.div`
@@ -705,7 +777,11 @@ const STabTransactions = styled.div`
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 0.8;
-  animation: ${step14} 0.7s 11s ease forwards;
+  animation-name: ${step14}, ${step23};
+  animation-duration: 0.7s, 0.7s;
+  animation-delay: 11s, 16.65s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease, ease;
 `;
 
 const SButton = styled.div`
@@ -999,13 +1075,15 @@ const IndexPage = () => (
               <STabBalances />
               <STabTransactions />
             </STabs>
-            <SAppBalances />
-            <SAppTransactions>
-              <SSentStatus />
-              <SSendingStatus>
-                <SSendingSpinner />
-              </SSendingStatus>
-            </SAppTransactions>
+            <SAppSectionContainer>
+              <SAppBalances />
+              <SAppTransactions>
+                <SSentStatus />
+                <SSendingStatus>
+                  <SSendingSpinner />
+                </SSendingStatus>
+              </SAppTransactions>
+            </SAppSectionContainer>
             <SButtonSend>
               <div />
             </SButtonSend>
