@@ -15,6 +15,9 @@ const SHeader = styled.div`
   width: 100%;
   z-index: 10;
   position: absolute;
+  @media screen and (${responsive.sm.min}) {
+    overflow: hidden;
+  }
 `;
 
 const STopSection = styled.div`
