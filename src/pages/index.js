@@ -6,7 +6,7 @@ import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
-import FancyInput from '../components/FancyInput'
+import FancyInput from '../components/FancyInput';
 import ledger from '../assets/ledger.svg';
 import ledgerBody from '../assets/ledger-body.svg';
 import ledgerShield from '../assets/ledger-shield.svg';
@@ -40,7 +40,7 @@ import feeFastSelected from '../assets/fee-fast-selected.png';
 import backgroundArrow from '../assets/background-arrow.svg';
 import backgroundArrow2 from '../assets/background-arrow-2.svg';
 import backgroundArrow3 from '../assets/background-arrow-3.svg';
-import balanceWalletPreview from '../assets/balance-wallet-preview.png'
+import balanceWalletPreview from '../assets/balance-wallet-preview.png';
 
 import { colors, fonts, responsive } from '../styles';
 
@@ -330,8 +330,6 @@ const step24 = keyframes`
   }
 `;
 
-
-
 const SSection = styled(Section)`
   @media screen and (${responsive.md.min}) {
   }
@@ -424,6 +422,7 @@ const SBackgroundArrow3 = styled.div`
   margin: 0 auto;
   width: 70.3125%;
   height: 0;
+  z-index: -1;
   background: url(${backgroundArrow3}) no-repeat;
   background-size: cover;
   padding-bottom: calc(70.3125% * 1 / 2);
@@ -443,7 +442,7 @@ const STitle = styled.h1`
   font-family: Graphik;
   font-weight: 600 !important;
   font-size: 2em;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
 `;
 
@@ -452,7 +451,7 @@ const STagline = styled.p`
   width: 600px;
   font-size: 1.25em;
   text-align: center;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.4em;
   & a {
     color: rgb(${colors.blue});
@@ -844,7 +843,7 @@ const SButtonSend = SButton.extend`
   top: 36px;
   right: 51px;
   width: 74px;
-  background: #657FE6;
+  background: #657fe6;
   animation: ${step1} 0.7s 2s ease;
 
   & div {
@@ -864,7 +863,7 @@ const SButtonReceive = SButton.extend`
   top: 36px;
   right: 133px;
   width: 95px;
-  background: #657FE6;
+  background: #657fe6;
 
   & div {
     position: absolute;
@@ -979,7 +978,7 @@ const SInputCursor = styled.div`
   width: 1px;
   height: 18px;
   border-radius: 1px;
-  background: #2F3137;
+  background: #2f3137;
   animation: ${cursor} 1s step-end infinite;
 `;
 
@@ -1000,7 +999,7 @@ const STransactionSpeedBar = styled.div`
   left: 0;
   width: 329px;
   height: 2px;
-  background: #FABC2D;
+  background: #fabc2d;
   border-radius: 0 1px 1px 0;
   transform-origin: left;
   animation: ${step7} 0.6s 6.85s cubic-bezier(0.77, 0, 0.175, 1) forwards;
@@ -1010,9 +1009,9 @@ const SButtonSendTransaction = SButton.extend`
   top: 387px;
   right: 20px;
   width: 74px;
-  background: #657FE6;
+  background: #657fe6;
   animation-name: ${step8}, ${step11};
-  animation-duration: 1.6s, .7s;
+  animation-duration: 1.6s, 0.7s;
   animation-delay: 5.1s, 8.45s;
   animation-fill-mode: backwards, forwards;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1), ease;
@@ -1128,11 +1127,12 @@ const SSectionBalanceWallet = SSection.extend`
 
 const SRoundedCorners = styled.div`
   position: absolute;
+  z-index: -2;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #D0D5DA;
+  background: #d0d5da;
   border-radius: 10px 10px 0 0;
 `;
 
@@ -1145,39 +1145,25 @@ const SHighlightFeatures = styled.div`
 
   & h3 {
     margin-bottom: 7px;
-  	font-size: 1.1875em;
-  	font-weight: 500;
-  	color: #fff;
+    font-size: 1.1875em;
+    font-weight: 500;
+    color: #fff;
   }
 `;
 
-const SFeatureInfo = styled.div`
+const SFeatureInfo = styled.div``;
 
-`;
+const SFeaturesLeft = styled.div``;
 
-const SFeaturesLeft = styled.div`
+const SFeaturesRight = styled.div``;
 
-`;
+const SFeatureSecurity = styled.div``;
 
-const SFeaturesRight = styled.div`
+const SFeatureERC20 = styled.div``;
 
-`;
+const SFeatureWalletConnect = styled.div``;
 
-const SFeatureSecurity = styled.div`
-
-`;
-
-const SFeatureERC20 = styled.div`
-
-`;
-
-const SFeatureWalletConnect = styled.div`
-
-`;
-
-const SFeatureFastEasy = styled.div`
-
-`;
+const SFeatureFastEasy = styled.div``;
 
 const SWalletPreview = styled.div`
   margin: 0 auto;
@@ -1197,7 +1183,10 @@ const IndexPage = () => (
           <SHero>
             <SContainer>
               <STitle>The easiest way to manage your tokens</STitle>
-              <STagline>Connect to your Ethereum wallet to see your ERC-20 token balances, check your transactions, and send tokens.</STagline>
+              <STagline>
+                Connect to your Ethereum wallet to see your ERC-20 token balances, check your
+                transactions, and send tokens.
+              </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
               </SButtonLink>*/}
@@ -1206,7 +1195,6 @@ const IndexPage = () => (
         </SColumn>
       </SSectionWrapper>
     </SSection>
-
     <SSectionApp>
       <SBackgroundArrow2 />
       <SSectionWrapper>
@@ -1269,7 +1257,6 @@ const IndexPage = () => (
         <FancyInput />
       </SNewsletter>
     </SSectionApp>
-
     <SSectionBalanceWallet>
       <SRoundedCorners>
         <SBackgroundArrow3 />
@@ -1277,7 +1264,10 @@ const IndexPage = () => (
           <SHero>
             <SContainer>
               <STitle>Balance Wallet</STitle>
-              <STagline>Connect to your Ethereum wallet to see your ERC-20 token balances, check your transactions, and send tokens.</STagline>
+              <STagline>
+                Connect to your Ethereum wallet to see your ERC-20 token balances, check your
+                transactions, and send tokens.
+              </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
               </SButtonLink>*/}
@@ -1286,10 +1276,13 @@ const IndexPage = () => (
           <SHighlightFeatures>
             <SFeaturesLeft>
               <SFeatureSecurity>
-                <div></div>
+                <div />
                 <SFeatureInfo>
                   <h3>Private and secure</h3>
-                  <p>Your data is synced to your device through our secure data provider, Plaid. We never store it.</p>
+                  <p>
+                    Your data is synced to your device through our secure data provider, Plaid. We
+                    never store it.
+                  </p>
                 </SFeatureInfo>
               </SFeatureSecurity>
 
@@ -1301,22 +1294,21 @@ const IndexPage = () => (
 
             <SWalletPreview />
 
-              <SFeaturesRight>
-                <SFeatureWalletConnect>
-                  <h3>Test</h3>
-                  <p>Test</p>
-                </SFeatureWalletConnect>
+            <SFeaturesRight>
+              <SFeatureWalletConnect>
+                <h3>Test</h3>
+                <p>Test</p>
+              </SFeatureWalletConnect>
 
-                <SFeatureFastEasy>
-                  <h3>Test</h3>
-                  <p>Test</p>
-                </SFeatureFastEasy>
-              </SFeaturesRight>
+              <SFeatureFastEasy>
+                <h3>Test</h3>
+                <p>Test</p>
+              </SFeatureFastEasy>
+            </SFeaturesRight>
           </SHighlightFeatures>
         </SSectionWrapper>
       </SRoundedCorners>
     </SSectionBalanceWallet>
-
     {/* <SSectionWrapper>
       <SFlex>
         <SSignupContainer>
