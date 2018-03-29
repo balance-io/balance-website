@@ -9,7 +9,6 @@ import { colors } from '../styles';
 const SPage = styled.div`
   padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
   margin: 0 auto;
-  min-height: ${({ article }) => (article ? 'calc(100vh - 68px)' : 0)};
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
   display: flex;
   flex-direction: column;

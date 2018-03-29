@@ -6,6 +6,7 @@ import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
+import FancyInput from '../components/FancyInput'
 import ledger from '../assets/ledger.svg';
 import ledgerBody from '../assets/ledger-body.svg';
 import ledgerShield from '../assets/ledger-shield.svg';
@@ -36,6 +37,11 @@ import feeAverage from '../assets/fee-average.png';
 import feeAverageSelected from '../assets/fee-average-selected.png';
 import feeFast from '../assets/fee-fast.png';
 import feeFastSelected from '../assets/fee-fast-selected.png';
+import backgroundArrow from '../assets/background-arrow.svg';
+import backgroundArrow2 from '../assets/background-arrow-2.svg';
+import backgroundArrow3 from '../assets/background-arrow-3.svg';
+import balanceWalletPreview from '../assets/balance-wallet-preview.png'
+
 import { colors, fonts, responsive } from '../styles';
 
 const step1 = keyframes`
@@ -324,29 +330,7 @@ const step24 = keyframes`
   }
 `;
 
-const SBackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50vw;
-  height: 700px;
-  background-image: url(${balanceTokenTriangles});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  @media screen and (${responsive.xl.min}) {
-    top: 0;
-    right: calc((100vw - 1400px) * 0.5);
-    width: 700px;
-  }
-  @media screen and (${responsive.md.max}) {
-    width: 100vw;
-    height: 800px;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
-`;
+
 
 const SSection = styled(Section)`
   @media screen and (${responsive.md.min}) {
@@ -388,7 +372,7 @@ const SContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   @media screen and (${responsive.sm.min}) {
-    max-width: 600px;
+    max-width: 620px;
   }
   @media screen and (${responsive.md.max}) {
     display: flex;
@@ -396,30 +380,80 @@ const SContainer = styled.div`
   }
 `;
 
+const SBackgroundArrow = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 0;
+  background: url(${backgroundArrow}) no-repeat;
+  background-size: cover;
+  padding-bottom: calc(100% * 1 / 2);
+  max-width: 1406px;
+
+  @media screen and (min-width: 1406px) {
+    padding-bottom: 703px;
+  }
+`;
+
+const SBackgroundArrow2 = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 0;
+  background: url(${backgroundArrow2}) no-repeat;
+  background-size: cover;
+  padding-top: calc(100% * 139 / 1280);
+  max-width: 1406px;
+
+  @media screen and (min-width: 1406px) {
+    padding-top: 152.6828125px;
+  }
+`;
+
+const SBackgroundArrow3 = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 70.3125%;
+  height: 0;
+  background: url(${backgroundArrow3}) no-repeat;
+  background-size: cover;
+  padding-bottom: calc(70.3125% * 1 / 2);
+  max-width: 988.59375px;
+
+  @media screen and (min-width: 1406px) {
+    padding-bottom: 494.296875px;
+  }
+`;
+
 const SHero = styled.div`
   // margin: 0px 0px 60px 0px;
 `;
 
-const STitleCenter = styled.div`
-  margin: 10px auto;
-`;
-
 const STitle = styled.h1`
-  font-size: 2.5em;
-  align: center;
-  letter-spacing: -0.25px;
-  @media screen and (${responsive.sm.max}) {
-    font-size: 8vw;
-    letter-spacing: -0.2px;
-  }
+  margin: 42px auto 10px auto;
+  font-family: Graphik;
+  font-weight: 600 !important;
+  font-size: 2em;
+  color: #FFFFFF;
+  text-align: center;
 `;
 
 const STagline = styled.p`
+  margin: 0 auto;
+  width: 600px;
   font-size: 1.25em;
   text-align: center;
-  margin: 1em 0;
-  color: rgb(${colors.lighterBlue});
-  line-height: 1.6em;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4em;
   & a {
     color: rgb(${colors.blue});
   }
@@ -632,14 +666,28 @@ const SPitchImageContainer = styled.div`
   position: relative;
 `;
 
+const SSectionApp = SSection.extend`
+  margin-top: -2px;
+  overflow: visible !important;
+`;
+
 const SAppContainer = styled.div`
   position: relative;
   right: 0;
   left: 0;
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   width: 938px;
   height: 621px;
-  margin-bottom: 150px;
+  margin-bottom: 31px;
+`;
+
+const SAppBackground = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  background: #071827;
 `;
 
 const SApp = styled.div`
@@ -1032,43 +1080,138 @@ const SFeeFastSelected = styled.div`
   background-size: 100%;
 `;
 
+const SNewsletter = SSection.extend`
+  max-width: 384px;
+  margin: 0 auto 63px auto;
+
+  & h3 {
+    margin-bottom: 7px;
+    font-size: 1.0625em;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 1.3px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  & p {
+    margin-bottom: 29px;
+    opacity: 0.8;
+    font-family: Graphik-Regular;
+    font-size: 1.0625em;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 21px;
+  }
+
+
+
+  & input:focus {
+    background: #fff;
+  }
+
+  & input:focus::-webkit-input-placeholder {
+    color: red:
+  }
+`;
+
+const SInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 52px;
+`;
+
+const SSectionBalanceWallet = SSection.extend`
+  height: 1018px;
+  background #071827;
+`;
+
+const SRoundedCorners = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #D0D5DA;
+  border-radius: 10px 10px 0 0;
+`;
+
+const SHighlightFeatures = styled.div`
+  width: 1000px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 71px auto 0 auto;
+
+  & h3 {
+    margin-bottom: 7px;
+  	font-size: 1.1875em;
+  	font-weight: 500;
+  	color: #fff;
+  }
+`;
+
+const SFeatureInfo = styled.div`
+
+`;
+
+const SFeaturesLeft = styled.div`
+
+`;
+
+const SFeaturesRight = styled.div`
+
+`;
+
+const SFeatureSecurity = styled.div`
+
+`;
+
+const SFeatureERC20 = styled.div`
+
+`;
+
+const SFeatureWalletConnect = styled.div`
+
+`;
+
+const SFeatureFastEasy = styled.div`
+
+`;
+
+const SWalletPreview = styled.div`
+  margin: 0 auto;
+  width: 360px;
+  height: 700px;
+  background: url(${balanceWalletPreview});
+  background-size: 100%;
+`;
+
 const IndexPage = () => (
   <Page>
-    <SSection
-      id={`balance-token`}
-      // minHeight={700}
-      color={colors.navyBlue}
-      background={<SBackgroundImage />}
-    >
+    <SBackgroundArrow />
+    <SSection id={`balance-token`}>
       <SSectionWrapper>
         <SColumn>
           {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
-              <STitleCenter>
-                <STitle>Manage Your Tokens</STitle>
-              </STitleCenter>
-              <STagline>
-                Connect to your {'\n'}{' '}
-                {/*ask pedro why this doesn't work: https://stackoverflow.com/questions/32469570/how-can-i-insert-a-line-break-into-a-text-component-in-react-native/40714065*/}
-                <a href="https://ethereum.org" target="_blank" rel="noreferrer noopener">
-                  Ethereum wallet{' '}
-                </a>
-                to see your <Link to="/erc20-tokens">ERC-20 token</Link> balances, check your
-                transactions, and send tokens.
-              </STagline>
-              <SButtonLink>
+              <STitle>The easiest way to manage your tokens</STitle>
+              <STagline>Connect to your Ethereum wallet to see your ERC-20 token balances, check your transactions, and send tokens.</STagline>
+              {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
-              </SButtonLink>
+              </SButtonLink>*/}
             </SContainer>
           </SHero>
         </SColumn>
       </SSectionWrapper>
     </SSection>
 
-    <SSection>
+    <SSectionApp>
+      <SBackgroundArrow2 />
       <SSectionWrapper>
         <SAppContainer>
+          <SAppBackground />
           <SApp>
             <STabs>
               <STabBackground />
@@ -1120,7 +1263,59 @@ const IndexPage = () => (
           </SSendModal>
         </SAppContainer>
       </SSectionWrapper>
-    </SSection>
+      <SNewsletter>
+        <h3>Subscribe</h3>
+        <p>Get Balance product updates</p>
+        <FancyInput />
+      </SNewsletter>
+    </SSectionApp>
+
+    <SSectionBalanceWallet>
+      <SRoundedCorners>
+        <SBackgroundArrow3 />
+        <SSectionWrapper>
+          <SHero>
+            <SContainer>
+              <STitle>Balance Wallet</STitle>
+              <STagline>Connect to your Ethereum wallet to see your ERC-20 token balances, check your transactions, and send tokens.</STagline>
+              {/*<SButtonLink>
+                OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
+              </SButtonLink>*/}
+            </SContainer>
+          </SHero>
+          <SHighlightFeatures>
+            <SFeaturesLeft>
+              <SFeatureSecurity>
+                <div></div>
+                <SFeatureInfo>
+                  <h3>Private and secure</h3>
+                  <p>Your data is synced to your device through our secure data provider, Plaid. We never store it.</p>
+                </SFeatureInfo>
+              </SFeatureSecurity>
+
+              <SFeatureERC20>
+                <h3>Test</h3>
+                <p>Test</p>
+              </SFeatureERC20>
+            </SFeaturesLeft>
+
+            <SWalletPreview />
+
+              <SFeaturesRight>
+                <SFeatureWalletConnect>
+                  <h3>Test</h3>
+                  <p>Test</p>
+                </SFeatureWalletConnect>
+
+                <SFeatureFastEasy>
+                  <h3>Test</h3>
+                  <p>Test</p>
+                </SFeatureFastEasy>
+              </SFeaturesRight>
+          </SHighlightFeatures>
+        </SSectionWrapper>
+      </SRoundedCorners>
+    </SSectionBalanceWallet>
 
     {/* <SSectionWrapper>
       <SFlex>

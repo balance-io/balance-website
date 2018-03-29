@@ -20,7 +20,9 @@ export const colors = {
   lightPurple: '139, 78, 167',
   purple: '50, 50, 93',
   red: '221, 69, 65',
-  twitter: '0, 162, 249'
+  twitter: '0, 162, 249',
+  backgroundGray: '44, 47, 56',
+  backgroundNavy: '7, 24, 39'
 };
 
 export const fonts = {
@@ -153,7 +155,44 @@ export const globalStyles = `
   unicode-range: U+0020-00FE;
 }
 
+@font-face {
+  font-family: 'Graphik';
+  src: url('/fonts/Graphik-Regular.eot');
+  src: url('/fonts/Graphik-Regular.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/Graphik-Regular.woff2') format('woff2'),
+	url('/fonts/Graphik-Regular.woff') format('woff'),
+	url('/fonts/Graphik-Regular.svg#Graphik-Regular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
 
+@font-face {
+  font-family: 'Graphik';
+  src: url('/fonts/Graphik-Medium.eot');
+  src: url('/fonts/Graphik-Medium.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/Graphik-Medium.woff2') format('woff2'),
+	url('/fonts/Graphik-Medium.woff') format('woff'),
+	url('/fonts/Graphik-Medium.svg#Graphik-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('/fonts/Graphik-Semibold.eot');
+  src: url('/fonts/Graphik-Semibold.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/Graphik-Semibold.woff2') format('woff2'),
+	url('/fonts/Graphik-Semibold.woff') format('woff'),
+	url('/fonts/Graphik-Semibold.svg#Graphik-Semibold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-00FE;
+}
 
   html, body {
     width: 100%;
@@ -176,7 +215,7 @@ export const globalStyles = `
   }
 
   body {
-    font-family: 'FF Mark Pro', "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-family: 'Graphik', "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-style: normal;
   	font-stretch: normal;

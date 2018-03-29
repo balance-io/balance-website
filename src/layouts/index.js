@@ -10,6 +10,7 @@ injectGlobal`${globalStyles}`;
 const SWrapper = styled.div`
   position: relative;
   width: 100%;
+  min-height: 100%;
 `;
 
 const SContent = styled.div`
@@ -22,7 +23,7 @@ const TemplateWrapper = ({ children, location, data }) => {
     if (location.pathname.indexOf('blog') === -1) {
       showIntercom();
       if (location.pathname.indexOf('about') === -1) {
-        document.body.style.background = `rgb(${colors.navyBlue})`;
+        document.body.style.background = `rgb(${colors.backgroundNavy})`;
       } else {
         document.body.style.background = `rgb(${colors.darkerNavyBlue})`;
       }

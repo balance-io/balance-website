@@ -7,7 +7,7 @@ import { colors, fonts, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background-color: ${({ theme }) =>
     theme.backgroundColor ? `rgb(${theme.backgroundColor})` : 'transparent'};
