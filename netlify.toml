@@ -4,4 +4,4 @@
   to = "https://custom.intercom.help"
   status = 200
   force = true
-  headers = {Host = "support.balance.io"}
+  headers = {X-Forwarded-Host = "support.balance.io"}
