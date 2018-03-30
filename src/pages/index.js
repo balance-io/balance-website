@@ -1088,7 +1088,7 @@ const SNewsletter = SSection.extend`
   margin: 0 auto 63px auto;
 
   & h3 {
-    margin-bottom: 7px;
+    margin-bottom: 6px;
     font-size: 1.0625em;
     font-weight: 600;
     color: #FFFFFF;
@@ -1156,7 +1156,7 @@ const SHighlightFeatures = styled.div`
   margin: 0px auto 0 auto;
 
   & h3 {
-    margin-bottom: 7px;
+    margin-bottom: 6px;
     font-size: 1.1875em;
     font-weight: 500;
     color: #313336;
@@ -1171,7 +1171,7 @@ const SHighlightFeatures = styled.div`
 `;
 
 const SFeatureIcon = styled.div`
-  margin-top: 5px;
+  margin-top: 6px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1179,30 +1179,30 @@ const SFeatureIcon = styled.div`
 `;
 
 const SFeatureInfoLeft = styled.div`
-  margin-right: 66px;
+  margin-right: 69px;
   width: 180px;
 `;
 
 const SFeatureInfoRight = styled.div`
-  margin-left: 66px;
+  margin-left: 69px;
   width: 180px;
 `;
 
 const SFeaturesLeft = styled.div`
-  margin-top: 91px;
+  margin: 86px 0 0 0;
   width: 249px;
   text-align: right;
   float: left:
 `;
 
 const SFeaturesRight = styled.div`
-  margin-top: 221px;
+  margin: 216px 0 0 0;
   width: 249px;
   float: right;
 `;
 
 const SFeatureSecurity = styled.div`
-  margin-bottom: 171px;
+  margin-bottom: 166px;
 
   & ${SFeatureIcon} {
     background: #38B5A8;
@@ -1221,7 +1221,6 @@ const SFeatureERC20 = styled.div`
   & ${SFeatureIcon} {
     background: #EA5472;
     float: right;
-    margin-left: 20px;
 
     & div {
       margin: 12px auto 0 auto;
@@ -1233,7 +1232,7 @@ const SFeatureERC20 = styled.div`
 `;
 
 const SFeatureWalletConnect = styled.div`
-  margin-bottom: 150px;
+  margin-bottom: 145px;
 
   & ${SFeatureIcon} {
     background: #5D9CF5;
