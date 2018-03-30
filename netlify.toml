@@ -1,7 +1,0 @@
-# Intercom redirect, requires special headers
-[[redirects]]
-  from = "https://support.balance.io/*"
-  to = "https://custom.intercom.help"
-  status = 200
-  force = true
-  headers = {X-Forwarded-Host = "support.balance.io"}
