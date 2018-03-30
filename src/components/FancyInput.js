@@ -73,7 +73,7 @@ class FancyInput extends Component {
   render() {
     return (
       <SInputContainer dark={this.state.dark}>
-        <input type="email" placeholder="Your email" value={this.state.input} onFocus={this.onFocus} onBlur={this.onBlur} onChange={this.onChange} />
+        <input type="email" placeholder="Your email" spellcheck="false" value={this.state.input} onFocus={this.onFocus} onBlur={this.onBlur} onChange={this.onChange} />
         <button type="submit" />
       </SInputContainer>
     )

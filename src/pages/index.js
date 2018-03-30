@@ -41,6 +41,10 @@ import backgroundArrow from '../assets/background-arrow.svg';
 import backgroundArrow2 from '../assets/background-arrow-2.svg';
 import backgroundArrow3 from '../assets/background-arrow-3.svg';
 import balanceWalletPreview from '../assets/balance-wallet-preview.png';
+import featurePrivate from '../assets/feature-private.svg';
+import featureERC20 from '../assets/feature-erc20.svg';
+import featureWalletConnect from '../assets/feature-walletconnect.svg';
+import featureFast from '../assets/feature-fast.svg';
 
 import { colors, fonts, responsive } from '../styles';
 
@@ -1096,21 +1100,10 @@ const SNewsletter = SSection.extend`
   & p {
     margin-bottom: 29px;
     opacity: 0.8;
-    font-family: Graphik-Regular;
     font-size: 1.0625em;
     color: #FFFFFF;
     text-align: center;
     line-height: 21px;
-  }
-
-
-
-  & input:focus {
-    background: #fff;
-  }
-
-  & input:focus::-webkit-input-placeholder {
-    color: red:
   }
 `;
 
@@ -1121,7 +1114,6 @@ const SInputContainer = styled.div`
 `;
 
 const SSectionBalanceWallet = SSection.extend`
-  height: 1018px;
   background #071827;
 `;
 
@@ -1136,37 +1128,142 @@ const SRoundedCorners = styled.div`
   border-radius: 10px 10px 0 0;
 `;
 
+const SHeroWallet = SHero.extend`
+  margin: 0 auto;
+`;
+
+const STitleWallet = STitle.extend`
+  margin: 4px auto 6px auto;
+  color: #313336;
+`;
+
+const STaglineWallet = STagline.extend`
+  margin-bottom: 0;
+  width: 358px;
+  color: #313336;
+  opacity: 0.8;
+`;
+
+const SSectionWrapperFeatures = SSectionWrapper.extend`
+  padding-top: 53px;
+`;
+
 const SHighlightFeatures = styled.div`
-  width: 1000px;
+  width: 970px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  margin: 71px auto 0 auto;
+  margin: 0px auto 0 auto;
 
   & h3 {
     margin-bottom: 7px;
     font-size: 1.1875em;
     font-weight: 500;
-    color: #fff;
+    color: #313336;
+  }
+
+  & p {
+    font-size: 0.9375em;
+    color: #313336;
+    opacity: 0.8;
+    line-height: 1.4em;
   }
 `;
 
-const SFeatureInfo = styled.div``;
+const SFeatureIcon = styled.div`
+  margin-top: 5px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px 0 rgba(50,50,93,0.06), 0 1px 3px 0 rgba(0,0,0,0.08), inset 0 0 1px 0 rgba(0,0,0,0.06);
+`;
 
-const SFeaturesLeft = styled.div``;
+const SFeatureInfoLeft = styled.div`
+  margin-right: 66px;
+  width: 180px;
+`;
 
-const SFeaturesRight = styled.div``;
+const SFeatureInfoRight = styled.div`
+  margin-left: 66px;
+  width: 180px;
+`;
 
-const SFeatureSecurity = styled.div``;
+const SFeaturesLeft = styled.div`
+  margin-top: 91px;
+  width: 249px;
+  text-align: right;
+  float: left:
+`;
 
-const SFeatureERC20 = styled.div``;
+const SFeaturesRight = styled.div`
+  margin-top: 221px;
+  width: 249px;
+  float: right;
+`;
 
-const SFeatureWalletConnect = styled.div``;
+const SFeatureSecurity = styled.div`
+  margin-bottom: 171px;
 
-const SFeatureFastEasy = styled.div``;
+  & ${SFeatureIcon} {
+    background: #38B5A8;
+    float: right;
+
+    & div {
+      margin: 12px auto 0 auto;
+      width: 18px;
+      height: 22px;
+      background: url(${featurePrivate});
+    }
+  }
+`;
+
+const SFeatureERC20 = styled.div`
+  & ${SFeatureIcon} {
+    background: #EA5472;
+    float: right;
+    margin-left: 20px;
+
+    & div {
+      margin: 12px auto 0 auto;
+      width: 30px;
+      height: 24px;
+      background: url(${featureERC20});
+    }
+  }
+`;
+
+const SFeatureWalletConnect = styled.div`
+  margin-bottom: 150px;
+
+  & ${SFeatureIcon} {
+    background: #5D9CF5;
+    float: left;
+
+    & div {
+      margin: 14px auto 0 auto;
+      width: 20px;
+      height: 20px;
+      background: url(${featureWalletConnect});
+    }
+  }
+`;
+
+const SFeatureFastEasy = styled.div`
+  & ${SFeatureIcon} {
+    background: #69768A;
+    float: left;
+
+    & div {
+      margin: 11px auto 0 auto;
+      width: 16px;
+      height: 26px;
+      background: url(${featureFast});
+    }
+  }
+`;
 
 const SWalletPreview = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 175px auto;
   width: 360px;
   height: 700px;
   background: url(${balanceWalletPreview});
@@ -1195,6 +1292,7 @@ const IndexPage = () => (
         </SColumn>
       </SSectionWrapper>
     </SSection>
+
     <SSectionApp>
       <SBackgroundArrow2 />
       <SSectionWrapper>
@@ -1252,79 +1350,71 @@ const IndexPage = () => (
         </SAppContainer>
       </SSectionWrapper>
       <SNewsletter>
-        <h3>Subscribe</h3>
+        <h3>News</h3>
         <p>Get Balance product updates</p>
         <FancyInput />
       </SNewsletter>
     </SSectionApp>
+
     <SSectionBalanceWallet>
-      <SRoundedCorners>
-        <SBackgroundArrow3 />
-        <SSectionWrapper>
-          <SHero>
-            <SContainer>
-              <STitle>Balance Wallet</STitle>
-              <STagline>
-                Connect to your Ethereum wallet to see your ERC-20 token balances, check your
-                transactions, and send tokens.
-              </STagline>
-              {/*<SButtonLink>
-                OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
-              </SButtonLink>*/}
-            </SContainer>
-          </SHero>
-          <SHighlightFeatures>
-            <SFeaturesLeft>
-              <SFeatureSecurity>
-                <div />
-                <SFeatureInfo>
-                  <h3>Private and secure</h3>
-                  <p>
-                    Your data is synced to your device through our secure data provider, Plaid. We
-                    never store it.
-                  </p>
-                </SFeatureInfo>
-              </SFeatureSecurity>
+      <SRoundedCorners />
+      <SBackgroundArrow3 />
+      <SSectionWrapper>
+        <SHeroWallet>
+          <SContainer>
+            <STitleWallet>Balance Wallet</STitleWallet>
+            <STaglineWallet>
+              Coming soon, a mobile Ethereum wallet for iOS and Android.
+            </STaglineWallet>
+            {/*<SButtonLink>
+              OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
+            </SButtonLink>*/}
+          </SContainer>
+        </SHeroWallet>
+      </SSectionWrapper>
+      <SSectionWrapperFeatures>
+        <SHighlightFeatures>
+          <SFeaturesLeft>
+            <SFeatureSecurity>
+              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureInfoLeft>
+                <h3>Private and secure</h3>
+                <p>Your data is synced to your device through our secure data provider, Plaid. We
+                  never store it.</p>
+              </SFeatureInfoLeft>
+            </SFeatureSecurity>
 
-              <SFeatureERC20>
-                <h3>Test</h3>
-                <p>Test</p>
-              </SFeatureERC20>
-            </SFeaturesLeft>
+            <SFeatureERC20>
+              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureInfoLeft>
+                <h3>Always in sync</h3>
+                <p>Balance updates your accounts throughout the day, so there’s never any waiting involved.</p>
+              </SFeatureInfoLeft>
+            </SFeatureERC20>
+          </SFeaturesLeft>
 
-            <SWalletPreview />
+          <SWalletPreview />
 
-            <SFeaturesRight>
-              <SFeatureWalletConnect>
-                <h3>Test</h3>
-                <p>Test</p>
-              </SFeatureWalletConnect>
+          <SFeaturesRight>
+            <SFeatureWalletConnect>
+              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureInfoRight>
+                <h3>WalletConnect</h3>
+                <p>Banks, credit cards, investment accounts, online wallets. PayPal. Schwab. Fidelity. Chase. 12,000 others.</p>
+              </SFeatureInfoRight>
+            </SFeatureWalletConnect>
 
-              <SFeatureFastEasy>
-                <h3>Test</h3>
-                <p>Test</p>
-              </SFeatureFastEasy>
-            </SFeaturesRight>
-          </SHighlightFeatures>
-        </SSectionWrapper>
-      </SRoundedCorners>
+            <SFeatureFastEasy>
+              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureInfoRight>
+                <h3>Fast and easy</h3>
+                <p>Banks, credit cards, investment accounts, online wallets. PayPal. Schwab. Fidelity. Chase. 9,000 others.</p>
+              </SFeatureInfoRight>
+            </SFeatureFastEasy>
+          </SFeaturesRight>
+        </SHighlightFeatures>
+      </SSectionWrapperFeatures>
     </SSectionBalanceWallet>
-    {/* <SSectionWrapper>
-      <SFlex>
-        <SSignupContainer>
-          <SPitchImageContainer>
-            <SLedger>
-              <SLedgerWire />
-              <SLedgerBody />
-              <SLedgerShield />
-            </SLedger>
-          </SPitchImageContainer>
-          <SPitchTextContainer>
-            <SPitch>Ledger support & mobile wallet coming soon.</SPitch>
-          </SPitchTextContainer>
-        </SSignupContainer>
-      </SFlex>
-    </SSectionWrapper> */}
   </Page>
 );
 

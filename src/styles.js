@@ -20,9 +20,10 @@ export const colors = {
   lightPurple: '139, 78, 167',
   purple: '50, 50, 93',
   red: '221, 69, 65',
-  twitter: '0, 162, 249',
+  twitter: '93, 156, 245',
   backgroundGray: '44, 47, 56',
-  backgroundNavy: '7, 24, 39'
+  backgroundNavy: '7, 24, 39',
+  github: '52, 54, 57'
 };
 
 export const fonts = {
