@@ -6,7 +6,7 @@ import Section from '../components/Section';
 import EthereumPageHeader from '../components/EthereumPageHeader';
 import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
 import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
-import FancyInput from '../components/FancyInput';
+import SubscribeForm from '../components/SubscribeForm';
 import ledger from '../assets/ledger.svg';
 import ledgerBody from '../assets/ledger-body.svg';
 import ledgerShield from '../assets/ledger-shield.svg';
@@ -1143,7 +1143,7 @@ const SNewsletter = SSection.extend`
     margin-bottom: 6px;
     font-size: 1.0625em;
     font-weight: 600;
-    color: #FFFFFF;
+    color: #ffffff;
     letter-spacing: 1.3px;
     text-align: center;
     text-transform: uppercase;
@@ -1153,7 +1153,7 @@ const SNewsletter = SSection.extend`
     margin-bottom: 29px;
     opacity: 0.8;
     font-size: 1.0625em;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
     line-height: 21px;
   }
@@ -1232,7 +1232,8 @@ const SFeatureIcon = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  box-shadow: 0 4px 6px 0 rgba(50,50,93,0.06), 0 1px 3px 0 rgba(0,0,0,0.08), inset 0 0 1px 0 rgba(0,0,0,0.06);
+  box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.08),
+    inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
 `;
 
 const SFeatureInfoLeft = styled.div`
@@ -1262,7 +1263,7 @@ const SFeatureSecurity = styled.div`
   margin-bottom: 166px;
 
   & ${SFeatureIcon} {
-    background: #38B5A8;
+    background: #38b5a8;
     float: right;
 
     & div {
@@ -1276,7 +1277,7 @@ const SFeatureSecurity = styled.div`
 
 const SFeatureERC20 = styled.div`
   & ${SFeatureIcon} {
-    background: #EA5472;
+    background: #ea5472;
     float: right;
 
     & div {
@@ -1292,7 +1293,7 @@ const SFeatureWalletConnect = styled.div`
   margin-bottom: 145px;
 
   & ${SFeatureIcon} {
-    background: #5D9CF5;
+    background: #5d9cf5;
     float: left;
 
     & div {
@@ -1306,7 +1307,7 @@ const SFeatureWalletConnect = styled.div`
 
 const SFeatureFastEasy = styled.div`
   & ${SFeatureIcon} {
-    background: #69768A;
+    background: #69768a;
     float: left;
 
     & div {
@@ -1409,7 +1410,7 @@ const IndexPage = () => (
       <SNewsletter>
         <h3>News</h3>
         <p>Get Balance product updates</p>
-        <FancyInput />
+        <SubscribeForm />
       </SNewsletter>
     </SSectionApp>
 
@@ -1433,19 +1434,28 @@ const IndexPage = () => (
         <SHighlightFeatures>
           <SFeaturesLeft>
             <SFeatureSecurity>
-              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureIcon>
+                <div />
+              </SFeatureIcon>
               <SFeatureInfoLeft>
                 <h3>Private and secure</h3>
-                <p>Your data is synced to your device through our secure data provider, Plaid. We
-                  never store it.</p>
+                <p>
+                  Your data is synced to your device through our secure data provider, Plaid. We
+                  never store it.
+                </p>
               </SFeatureInfoLeft>
             </SFeatureSecurity>
 
             <SFeatureERC20>
-              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureIcon>
+                <div />
+              </SFeatureIcon>
               <SFeatureInfoLeft>
                 <h3>Always in sync</h3>
-                <p>Balance updates your accounts throughout the day, so there’s never any waiting involved.</p>
+                <p>
+                  Balance updates your accounts throughout the day, so there’s never any waiting
+                  involved.
+                </p>
               </SFeatureInfoLeft>
             </SFeatureERC20>
           </SFeaturesLeft>
@@ -1454,18 +1464,28 @@ const IndexPage = () => (
 
           <SFeaturesRight>
             <SFeatureWalletConnect>
-              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureIcon>
+                <div />
+              </SFeatureIcon>
               <SFeatureInfoRight>
                 <h3>WalletConnect</h3>
-                <p>Banks, credit cards, investment accounts, online wallets. PayPal. Schwab. Fidelity. Chase. 12,000 others.</p>
+                <p>
+                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
+                  Fidelity. Chase. 12,000 others.
+                </p>
               </SFeatureInfoRight>
             </SFeatureWalletConnect>
 
             <SFeatureFastEasy>
-              <SFeatureIcon><div /></SFeatureIcon>
+              <SFeatureIcon>
+                <div />
+              </SFeatureIcon>
               <SFeatureInfoRight>
                 <h3>Fast and easy</h3>
-                <p>Banks, credit cards, investment accounts, online wallets. PayPal. Schwab. Fidelity. Chase. 9,000 others.</p>
+                <p>
+                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
+                  Fidelity. Chase. 9,000 others.
+                </p>
               </SFeatureInfoRight>
             </SFeatureFastEasy>
           </SFeaturesRight>
