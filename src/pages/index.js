@@ -1,20 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Link from 'gatsby-link';
 import Page from '../layouts/page';
 import Section from '../components/Section';
-import EthereumPageHeader from '../components/EthereumPageHeader';
-import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
-import balanceTokenPreview from '../assets/balance-token-preview2-large.png';
 import SubscribeForm from '../components/SubscribeForm';
-import ledger from '../assets/ledger.svg';
-import ledgerBody from '../assets/ledger-body.svg';
-import ledgerShield from '../assets/ledger-shield.svg';
-import ledgerWire from '../assets/ledger-wire.svg';
-import metamaskLookUp from '../assets/metamask-look-up.png';
-import walletPreview from '../assets/wallet-preview.png';
-import arrowRightCircle from '../assets/arrow-right-circle.svg';
-import openLetter from '../assets/open-letter.svg';
 import app from '../assets/app.png';
 import appStatic from '../assets/app-static.png';
 import appBalances from '../assets/app-balances.png';
@@ -22,11 +10,9 @@ import appTransactions from '../assets/app-transactions.png';
 import sendingStatus from '../assets/sending-status.png';
 import sendingSpinner from '../assets/sending-spinner.png';
 import sentStatus from '../assets/sent-status.png';
-import cancelLabel from '../assets/cancel-label.png';
 import receiveLabel from '../assets/receive-label.png';
 import sendLabel from '../assets/send-label.png';
 import sendModal from '../assets/send-modal.png';
-import sendSymbol from '../assets/send-symbol.svg';
 import tabBackground from '../assets/tab-background.png';
 import tabBalances from '../assets/tab-balances.png';
 import tabTransactions from '../assets/tab-transactions.png';
@@ -48,7 +34,7 @@ import featureERC20 from '../assets/feature-erc20.svg';
 import featureWalletConnect from '../assets/feature-walletconnect.svg';
 import featureFast from '../assets/feature-fast.svg';
 
-import { colors, fonts, responsive } from '../styles';
+import { colors, responsive } from '../styles';
 
 const step1 = keyframes`
   0 {
@@ -489,206 +475,6 @@ const STagline = styled.p`
       margin-top: 1em 0;
     }
   }
-`;
-
-const SPitch = styled.h4`
-  font-size: 1.4em;
-  text-align: left;
-  letter-spacing: -0.25px;
-  color: grey;
-  font-weight: 400;
-  margin: 0px 0px 30px 0px;
-  @media screen and (${responsive.sm.max}) {
-    font-size: 4.5vw;
-    letter-spacing: -0.2px;
-    margin: 1em 0;
-  }
-`;
-
-const SButtonLink = styled.a`
-  margin: 0 auto;
-  background-clip: border-box;
-  background-color: rgb(0, 153, 255);
-  background-image: none;
-  background-origin: padding-box;
-  background-position-x: 0%;
-  background-position-y: 0%;
-  background-repeat-x: ;
-  background-repeat-y: ;
-  background-size: auto;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  // box-shadow:rgba(50, 50, 93, 0.11) 0px 4px 6px 0px, rgba(0, 0, 0, 0.08) 0px 1px 3px 0px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.15s ease-in-out;
-  box-sizing: border-box;
-  color: rgb(238, 242, 255) !important;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Camphor, 'Open Sans', 'Segoe UI', sans-serif;
-  font-feature-settings: 'pnum' 1;
-  font-size: 15px;
-  font-style: normal;
-  font-variant-numeric: proportional-nums;
-  font-weight: 600;
-  height: 40px;
-  letter-spacing: 0.375px;
-  line-height: 40px;
-  list-style-image: none;
-  list-style-position: outside;
-  list-style-type: none;
-  outline-color: rgb(103, 114, 229);
-  outline-style: none;
-  outline-width: 0px;
-  padding-bottom: 0px;
-  padding-left: 14px;
-  padding-right: 14px;
-  padding-top: 0px;
-  text-align: left;
-  text-decoration-color: rgb(103, 114, 229);
-  text-decoration-line: none;
-  text-decoration-style: solid;
-  text-rendering: optimizeLegibility;
-  text-size-adjust: 100%;
-  text-transform: uppercase;
-  white-space: nowrap;
-  width: auto;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  // position: relative;
-
-  > img {
-    //ask pedro how to position this correctly
-    // position: absolute;
-    margin: 0px 0px 0px 8px;
-    // bottom: -2px;
-  }
-  // &::after {
-  //   box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.1);
-  //   opacity: 0;
-  //   transition: opacity 0.3s ease-in-out;
-  // }
-  //
-  // &:hover::after {
-  //   opacity: 1;
-  // }
-
-  &:hover,
-  &:focus,
-  &:active,
-  &:hover::after {
-    // box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-    -webkit-transform: translateY(-1px);
-    transform: translateY(-1px);
-    transition: all 0.15s ease;
-    opacity: 1;
-  }
-
-  &:hover::before,
-  &:focus::before,
-  &:active::before {
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-    -webkit-transform: translateY(1px);
-    transform: translateY(1px);
-    transition: all 0.15s ease;
-  }
-`;
-
-const SSignupContainer = styled.div`
-  width: 100%;
-  min-width: 980px
-  display: flex;
-  background-color: white;
-  flex-direction: column;
-  justify-content: left;
-  border-radius: 15px;
-  border-top: 6px solid #5983ff;
-  margin: 10px;
-  overflow: hidden;
-  align-items: flex-start;
-  z-index: 1;
-
-  &:hover ${SLedgerWire} {
-    transform: translate3D(35px, 0, 0);
-  }
-
-  &:hover ${SLedgerShield} {
-    transform-origin: 166px 28px;
-    transform: rotate3D(0, 0, 50, 50deg);
-  }
-
-  &:hover ${SLedgerBody} {
-    transform: translate3D(0, 0, 0);
-  }
-
-  @media screen and (${responsive.sm.min}) {
-    max-width: 550px;
-  }
-  @media screen and (${responsive.md.max}) {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const SLedger = styled.div`
-  width: 280px;
-  order: 3;
-  height: 200px;
-  background: red;
-`;
-
-const SLedgerWire = styled.div`
-  background-image: url(${ledgerWire});
-  background-repeat: no-repeat;
-  width: 144px;
-  height: 31px;
-  position: absolute;
-  bottom: 62px;
-  left: -90px;
-
-  transform: translate3D(0, 0, 0);
-  transition: all 0.3s ease;
-  // transition-delay: 0.5s;
-`;
-
-const SLedgerBody = styled.div`
-  width: 185px;
-  height: 57px;
-  position: absolute;
-  background-image: url(${ledgerBody});
-  background-repeat: no-repeat;
-  background-position: center right;
-  position: absolute;
-  bottom: 50px;
-  left: 70px;
-  transition: all 0.3s ease;
-`;
-
-const SLedgerShield = styled.div`
-  background-image: url(${ledgerShield});
-  background-repeat: no-repeat;
-  width: 195px;
-  height: 56px;
-  position: absolute;
-  bottom: 50px;
-  left: 60px;
-
-  transition: transform 0.15s ease-in;
-  transform-origin: 166px 28px;
-  transform: rotate3D(0, 0, 0, 0deg);
-`;
-
-const SPitchTextContainer = styled.div`
-  display: flex;
-  background-color: green;
-`;
-
-const SPitchImageContainer = styled.div`
-  width: 100%;
-  position: relative;
 `;
 
 const SSectionApp = SSection.extend`
@@ -1161,12 +947,6 @@ const SNewsletter = SSection.extend`
   @media screen and (${responsive.md.max}) {
     margin: 0 auto 43px auto;
   }
-`;
-
-const SInputContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 52px;
 `;
 
 const SSectionBalanceWallet = SSection.extend`

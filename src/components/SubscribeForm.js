@@ -84,7 +84,7 @@ class SubscribeForm extends Component {
       this.setState({ dark: true });
     }
   };
-  onStatusChange = state => {
+  onStatusChange = (state, callback) => {
     clearTimeout(messageTimeout);
     this.setState(state);
     if (state.status !== 'sending') {
@@ -97,6 +97,7 @@ class SubscribeForm extends Component {
         3000
       );
     }
+    callback();
   };
   onSubmit = e => {
     const options = this.props.options;
