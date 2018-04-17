@@ -4,12 +4,14 @@ import Link from 'gatsby-link';
 import styled from 'styled-components';
 import mobileLogo from '../assets/mobile-logo.svg';
 import mobileNavToggle from '../assets/mobile-nav-toggle.svg';
+import navMenuButton from '../assets/nav-menu-button.svg';
 import mobileNavClose from '../assets/mobile-nav-close.svg';
 import balanceTokenIcon from '../assets/balance-token-icon.svg';
 import rhombus from '../assets/rhombus.svg';
 import square from '../assets/square.svg';
 import circle from '../assets/circle.svg';
 import balanceLogo from '../assets/balance-logo.svg';
+import balanceLogoMobile from '../assets/balance-logo-mobile.svg';
 import navAbout from '../assets/nav-about.svg';
 import navTokens from '../assets/nav-tokens.svg';
 import navBlog from '../assets/nav-blog.svg';
@@ -63,7 +65,12 @@ const SLogo = styled.div`
     transition: .08s ease;
   }
   @media screen and (${responsive.sm.max}) {
-
+    top: 23px;
+    width: 84px;
+    height: 17px;
+    mask-image: url(${balanceLogoMobile}) center no-repeat;
+    -webkit-mask: url(${balanceLogoMobile}) center no-repeat;
+    background-color: #fff;
   }
 `;
 
@@ -262,14 +269,14 @@ const SMobileNavToggle = styled.div`
   z-index: 200;
   position: absolute;
   display: none;
-  top: 17px;
-  right: 21px;
-  width: 38px;
-  height: 38px;
+  top: 23px;
+  right: 4px;
+  width: 22px;
+  height: 17px;
   cursor: pointer;
-  mask-image: url(${mobileNavToggle}) center no-repeat;
-  -webkit-mask: url(${mobileNavToggle}) center no-repeat;
-  background-color: rgb(${colors.lightGrey});
+  mask-image: url(${navMenuButton}) center no-repeat;
+  -webkit-mask: url(${navMenuButton}) center no-repeat;
+  background-color: rgb(255,255,255);
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
@@ -300,10 +307,10 @@ const SMobileNav = styled.div`
   margin: 0 0 20px 20px;
   padding: 20px;
   top: 0;
-  right: 0;
-  width: 220px;
-  height: 220px;
-  border-radius: 0 0 0 10px;
+  right: -20px;
+  width: 196px;
+  height: 192px;
+  border-radius: 12px;
   color: rgb(${colors.dark});
   background: rgb(${colors.white});
   font-size: 1.125em;
@@ -337,7 +344,7 @@ const SMobileNavLinks = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 64px;
   opacity: 0;
   cursor: pointer;
   color: rgb(${colors.dark});
@@ -377,6 +384,20 @@ const SMobileNavClose = styled.div`
   cursor: pointer;
   &:active {
     transform: scale(0.95);
+  }
+`;
+
+const SMobileNavDivider = styled.div`
+  @media screen and (${responsive.sm.max}) {
+    position: absolute;
+    right: 0;
+
+    bottom: 0;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: 2px;
+    background: #FFFFFF;
+    opacity: 0.02;
   }
 `;
 
@@ -464,6 +485,7 @@ class Header extends Component {
               </SMobileNavLinks>
               <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
             </SMobileNav>
+            <SMobileNavDivider />
           </SNav>
         </STopSection>
       </SHeader>

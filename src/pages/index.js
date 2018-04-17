@@ -16,6 +16,7 @@ import walletPreview from '../assets/wallet-preview.png';
 import arrowRightCircle from '../assets/arrow-right-circle.svg';
 import openLetter from '../assets/open-letter.svg';
 import app from '../assets/app.png';
+import appStatic from '../assets/app-static.png';
 import appBalances from '../assets/app-balances.png';
 import appTransactions from '../assets/app-transactions.png';
 import sendingStatus from '../assets/sending-status.png';
@@ -38,6 +39,7 @@ import feeAverageSelected from '../assets/fee-average-selected.png';
 import feeFast from '../assets/fee-fast.png';
 import feeFastSelected from '../assets/fee-fast-selected.png';
 import backgroundArrow from '../assets/background-arrow.svg';
+import backgroundArrowMobile from '../assets/background-arrow-mobile.svg';
 import backgroundArrow2 from '../assets/background-arrow-2.svg';
 import backgroundArrow3 from '../assets/background-arrow-3.svg';
 import balanceWalletPreview from '../assets/balance-wallet-preview.png';
@@ -395,6 +397,12 @@ const SBackgroundArrow = styled.div`
   padding-bottom: calc(100% * 1 / 2);
   max-width: 1406px;
 
+  @media screen and (${responsive.sm.max}) {
+    width: 662px;
+    height: 662px;
+    background: url(${backgroundArrowMobile}) no-repeat;
+  }
+
   @media screen and (min-width: 1406px) {
     padding-bottom: 703px;
   }
@@ -439,6 +447,7 @@ const SBackgroundArrow3 = styled.div`
 
 const SHero = styled.div`
   // margin: 0px 0px 60px 0px;
+  margin: 0 auto;
 `;
 
 const STitle = styled.h1`
@@ -448,11 +457,23 @@ const STitle = styled.h1`
   font-size: 2em;
   color: #ffffff;
   text-align: center;
+
+  @media screen and (${responsive.sm.max}) {
+    margin: 27px auto 14px auto;
+    padding: 0 24px;
+  }
+
+  @media screen and (${responsive.xs.max}) {
+    max-width: 340px;
+    font-size: 1.75em;
+    line-height: 1.1428571429em;
+  }
 `;
 
 const STagline = styled.p`
   margin: 0 auto;
-  width: 600px;
+  padding: 0 24px;
+  max-width: 648px;
   font-size: 1.25em;
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
@@ -461,8 +482,9 @@ const STagline = styled.p`
     color: rgb(${colors.blue});
   }
   @media screen and (${responsive.sm.max}) {
-    font-size: 4vw;
-    line-height: 1.5em;
+    max-width: 400px;
+    font-size: 1.1875em;
+    line-height: 1.4210526316em;
     &:first-of-type {
       margin-top: 1em 0;
     }
@@ -676,12 +698,15 @@ const SSectionApp = SSection.extend`
 
 const SAppContainer = styled.div`
   position: relative;
-  right: 0;
-  left: 0;
-  margin: 0 auto 0 auto;
-  width: 938px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 938px;
   height: 621px;
   margin-bottom: 31px;
+
+  @media screen and (max-width: 937px) {
+    display: none;
+  }
 `;
 
 const SAppBackground = styled.div`
@@ -709,6 +734,32 @@ const SApp = styled.div`
   animation-delay: 2.35s, 9.5s;
   animation-fill-mode: forwards, forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), ease;
+
+  @media screen and (${responsive.sm.max}) {
+    display: none;
+  }
+`;
+
+const SAppStatic = styled.div`
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: -12px 12px 20px 12px;
+  width: calc(100% - 24px);
+  padding-bottom: 66.2046908316%;
+  background: url(${appStatic}) no-repeat;
+  opacity: 1;
+  background-size: 100%;
+  display: none;
+
+  @media screen and (max-width: 937px) {
+    display: block;
+  }
+
+  @media screen and (${responsive.sm.max}) {
+    margin-top: -26px;
+  }
 `;
 
 const SAppBalances = styled.div`
@@ -1084,8 +1135,9 @@ const SFeeFastSelected = styled.div`
 `;
 
 const SNewsletter = SSection.extend`
-  max-width: 384px;
+  max-width: 432px;
   margin: 0 auto 63px auto;
+  padding: 0 12px;
 
   & h3 {
     margin-bottom: 6px;
@@ -1105,6 +1157,10 @@ const SNewsletter = SSection.extend`
     text-align: center;
     line-height: 21px;
   }
+
+  @media screen and (${responsive.md.max}) {
+    margin: 0 auto 43px auto;
+  }
 `;
 
 const SInputContainer = styled.div`
@@ -1115,6 +1171,7 @@ const SInputContainer = styled.div`
 
 const SSectionBalanceWallet = SSection.extend`
   background #071827;
+  padding: 0;
 `;
 
 const SRoundedCorners = styled.div`
@@ -1139,7 +1196,7 @@ const STitleWallet = STitle.extend`
 
 const STaglineWallet = STagline.extend`
   margin-bottom: 0;
-  width: 358px;
+  width: 406px;
   color: #313336;
   opacity: 0.8;
 `;
@@ -1278,7 +1335,7 @@ const IndexPage = () => (
           {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
-              <STitle>The easiest way to manage your tokens</STitle>
+              <STitle>The easiest way to manage your&nbsp;tokens</STitle>
               <STagline>
                 Connect to your Ethereum wallet to see your ERC-20 token balances, check your
                 transactions, and send tokens.
@@ -1295,6 +1352,7 @@ const IndexPage = () => (
     <SSectionApp>
       <SBackgroundArrow2 />
       <SSectionWrapper>
+        <SAppStatic />
         <SAppContainer>
           <SAppBackground />
           <SApp>
