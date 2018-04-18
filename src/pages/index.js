@@ -544,7 +544,7 @@ const SAppStatic = styled.div`
   }
 
   @media screen and (${responsive.sm.max}) {
-    margin-top: -26px;
+    margin: -32px 12px 18px 12px;
   }
 `;
 
@@ -988,7 +988,6 @@ const STitleWallet = STitle.extend`
 
 const STaglineWallet = STagline.extend`
   margin-bottom: 0;
-  width: 406px;
   color: #313336;
   opacity: 0.8;
 `;
