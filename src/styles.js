@@ -23,6 +23,11 @@ export const colors = {
   twitter: '93, 156, 245',
   backgroundGray: '44, 47, 56',
   backgroundNavy: '7, 24, 39',
+  darkBackground: '1, 31, 60',
+  lightHeaderGrey: '204, 230, 227',
+  lightFooterDivider: '202, 208, 216',
+  darkFooterDivider: '31, 45, 61',
+  darkFooterLinks: '49, 51, 54',
   github: '52, 54, 57'
 };
 

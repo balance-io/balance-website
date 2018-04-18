@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import twitter from '../assets/twitter.svg';
 import github from '../assets/github.svg';
-import { colors, fonts, responsive, transitions } from '../styles';
+import { colors, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ const SFooterWrapper = styled.div`
 `;
 
 const SFooter = styled.footer`
-  border-top: 2px solid #CAD0D8;
+  border-top: ${({ theme }) => `2px solid rgb(${theme.footerDivider})`};
   width: 100%;
   max-width: 1028px;
   margin: 0 auto;
@@ -44,7 +44,6 @@ const SFooterLinks = styled.a`
   float: right;
   align-items: center;
   padding: 0 0 0 6px;
-  color: #313336;
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -84,7 +83,7 @@ const SCopyright = styled.p`
   padding: 3px 0 12px 0;
   font-size: 1.0625em;
   font-weight: 500;
-  color: #313336;
+  color: ${({ theme }) => `rgb(${theme.footerCopyright})`};
   opacity: 0.4;
   transition: ${transitions.short};
   @media screen and (${responsive.lg.max}) {
@@ -95,7 +94,7 @@ const SCopyright = styled.p`
 const Footer = ({ theme, ...props }) => (
   <SFooterWrapper theme={theme} {...props}>
     <SFooter theme={theme}>
-      <SCopyright>© Balance</SCopyright>
+      <SCopyright theme={theme}>© Balance</SCopyright>
       <SFooterList>
         <SFooterLinks
           href="https://github.com/balance-io"

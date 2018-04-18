@@ -127,7 +127,9 @@ const SPostContent = styled.div`
 const layoutTheme = {
   hideIcon: true,
   linkColor: colors.green,
-  linkHover: colors.dark,
+  linkHover: colors.white,
+  footerCopyright: colors.dark,
+  footerDivider: colors.dark,
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
   logoColor: colors.green,

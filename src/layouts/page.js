@@ -22,11 +22,13 @@ const SPageContent = styled.div`
 `;
 
 const layoutTheme = {
-  linkColor: colors.lightGrey,
-  linkHover: colors.white,
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.darkBackground,
+  footerDivider: colors.darkFooterDivider,
+  footerCopyright: colors.white,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
-  mobileToggleColor: colors.lightGrey,
+  mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
   logoHover: colors.white
 };
@@ -38,7 +40,7 @@ const Page = ({
   fontColor,
   article,
   maxWidth,
-  layout,
+  theme,
   noFooter,
   ...props
 }) => (
@@ -49,7 +51,7 @@ const Page = ({
         meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
       />
     )}
-    <Header theme={layout} />
+    <Header theme={theme} />
     <SPageContent article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
       {!article ? (
         <div>{children}</div>
@@ -60,7 +62,7 @@ const Page = ({
         </article>
       )}
     </SPageContent>
-    {!noFooter && <Footer theme={layout} />}
+    {!noFooter && <Footer theme={theme} />}
   </SPage>
 );
 
@@ -71,7 +73,7 @@ Page.propTypes = {
   fontColor: PropTypes.string,
   article: PropTypes.bool,
   maxWidth: PropTypes.number,
-  layout: PropTypes.object,
+  theme: PropTypes.object,
   noFooter: PropTypes.bool
 };
 
@@ -81,7 +83,7 @@ Page.defaultProps = {
   fontColor: 'white',
   article: false,
   maxWidth: null,
-  layout: layoutTheme,
+  theme: layoutTheme,
   noFooter: false
 };
 

@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import mobileLogo from '../assets/mobile-logo.svg';
-import mobileNavToggle from '../assets/mobile-nav-toggle.svg';
 import navMenuButton from '../assets/nav-menu-button.svg';
 import mobileNavClose from '../assets/mobile-nav-close.svg';
-import balanceTokenIcon from '../assets/balance-token-icon.svg';
-import rhombus from '../assets/rhombus.svg';
-import square from '../assets/square.svg';
-import circle from '../assets/circle.svg';
 import balanceLogo from '../assets/balance-logo.svg';
 import balanceLogoMobile from '../assets/balance-logo-mobile.svg';
 import navAbout from '../assets/nav-about.svg';
@@ -38,14 +32,6 @@ const SLink = styled(Link)`
   display: flex;
 `;
 
-const SAppIcon = styled.div`
-  width: 22px;
-  height: 22px;
-  display: ${({ hide }) => (hide ? 'none' : 'block')};
-  background: url(${balanceTokenIcon}) no-repeat;
-  background-size: 100% 100%;
-`;
-
 const SLogo = styled.div`
   position: absolute;
   top: 24px;
@@ -55,11 +41,10 @@ const SLogo = styled.div`
   margin-left: 0;
   mask-image: url(${balanceLogo}) center no-repeat;
   -webkit-mask: url(${balanceLogo}) center no-repeat;
-  transition: .2s ease;
-  background-color: #CCE6E3;
+  transition: 0.2s ease;
+  background-color: ${({ theme }) => `rgb(${theme.linkColor})`};
   &:hover {
-    background-color: #fff;
-    transition: .08s ease;
+    transition: 0.08s ease;
   }
   @media screen and (${responsive.sm.max}) {
     top: 23px;
@@ -67,7 +52,7 @@ const SLogo = styled.div`
     height: 17px;
     mask-image: url(${balanceLogoMobile}) center no-repeat;
     -webkit-mask: url(${balanceLogoMobile}) center no-repeat;
-    background-color: #fff;
+    background-color: ${({ theme }) => `rgb(${theme.mobileToggleColor})`};
   }
 `;
 
@@ -90,10 +75,10 @@ const SNavList = styled.ul`
   & a {
     color: ${({ theme }) => `rgb(${theme.linkColor})`};
   }
-  & a:hover {
-    color: ${({ theme }) => `rgb(${theme.linkHover})`};
+  & a:before {
+    background-color: ${({ theme }) => `rgb(${theme.linkColor})`};
   }
-  & a:hover > div {
+  & a:after {
     background-color: ${({ theme }) => `rgb(${theme.linkHover})`};
   }
   @media screen and (${responsive.sm.max}) {
@@ -105,7 +90,6 @@ const SNavLinks = styled(Link)`
   position: relative;
   display: block;
   align-items: center;
-  color: #CCE6E3 !important;
   cursor: pointer;
   padding: 24px 25px;
   text-transform: uppercase;
@@ -120,14 +104,11 @@ const SNavLinks = styled(Link)`
     transform: scale(0.95) translate3d(0, 0, 0);
     transition: ${transitions.short};
   }
-  &:hover {
-    color: rgb(${colors.dark});
-  }
 `;
 
 const SNavLinksAbout = SNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 17px;
     left: 2px;
@@ -136,15 +117,14 @@ const SNavLinksAbout = SNavLinks.extend`
     height: 12px;
     mask-image: url(${navAbout}) center no-repeat;
     -webkit-mask: url(${navAbout}) center no-repeat;
-    background-color: #CCE6E3;
 
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+    @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
       padding: 2px;
     }
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 17px;
     left: 2px;
@@ -153,10 +133,9 @@ const SNavLinksAbout = SNavLinks.extend`
     height: 12px;
     mask-image: url(${navAboutMiddle}) center no-repeat;
     -webkit-mask: url(${navAboutMiddle}) center no-repeat;
-    background-color: #011F3C;
-    transition: .12s ease-out;
+    transition: 0.12s ease-out;
 
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+    @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
       padding: 2px;
     }
   }
@@ -168,7 +147,7 @@ const SNavLinksAbout = SNavLinks.extend`
 
 const SNavLinksTokens = SNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 17px;
     left: 3px;
@@ -177,11 +156,10 @@ const SNavLinksTokens = SNavLinks.extend`
     height: 13px;
     mask-image: url(${navTokens}) center no-repeat;
     -webkit-mask: url(${navTokens}) center no-repeat;
-    background-color: #CCE6E3;
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 17px;
     left: 3px;
@@ -190,8 +168,7 @@ const SNavLinksTokens = SNavLinks.extend`
     height: 13px;
     mask-image: url(${navTokensMiddle}) center no-repeat;
     -webkit-mask: url(${navTokensMiddle}) center no-repeat;
-    background-color: #011F3C;
-    transition: .12s ease-out;
+    transition: 0.12s ease-out;
   }
 
   &:hover:after {
@@ -201,7 +178,7 @@ const SNavLinksTokens = SNavLinks.extend`
 
 const SNavLinksBlog = SNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 18px;
     left: 3px;
@@ -210,11 +187,10 @@ const SNavLinksBlog = SNavLinks.extend`
     height: 12px;
     mask-image: url(${navBlog}) center no-repeat;
     -webkit-mask: url(${navBlog}) center no-repeat;
-    background-color: #CCE6E3;
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 18px;
     left: 3px;
@@ -223,8 +199,7 @@ const SNavLinksBlog = SNavLinks.extend`
     height: 12px;
     mask-image: url(${navBlogMiddle}) center no-repeat;
     -webkit-mask: url(${navBlogMiddle}) center no-repeat;
-    background-color: #011F3C;
-    transition: .12s ease-out;
+    transition: 0.12s ease-out;
   }
 
   &:hover:after {
@@ -236,9 +211,10 @@ const SNavLinksManager = SNavLinks.extend`
   position: absolute;
   right: 0;
   padding-right: 23px;
+  color: ${({ theme }) => `rgb(${theme.linkColor})`};
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 17px;
     right: 0px;
@@ -247,8 +223,8 @@ const SNavLinksManager = SNavLinks.extend`
     height: 13px;
     mask-image: url(${navManager}) center no-repeat;
     -webkit-mask: url(${navManager}) center no-repeat;
-    background-color: #CCE6E3;
-    transition: .15s ease;
+    background-color: ${({ theme }) => `rgb(${theme.linkColor})`};
+    transition: 0.15s ease;
   }
 
   &:hover:after {
@@ -274,16 +250,14 @@ const SMobileNavToggle = styled.div`
   cursor: pointer;
   mask-image: url(${navMenuButton}) center no-repeat;
   -webkit-mask: url(${navMenuButton}) center no-repeat;
-  background-color: rgb(255,255,255);
+  background-color: ${({ theme }) => `rgb(${colors.mobileToggleColor})`}
   cursor: pointer;
   transition: ${transitions.base};
   transform: scale(1);
   background: ${({ theme }) => `rgb(${theme.mobileToggleColor})`};
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
-    reveal
-      ? 'rotate3d(1,1,0,-20deg) scale(.8)'
-      : 'rotate3d(0, 0, 0, 0) scale(1)'};
+    reveal ? 'rotate3d(1,1,0,-20deg) scale(.8)' : 'rotate3d(0, 0, 0, 0) scale(1)'};
   pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
   @media (hover: hover) {
     &:hover {
@@ -312,11 +286,12 @@ const SMobileNav = styled.div`
     height: 195px;
     border-radius: 12px;
     color: #798593;
-    background: #F9F8F7;
+    background: #f9f8f7;
     font-size: 0.9375em;
     font-weight: 500;
     overflow: hidden;
-    box-shadow: 0 0 1px 0 rgba(0,0,0,0.08), 0 5px 15px 0 rgba(0,0,0,0.06), 0 15px 35px 0 rgba(0,0,0,0.06), 0 50px 100px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08), 0 5px 15px 0 rgba(0, 0, 0, 0.06),
+      0 15px 35px 0 rgba(0, 0, 0, 0.06), 0 50px 100px 0 rgba(0, 0, 0, 0.1);
     will-change: transform, opacity;
     transition-property: transform, opacity;
     opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
@@ -325,16 +300,6 @@ const SMobileNav = styled.div`
     transform-origin: 100% 0;
     transition: ${transitions.base};
   }
-`;
-
-const SMobileNavIcons = styled.div`
-  height: 20px;
-  width: 20px;
-  margin-left: 12px;
-  mask-image: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  -webkit-mask: ${({ icon }) => icon && `url(${icon})`} no-repeat;
-  mask-size: contain;
-  mask-position: center;
 `;
 
 const SMobileNavLinks = styled(Link)`
@@ -347,8 +312,7 @@ const SMobileNavLinks = styled(Link)`
   height: 65px;
   opacity: 0;
   cursor: pointer;
-  color: ${({ selected, activeColor }) =>
-    activeColor && selected ? `#011F3C` : `#798593`};
+  color: ${({ selected, activeColor }) => (activeColor && selected ? `#011F3C` : `#798593`)};
   text-transform: uppercase;
   letter-spacing: 0.7px;
   transition: ${transitions.short};
@@ -371,13 +335,13 @@ const SMobileNavLinks = styled(Link)`
   }
 
   &:nth-child(even) {
-    background: #F5F5F5;
+    background: #f5f5f5;
   }
 `;
 
 const SMobileNavLinksAbout = SMobileNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 23px;
     left: 19px;
@@ -388,13 +352,13 @@ const SMobileNavLinksAbout = SMobileNavLinks.extend`
     -webkit-mask: url(${navAbout}) center no-repeat;
     background-color: #798593;
 
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+    @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
       padding: 2px;
     }
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 23px;
     left: 19px;
@@ -403,10 +367,10 @@ const SMobileNavLinksAbout = SMobileNavLinks.extend`
     height: 12px;
     mask-image: url(${navAboutMiddle}) center no-repeat;
     -webkit-mask: url(${navAboutMiddle}) center no-repeat;
-    background-color: #F9F8F7;
-    transition: .12s ease-out;
+    background-color: #f9f8f7;
+    transition: 0.12s ease-out;
 
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+    @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
       padding: 2px;
     }
   }
@@ -418,7 +382,7 @@ const SMobileNavLinksAbout = SMobileNavLinks.extend`
 
 const SMobileNavLinksTokens = SMobileNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 23px;
     left: 20px;
@@ -431,7 +395,7 @@ const SMobileNavLinksTokens = SMobileNavLinks.extend`
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 23px;
     left: 20px;
@@ -440,8 +404,8 @@ const SMobileNavLinksTokens = SMobileNavLinks.extend`
     height: 13px;
     mask-image: url(${navTokensMiddle}) center no-repeat;
     -webkit-mask: url(${navTokensMiddle}) center no-repeat;
-    background-color: #F5F5F5;
-    transition: .12s ease-out;
+    background-color: #f5f5f5;
+    transition: 0.12s ease-out;
   }
 
   &:hover:after {
@@ -451,7 +415,7 @@ const SMobileNavLinksTokens = SMobileNavLinks.extend`
 
 const SMobileNavLinksBlog = SMobileNavLinks.extend`
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 24px;
     left: 20px;
@@ -464,7 +428,7 @@ const SMobileNavLinksBlog = SMobileNavLinks.extend`
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 24px;
     left: 20px;
@@ -473,8 +437,8 @@ const SMobileNavLinksBlog = SMobileNavLinks.extend`
     height: 12px;
     mask-image: url(${navBlogMiddle}) center no-repeat;
     -webkit-mask: url(${navBlogMiddle}) center no-repeat;
-    background-color: #F9F8F7;
-    transition: .12s ease-out;
+    background-color: #f9f8f7;
+    transition: 0.12s ease-out;
   }
 
   &:hover:after {
@@ -494,7 +458,7 @@ const SMobileNavClose = styled.div`
   -webkit-mask-size: 14px 15px;
   mask-position: 35px 24px;
   -webkit-mask-position: 35px 24px;
-  background-color: #011F3C;
+  background-color: #011f3c;
   transform-origin: top right;
   transition: ${transitions.base};
   transform: ${({ reveal }) => (reveal ? 'scale(1)' : 'scale(0.8)')};
@@ -509,7 +473,7 @@ const SMobileNavDivider = styled.div`
     left: -2px;
     width: calc(100% + 4px);
     height: 2px;
-    background: #FFFFFF;
+    background: #ffffff;
     opacity: 0.02;
   }
 `;
@@ -540,23 +504,28 @@ class Header extends Component {
             <SNavList theme={theme}>
               <SNavLinksAbout
                 onClick={() => ga('send', 'event', 'About', 'click', 'Header - click About')}
-                to="/about">
+                to="/about"
+              >
                 <p>About</p>
               </SNavLinksAbout>
               <SNavLinksTokens
                 onClick={() => ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens')}
-                to="/erc20-tokens">
+                to="/erc20-tokens"
+              >
                 <p>Tokens</p>
               </SNavLinksTokens>
               <SNavLinksBlog
                 onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
-                to="/blog">
+                to="/blog"
+              >
                 <p>Blog</p>
               </SNavLinksBlog>
             </SNavList>
             <SNavLinksManager
+              theme={theme}
               onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
-              to="https://manager.balance.io/metamask">
+              to="https://manager.balance.io/metamask"
+            >
               <p>Try Manager</p>
             </SNavLinksManager>
 

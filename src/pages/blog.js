@@ -184,7 +184,9 @@ const mergePosts = (contentful, medium) => {
 const layoutTheme = {
   hideIcon: true,
   linkColor: colors.dark,
-  linkHover: colors.green,
+  linkHover: colors.white,
+  footerCopyright: colors.dark,
+  footerDivider: colors.dark,
   mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
   logoColor: colors.dark,

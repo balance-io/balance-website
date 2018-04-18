@@ -1201,8 +1201,20 @@ const SWalletPreview = styled.div`
   }
 `;
 
+const layoutTheme = {
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.darkBackground,
+  footerCopyright: colors.darkFooterLinks,
+  footerDivider: colors.lightFooterDivider,
+  backgroundColor: colors.darkNavyBlue,
+  mobileActiveColor: colors.brightBlue,
+  mobileToggleColor: colors.white,
+  logoColor: colors.lightGrey,
+  logoHover: colors.white
+};
+
 const IndexPage = () => (
-  <Page>
+  <Page theme={layoutTheme}>
     <SBackgroundArrow />
     <SSection id={`balance-token`}>
       <SSectionWrapper>
