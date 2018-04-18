@@ -9,7 +9,6 @@ const SFooterWrapper = styled.div`
   width: 100%;
   position: absolute;
   bottom: 0;
-
 `;
 
 const SFooter = styled.footer`

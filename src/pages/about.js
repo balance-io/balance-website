@@ -19,7 +19,7 @@ const SFooter = styled(Footer)`
 const SBlackBackground = styled.div`
   position: absolute;
   top: 0px;
-  right: 0;
+  right: -28px;
   width: 590px;
   height: 590px;
   background-image: url(${blackTriangles});
@@ -65,8 +65,7 @@ const SBackgroundWrapper = styled.div`
   height: 100%;
   width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
-  position: relative;
+  position: fixed
 `;
 
 const SBackground = () => (
@@ -81,12 +80,10 @@ const STitle = styled.h1`
   width: 100%;
   margin: 10px auto;
   font-size: 1.75em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.29;
-  letter-spacing: -0.25px;
   @media screen and (${responsive.sm.max}) {
     font-size: 8vw;
-    letter-spacing: -0.2px;
   }
 `;
 
@@ -94,12 +91,10 @@ const SSubTitle = styled.h2`
   width: 100%;
   margin: 10px auto;
   font-size: 1.25em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.29;
-  letter-spacing: -0.25px;
   @media screen and (${responsive.sm.max}) {
     font-size: 9vw;
-    letter-spacing: -0.2px;
   }
 `;
 
@@ -109,13 +104,11 @@ const SParagraph = styled.p`
   line-height: 1.56;
   opacity: 0.9;
   color: rgb(${colors.softGrey});
-  letter-spacing: -0.2px;
   & a {
     color: rgb(${colors.blue});
   }
   @media screen and (${responsive.sm.max}) {
     font-size: 4vw;
-    letter-spacing: 0.2px;
     color: rgb(${colors.lightGrey});
   }
 `;
@@ -157,6 +150,7 @@ const SContainer = styled.div`
 
 const SContent = styled.div`
   width: 74%;
+  margin-bottom: 140px;
   @media screen and (${responsive.md.max}) {
     width: 100%;
     display: flex;
@@ -327,7 +321,7 @@ const SProfile = styled.div`
   }
   & p:first-child {
     font-size: 0.9em;
-    font-weight: 700;
+    font-weight: 600;
   }
   & p:nth-child(2) {
     font-size: 0.75em;
@@ -367,7 +361,6 @@ const SCardDescription = styled.div`
   font-size: ${fonts.small};
   color: rgba(${colors.darkTwo}, 0.6);
   line-height: 1.31;
-  letter-spacing: normal;
   text-align: left;
   border-top: 2px solid rgba(${colors.grey}, 0.1);
   width: 100%;
@@ -424,6 +417,7 @@ const SContact = styled(SContainer)`
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     width: 50%;
     padding-top: 0;
+    margin-bottom: 120px;
     border-top: none;
     padding-left: 30px;
     border-left: 2px solid rgba(${colors.lightGrey}, 0.1);
@@ -431,12 +425,12 @@ const SContact = styled(SContainer)`
   @media screen and (${responsive.sm.max}) {
     margin: 20px;
     width: auto;
+    margin-bottom: 100px;
   }
 `;
 
 const STagline = styled(SParagraph)`
   font-size: 1em;
-  letter-spacing: ${({ compact }) => (compact ? '-1px' : 0)};
   color: ${({ strong }) =>
     strong ? `rgba(${colors.lightGrey}, 0.9)` : `rgba(${colors.lightGrey}, 0.6)`};
   font-weight: ${({ strong }) => (strong ? 500 : 400)};
@@ -568,7 +562,7 @@ class AboutPage extends Component {
                 <STagline>Registered address:</STagline>
                 <STagline strong compact>
                   548 Market St #90291 <br />
-                  San Francisco, California 94104-5401
+                  San Francisco, California 94104
                 </STagline>
                 <br />
                 <STagline>Email:</STagline>
@@ -580,8 +574,8 @@ class AboutPage extends Component {
               </SContact>
             </SSidebar>
           </SSectionWrapper>
-          <SFooter layout={layoutTheme} />
         </SSection>
+        <SFooter layout={layoutTheme} />
       </Page>
     );
   }

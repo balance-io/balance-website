@@ -84,6 +84,7 @@ const SHero = styled.div`
 
 const STitle = styled.h1`
   font-size: 2em;
+  font-weight: 600;
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.md.max}) {
@@ -158,6 +159,20 @@ const SImageWrapper = styled.div`
   }
   @media screen and (${responsive.sm.min}) and (${responsive.md.max}) {
     padding: 24px;
+  }
+`;
+
+const SImageWrapperAppPreview = SImageWrapper.extend`
+  @media screen and (${responsive.sm.max}) {
+    margin-bottom: 130px;
+  }
+`;
+
+const SSectionWrapperBottom = SSectionWrapper.extend`
+  margin-bottom: 180px;
+
+  @media screen and (${responsive.sm.max}) {
+    margin-bottom: 0;
   }
 `;
 
@@ -317,7 +332,7 @@ const Erc20Page = ({ data, ...props }) => (
     </Section>
 
     <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapper minHeight={450}>
+      <SSectionWrapperBottom minHeight={450}>
         <SFlex>
           <SContainer>
             <STitle>Want a wallet for your tokens?</STitle>
@@ -335,12 +350,12 @@ const Erc20Page = ({ data, ...props }) => (
         </SFlex>
 
         <SFlex>
-          <SImageWrapper>
+          <SImageWrapperAppPreview>
             {' '}
             <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SImageWrapper>
+          </SImageWrapperAppPreview>
         </SFlex>
-      </SSectionWrapper>
+      </SSectionWrapperBottom>
     </Section>
   </Page>
 );
