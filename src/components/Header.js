@@ -285,8 +285,8 @@ const SMobileNavToggle = styled.div`
   opacity: ${({ reveal }) => (reveal ? '0' : '1')};
   transform: ${({ reveal }) =>
     reveal
-      ? 'rotate3d(1,1,0,-20deg) scale(.9) rotate(20deg)'
-      : 'rotate3d(0, 0, 0, 0) scale(1) rotate(0)'};
+      ? 'rotate3d(1,1,0,-20deg) scale(.8)'
+      : 'rotate3d(0, 0, 0, 0) scale(1)'};
   pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
   @media (hover: hover) {
     &:hover {
@@ -494,12 +494,10 @@ const SMobileNavClose = styled.div`
   mask-position: 35px 24px;
   -webkit-mask-position: 35px 24px;
   background-color: #011F3C;
+  transform-origin: top right;
   transition: ${transitions.base};
-  transform: ${({ reveal }) => (reveal ? 'rotate(0)' : 'rotate(-20deg)')};
+  transform: ${({ reveal }) => (reveal ? 'scale(1)' : 'scale(0.8)')};
   cursor: pointer;
-  &:active {
-    transform: scale(0.95);
-  }
 `;
 
 const SMobileNavDivider = styled.div`
