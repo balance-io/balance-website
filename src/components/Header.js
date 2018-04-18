@@ -269,8 +269,9 @@ const SMobileNavToggle = styled.div`
   z-index: 200;
   position: absolute;
   display: none;
-  top: 23px;
-  right: 4px;
+  top: 3px;
+  right: -20px;
+  padding: 28.5px 31px 28.5px 31px;
   width: 22px;
   height: 17px;
   cursor: pointer;
@@ -305,20 +306,17 @@ const SMobileNav = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 0 0 20px 20px;
-  padding: 20px;
   top: 0;
   right: -20px;
   width: 196px;
-  height: 192px;
+  height: 195px;
   border-radius: 12px;
-  color: rgb(${colors.dark});
-  background: rgb(${colors.white});
-  font-size: 1.125em;
+  color: #798593;
+  background: #F9F8F7;
+  font-size: 0.9375em;
   font-weight: 500;
   overflow: hidden;
-  box-shadow: 0 50px 100px rgba(${colors.purple}, 0.1), 0 15px 35px rgba(${colors.purple}, 0.15),
-    0 5px 15px rgba(${colors.black}, 0.1), 0 0 1px rgba(${colors.purple}, 0.12);
-
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.08), 0 5px 15px 0 rgba(0,0,0,0.06), 0 15px 35px 0 rgba(0,0,0,0.06), 0 50px 100px 0 rgba(0,0,0,0.10);
   will-change: transform, opacity;
   transition-property: transform, opacity;
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
@@ -343,26 +341,143 @@ const SMobileNavLinks = styled(Link)`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  padding-bottom: 5px;
   width: 100%;
-  height: 64px;
+  height: 65px;
   opacity: 0;
   cursor: pointer;
-  color: rgb(${colors.dark});
   color: ${({ selected, activeColor }) =>
-    activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
-
+    activeColor && selected ? `#011F3C` : `#798593`};
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
   transition: ${transitions.short};
   opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
   pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
   transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
 
   & > span {
-    margin-left: 20px;
+    margin-left: 44px;
   }
 
-  & > div {
+  &:before {
     background-color: ${({ selected, activeColor }) =>
-      activeColor && selected ? `rgb(${activeColor})` : `rgb(${colors.dark})`};
+      activeColor && selected ? `#011F3C !important` : `#798593 !important`};
+  }
+
+  &:after {
+    opacity: ${({ selected, activeColor }) =>
+      activeColor && selected ? `0 !important` : `1 !important`};
+  }
+
+  &:nth-child(even) {
+    background: #F5F5F5;
+  }
+`;
+
+const SMobileNavLinksAbout = SMobileNavLinks.extend`
+  &:before {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 19px;
+    padding: 2.5px 2px 2px 2px;
+    width: 14px;
+    height: 12px;
+    mask-image: url(${navAbout}) center no-repeat;
+    -webkit-mask: url(${navAbout}) center no-repeat;
+    background-color: #798593;
+
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+      padding: 2px;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 19px;
+    padding: 2.5px 2px 2px 2px;
+    width: 14px;
+    height: 12px;
+    mask-image: url(${navAboutMiddle}) center no-repeat;
+    -webkit-mask: url(${navAboutMiddle}) center no-repeat;
+    background-color: #F9F8F7;
+    transition: .12s ease-out;
+
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+      padding: 2px;
+    }
+  }
+
+  &:hover:after {
+    transform: scale(0);
+  }
+`;
+
+const SMobileNavLinksTokens = SMobileNavLinks.extend`
+  &:before {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 20px;
+    padding: 2px;
+    width: 13px;
+    height: 13px;
+    mask-image: url(${navTokens}) center no-repeat;
+    -webkit-mask: url(${navTokens}) center no-repeat;
+    background-color: #798593;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 20px;
+    padding: 2px;
+    width: 13px;
+    height: 13px;
+    mask-image: url(${navTokensMiddle}) center no-repeat;
+    -webkit-mask: url(${navTokensMiddle}) center no-repeat;
+    background-color: #F5F5F5;
+    transition: .12s ease-out;
+  }
+
+  &:hover:after {
+    transform: scale(0);
+  }
+`;
+
+const SMobileNavLinksBlog = SMobileNavLinks.extend`
+  &:before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    padding: 2px;
+    width: 12px;
+    height: 12px;
+    mask-image: url(${navBlog}) center no-repeat;
+    -webkit-mask: url(${navBlog}) center no-repeat;
+    background-color: #798593;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    padding: 2px;
+    width: 12px;
+    height: 12px;
+    mask-image: url(${navBlogMiddle}) center no-repeat;
+    -webkit-mask: url(${navBlogMiddle}) center no-repeat;
+    background-color: #F9F8F7;
+    transition: .12s ease-out;
+  }
+
+  &:hover:after {
+    transform: scale(0);
   }
 `;
 
@@ -374,11 +489,11 @@ const SMobileNavClose = styled.div`
   height: 73px;
   mask-image: url(${mobileNavClose}) no-repeat;
   -webkit-mask: url(${mobileNavClose}) no-repeat;
-  mask-size: 16px 16px;
-  -webkit-mask-size: 16px 16px;
-  mask-position: 25px 28px;
-  -webkit-mask-position: 25px 28px;
-  background-color: rgb(${colors.dark});
+  mask-size: 14px 15px;
+  -webkit-mask-size: 14px 15px;
+  mask-position: 35px 24px;
+  -webkit-mask-position: 35px 24px;
+  background-color: #011F3C;
   transition: ${transitions.base};
   transform: ${({ reveal }) => (reveal ? 'rotate(0)' : 'rotate(-20deg)')};
   cursor: pointer;
@@ -453,36 +568,33 @@ class Header extends Component {
               theme={theme}
             />
             <SMobileNav reveal={this.state.navReveal}>
-              <SMobileNavLinks
-                activeColor={theme.mobileActiveColor}
-                selected={pathname.match(/\/erc20-tokens\/?/g)}
-                reveal={this.state.navReveal}
-                onClick={this.hideNavReveal}
-                to="/erc20-tokens"
-              >
-                <SMobileNavIcons icon={rhombus} />
-                <span>Tokens</span>
-              </SMobileNavLinks>
-              <SMobileNavLinks
+              <SMobileNavLinksAbout
                 activeColor={theme.mobileActiveColor}
                 selected={pathname.match(/\/about\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
                 to="/about"
               >
-                <SMobileNavIcons icon={circle} />
                 <span>About</span>
-              </SMobileNavLinks>
-              <SMobileNavLinks
+              </SMobileNavLinksAbout>
+              <SMobileNavLinksTokens
+                activeColor={theme.mobileActiveColor}
+                selected={pathname.match(/\/erc20-tokens\/?/g)}
+                reveal={this.state.navReveal}
+                onClick={this.hideNavReveal}
+                to="/erc20-tokens"
+              >
+                <span>Tokens</span>
+              </SMobileNavLinksTokens>
+              <SMobileNavLinksBlog
                 activeColor={theme.mobileActiveColor}
                 selected={pathname.match(/\/blog\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
                 to="/blog"
               >
-                <SMobileNavIcons icon={square} />
                 <span>Blog</span>
-              </SMobileNavLinks>
+              </SMobileNavLinksBlog>
               <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
             </SMobileNav>
             <SMobileNavDivider />
