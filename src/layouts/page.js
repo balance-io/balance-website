@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import { colors } from '../styles';
 
 const SPage = styled.div`
+  position: relative;
   padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
   margin: 0 auto;
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
