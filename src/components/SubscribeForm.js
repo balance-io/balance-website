@@ -97,7 +97,7 @@ class SubscribeForm extends Component {
         3000
       );
     }
-    callback();
+    if (callback) callback();
   };
   onSubmit = e => {
     const options = this.props.options;
@@ -150,7 +150,7 @@ class SubscribeForm extends Component {
               status: 'success'
             });
           }
-          this.props.options.callback(error, result);
+          if (this.props.options.callback) this.props.options.callback(error, result);
         })
     );
   };
@@ -174,7 +174,7 @@ class SubscribeForm extends Component {
       <SForm noValidate dark={this.state.dark} onSubmit={this.onSubmit}>
         <input
           required
-          spellcheck="false"
+          spellCheck={false}
           type="email"
           placeholder={this.props.messages.inputPlaceholder}
           value={this.state.input}
@@ -185,7 +185,7 @@ class SubscribeForm extends Component {
         <button type="submit" />
         <SMessage
           color={this.state.status === 'error' ? colors.red : colors.white}
-          show={this.state.status === 'error' || this.state.status === 'sending'}
+          show={this.state.status}
         >
           {this.renderMessage()}
         </SMessage>
