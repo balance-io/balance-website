@@ -8,6 +8,10 @@ import { colors } from '../styles';
 
 const SPage = styled.div`
   position: relative;
+`;
+
+const SPageContent = styled.div`
+  position: relative;
   padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
   margin: 0 auto;
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
@@ -38,7 +42,7 @@ const Page = ({
   noFooter,
   ...props
 }) => (
-  <div>
+  <SPage>
     {!!(title && siteTitle) && (
       <Helmet
         title={`${title} - ${siteTitle}`}
@@ -46,7 +50,7 @@ const Page = ({
       />
     )}
     <Header theme={layout} />
-    <SPage article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
+    <SPageContent article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
       {!article ? (
         <div>{children}</div>
       ) : (
@@ -55,9 +59,9 @@ const Page = ({
           <div>{children}</div>
         </article>
       )}
-    </SPage>
+    </SPageContent>
     {!noFooter && <Footer theme={layout} />}
-  </div>
+  </SPage>
 );
 
 Page.propTypes = {
