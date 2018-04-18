@@ -74,6 +74,9 @@ const SIconLinkTwitter = SIconLink.extend`
   margin-top: -2.5px;
   width: 28px;
   height: 24px;
+  @media screen and (${responsive.lg.max}) {
+    margin-right: 20px;
+  }
 `;
 
 const SCopyright = styled.p`
@@ -84,8 +87,8 @@ const SCopyright = styled.p`
   color: #313336;
   opacity: 0.4;
   transition: ${transitions.short};
-  @media screen and (${responsive.sm.max}) {
-    font-size: ${fonts.small};
+  @media screen and (${responsive.lg.max}) {
+    padding: 3px 0 12px 20px;
   }
 `;
 

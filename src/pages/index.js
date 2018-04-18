@@ -963,6 +963,10 @@ const SRoundedCorners = styled.div`
   height: 100%;
   background: #d0d5da;
   border-radius: 10px 10px 0 0;
+
+  @media screen and (${responsive.sm.max}) {
+    border-radius: 12px 12px 0 0;
+  }
 `;
 
 const SHeroWallet = SHero.extend`
@@ -972,6 +976,14 @@ const SHeroWallet = SHero.extend`
 const STitleWallet = STitle.extend`
   margin: 4px auto 6px auto;
   color: #313336;
+
+  @media screen and (${responsive.lg.max}) {
+    margin: -16px auto 8px auto;
+  }
+
+  @media screen and (${responsive.sm.max}) {
+    margin: -26px auto 8px auto;
+  }
 `;
 
 const STaglineWallet = STagline.extend`
@@ -983,6 +995,10 @@ const STaglineWallet = STagline.extend`
 
 const SSectionWrapperFeatures = SSectionWrapper.extend`
   padding-top: 53px;
+
+  @media screen and (${responsive.sm.max}) {
+    padding-top: 39px;
+  }
 `;
 
 const SHighlightFeatures = styled.div`
@@ -1005,6 +1021,10 @@ const SHighlightFeatures = styled.div`
     opacity: 0.8;
     line-height: 1.4em;
   }
+
+  @media screen and (${responsive.lg.max}) {
+    width: 564px;
+  }
 `;
 
 const SFeatureIcon = styled.div`
@@ -1017,8 +1037,11 @@ const SFeatureIcon = styled.div`
 `;
 
 const SFeatureInfoLeft = styled.div`
-  margin-right: 69px;
   width: 180px;
+
+  @media screen and (${responsive.lg.max}) {
+    margin-right: 0;
+  }
 `;
 
 const SFeatureInfoRight = styled.div`
@@ -1030,13 +1053,27 @@ const SFeaturesLeft = styled.div`
   margin: 86px 0 0 0;
   width: 249px;
   text-align: right;
-  float: left:
+  float: left;
+
+  @media screen and (${responsive.lg.max}) {
+    margin-top: 17px;
+    margin-right: 32px;
+  }
+
+  @media screen and (${responsive.sm.max}) {
+    margin-left: 28px;
+    margin-right: 24px;
+  }
 `;
 
 const SFeaturesRight = styled.div`
   margin: 216px 0 0 0;
   width: 249px;
   float: right;
+
+  @media screen and (${responsive.lg.max}) {
+    display: none;
+  }
 `;
 
 const SFeatureSecurity = styled.div`
@@ -1053,6 +1090,22 @@ const SFeatureSecurity = styled.div`
       background: url(${featurePrivate});
     }
   }
+
+  @media screen and (${responsive.lg.max}) {
+    margin-bottom: 42px;
+
+    & ${SFeatureIcon} {
+      position: relative;
+      margin: 0 0 15px 132px;
+      float: none;
+
+      & div {
+        position: absolute;
+        right: 0;
+        left: 0;
+      }
+    }
+  }
 `;
 
 const SFeatureERC20 = styled.div`
@@ -1065,6 +1118,22 @@ const SFeatureERC20 = styled.div`
       width: 30px;
       height: 24px;
       background: url(${featureERC20});
+    }
+  }
+
+  @media screen and (${responsive.lg.max}) {
+    margin-bottom: 42px;
+
+    & ${SFeatureIcon} {
+      position: relative;
+      margin: 0 0 15px 132px;
+      float: none;
+
+      & div {
+        position: absolute;
+        right: 0;
+        left: 0;
+      }
     }
   }
 `;
@@ -1085,6 +1154,27 @@ const SFeatureWalletConnect = styled.div`
   }
 `;
 
+const SFeatureWalletConnectLeft = SFeatureWalletConnect.extend`
+  display: none;
+
+  @media screen and (${responsive.lg.max}) {
+    display: block;
+    margin-bottom: 42px;
+
+    & ${SFeatureIcon} {
+      position: relative;
+      margin: 0 0 15px 132px;
+      float: none;
+
+      & div {
+        position: absolute;
+        right: 0;
+        left: 0;
+      }
+    }
+  }
+`;
+
 const SFeatureFastEasy = styled.div`
   & ${SFeatureIcon} {
     background: #69768a;
@@ -1101,10 +1191,15 @@ const SFeatureFastEasy = styled.div`
 
 const SWalletPreview = styled.div`
   margin: 0 auto 175px auto;
-  width: 360px;
+  min-width: 360px;
   height: 700px;
-  background: url(${balanceWalletPreview});
+  background: url(${balanceWalletPreview}) no-repeat;
   background-size: 100%;
+
+  @media screen and (${responsive.lg.max}) {
+    margin: 0 0 150px 0;
+    float: left;
+  }
 `;
 
 const IndexPage = () => (
@@ -1238,6 +1333,19 @@ const IndexPage = () => (
                 </p>
               </SFeatureInfoLeft>
             </SFeatureERC20>
+
+            <SFeatureWalletConnectLeft>
+              <SFeatureIcon>
+                <div />
+              </SFeatureIcon>
+              <SFeatureInfoLeft>
+                <h3>WalletConnect</h3>
+                <p>
+                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
+                  Fidelity. Chase. 12,000 others.
+                </p>
+              </SFeatureInfoLeft>
+            </SFeatureWalletConnectLeft>
           </SFeaturesLeft>
 
           <SWalletPreview />

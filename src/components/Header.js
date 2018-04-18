@@ -25,9 +25,6 @@ const SHeader = styled.div`
   width: 100%;
   z-index: 10;
   position: absolute;
-  @media screen and (${responsive.sm.min}) {
-    overflow: hidden;
-  }
 `;
 
 const STopSection = styled.div`
@@ -300,30 +297,34 @@ const SMobileNavToggle = styled.div`
 `;
 
 const SMobileNav = styled.div`
-  z-index: 300;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 0 20px 20px;
-  top: 0;
-  right: -20px;
-  width: 196px;
-  height: 195px;
-  border-radius: 12px;
-  color: #798593;
-  background: #F9F8F7;
-  font-size: 0.9375em;
-  font-weight: 500;
-  overflow: hidden;
-  box-shadow: 0 0 1px 0 rgba(0,0,0,0.08), 0 5px 15px 0 rgba(0,0,0,0.06), 0 15px 35px 0 rgba(0,0,0,0.06), 0 50px 100px 0 rgba(0,0,0,0.10);
-  will-change: transform, opacity;
-  transition-property: transform, opacity;
-  opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
-  pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
-  transform-origin: 100% 0;
-  transition: ${transitions.base};
+  display: none;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+    z-index: 300;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 20px 20px;
+    top: 0;
+    right: -20px;
+    width: 196px;
+    height: 195px;
+    border-radius: 12px;
+    color: #798593;
+    background: #F9F8F7;
+    font-size: 0.9375em;
+    font-weight: 500;
+    overflow: hidden;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.08), 0 5px 15px 0 rgba(0,0,0,0.06), 0 15px 35px 0 rgba(0,0,0,0.06), 0 50px 100px 0 rgba(0,0,0,0.10);
+    will-change: transform, opacity;
+    transition-property: transform, opacity;
+    opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
+    pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
+    transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
+    transform-origin: 100% 0;
+    transition: ${transitions.base};
+  }
 `;
 
 const SMobileNavIcons = styled.div`
@@ -504,7 +505,6 @@ const SMobileNavDivider = styled.div`
   @media screen and (${responsive.sm.max}) {
     position: absolute;
     right: 0;
-
     bottom: 0;
     left: -2px;
     width: calc(100% + 4px);
