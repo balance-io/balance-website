@@ -407,6 +407,7 @@ const SBackgroundArrow2 = styled.div`
   background-size: cover;
   padding-top: calc(100% * 139 / 1280);
   max-width: 1406px;
+  opacity: 0.2;
 
   @media screen and (min-width: 1406px) {
     padding-top: 152.6828125px;
@@ -1056,7 +1057,7 @@ const SFeaturesLeft = styled.div`
   float: left;
 
   @media screen and (${responsive.lg.max}) {
-    margin-top: 17px;
+    margin-top: 7px;
     margin-right: 32px;
   }
 
@@ -1327,7 +1328,7 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Private and secure</h3>
                 <p>
-                  The keys to your tokens are securely stored on your phone. Full control of your own digital assets.
+                  The keys to your tokens are securely stored on your phone, giving you full control of your own digital assets.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureSecurity>
