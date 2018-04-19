@@ -1326,8 +1326,7 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Private and secure</h3>
                 <p>
-                  Your data is synced to your device through our secure data provider, Plaid. We
-                  never store it.
+                  The keys to your tokens are securely stored on your phone. Full control of your own digital assets.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureSecurity>
@@ -1337,10 +1336,9 @@ const IndexPage = () => (
                 <div />
               </SFeatureIcon>
               <SFeatureInfoLeft>
-                <h3>Always in sync</h3>
+                <h3>Simple exchange</h3>
                 <p>
-                  Balance updates your accounts throughout the day, so there’s never any waiting
-                  involved.
+                  Buy and store dozens of tokens using our simple token trading interface powered by ShapeShift, 0x, Oasis & Kyber.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureERC20>
@@ -1369,8 +1367,7 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>WalletConnect</h3>
                 <p>
-                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
-                  Fidelity. Chase. 12,000 others.
+                  Interact with dapps on the web using the built-in QR code scanner. This is powered by the WalletConnect standard.
                 </p>
               </SFeatureInfoRight>
             </SFeatureWalletConnect>
@@ -1382,8 +1379,7 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>Fast and easy</h3>
                 <p>
-                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
-                  Fidelity. Chase. 9,000 others.
+                  Send and receive Ether and tokens quickly and easily. Lightning fast search and transaction history.
                 </p>
               </SFeatureInfoRight>
             </SFeatureFastEasy>
