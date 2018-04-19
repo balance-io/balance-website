@@ -43,7 +43,7 @@ const SBackground = () => (
 );
 
 const SPost = styled(Section)`
-  padding: 56px 0 12px;
+  padding: 68px 0;
   & h1 {
     margin-bottom: 11px;
     font-size: 2.5em;
@@ -129,7 +129,7 @@ const layoutTheme = {
   linkColor: colors.green,
   linkHover: colors.white,
   footerCopyright: colors.dark,
-  footerDivider: colors.dark,
+  footerDivider: colors.lightGrey,
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
   logoColor: colors.green,
