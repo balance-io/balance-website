@@ -34,10 +34,10 @@ const SLink = styled(Link)`
 
 const SLogo = styled.div`
   position: absolute;
-  top: 24px;
+  top: 21px;
   left: 0;
-  width: 80px;
-  height: 16px;
+  width: 108px;
+  height: 22px;
   margin-left: 0;
   mask-image: url(${balanceLogo}) center no-repeat;
   -webkit-mask: url(${balanceLogo}) center no-repeat;
@@ -47,9 +47,9 @@ const SLogo = styled.div`
     transition: 0.08s ease;
   }
   @media screen and (${responsive.sm.max}) {
-    top: 23px;
-    width: 84px;
-    height: 17px;
+    top: 20px;
+    width: 113px;
+    height: 23px;
     mask-image: url(${balanceLogoMobile}) center no-repeat;
     -webkit-mask: url(${balanceLogoMobile}) center no-repeat;
     background-color: ${({ theme }) => `rgb(${theme.mobileToggleColor})`};
