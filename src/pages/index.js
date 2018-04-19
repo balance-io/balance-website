@@ -387,6 +387,7 @@ const SBackgroundArrow = styled.div`
     width: 662px;
     height: 662px;
     background: url(${backgroundArrowMobile}) no-repeat;
+    transform: translate3d(0,0,0);
   }
 
   @media screen and (min-width: 1406px) {

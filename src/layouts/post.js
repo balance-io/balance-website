@@ -44,6 +44,8 @@ const SBackground = () => (
 
 const SPost = styled(Section)`
   padding: 68px 0;
+  transform: translate3d(0,0,0);
+  
   & h1 {
     margin-bottom: 11px;
     font-size: 2.5em;
