@@ -16,6 +16,7 @@ const SWrapper = styled.div`
 const SContent = styled.div`
   width: 100%;
   margin: 0 auto;
+  position: relative;
 `;
 
 const TemplateWrapper = ({ children, location, data }) => {
