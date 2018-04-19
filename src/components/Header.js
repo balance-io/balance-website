@@ -207,7 +207,9 @@ const SNavLinksBlog = SNavLinks.extend`
   }
 `;
 
-const SNavLinksManager = SNavLinks.extend`
+const SExternalLink = SNavLinks.withComponent('a');
+
+const SNavLinksManager = SExternalLink.extend`
   position: absolute;
   right: 0;
   padding-right: 23px;
@@ -524,7 +526,9 @@ class Header extends Component {
             <SNavLinksManager
               theme={theme}
               onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
-              to="https://manager.balance.io/metamask"
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://manager.balance.io/metamask"
             >
               <p>Try Manager</p>
             </SNavLinksManager>
