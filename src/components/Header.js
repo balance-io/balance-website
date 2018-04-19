@@ -419,7 +419,7 @@ const SMobileNavLinksBlog = SMobileNavLinks.extend`
   &:before {
     content: '';
     position: absolute;
-    top: 24px;
+    top: 23.5px;
     left: 20px;
     padding: 2px;
     width: 12px;
@@ -432,7 +432,7 @@ const SMobileNavLinksBlog = SMobileNavLinks.extend`
   &:after {
     content: '';
     position: absolute;
-    top: 24px;
+    top: 23.5px;
     left: 20px;
     padding: 2px;
     width: 12px;
