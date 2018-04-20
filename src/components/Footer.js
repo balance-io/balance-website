@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import twitter from '../assets/twitter.svg';
 import github from '../assets/github.svg';
-import { colors, fonts, responsive, transitions } from '../styles';
+import { colors, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) =>
-    theme.backgroundColor ? `rgb(${theme.backgroundColor})` : 'transparent'};
+  position: absolute;
+  bottom: 0;
 `;
 
 const SFooter = styled.footer`
+  border-top: ${({ theme }) => `2px solid rgb(${theme.footerDivider})`};
   width: 100%;
   max-width: 1028px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 12px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 68px;
+  min-height: 93px;
   & a {
     font-weight: 400;
     color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
@@ -40,9 +41,9 @@ const SFooterList = styled.div`
 
 const SFooterLinks = styled.a`
   display: flex;
+  float: right;
   align-items: center;
-  padding: 10px;
-  color: rgb(${colors.grey});
+  padding: 0 0 0 6px;
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -53,50 +54,63 @@ const SFooterLinks = styled.a`
 `;
 
 const SIconLink = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   background-color: ${({ color }) => `rgb(${color})`};
   mask-image: ${({ icon }) => `url(${icon}) center no-repeat`};
   -webkit-mask: ${({ icon }) => `url(${icon}) center no-repeat`};
-  margin-right: 10px;
   mask-size: 100%;
+  margin-left: 10px;
+`;
+
+const SIconLinkGithub = SIconLink.extend`
+  margin-top: -3px;
+  width: 26px;
+  height: 25px;
+`;
+
+const SIconLinkTwitter = SIconLink.extend`
+  margin-top: -2.5px;
+  width: 28px;
+  height: 24px;
+  @media screen and (${responsive.lg.max}) {
+    margin-right: 20px;
+  }
 `;
 
 const SCopyright = styled.p`
   display: inline-block;
-  float: right;
-  padding: 10px 0;
-  font-weight: 400;
-  color: rgb(${colors.grey});
+  padding: 3px 0 12px 0;
+  font-size: 1.0625em;
+  font-weight: 500;
+  color: ${({ theme }) => `rgb(${theme.footerCopyright})`};
+  opacity: 0.4;
   transition: ${transitions.short};
-  @media screen and (${responsive.sm.max}) {
-    font-size: ${fonts.small};
+  @media screen and (${responsive.lg.max}) {
+    padding: 3px 0 12px 20px;
   }
 `;
 
 const Footer = ({ theme, ...props }) => (
   <SFooterWrapper theme={theme} {...props}>
     <SFooter theme={theme}>
+      <SCopyright theme={theme}>© Balance</SCopyright>
       <SFooterList>
-        <SFooterLinks
-          href="https://twitter.com/balance_io"
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          <SIconLink icon={twitter} color={colors.twitter} />
-          <span>@balance_io</span>
-        </SFooterLinks>
         <SFooterLinks
           href="https://github.com/balance-io"
           rel="noreferrer noopener"
           target="_blank"
         >
-          <SIconLink icon={github} color={colors.lightGrey} />
-          <span>balance-io</span>
+          <SIconLinkGithub icon={github} color={colors.github} />
+        </SFooterLinks>
+        <SFooterLinks
+          href="https://twitter.com/balance_io"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <SIconLinkTwitter icon={twitter} color={colors.twitter} />
         </SFooterLinks>
       </SFooterList>
-      {/* eslint-disable-next-line */}
-      <SCopyright>© Balanced Software, Inc.</SCopyright>
     </SFooter>
   </SFooterWrapper>
 );

@@ -15,19 +15,16 @@ const SBackgroundImage = styled.div`
   top: 0;
   right: 0;
   width: 50vw;
-  height: 550px;
-  background-image: url(${balanceTokenTriangles});
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: 0 0;
+  height: 350px;
+  background: none;
   @media screen and (${responsive.xl.min}) {
     top: 0;
     right: calc((100vw - 1400px)*0.5);
-    width: 550px;
+    width: 350px;
   }
   @media screen and (${responsive.md.max}) {
     width: 100vw;
-    height: 550px;
+    height: 350px;
   }
   @media screen and (${responsive.sm.max}) {
     display: none;
@@ -36,19 +33,16 @@ const SBackgroundImage = styled.div`
 
 const SPageHeader = styled.div`
   width: 100%;
-  height: 550px;
+  height: 350px;
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  @media screen and (${responsive.sm.min}) {
-    margin-bottom: 68px;
-  }
   @media screen and (${responsive.sm.max}) {
     height: 100vw;
-    max-height: 400px;
+    max-height: 350px;
   }
 `;
 
@@ -88,10 +82,8 @@ const SDesktop = styled.div`
 const EthereumPageHeader = () => (
   <Section
     id={`balance-token-header`}
-    minHeight={500}
+    minHeight={350}
     maxWidth={null}
-    color={colors.navyBlue}
-    background={<SBackgroundImage />}
   >
     <SPageHeader>
       <SMobile>
@@ -153,12 +145,12 @@ const EthereumPageHeader = () => (
         />
       </SMobile>
       <SDesktop>
-        <SStaticLogo height={189} top={248} src={ethereumLogo} alt="Ethereum Logo" />
+        <SStaticLogo height={189} top={48} src={ethereumLogo} alt="Ethereum Logo" />
 
         <SFloatingLogo
           delay={2}
           height={49}
-          top={450}
+          top={50}
           right={1}
           opacity={1.0}
           src={ethereumLogo}
@@ -168,8 +160,8 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={3}
           height={45}
-          top={146}
-          right={25}
+          top={86}
+          right={175}
           opacity={1.0}
           src={ethereumLogo}
           windowSize={1280}
@@ -178,7 +170,7 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={1}
           height={87}
-          top={371}
+          top={111}
           right={75}
           opacity={1.0}
           src={ethereumLogo}
@@ -188,8 +180,8 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={4}
           height={49}
-          top={194}
-          right={133}
+          top={94}
+          right={343}
           opacity={0.3}
           src={ethereumLogo}
           windowSize={1280}
@@ -198,7 +190,7 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={2}
           height={82}
-          top={290}
+          top={140}
           right={245}
           opacity={0.9}
           src={ethereumLogo}
@@ -208,7 +200,7 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={1}
           height={26}
-          top={155}
+          top={55}
           right={367}
           opacity={0.4}
           src={ethereumLogo}
@@ -218,8 +210,8 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={5}
           height={30}
-          top={362}
-          right={394}
+          top={22}
+          right={294}
           opacity={1.0}
           src={ethereumLogo}
           windowSize={1280}
@@ -229,8 +221,8 @@ const EthereumPageHeader = () => (
           delay={1.5}
           height={27}
           top={117}
-          left={544}
-          opacity={0.7}
+          left={444}
+          opacity={0.4}
           src={ethereumLogo}
           windowSize={1280}
           alt="Ethereum Logo"
@@ -238,7 +230,7 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={2.5}
           height={72}
-          top={290}
+          top={180}
           left={370}
           opacity={0.8}
           src={ethereumLogo}
@@ -248,9 +240,9 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={6}
           height={49}
-          top={174}
-          left={327}
-          opacity={1.0}
+          top={74}
+          left={387}
+          opacity={0.6}
           src={ethereumLogo}
           windowSize={1280}
           alt="Ethereum Logo"
@@ -258,7 +250,7 @@ const EthereumPageHeader = () => (
         <SFloatingLogo
           delay={7.5}
           height={49}
-          top={337}
+          top={87}
           left={147}
           opacity={1.0}
           src={ethereumLogo}
@@ -269,7 +261,7 @@ const EthereumPageHeader = () => (
           delay={3.5}
           height={28}
           top={171}
-          left={98}
+          left={148}
           opacity={1.0}
           src={ethereumLogo}
           windowSize={1280}
@@ -279,16 +271,16 @@ const EthereumPageHeader = () => (
           delay={1}
           height={16}
           top={74}
-          left={37}
-          opacity={1.0}
+          left={117}
+          opacity={.5}
           src={ethereumLogo}
           windowSize={1280}
           alt="Ethereum Logo"
         />
         <SFloatingLogo
           height={96}
-          top={430}
-          left={-10}
+          top={80}
+          left={240}
           opacity={0.9}
           src={ethereumLogo}
           windowSize={1280}

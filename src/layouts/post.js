@@ -43,11 +43,13 @@ const SBackground = () => (
 );
 
 const SPost = styled(Section)`
-  padding: 56px 0 12px;
+  padding: 68px 0;
+  transform: translate3d(0,0,0);
+
   & h1 {
     margin-bottom: 11px;
     font-size: 2.5em;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -1px;
     line-height: 1.04;
   }
@@ -55,7 +57,7 @@ const SPost = styled(Section)`
   & h2 {
     margin: 48px 0 11px 0;
     font-size: 1.75em;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.6px;
     line-height: 1.04;
   }
@@ -127,7 +129,9 @@ const SPostContent = styled.div`
 const layoutTheme = {
   hideIcon: true,
   linkColor: colors.green,
-  linkHover: colors.dark,
+  linkHover: colors.white,
+  footerCopyright: colors.dark,
+  footerDivider: colors.lightGrey,
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
   logoColor: colors.green,

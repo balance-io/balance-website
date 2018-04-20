@@ -46,7 +46,7 @@ export default [
   {
     name: `Christian Baroni`,
     profileImg: christian,
-    twitter: `christianbaroni`,
+    twitter: `chrisbaroni`,
     role: `Designer`,
     description: `Christian has designed user interfaces and icons for Microsoft Office, Stripe and several successful startups.`,
     emojis: [

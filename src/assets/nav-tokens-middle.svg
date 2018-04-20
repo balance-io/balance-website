@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="9px" viewBox="0 0 9 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>nav-tokens-middle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="13" height="13"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="home" transform="translate(-600.000000, -30.000000)">
+            <g id="nav" transform="translate(140.000000, 18.000000)">
+                <g id="Group-35" transform="translate(353.000000, 10.000000)">
+                    <g id="Group-33" transform="translate(105.000000, 0.000000)">
+                        <g id="nav-tokens-middle">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Rectangle-10-Copy" fill="#E6E6E6" opacity="0" xlink:href="#path-1"></use>
+                            <path d="M6.5,2 C4.01471863,2 2,4.01471863 2,6.5 C2,8.98528137 4.01471863,11 6.5,11 C8.98528137,11 11,8.98528137 11,6.5 C11,4.01471863 8.98528137,2 6.5,2 Z" fill="#011F3C" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
