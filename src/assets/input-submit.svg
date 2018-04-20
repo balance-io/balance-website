@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="17px" viewBox="0 0 19 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>input-submit</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="home-copy-13" transform="translate(-787.000000, -1031.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-13" transform="translate(256.000000, 939.000000)">
+                <g id="address" transform="translate(0.000000, 32.000000)">
+                    <g id="Group-36">
+                        <g id="Group-4">
+                            <g id="input-submit" transform="translate(514.000000, 43.000000)">
+                                <path d="M28.1966,33.7099775 C27.8060568,34.1009901 27.1724807,34.1013706 26.7814681,33.7108274 C26.3904556,33.3202842 26.3900751,32.6867081 26.7806183,32.2956956 L32.5902226,26.4931402 L18,26.4931402 C17.4478004,26.4931402 17,26.0454939 17,25.4932943 C17,24.9410947 17.4478004,24.4934485 18,24.4934485 L32.5732752,24.4934485 L26.7806183,18.7077905 C26.3900751,18.3167779 26.3904556,17.6832018 26.7814681,17.2926586 C27.1724807,16.9021155 27.8060568,16.902496 28.1966,17.2935085 L35.7066421,24.794602 C35.8944489,24.9820189 35.9999905,25.2364448 35.9999905,25.501768 C35.9999905,25.7670913 35.8944489,26.0215172 35.7066421,26.208934 L28.1966,33.7099775 Z"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

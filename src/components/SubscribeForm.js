@@ -1,207 +1,215 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import jsonp from 'jsonp';
-import emailIcon from '../assets/mail.svg';
-import { fonts, colors, responsive, transitions } from '../styles';
+import styled from 'styled-components';
+import inputSubmit from '../assets/input-submit.svg';
+import { fonts, colors, transitions } from '../styles';
 
-const SFormWrapper = styled.div`
+const SForm = styled.form`
   position: relative;
-  margin-bottom: 17px;
   width: 100%;
-  max-width: 420px;
+  height: 52px;
+
+  & input {
+    position: absolute;
+    width: 100%;
+    height: 52px;
+    padding: 13px 51px 19px 16px;
+    text-align: left;
+    border: 0;
+    font-family: inherit;
+    font-weight: 500;
+    -webkit-appearance: none;
+    outline: none;
+    font-size: 1.0625em;
+    transition: 0.2s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    color: ${({ dark }) => (dark ? '#FFFFFF' : '#313336')};
+    background: ${({ dark }) => (dark ? '#3A4F65' : '#FFFFFF')};
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.11), 0 1px 3px 0 rgba(0, 0, 0, 0.08),
+      inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  & input::-webkit-input-placeholder {
+    color: ${({ dark }) => (dark ? '#FFFFFF' : '#BDBDBE')};
+  }
+
+  & button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52px;
+    height: 52px;
+    mask-image: url(${inputSubmit}) center no-repeat;
+    -webkit-mask: url(${inputSubmit}) center no-repeat;
+    background-size: 19px 17px;
+    background-position: 0 0;
+    background: ${({ dark }) => (dark ? '#FFFFFF' : '#313336')};
+    cursor: pointer;
+    transition: 0.2s;
+    transform: translateX(2px) translateY(-0.5px);
+  }
 `;
 
 const SMessage = styled.p`
   position: absolute;
   text-align: center;
-  margin-top: 10px;
-  font-size: ${fonts.h6};
-`;
-
-const SSuccess = styled.p`
-  position: absolute;
-  left: 60px;
-  top: calc(50% - 9px);
-  font-weight: 500;
+  margin: 0 !important;
+  bottom: -28px;
+  font-size: ${fonts.medium};
   transition: ${transitions.base};
-  color: rgb(${colors.brightBlue});
+  opacity: ${({ show }) => (show ? 0.8 : 0)};
+  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
+  pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
 `;
 
-const StyledSubmit = styled.button`
-  outline: none;
-  border-style: none;
-  border: none;
-  font-size: ${fonts.large};
-  background: none;
-  background: rgb(${colors.dark});
-  color: rgb(${colors.white});
-  border: 2px solid rgb(${colors.dark});
-  border-radius: 4px;
-  position: absolute;
-  padding: 10px 14px;
-  margin: 4px;
-  right: 0;
-  top: 0;
-`;
-
-const SForm = styled.form`
-  & input {
-    outline: none;
-    margin: 0;
-    font-size: ${fonts.large};
-    padding: 15px;
-    width: 100%;
-    border-radius: 4px;
-    background: rgb(${colors.white});
-    color: rgb(${colors.dark});
-    padding-left: 54px;
-    border: none;
-    border-style: none;
-    transition: ${transitions.short};
-    opacity: ${({ success }) => (success ? '0' : '1')};
-    pointer-events: ${({ success }) => (success ? 'none' : 'auto')};
-    visibility: ${({ success }) => (success ? 'hidden' : 'visible')};
-    @media screen and (${responsive.sm.max}) {
-      width: 100%;
-    }
-  }
-  & input::placeholder {
-    color: rgba(${colors.dark}, 0.5);
-  }
-  &::before {
-    content: '';
-    transition: ${transitions.base};
-    mask-image: url(${emailIcon}) no-repeat;
-    -webkit-mask: url(${emailIcon}) no-repeat;
-    mask-size: contain;
-    -webkit-mask-size: contain;
-    background: rgb(${colors.brightBlue});
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    left: 20px;
-    top: calc(50% - 5px);
-  }
-  & ${SSuccess} {
-    opacity: ${({ success }) => (success ? '1' : '0')};
-    pointer-events: ${({ success }) => (success ? 'auto' : 'none')};
-    visibility: ${({ success }) => (success ? 'visible' : 'hidden')};
-  }
-`;
+let messageTimeout = null;
 
 class SubscribeForm extends Component {
   state = {
-    status: null,
-    message: null,
+    dark: true,
+    status: '',
+    message: '',
     input: ''
+  };
+  onChange = ({ target }) => {
+    this.setState({ input: target.value });
+  };
+  onFocus = () => {
+    this.setState({ dark: false });
+  };
+  onBlur = () => {
+    if (!this.state.input) {
+      this.setState({ dark: true });
+    }
+  };
+  onStatusChange = (state, callback) => {
+    clearTimeout(messageTimeout);
+    this.setState(state);
+    if (state.status !== 'sending') {
+      messageTimeout = setTimeout(
+        () =>
+          this.setState({
+            status: '',
+            message: ''
+          }),
+        3000
+      );
+    }
+    if (callback) callback();
   };
   onSubmit = e => {
     const options = this.props.options;
     e.preventDefault();
     if (!this.state.input || this.state.input.length < 5 || this.state.input.indexOf('@') === -1) {
-      this.setState({
-        status: 'error'
+      this.onStatusChange({
+        status: 'error',
+        message: 'Email is invalid'
       });
       return;
     }
     const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${options.userId}&id=${
       options.listId
     }&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(this.state.input)}`;
-    this.setState(
+    this.onStatusChange(
       {
         status: 'sending',
-        message: null
+        message: ''
       },
       () =>
         jsonp(url, { param: 'c' }, (err, data) => {
           let error = null;
           let result = null;
           if (err) {
-            this.setState({
+            this.onStatusChange({
               status: 'error'
             });
           } else if (data.result !== 'success') {
             if (data.msg.includes('already subscribed')) {
               error = { message: 'EMAIL_ALREADY_SUBCRIBED' };
-              this.setState({
+              this.onStatusChange({
                 status: 'error',
                 message: `Sorry, you've already signed up with this email`
               });
             } else if (data.msg.includes('too many recent signup requests')) {
               error = { message: 'TOO_MANY_SIGNUP_REQUESTS' };
-              this.setState({
+              this.onStatusChange({
                 status: 'error',
                 message: `Too many signup requests, please try again later`
               });
             } else {
               error = { message: 'UNKNOWN_ERROR' };
-              this.setState({
+              this.onStatusChange({
                 status: 'error'
               });
             }
           } else {
             result = { email: this.state.input };
-            this.setState({
+            this.onStatusChange({
               status: 'success'
             });
           }
-          this.props.options.callback(error, result);
+          if (this.props.options.callback) this.props.options.callback(error, result);
         })
     );
   };
-  getEmailClient = () => this.state.input.match(/@(\w|.)+/gi)[0].replace('@', '');
+  renderMessage = () => {
+    if (!this.state.message) {
+      switch (this.state.status) {
+        case 'error':
+          return this.props.messages.error;
+        case 'success':
+          return this.props.messages.success;
+        case 'sending':
+          return this.props.messages.sending;
+        default:
+          return '';
+      }
+    }
+    return this.state.message;
+  };
   render() {
-    const { messages, ...props } = this.props;
     return (
-      <SFormWrapper>
-        <SForm
-          success={this.state.status === 'success'}
-          onSubmit={this.onSubmit}
-          method="POST"
-          noValidate
-          {...props}
+      <SForm noValidate dark={this.state.dark} onSubmit={this.onSubmit}>
+        <input
+          required
+          spellCheck={false}
+          type="email"
+          placeholder={this.props.messages.inputPlaceholder}
+          value={this.state.input}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          onChange={this.onChange}
+        />
+        <button type="submit" />
+        <SMessage
+          color={this.state.status === 'error' ? colors.red : colors.white}
+          show={this.state.status}
         >
-          {this.state.status === 'success' && (
-            <SSuccess>
-              <a href={`http://${this.getEmailClient()}`} target="_blank">
-                Check your email
-              </a>
-            </SSuccess>
-          )}
-          <input
-            value={this.state.input}
-            onChange={e => this.setState({ status: null, input: e.target.value })}
-            type="email"
-            required
-            placeholder={messages.inputPlaceholder}
-          />
-          {!this.state.status && <StyledSubmit type="submit">Send</StyledSubmit>}
-          {this.state.status === 'sending' && (
-            <SMessage color={colors.white}>{messages.sending}</SMessage>
-          )}
-          {this.state.status === 'error' && (
-            <SMessage color={colors.red}>
-              {this.state.message ? this.state.message : messages.error}
-            </SMessage>
-          )}
-        </SForm>
-      </SFormWrapper>
+          {this.renderMessage()}
+        </SMessage>
+      </SForm>
     );
   }
 }
 
 SubscribeForm.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.objectOf(PropTypes.string),
   messages: PropTypes.objectOf(PropTypes.string)
 };
 
 SubscribeForm.defaultProps = {
+  options: {
+    server: 'money.us11',
+    userId: 'a3f87e208a9f9896949b4f336',
+    listId: '3985713da6',
+    origin: ''
+  },
   messages: {
-    inputPlaceholder: 'your@email.com',
+    inputPlaceholder: 'Your email',
     sending: 'Sending...',
-    success:
-      'Thanks! Please click the link in the confirmation email to complete your subscription.',
+    success: 'Check your email',
     error: 'Oops, something went wrong'
   }
 };

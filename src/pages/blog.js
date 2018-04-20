@@ -11,6 +11,15 @@ import { ellipseText, getTimeagoString } from '../utils/helpers';
 
 const SBlog = styled(Section)`
   padding: 48px 0 12px;
+  padding-bottom: 76px;
+
+  @media screen and (${responsive.md.max}) {
+    padding-bottom: 68px;
+  }
+
+  @media screen and (${responsive.sm.max}) {
+    padding-bottom: 54px;
+  }
 `;
 const dividerColors = [
   '#A539BD',
@@ -106,7 +115,7 @@ const SPostInfo = styled.p`
 
 const SPostTitle = styled.h2`
   margin-bottom: 7px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.5px;
   line-height: 1.04;
 `;
@@ -175,7 +184,9 @@ const mergePosts = (contentful, medium) => {
 const layoutTheme = {
   hideIcon: true,
   linkColor: colors.dark,
-  linkHover: colors.green,
+  linkHover: colors.white,
+  footerCopyright: colors.dark,
+  footerDivider: colors.dark,
   mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
   logoColor: colors.dark,

@@ -7,22 +7,25 @@ import Footer from '../components/Footer';
 import { colors } from '../styles';
 
 const SPage = styled.div`
+  position: relative;
   padding: ${({ article }) => (article ? '56px 0 12px' : 0)};
   margin: 0 auto;
-  min-height: ${({ article }) => (article ? 'calc(100vh - 68px)' : 0)};
   max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${colors[fontColor]})`};
+  background: #071827;
 `;
 
 const layoutTheme = {
-  linkColor: colors.lightGrey,
-  linkHover: colors.white,
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.darkBackground,
+  footerDivider: colors.darkFooterDivider,
+  footerCopyright: colors.white,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
-  mobileToggleColor: colors.lightGrey,
+  mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
   logoHover: colors.white
 };
@@ -34,7 +37,7 @@ const Page = ({
   fontColor,
   article,
   maxWidth,
-  layout,
+  theme,
   noFooter,
   ...props
 }) => (
@@ -45,7 +48,7 @@ const Page = ({
         meta={[{ name: 'twitter:title', content: title }, { name: 'og:title', content: title }]}
       />
     )}
-    <Header theme={layout} />
+    <Header theme={theme} />
     <SPage article={article} maxWidth={maxWidth} fontColor={fontColor} {...props}>
       {!article ? (
         <div>{children}</div>
@@ -56,7 +59,7 @@ const Page = ({
         </article>
       )}
     </SPage>
-    {!noFooter && <Footer theme={layout} />}
+    {!noFooter && <Footer theme={theme} />}
   </div>
 );
 
@@ -67,7 +70,7 @@ Page.propTypes = {
   fontColor: PropTypes.string,
   article: PropTypes.bool,
   maxWidth: PropTypes.number,
-  layout: PropTypes.object,
+  theme: PropTypes.object,
   noFooter: PropTypes.bool
 };
 
@@ -77,7 +80,7 @@ Page.defaultProps = {
   fontColor: 'white',
   article: false,
   maxWidth: null,
-  layout: layoutTheme,
+  theme: layoutTheme,
   noFooter: false
 };
 

@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Page from '../layouts/page';
 import Section from '../components/Section';
-import EthereumPageHeader from '../components/EthereumPageHeader';
+import TokenAnimation from '../components/TokenAnimation';
 import tokenSet from '../assets/token-set.png';
 import solidityExample from '../assets/solidity-example.png';
 import erc20vsCoin from '../assets/erc20-vs-coin.png';
 import tokenUses from '../assets/token-uses.png';
 import balanceTokenPreview from '../assets/balance-token-preview2.png';
 import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
+import balanceTokenMobile from '../assets/balance-token-mobile.png';
 import { colors, fonts, responsive } from '../styles';
 
 const SBackgroundImageTwo = styled.div`
@@ -25,6 +26,7 @@ const SBackgroundImageTwo = styled.div`
 
 const SSectionWrapper = styled.div`
   width: 100%;
+  padding-top: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +77,14 @@ const SContainer = styled.div`
   }
 `;
 
+const SHero = styled.div`
+  padding: 300px;
+  background: red;
+`;
+
 const STitle = styled.h1`
   font-size: 2em;
+  font-weight: 600;
   letter-spacing: -0.25px;
   margin: 10px 0;
   @media screen and (${responsive.md.max}) {
@@ -135,6 +143,15 @@ const SViralLoops = styled.button`
   }
 `;
 
+const STokenMobile = styled.img`
+  display: none;
+  width: 100vw;
+  margin: 0;
+  @media screen and (${responsive.sm.max}) {
+    display: block;
+  }
+`;
+
 const SImageWrapper = styled.div`
   padding: 10px;
   & img {
@@ -145,32 +162,47 @@ const SImageWrapper = styled.div`
   }
 `;
 
+const SImageWrapperAppPreview = SImageWrapper.extend`
+  @media screen and (${responsive.sm.max}) {
+    margin-bottom: 130px;
+  }
+`;
+
+const SSectionWrapperBottom = SSectionWrapper.extend`
+  margin-bottom: 180px;
+
+  @media screen and (${responsive.sm.max}) {
+    margin-bottom: 0;
+  }
+`;
+
 const Erc20Page = ({ data, ...props }) => (
   <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title}>
-    <EthereumPageHeader />
+
     <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
-          <SContainer>
-            <STitle>What is an ERC-20 token?</STitle>
-            <STagline>
-              The most popular form of “token” is the ERC-20 token. This is a standard of token that
-              lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
-              <a
-                href="https://github.com/ethereum/eips/issues/20"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                Ethereum Request for Comment number 20
-              </a>, which effectively means it was the 20th major improvement proposed by one of the
-              Ethereum contributors.
-            </STagline>
-          </SContainer>
+            <SContainer>
+              <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
+              <STitle>What is an ERC-20 token?</STitle>
+              <STagline>
+                The most popular form of “token” is the ERC-20 token. This is a standard of token that
+                lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
+                <a
+                  href="https://github.com/ethereum/eips/issues/20"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Ethereum Request for Comment number 20
+                </a>, which effectively means it was the 20th major improvement proposed by one of the
+                Ethereum contributors.
+              </STagline>
+            </SContainer>
         </SFlex>
 
         <SFlex>
           <SImageWrapper>
-            <img src={tokenSet} alt="erc 20 tokens" />
+            <TokenAnimation />
           </SImageWrapper>
         </SFlex>
       </SSectionWrapper>
@@ -300,7 +332,7 @@ const Erc20Page = ({ data, ...props }) => (
     </Section>
 
     <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapper minHeight={450}>
+      <SSectionWrapperBottom minHeight={450}>
         <SFlex>
           <SContainer>
             <STitle>Want a wallet for your tokens?</STitle>
@@ -318,12 +350,12 @@ const Erc20Page = ({ data, ...props }) => (
         </SFlex>
 
         <SFlex>
-          <SImageWrapper>
+          <SImageWrapperAppPreview>
             {' '}
             <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SImageWrapper>
+          </SImageWrapperAppPreview>
         </SFlex>
-      </SSectionWrapper>
+      </SSectionWrapperBottom>
     </Section>
   </Page>
 );
