@@ -210,6 +210,7 @@ const SNavLinksBlog = SNavLinks.extend`
 const SExternalLink = SNavLinks.withComponent('a');
 
 const SNavLinksManager = SExternalLink.extend`
+  display: none;
   position: absolute;
   right: 0;
   padding-right: 23px;
