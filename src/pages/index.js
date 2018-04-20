@@ -387,7 +387,7 @@ const SBackgroundArrow = styled.div`
     width: 662px;
     height: 662px;
     background: url(${backgroundArrowMobile}) no-repeat;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
   }
 
   @media screen and (min-width: 1406px) {
@@ -1328,7 +1328,8 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Private and secure</h3>
                 <p>
-                  The keys to your tokens are securely stored on your phone, giving you full control of your own digital assets.
+                  The keys to your tokens are securely stored on your phone, giving you full control
+                  of your own digital assets.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureSecurity>
@@ -1340,7 +1341,20 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Simple exchange</h3>
                 <p>
-                  Buy and store dozens of tokens using our simple token trading interface powered by ShapeShift, 0x, Oasis & Kyber.
+                  Buy and store dozens of tokens using our simple token trading interface powered by
+                  <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">
+                    ShapeShift
+                  </a>,{' '}
+                  <a href="https://0xproject.com" target="_blank" rel="noopener noreferrer">
+                    0x
+                  </a>,{' '}
+                  <a href="https://oasis.direct" target="_blank" rel="noopener noreferrer">
+                    Oasis
+                  </a>{' '}
+                  &
+                  <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
+                    Kyber
+                  </a>.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureERC20>
@@ -1352,8 +1366,12 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>WalletConnect</h3>
                 <p>
-                  Banks, credit cards, investment accounts, online wallets. PayPal. Schwab.
-                  Fidelity. Chase. 12,000 others.
+                  Interact with dapps on the web using the built-in QR code scanner. This is powered
+                  by the
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
+                    WalletConnect
+                  </a>{' '}
+                  standard.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureWalletConnectLeft>
@@ -1369,7 +1387,12 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>WalletConnect</h3>
                 <p>
-                  Interact with dapps on the web using the built-in QR code scanner. This is powered by the WalletConnect standard.
+                  Interact with dapps on the web using the built-in QR code scanner. This is powered
+                  by the
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
+                    WalletConnect
+                  </a>{' '}
+                  standard.
                 </p>
               </SFeatureInfoRight>
             </SFeatureWalletConnect>
@@ -1381,7 +1404,8 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>Fast and easy</h3>
                 <p>
-                  Send and receive Ether and tokens quickly and easily. Lightning fast search and transaction history.
+                  Send and receive Ether and tokens quickly and easily. Lightning fast search and
+                  transaction history.
                 </p>
               </SFeatureInfoRight>
             </SFeatureFastEasy>
