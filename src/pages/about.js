@@ -156,6 +156,10 @@ const SContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 60px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    margin-bottom: 0;
   }
 `;
 
