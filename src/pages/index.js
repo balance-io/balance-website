@@ -1341,9 +1341,7 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Simple exchange</h3>
                 <p>
-                  Buy and store dozens of tokens using our simple token trading interface powered by
-                  <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">
-                    ShapeShift
+                  Buy and store dozens of tokens using our simple token trading interface powered by <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">ShapeShift
                   </a>,{' '}
                   <a href="https://0xproject.com" target="_blank" rel="noopener noreferrer">
                     0x
@@ -1351,8 +1349,7 @@ const IndexPage = () => (
                   <a href="https://oasis.direct" target="_blank" rel="noopener noreferrer">
                     Oasis
                   </a>{' '}
-                  &
-                  <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
+                  & <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
                     Kyber
                   </a>.
                 </p>
@@ -1368,8 +1365,7 @@ const IndexPage = () => (
                 <p>
                   Interact with dapps on the web using the built-in QR code scanner. This is powered
                   by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    WalletConnect
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer"> WalletConnect
                   </a>{' '}
                   standard.
                 </p>
@@ -1389,8 +1385,7 @@ const IndexPage = () => (
                 <p>
                   Interact with dapps on the web using the built-in QR code scanner. This is powered
                   by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    WalletConnect
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer"> WalletConnect
                   </a>{' '}
                   standard.
                 </p>
