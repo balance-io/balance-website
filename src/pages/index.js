@@ -954,6 +954,14 @@ const SNewsletter = SSection.extend`
 const SSectionBalanceWallet = SSection.extend`
   background #071827;
   padding: 0;
+  & a {
+    color: #3F82E0;
+    transition: 0.1s ease;
+  }
+  & a:hover {
+    color: #5D9CF5;
+    transition: 0s;
+  }
 `;
 
 const SRoundedCorners = styled.div`
@@ -1018,8 +1026,7 @@ const SHighlightFeatures = styled.div`
 
   & p {
     font-size: 0.9375em;
-    color: #313336;
-    opacity: 0.8;
+    color: rgba(49, 51, 54, 0.8);
     line-height: 1.4em;
   }
 
@@ -1341,7 +1348,9 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Simple exchange</h3>
                 <p>
-                  Buy and store dozens of tokens using our simple token trading interface powered by <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">ShapeShift
+                  Buy and store dozens of tokens using our simple token trading interface powered by{' '}
+                  <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">
+                    ShapeShift
                   </a>,{' '}
                   <a href="https://0xproject.com" target="_blank" rel="noopener noreferrer">
                     0x
@@ -1349,7 +1358,8 @@ const IndexPage = () => (
                   <a href="https://oasis.direct" target="_blank" rel="noopener noreferrer">
                     Oasis
                   </a>{' '}
-                  & <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
+                  &{' '}
+                  <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
                     Kyber
                   </a>.
                 </p>
@@ -1365,7 +1375,9 @@ const IndexPage = () => (
                 <p>
                   Interact with dapps on the web using the built-in QR code scanner. This is powered
                   by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer"> WalletConnect
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
+                    {' '}
+                    WalletConnect
                   </a>{' '}
                   standard.
                 </p>
@@ -1385,7 +1397,9 @@ const IndexPage = () => (
                 <p>
                   Interact with dapps on the web using the built-in QR code scanner. This is powered
                   by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer"> WalletConnect
+                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
+                    {' '}
+                    WalletConnect
                   </a>{' '}
                   standard.
                 </p>
