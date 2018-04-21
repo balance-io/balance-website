@@ -213,7 +213,6 @@ const SNavLinksBlog = SNavLinks.extend`
 const SExternalLink = SNavLinks.withComponent('a');
 
 const SNavLinksManager = SExternalLink.extend`
-  display: none;
   position: absolute;
   right: 0;
   padding-right: 23px;
@@ -529,12 +528,10 @@ class Header extends Component {
             </SNavList>
             <SNavLinksManager
               theme={theme}
-              onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
-              target="_blank"
               rel="noreferrer noopener"
-              href="https://manager.balance.io/metamask"
+              href="https://twitter.com/balance_io/status/987429250184679424"
             >
-              <p>Try Manager</p>
+              <p>Early Access</p>
             </SNavLinksManager>
 
             <SMobileNavToggle
