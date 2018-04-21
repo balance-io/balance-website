@@ -190,7 +190,8 @@ const layoutTheme = {
   mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
   logoColor: colors.dark,
-  logoHover: colors.green
+  logoHover: colors.green,
+  footerLinkColor: colors.dark
 };
 
 const Blog = ({ data, errors }) => {

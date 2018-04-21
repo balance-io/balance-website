@@ -178,26 +178,25 @@ const SSectionWrapperBottom = SSectionWrapper.extend`
 
 const Erc20Page = ({ data, ...props }) => (
   <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title}>
-
     <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
         <SFlex>
-            <SContainer>
-              <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
-              <STitle>What is an ERC-20 token?</STitle>
-              <STagline>
-                The most popular form of “token” is the ERC-20 token. This is a standard of token that
-                lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
-                <a
-                  href="https://github.com/ethereum/eips/issues/20"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Ethereum Request for Comment number 20
-                </a>, which effectively means it was the 20th major improvement proposed by one of the
-                Ethereum contributors.
-              </STagline>
-            </SContainer>
+          <SContainer>
+            <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
+            <STitle>What is an ERC-20 token?</STitle>
+            <STagline>
+              The most popular form of “token” is the ERC-20 token. This is a standard of token that
+              lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
+              <a
+                href="https://github.com/ethereum/eips/issues/20"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Ethereum Request for Comment number 20
+              </a>, which effectively means it was the 20th major improvement proposed by one of the
+              Ethereum contributors.
+            </STagline>
+          </SContainer>
         </SFlex>
 
         <SFlex>

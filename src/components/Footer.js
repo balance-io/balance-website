@@ -23,10 +23,10 @@ const SFooter = styled.footer`
   min-height: 93px;
   & a {
     font-weight: 400;
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
+    color: ${({ theme }) => `rgba(${theme.footerLinkColor}, 0.8)`};
   }
   & a:hover {
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.6)`};
+    color: ${({ theme }) => `rgba(${theme.footerLinkColor}, 0.6)`};
   }
 `;
 
@@ -43,7 +43,7 @@ const SFooterLinks = styled.a`
   display: flex;
   float: right;
   align-items: center;
-  padding: 0 0 0 6px;
+  padding: 3px 8px;
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -96,6 +96,14 @@ const Footer = ({ theme, ...props }) => (
     <SFooter theme={theme}>
       <SCopyright theme={theme}>© Balance</SCopyright>
       <SFooterList>
+        <SFooterLinks
+          href="https://spectrum.chat/balance"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          Community
+        </SFooterLinks>
+        <SFooterLinks href="/meetups">Meetups</SFooterLinks>
         <SFooterLinks
           href="https://github.com/balance-io"
           rel="noreferrer noopener"

@@ -33,6 +33,7 @@ import featurePrivate from '../assets/feature-private.svg';
 import featureERC20 from '../assets/feature-erc20.svg';
 import featureWalletConnect from '../assets/feature-walletconnect.svg';
 import featureFast from '../assets/feature-fast.svg';
+import map from '../assets/map.png';
 
 import { colors, responsive } from '../styles';
 
@@ -1210,17 +1211,69 @@ const SWalletPreview = styled.div`
   }
 `;
 
+const SSectionMeetupMap = SSection.extend`
+  background: url(${map}) center no-repeat;
+  height: 450px;
+  // padding: 20px; ask pedro why is this fucked
+  // margin: 20px;
+  & a {
+    color: #3f82e0;
+    transition: 0.1s ease;
+  }
+  & a:hover {
+    color: #5d9cf5;
+    transition: 0s;
+  }
+`;
+
+const SSectionMeetups = SSection.extend`
+  width: 700px;
+  height: 400px;
+  // background: red;
+  margin: 0 auto;
+`;
+
+const SSectionMeetupList = styled.div``;
+
+const SMeetupLine = styled.div`
+  display: flex;
+  margin: 15px 0px;
+  font-size: 1.13em;
+`;
+
+const SMeetupLocation = styled.div`
+  flex: 1;
+  font-weight: 600;
+`;
+const SMeetupDate = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+const SMeetupLink = styled.div`
+  flex: 1;
+  text-align: right;
+  & a {
+    color: #3f82e0;
+    transition: 0.1s ease;
+  }
+  & a:hover {
+    color: #5d9cf5;
+    transition: 0s;
+  }
+`;
+
 const layoutTheme = {
   linkColor: colors.lightHeaderGrey,
   linkHover: colors.darkBackground,
-  footerCopyright: colors.darkFooterLinks,
-  footerDivider: colors.lightFooterDivider,
+  footerCopyright: colors.lightGrey,
+  footerDivider: colors.darkFooterDivider,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
   logoHover: colors.white,
-  footerLinkColor: colors.darkNavyBlue
+  footerLinkColor: colors.white
 };
 
 const IndexPage = () => (
@@ -1229,13 +1282,20 @@ const IndexPage = () => (
     <SSection id={`balance-token`}>
       <SSectionWrapper>
         <SColumn>
-          {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
-              <STitle>The easiest way to manage your&nbsp;tokens</STitle>
+              <STitle>Meetups</STitle>
               <STagline>
-                Connect to your Ethereum wallet to see your ERC-20 token balances, check your
-                transactions, and send tokens.
+                We want to talk to users, dapp developers, and our investors face-to-face as we
+                <a
+                  href="https://twitter.com/vitalikbuterin/status/971417459872882690"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {' '}
+                  buidl
+                </a>{' '}
+                out Balance.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
@@ -1245,184 +1305,92 @@ const IndexPage = () => (
         </SColumn>
       </SSectionWrapper>
     </SSection>
-
-    <SSectionApp>
-      <SBackgroundArrow2 />
-      <SSectionWrapper>
-        <SAppStatic />
-        <SAppContainer>
-          <SAppBackground />
-          <SApp>
-            <STabs>
-              <STabBackground />
-              <STabBalances />
-              <STabTransactions />
-            </STabs>
-            <SAppSectionContainer>
-              <SAppBalances />
-              <SAppTransactions>
-                <SSentStatus />
-                <SSendingStatus>
-                  <SSendingSpinner />
-                </SSendingStatus>
-              </SAppTransactions>
-            </SAppSectionContainer>
-            <SButtonSend>
-              <div />
-            </SButtonSend>
-            <SButtonReceive>
-              <div />
-            </SButtonReceive>
-          </SApp>
-          <SSendModal>
-            <SSendModalContents>
-              <SInputCursor />
-              <SFakeInputAddress>
-                <div />
-              </SFakeInputAddress>
-              <SFakeInputTokenAmount>
-                <div />
-              </SFakeInputTokenAmount>
-              <SFakeInputUSDAmount>
-                <div />
-              </SFakeInputUSDAmount>
-              <SSendMax />
-              <SButtonSendTransaction>
-                <div />
-              </SButtonSendTransaction>
-              <STransactionSpeedBar />
-              <SFeeAverageContainer>
-                <SFeeAverage />
-                <SFeeAverageSelected />
-              </SFeeAverageContainer>
-              <SFeeFastContainer>
-                <SFeeFastSelected />
-                <SFeeFast />
-              </SFeeFastContainer>
-            </SSendModalContents>
-          </SSendModal>
-        </SAppContainer>
-      </SSectionWrapper>
-      <SNewsletter>
-        <h3>News</h3>
-        <p>Get Balance product updates</p>
-        <SubscribeForm />
-      </SNewsletter>
-    </SSectionApp>
-
-    <SSectionBalanceWallet>
-      <SRoundedCorners />
-      <SBackgroundArrow3 />
-      <SSectionWrapper>
-        <SHeroWallet>
-          <SContainer>
-            <STitleWallet>Balance Wallet</STitleWallet>
-            <STaglineWallet>
-              Coming soon, a mobile Ethereum wallet for iOS and Android.
-            </STaglineWallet>
-            {/*<SButtonLink>
-              OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
-            </SButtonLink>*/}
-          </SContainer>
-        </SHeroWallet>
-      </SSectionWrapper>
-      <SSectionWrapperFeatures>
-        <SHighlightFeatures>
-          <SFeaturesLeft>
-            <SFeatureSecurity>
-              <SFeatureIcon>
-                <div />
-              </SFeatureIcon>
-              <SFeatureInfoLeft>
-                <h3>Private and secure</h3>
-                <p>
-                  The keys to your tokens are securely stored on your phone, giving you full control
-                  of your own digital assets.
-                </p>
-              </SFeatureInfoLeft>
-            </SFeatureSecurity>
-
-            <SFeatureERC20>
-              <SFeatureIcon>
-                <div />
-              </SFeatureIcon>
-              <SFeatureInfoLeft>
-                <h3>Simple exchange</h3>
-                <p>
-                  Buy and store dozens of tokens using our simple token trading interface powered by{' '}
-                  <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">
-                    ShapeShift
-                  </a>,{' '}
-                  <a href="https://0xproject.com" target="_blank" rel="noopener noreferrer">
-                    0x
-                  </a>,{' '}
-                  <a href="https://oasis.direct" target="_blank" rel="noopener noreferrer">
-                    Oasis
-                  </a>{' '}
-                  &{' '}
-                  <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
-                    Kyber
-                  </a>.
-                </p>
-              </SFeatureInfoLeft>
-            </SFeatureERC20>
-
-            <SFeatureWalletConnectLeft>
-              <SFeatureIcon>
-                <div />
-              </SFeatureIcon>
-              <SFeatureInfoLeft>
-                <h3>WalletConnect</h3>
-                <p>
-                  Interact with dapps on the web using the built-in QR code scanner. This is powered
-                  by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    {' '}
-                    WalletConnect
-                  </a>{' '}
-                  standard.
-                </p>
-              </SFeatureInfoLeft>
-            </SFeatureWalletConnectLeft>
-          </SFeaturesLeft>
-
-          <SWalletPreview />
-
-          <SFeaturesRight>
-            <SFeatureWalletConnect>
-              <SFeatureIcon>
-                <div />
-              </SFeatureIcon>
-              <SFeatureInfoRight>
-                <h3>WalletConnect</h3>
-                <p>
-                  Interact with dapps on the web using the built-in QR code scanner. This is powered
-                  by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    {' '}
-                    WalletConnect
-                  </a>{' '}
-                  standard.
-                </p>
-              </SFeatureInfoRight>
-            </SFeatureWalletConnect>
-
-            <SFeatureFastEasy>
-              <SFeatureIcon>
-                <div />
-              </SFeatureIcon>
-              <SFeatureInfoRight>
-                <h3>Fast and easy</h3>
-                <p>
-                  Send and receive Ether and tokens quickly and easily. Lightning fast search and
-                  transaction history.
-                </p>
-              </SFeatureInfoRight>
-            </SFeatureFastEasy>
-          </SFeaturesRight>
-        </SHighlightFeatures>
-      </SSectionWrapperFeatures>
-    </SSectionBalanceWallet>
+    <SSectionMeetupMap />
+    <SSectionMeetups>
+      <SSectionMeetupList>
+        <SMeetupLine>
+          <SMeetupLocation>
+            🇬🇧 London
+            {/* <span role="img">🇬🇧</span> */}
+          </SMeetupLocation>
+          <SMeetupDate>26 April</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="https://spectrum.chat/balance/meetups?thread=b0a62310-7e9d-482e-8e0b-368be2d79fd9"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+        <SMeetupLine>
+          <SMeetupLocation>🇺🇸 San Francisco</SMeetupLocation>
+          <SMeetupDate>1 May</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="https://attending.io/events/sanfrancisco0xbalancedharmameetup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+        <SMeetupLine>
+          <SMeetupLocation>🇨🇦 Toronto</SMeetupLocation>
+          <SMeetupDate>6 May</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="https://spectrum.chat/balance/meetups?thread=b2729846-3178-4600-9f57-c3bd8b28772a"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+        <SMeetupLine>
+          <SMeetupLocation>🇺🇸 New York</SMeetupLocation>
+          <SMeetupDate>TBD</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="http://spectrum.chat/balance/meetups"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+        <SMeetupLine>
+          <SMeetupLocation>🇺🇸 Boston</SMeetupLocation>
+          <SMeetupDate>TBD</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="http://spectrum.chat/balance/meetups"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+        <SMeetupLine>
+          <SMeetupLocation>🇦🇷 Buenos Aires</SMeetupLocation>
+          <SMeetupDate>TBD</SMeetupDate>
+          <SMeetupLink>
+            <a
+              href="http://spectrum.chat/balance/meetups"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Us
+            </a>
+          </SMeetupLink>
+        </SMeetupLine>
+      </SSectionMeetupList>
+    </SSectionMeetups>
   </Page>
 );
 
