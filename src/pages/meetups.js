@@ -1227,7 +1227,7 @@ const SSectionMeetupMap = SSection.extend`
 `;
 
 const SSectionMeetups = SSection.extend`
-  width: 700px;
+  width: 100%;
   height: 400px;
   // background: red;
   margin: 0 auto;
