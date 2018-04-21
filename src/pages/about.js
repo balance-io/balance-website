@@ -443,11 +443,13 @@ const STagline = styled(SParagraph)`
 `;
 
 const layoutTheme = {
-  linkColor: colors.lightGrey,
-  linkHover: colors.white,
-  backgroundColor: null,
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.darkerNavyBlue,
+  footerCopyright: colors.darkFooterLinks,
+  footerDivider: colors.lightFooterDivider,
+  backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
-  mobileToggleColor: colors.lightGrey,
+  mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
   logoHover: colors.white
 };
@@ -474,6 +476,7 @@ class AboutPage extends Component {
         layout={layoutTheme}
         noFooter
         siteTitle={this.props.data.site.siteMetadata.title}
+        theme={layoutTheme}
       >
         <SSection
           center

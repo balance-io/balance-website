@@ -176,8 +176,20 @@ const SSectionWrapperBottom = SSectionWrapper.extend`
   }
 `;
 
+const layoutTheme = {
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.backgroundNavy,
+  footerCopyright: colors.darkFooterLinks,
+  footerDivider: colors.lightFooterDivider,
+  backgroundColor: colors.darkNavyBlue,
+  mobileActiveColor: colors.brightBlue,
+  mobileToggleColor: colors.white,
+  logoColor: colors.lightGrey,
+  logoHover: colors.white
+};
+
 const Erc20Page = ({ data, ...props }) => (
-  <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title}>
+  <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title} theme={layoutTheme}>
 
     <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
       <SSectionWrapper>
