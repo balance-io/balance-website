@@ -445,6 +445,8 @@ const STagline = styled(SParagraph)`
 const layoutTheme = {
   linkColor: colors.lightGrey,
   linkHover: colors.white,
+  footerLinkColor: colors.darkFooterLinks,
+  footerDivider: colors.lightFooterDivider,
   backgroundColor: null,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.lightGrey,

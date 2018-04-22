@@ -26,14 +26,12 @@ const SFooter = styled.footer`
     font-weight: 400;
     color: ${({ theme }) => `rgba(${theme.footerLinkColor}, 0.8)`};
   }
-  & a:hover {
-    color: ${({ theme }) => `rgba(${theme.footerLinkColor}, 0.6)`};
-  }
 `;
 
 const SFooterList = styled.div`
   display: flex;
   @media screen and (${responsive.sm.max}) {
+    padding-left: 12px;
     & span {
       display: none;
     }
@@ -98,11 +96,14 @@ const SCopyright = styled.p`
   padding: 12px 0 12px 0;
   font-size: 1.0625em;
   font-weight: 500;
-  color: ${({ theme }) => `rgb(${theme.footerCopyright})`};
+  color: ${({ theme }) => `rgb(${theme.footerLinkColor})`};
   opacity: 0.4;
   transition: ${transitions.short};
   @media screen and (${responsive.lg.max}) {
     padding: 12px 0 12px 20px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
   }
 `;
 

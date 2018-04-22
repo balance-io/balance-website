@@ -198,14 +198,13 @@ const SMeetupLink = styled.div`
 const layoutTheme = {
   linkColor: colors.lightHeaderGrey,
   linkHover: colors.darkBackground,
-  footerCopyright: colors.lightGrey,
+  footerLinkColor: colors.lightGrey,
   footerDivider: colors.darkFooterDivider,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
-  logoHover: colors.white,
-  footerLinkColor: colors.white
+  logoHover: colors.white
 };
 
 const MeetupsPage = () => (

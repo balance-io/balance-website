@@ -22,7 +22,7 @@ const layoutTheme = {
   linkColor: colors.lightHeaderGrey,
   linkHover: colors.darkBackground,
   footerDivider: colors.darkFooterDivider,
-  footerCopyright: colors.white,
+  footerLinkColor: colors.white,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.white,
