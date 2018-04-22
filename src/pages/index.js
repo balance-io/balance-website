@@ -1310,7 +1310,7 @@ const IndexPage = () => (
       </SNewsletter>
     </SSectionApp>
 
-    <SSectionBalanceWallet>
+    <SSectionBalanceWallet viewport center>
       <SRoundedCorners />
       <SBackgroundArrow3 />
       <SSectionWrapper>

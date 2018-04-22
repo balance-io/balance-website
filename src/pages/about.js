@@ -65,7 +65,7 @@ const SBackgroundWrapper = styled.div`
   height: 100%;
   width: 100%;
   max-width: 1280px;
-  position: fixed
+  position: fixed;
 `;
 
 const SBackground = () => (
@@ -476,6 +476,7 @@ class AboutPage extends Component {
         siteTitle={this.props.data.site.siteMetadata.title}
       >
         <SSection
+          viewport
           center
           id={`balance-about-top`}
           minHeight={500}
@@ -579,7 +580,7 @@ class AboutPage extends Component {
             </SSidebar>
           </SSectionWrapper>
         </SSection>
-        <SFooter layout={layoutTheme} />
+        <SFooter theme={layoutTheme} />
       </Page>
     );
   }
