@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Page from '../layouts/page';
 import Section from '../components/Section';
-import Footer from '../components/Footer';
 import blackTriangles from '../assets/black-triangles.png';
 import yellowTriangles from '../assets/yellow-triangles.png';
 import purpleTriangles from '../assets/purple-triangles.png';
@@ -10,11 +9,6 @@ import padlock from '../assets/padlock.svg';
 import cardArrow from '../assets/card-arrow.png';
 import team from '../data/team';
 import { colors, fonts, transitions, responsive } from '../styles';
-
-const SFooter = styled(Footer)`
-  width: 100vw;
-  background: rgba(${colors.darkTwo}, 0.1);
-`;
 
 const SBlackBackground = styled.div`
   position: absolute;
@@ -445,8 +439,8 @@ const STagline = styled(SParagraph)`
 const layoutTheme = {
   linkColor: colors.lightGrey,
   linkHover: colors.white,
-  footerLinkColor: colors.darkFooterLinks,
-  footerDivider: colors.lightFooterDivider,
+  footerDivider: colors.darker,
+  footerLinkColor: colors.white,
   backgroundColor: null,
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.lightGrey,
@@ -471,12 +465,7 @@ class AboutPage extends Component {
   };
   render() {
     return (
-      <Page
-        title="About"
-        layout={layoutTheme}
-        noFooter
-        siteTitle={this.props.data.site.siteMetadata.title}
-      >
+      <Page title="About" theme={layoutTheme} siteTitle={this.props.data.site.siteMetadata.title}>
         <SSection
           viewport
           center
@@ -582,7 +571,6 @@ class AboutPage extends Component {
             </SSidebar>
           </SSectionWrapper>
         </SSection>
-        <SFooter theme={layoutTheme} />
       </Page>
     );
   }

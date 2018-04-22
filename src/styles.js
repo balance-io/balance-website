@@ -5,6 +5,7 @@ export const colors = {
   grey: '187, 187, 187',
   softGrey: '161, 161, 172',
   blueishGrey: '28, 34, 42',
+  darker: '25, 25, 25',
   dark: '51, 51, 51',
   darkTwo: '47, 49, 55',
   darkerNavyBlue: '12, 12, 13',

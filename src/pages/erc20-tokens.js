@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Page from '../layouts/page';
 import Section from '../components/Section';
 import TokenAnimation from '../components/TokenAnimation';
-import tokenSet from '../assets/token-set.png';
 import solidityExample from '../assets/solidity-example.png';
 import erc20vsCoin from '../assets/erc20-vs-coin.png';
 import tokenUses from '../assets/token-uses.png';
@@ -75,11 +74,6 @@ const SContainer = styled.div`
     display: flex;
     padding: 24px;
   }
-`;
-
-const SHero = styled.div`
-  padding: 300px;
-  background: red;
 `;
 
 const STitle = styled.h1`
