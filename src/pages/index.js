@@ -1213,7 +1213,7 @@ const SWalletPreview = styled.div`
 const layoutTheme = {
   linkColor: colors.lightHeaderGrey,
   linkHover: colors.darkBackground,
-  footerCopyright: colors.darkFooterLinks,
+  footerLinkColor: colors.darkFooterLinks,
   footerDivider: colors.lightFooterDivider,
   backgroundColor: colors.darkNavyBlue,
   mobileActiveColor: colors.brightBlue,

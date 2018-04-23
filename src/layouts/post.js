@@ -44,7 +44,7 @@ const SBackground = () => (
 
 const SPost = styled(Section)`
   padding: 68px 0;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 
   & h1 {
     margin-bottom: 11px;
@@ -130,7 +130,7 @@ const layoutTheme = {
   hideIcon: true,
   linkColor: colors.green,
   linkHover: colors.white,
-  footerCopyright: colors.dark,
+  footerLinkColor: colors.dark,
   footerDivider: colors.lightGrey,
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
