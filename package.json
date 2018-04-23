@@ -8,7 +8,6 @@
     "gatsby": "^1.9.217",
     "gatsby-link": "^1.6.20",
     "gatsby-plugin-google-analytics": "^1.0.8",
-    "gatsby-plugin-offline": "^1.0.9",
     "gatsby-plugin-react-helmet": "^2.0.5",
     "gatsby-plugin-react-next": "^1.0.4",
     "gatsby-plugin-styled-components": "^2.0.8",
