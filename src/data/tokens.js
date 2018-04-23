@@ -42,18 +42,18 @@ export default [
     name: 'District 0x',
     logo: district0x,
     description: 'Community tools',
-    url: 'district0x.io'
+    url: 'http://district0x.io'
   },
   {
     name: 'Augur',
     logo: augur,
     description: 'Prediction markets',
-    url: 'augur.com'
+    url: 'http://augur.com'
   },
   {
     name: 'Maker',
     logo: maker,
     description: 'Stable $1 token',
-    url: 'makerdao.com'
+    url: 'http://makerdao.com'
   }
 ];

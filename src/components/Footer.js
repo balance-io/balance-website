@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import twitter from '../assets/twitter.svg';
@@ -23,27 +24,39 @@ const SFooter = styled.footer`
   min-height: 93px;
   & a {
     font-weight: 400;
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.8)`};
-  }
-  & a:hover {
-    color: ${({ theme }) => `rgba(${theme.linkColor}, 0.6)`};
+    color: ${({ theme }) => `rgba(${theme.footerLinkColor}, 0.8)`};
   }
 `;
 
 const SFooterList = styled.div`
   display: flex;
   @media screen and (${responsive.sm.max}) {
+    padding-left: 12px;
     & span {
       display: none;
     }
   }
 `;
 
-const SFooterLinks = styled.a`
+const SFooterLink = styled.a`
   display: flex;
   float: right;
   align-items: center;
-  padding: 0 0 0 6px;
+  padding: 3px 8px;
+  transition: ${transitions.short};
+  &:first-child {
+    padding-left: 0;
+  }
+  &:active {
+    transform: scale(0.95) translate3d(0, 0, 0);
+  }
+`;
+
+const SGatsbyLink = styled(Link)`
+  display: flex;
+  float: right;
+  align-items: center;
+  padding: 4px;
   transition: ${transitions.short};
   &:first-child {
     padding-left: 0;
@@ -80,14 +93,17 @@ const SIconLinkTwitter = SIconLink.extend`
 
 const SCopyright = styled.p`
   display: inline-block;
-  padding: 3px 0 12px 0;
+  padding: 12px 0 12px 0;
   font-size: 1.0625em;
   font-weight: 500;
-  color: ${({ theme }) => `rgb(${theme.footerCopyright})`};
+  color: ${({ theme }) => `rgb(${theme.footerLinkColor})`};
   opacity: 0.4;
   transition: ${transitions.short};
   @media screen and (${responsive.lg.max}) {
-    padding: 3px 0 12px 20px;
+    padding: 12px 0 12px 20px;
+  }
+  @media screen and (${responsive.sm.max}) {
+    display: none;
   }
 `;
 
@@ -96,20 +112,20 @@ const Footer = ({ theme, ...props }) => (
     <SFooter theme={theme}>
       <SCopyright theme={theme}>© Balance</SCopyright>
       <SFooterList>
-        <SFooterLinks
-          href="https://github.com/balance-io"
-          rel="noreferrer noopener"
-          target="_blank"
-        >
+        <SFooterLink href="https://spectrum.chat/balance" rel="noreferrer noopener" target="_blank">
+          Community
+        </SFooterLink>
+        <SGatsbyLink to="/meetups">Meetups</SGatsbyLink>
+        <SFooterLink href="https://github.com/balance-io" rel="noreferrer noopener" target="_blank">
           <SIconLinkGithub icon={github} color={colors.github} />
-        </SFooterLinks>
-        <SFooterLinks
+        </SFooterLink>
+        <SFooterLink
           href="https://twitter.com/balance_io"
           rel="noreferrer noopener"
           target="_blank"
         >
           <SIconLinkTwitter icon={twitter} color={colors.twitter} />
-        </SFooterLinks>
+        </SFooterLink>
       </SFooterList>
     </SFooter>
   </SFooterWrapper>

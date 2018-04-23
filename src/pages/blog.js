@@ -185,7 +185,7 @@ const layoutTheme = {
   hideIcon: true,
   linkColor: colors.dark,
   linkHover: colors.white,
-  footerCopyright: colors.dark,
+  footerLinkColor: colors.dark,
   footerDivider: colors.dark,
   mobileActiveColor: colors.lightPurple,
   mobileToggleColor: colors.dark,
