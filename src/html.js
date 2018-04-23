@@ -25,6 +25,7 @@ class Html extends React.Component {
 
           {headComponents}
 
+          <script type="text/javascript" src="/unregisterServiceWorker.js" />
           <script type="text/javascript" src="/googleAnalytics.js" />
           <script type="text/javascript" src="/intercom.js" />
           <script type="text/javascript" src="/mailchimpTracking.js" />
