@@ -443,7 +443,7 @@ const layoutTheme = {
   footerLinkColor: colors.white,
   backgroundColor: null,
   mobileActiveColor: colors.brightBlue,
-  mobileToggleColor: colors.lightGrey,
+  mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
   logoHover: colors.white
 };
