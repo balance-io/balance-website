@@ -6,7 +6,8 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: 100%;
-  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 0)};
+  min-height: ${({ viewport, minHeight }) =>
+    viewport ? `100vh` : minHeight ? `${minHeight}px` : 0};
   background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
   display: flex;
   justify-content: center;
@@ -28,6 +29,8 @@ const SContent = styled.div`
     center &&
     `
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   `};
 `;
@@ -46,6 +49,7 @@ const Section = ({
   background,
   overflow,
   center,
+  viewport,
   maxWidth,
   minHeight,
   color,
@@ -53,6 +57,7 @@ const Section = ({
   ...props
 }) => (
   <SSection
+    viewport={viewport}
     minHeight={minHeight}
     overflow={overflow}
     color={color}
