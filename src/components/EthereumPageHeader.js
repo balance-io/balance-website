@@ -2,33 +2,11 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Section from '../components/Section';
 import ethereumLogo from '../assets/ethereum-logo.png';
-import balanceTokenTriangles from '../assets/balance-token-triangles.svg';
-import { colors, responsive } from '../styles';
+import { responsive } from '../styles';
 
 const floating = keyframes`
   0%, 100% { transform: translateY(10%); }
   45%, 55%  { transform: translateY(0); }
-`;
-
-const SBackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50vw;
-  height: 350px;
-  background: none;
-  @media screen and (${responsive.xl.min}) {
-    top: 0;
-    right: calc((100vw - 1400px)*0.5);
-    width: 350px;
-  }
-  @media screen and (${responsive.md.max}) {
-    width: 100vw;
-    height: 350px;
-  }
-  @media screen and (${responsive.sm.max}) {
-    display: none;
-  }
 `;
 
 const SPageHeader = styled.div`
@@ -80,11 +58,7 @@ const SDesktop = styled.div`
 `;
 
 const EthereumPageHeader = () => (
-  <Section
-    id={`balance-token-header`}
-    minHeight={350}
-    maxWidth={null}
-  >
+  <Section id={`balance-token-header`} minHeight={350} maxWidth={null}>
     <SPageHeader>
       <SMobile>
         <SStaticLogo height={189} top={112} src={ethereumLogo} alt="Ethereum Logo" />
@@ -272,7 +246,7 @@ const EthereumPageHeader = () => (
           height={16}
           top={74}
           left={117}
-          opacity={.5}
+          opacity={0.5}
           src={ethereumLogo}
           windowSize={1280}
           alt="Ethereum Logo"
