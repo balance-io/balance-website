@@ -13,7 +13,7 @@ const SFooterWrapper = styled.div`
 `;
 
 const SFooter = styled.footer`
-  border-top: ${({ theme }) => `2px solid rgb(${theme.footerDivider})`};
+  border-top: ${({ theme }) => `2px solid rgba(${theme.footerDivider}, ${theme.footerDividerOpacity || 1})`};
   width: 100%;
   max-width: 1028px;
   margin: 0 auto;

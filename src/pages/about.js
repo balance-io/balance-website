@@ -437,9 +437,10 @@ const STagline = styled(SParagraph)`
 `;
 
 const layoutTheme = {
-  linkColor: colors.lightGrey,
-  linkHover: colors.darkBackground,
-  footerDivider: colors.darker,
+  linkColor: colors.lightHeaderGrey,
+  linkHover: colors.darkerNavyBlue,
+  footerDivider: colors.white,
+  footerDividerOpacity: 0.03,
   footerLinkColor: colors.white,
   backgroundColor: null,
   mobileActiveColor: colors.brightBlue,
