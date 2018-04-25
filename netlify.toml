@@ -1,0 +1,4 @@
+[[headers]]
+for = "/*"
+[headers.values]
+Clear-Site-Data = "cookies, cache"
