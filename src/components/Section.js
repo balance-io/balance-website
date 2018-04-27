@@ -5,7 +5,7 @@ import { colors, responsive } from '../styles';
 
 const SSection = styled.section`
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: ${({ viewport, minHeight }) =>
     viewport ? `100vh` : minHeight ? `${minHeight}px` : 0};
   background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
