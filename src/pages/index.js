@@ -460,7 +460,7 @@ const STitle = styled.h1`
 
 const STagline = styled.p`
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 8px;
   max-width: 648px;
   font-size: 1.25em;
   text-align: center;
@@ -470,7 +470,8 @@ const STagline = styled.p`
     color: rgb(${colors.blue});
   }
   @media screen and (${responsive.sm.max}) {
-    max-width: 400px;
+    padding: 0 24px;
+    max-width: 450px;
     font-size: 1.1875em;
     line-height: 1.4210526316em;
     &:first-of-type {
@@ -1233,8 +1234,7 @@ const IndexPage = () => (
             <SContainer>
               <STitle>The easiest way to manage your&nbsp;tokens</STitle>
               <STagline>
-                Connect to your Ethereum wallet to see your ERC-20 token balances, check your
-                transactions, and send tokens.
+                Balance Manager is an interface that connects to MetaMask and Ledger, allowing you to view and send your ERC-20 tokens.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
