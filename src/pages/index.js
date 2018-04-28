@@ -467,7 +467,11 @@ const STagline = styled.p`
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.4em;
   & a {
-    color: rgb(${colors.blue});
+    transition: 0.1s ease;
+  }
+  & a:hover {
+    color: #fff;
+    transition: 0s;
   }
   @media screen and (${responsive.sm.max}) {
     padding: 0 24px;
@@ -567,6 +571,7 @@ const SAppSectionContainer = styled.div`
   width: 868px;
   height: 426px;
   overflow: hidden;
+  pointer-events: none !important;
 `;
 
 const SAppTransactions = styled.div`
@@ -739,6 +744,7 @@ const SSendModal = styled.div`
   animation-fill-mode: backwards, forwards;
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), cubic-bezier(0.6, -0.28, 0.735, 0.045);
   will-change: transform;
+  pointer-events: none !important;
 `;
 
 const SSendModalContents = styled.div`
@@ -750,6 +756,7 @@ const SSendModalContents = styled.div`
   background: url(${sendModal});
   background-size: 100%;
   transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none !important;
 `;
 
 const SFakeInput = styled.div`
@@ -1234,7 +1241,7 @@ const IndexPage = () => (
             <SContainer>
               <STitle>The easiest way to manage your&nbsp;tokens</STitle>
               <STagline>
-                Balance Manager is an interface that connects to MetaMask and Ledger, allowing you to view and send your ERC-20 tokens.
+                Balance Manager is an interface that connects to <a href="https://metamask.io" target="_blank">MetaMask</a> and <a href="https://www.ledgerwallet.com" target="_blank">Ledger</a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
