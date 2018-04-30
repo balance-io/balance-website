@@ -529,9 +529,9 @@ class Header extends Component {
             <SNavLinksManager
               theme={theme}
               rel="noreferrer noopener"
-              href="https://twitter.com/balance_io/status/987429250184679424"
+              href="https://manager.balance.io"
             >
-              <p>Early Access</p>
+              <p>Try Manager</p>
             </SNavLinksManager>
 
             <SMobileNavToggle
