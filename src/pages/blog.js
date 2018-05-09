@@ -14,10 +14,12 @@ const SBlog = styled(Section)`
   padding-bottom: 76px;
 
   @media screen and (${responsive.md.max}) {
+    padding-top: 42px;
     padding-bottom: 68px;
   }
 
   @media screen and (${responsive.sm.max}) {
+    padding-top: 32px;
     padding-bottom: 54px;
   }
 `;
