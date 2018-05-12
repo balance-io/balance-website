@@ -48,7 +48,7 @@ export default [
     name: 'Augur',
     logo: augur,
     description: 'Prediction markets',
-    url: 'http://augur.com'
+    url: 'http://augur.net'
   },
   {
     name: 'Maker',
