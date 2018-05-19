@@ -19,8 +19,9 @@ const SHeader = styled.div`
   width: 100%;
   z-index: 10;
   position: absolute;
-  @media screen and (${responsive.sm.min}) {
-    overflow: hidden;
+  overflow: hidden;
+  @media screen and (${responsive.sm.max}) {
+    overflow: visible;
   }
 `;
 
@@ -216,7 +217,7 @@ const SNavLinksManager = SExternalLink.extend`
   position: absolute;
   right: 0;
   padding-right: 23px;
-  color: ${({ theme }) => `rgb(${theme.linkColor})`};
+  color: #fff;
 
   &:after {
     content: '';
@@ -228,12 +229,24 @@ const SNavLinksManager = SExternalLink.extend`
     height: 13px;
     mask-image: url(${navManager}) center no-repeat;
     -webkit-mask: url(${navManager}) center no-repeat;
-    background-color: ${({ theme }) => `rgb(${theme.linkColor})`};
+    background-color: #fff;
     transition: 0.15s ease;
   }
 
   &:hover:after {
     transform: translateX(2.5px);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 14px;
+    width: 158px;
+    height: 35px;
+    border-radius: 10px;
+    background: #3D6BA8;
+    z-index: -1;
   }
 
   @media screen and (${responsive.sm.max}) {
@@ -531,7 +544,7 @@ class Header extends Component {
               rel="noreferrer noopener"
               href="https://manager.balance.io"
             >
-              <p>Try Manager</p>
+              <p>Use Manager</p>
             </SNavLinksManager>
 
             <SMobileNavToggle

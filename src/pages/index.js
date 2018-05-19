@@ -439,7 +439,7 @@ const SHero = styled.div`
 `;
 
 const STitle = styled.h1`
-  margin: 42px auto 10px auto;
+  margin: 42px auto 8px auto;
   font-family: Graphik;
   font-weight: 600 !important;
   font-size: 2em;
@@ -447,7 +447,7 @@ const STitle = styled.h1`
   text-align: center;
 
   @media screen and (${responsive.sm.max}) {
-    margin: 27px auto 14px auto;
+    margin: 27px auto 12px auto;
     padding: 0 24px;
   }
 
@@ -464,13 +464,14 @@ const STagline = styled.p`
   max-width: 648px;
   font-size: 1.25em;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4em;
+  color: #BAC7DB;
+  line-height: 1.45em;
   & a {
     transition: 0.1s ease;
+    color: #8FBFFF;
   }
   & a:hover {
-    color: #fff;
+    color: #BED8FF;
     transition: 0s;
   }
   @media screen and (${responsive.sm.max}) {
@@ -1239,9 +1240,9 @@ const IndexPage = () => (
           {/*  <EthereumPageHeader />*/}
           <SHero>
             <SContainer>
-              <STitle>The easiest way to manage your&nbsp;tokens</STitle>
+              <STitle>Balance Manager</STitle>
               <STagline>
-                Balance Manager is an interface that connects to <a href="https://metamask.io" target="_blank">MetaMask</a> and <a href="https://www.ledgerwallet.com" target="_blank">Ledger</a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
+                Manager is an interface that connects to <a href="https://metamask.io" target="_blank">MetaMask</a> and <a href="https://www.ledgerwallet.com" target="_blank">Ledger</a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
