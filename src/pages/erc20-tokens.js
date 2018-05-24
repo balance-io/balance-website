@@ -337,32 +337,7 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-join`} minHeight={450} color={colors.navyBlue}>
-      <SSectionWrapperBottom minHeight={450}>
-        <SFlex>
-          <SContainer>
-            <STitle>Want a wallet for your tokens?</STitle>
-            <SSubTitle>Get early access to our private beta</SSubTitle>
-            <SViralLoops
-              type="button"
-              className="vrlps-trigger"
-              data-toggle="modal"
-              data-target="#vl_popup"
-              onClick={() => VL.openModal()}
-            >
-              Join the waitlist
-            </SViralLoops>
-          </SContainer>
-        </SFlex>
-
-        <SFlex>
-          <SImageWrapperAppPreview>
-            {' '}
-            <img src={balanceTokenPreview} alt="Balance Ethereum Wallet" />
-          </SImageWrapperAppPreview>
-        </SFlex>
-      </SSectionWrapperBottom>
-    </Section>
+    <Section center id={`balance-token-join`} minHeight={200} color={colors.navyBlue} />
   </Page>
 );
 
