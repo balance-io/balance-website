@@ -345,7 +345,7 @@ const SFlex = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  ${'' /* background-color: red; */} justify-content: center;
+  justify-content: center;
   @media screen and (${responsive.sm.max}) {
     align-items: flex-start;
   }
@@ -1228,7 +1228,8 @@ const layoutTheme = {
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
-  logoHover: colors.white
+  logoHover: colors.white,
+  managerButton: colors.managerButton
 };
 
 const IndexPage = () => (

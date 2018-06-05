@@ -446,7 +446,8 @@ const layoutTheme = {
   mobileActiveColor: colors.brightBlue,
   mobileToggleColor: colors.white,
   logoColor: colors.lightGrey,
-  logoHover: colors.white
+  logoHover: colors.white,
+  managerButton: colors.managerButton
 };
 
 let timeout = null;

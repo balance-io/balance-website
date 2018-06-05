@@ -245,7 +245,7 @@ const SNavLinksManager = SExternalLink.extend`
     width: 158px;
     height: 35px;
     border-radius: 10px;
-    background: #3D6BA8;
+    background: ${({ theme }) => `rgb(${theme.managerButton})`};
     z-index: -1;
   }
 
