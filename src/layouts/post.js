@@ -135,7 +135,8 @@ const layoutTheme = {
   mobileActiveColor: colors.green,
   mobileToggleColor: colors.green,
   logoColor: colors.green,
-  logoHover: colors.dark
+  logoHover: colors.dark,
+  managerButton: colors.dark
 };
 
 const Post = ({ data }) => {

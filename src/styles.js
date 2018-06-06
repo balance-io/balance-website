@@ -5,6 +5,8 @@ export const colors = {
   grey: '187, 187, 187',
   softGrey: '161, 161, 172',
   blueishGrey: '28, 34, 42',
+  blueGray19: '38, 43, 49',
+  blueGray19BackgroundArrow: '46, 52, 59',
   darker: '25, 25, 25',
   dark: '51, 51, 51',
   darkTwo: '47, 49, 55',
@@ -29,7 +31,10 @@ export const colors = {
   lightFooterDivider: '202, 208, 216',
   darkFooterDivider: '31, 45, 61',
   darkFooterLinks: '49, 51, 54',
-  github: '52, 54, 57'
+  github: '52, 54, 57',
+  balanceGreen: '0, 192, 120',
+  exchangeGreen: '37, 184, 130',
+  managerButton: '61, 107, 168'
 };
 
 export const fonts = {

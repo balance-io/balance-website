@@ -88,6 +88,10 @@ const SNavList = styled.ul`
   @media screen and (${responsive.sm.max}) {
     display: none;
   }
+  @media screen and (max-width: 700px) {
+    padding-left: 0;
+    padding-right: 30px;
+  }
 `;
 
 const SNavLinks = styled(Link)`
@@ -107,6 +111,9 @@ const SNavLinks = styled(Link)`
   &:active {
     transform: scale(0.95) translate3d(0, 0, 0);
     transition: ${transitions.short};
+  }
+  @media screen and (max-width: 700px) {
+    padding: 24px 12px 24px 25px;
   }
 `;
 
@@ -245,12 +252,16 @@ const SNavLinksManager = SExternalLink.extend`
     width: 158px;
     height: 35px;
     border-radius: 10px;
-    background: #3D6BA8;
+    background: ${({ theme }) => `rgb(${theme.managerButton})`};
     z-index: -1;
   }
 
   @media screen and (${responsive.sm.max}) {
     display: none;
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 24px 25px !important;
   }
 `;
 
@@ -533,10 +544,10 @@ class Header extends Component {
                 <p>Tokens</p>
               </SNavLinksTokens>
               <SNavLinksBlog
-                onClick={() => ga('send', 'event', 'Blog', 'click', 'Header - click Blog')}
-                to="/blog"
+                onClick={() => ga('send', 'event', 'Exchange', 'click', 'Header - click Exchange')}
+                to="/exchange"
               >
-                <p>Blog</p>
+                <p>Exchange</p>
               </SNavLinksBlog>
             </SNavList>
             <SNavLinksManager
@@ -573,12 +584,12 @@ class Header extends Component {
               </SMobileNavLinksTokens>
               <SMobileNavLinksBlog
                 activeColor={theme.mobileActiveColor}
-                selected={pathname.match(/\/blog\/?/g)}
+                selected={pathname.match(/\/exchange\/?/g)}
                 reveal={this.state.navReveal}
                 onClick={this.hideNavReveal}
-                to="/blog"
+                to="/exchange"
               >
-                <span>Blog</span>
+                <span>Exchange</span>
               </SMobileNavLinksBlog>
               <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
             </SMobileNav>

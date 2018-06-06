@@ -15,7 +15,6 @@ const SPage = styled.div`
   flex-direction: column;
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${colors[fontColor]})`};
-  background: #071827;
 `;
 
 const layoutTheme = {
