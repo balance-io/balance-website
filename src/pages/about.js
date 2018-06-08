@@ -8,6 +8,7 @@ import purpleTriangles from '../assets/purple-triangles.png';
 import padlock from '../assets/padlock.svg';
 import cardArrow from '../assets/card-arrow.png';
 import team from '../data/team';
+import collaborators from '../data/collaborators';
 import { colors, fonts, transitions, responsive } from '../styles';
 
 const SBlackBackground = styled.div`
@@ -187,13 +188,15 @@ const STeamWrapper = styled.div`
   }
 `;
 
+const SCollaboratorsWrapper = STeamWrapper.extend``;
+
 const STeam = styled.div`
   width: 100%;
-  max-width: 370px;
+  max-width: 200px;
   display: flex;
   justify-content: space-between;
   margin: 12px;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 200px) {
     width: 100%;
     max-width: none;
   }
@@ -479,6 +482,8 @@ class AboutPage extends Component {
           <SSectionWrapper>
             <SContent>
               <STeamWrapper>
+                <SSubTitle>Core Team</SSubTitle>
+                <STagline>The people buidling Balance today.</STagline>
                 <STeam>
                   {team.map((member, idx) => (
                     <STeamMember
@@ -518,6 +523,22 @@ class AboutPage extends Component {
                 </SCardWrapper>
               </STeamWrapper>
 
+              <SCollaboratorsWrapper>
+                <SSubTitle>Collaborators</SSubTitle>
+                <STagline>The people who have helped buidl Balance.</STagline>
+                <STeam>
+                  {collaborators.map((member, idx) => (
+                    <STeamMember
+                      key={member.name}
+                      selected={this.state.selected === idx}
+                      onClick={() => this.onChangeSelected(idx)}
+                    >
+                      <img src={member.profileImg} alt={member.name} />
+                    </STeamMember>
+                  ))}
+                </STeam>
+              </SCollaboratorsWrapper>
+
               <SAbout>
                 <STitle>We’re building simple, powerful interfaces for the token economy.</STitle>
                 <SAboutParagraph>
@@ -536,22 +557,17 @@ class AboutPage extends Component {
 
             <SSidebar>
               <SOpenRoles>
-                <SSubTitle>Want to join us?</SSubTitle>
+                <SSubTitle>Join the team</SSubTitle>
                 <STagline>Open roles:</STagline>
                 <SRole>
-                  <img src={padlock} alt="security" />
                   <a
-                    href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
+                    href="https://angel.co/balance-io/jobs"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >{`Application Security Engineer`}</a>
+                  >{`Apply on Angelist`}</a>
                 </SRole>
                 <STagline>
-                  We also would love to talk to any great people who are interested in making tokens
-                  easier to use. Just email:{' '}
-                  <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
-                    richard@balance.io
-                  </a>
+                  We love to work with people are already contributing to Balance.
                 </STagline>
               </SOpenRoles>
 
