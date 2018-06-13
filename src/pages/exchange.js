@@ -2,11 +2,13 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Page from '../layouts/page';
 import Section from '../components/Section';
+import Link from 'gatsby-link';
 import SubscribeForm from '../components/SubscribeForm';
 import appExchange from '../assets/app-exchange.png';
 import backgroundArrow from '../assets/background-arrow-exchange.svg';
 import backgroundArrowMobile from '../assets/background-arrow-mobile-exchange.svg';
 import backgroundArrow2 from '../assets/background-arrow-2-exchange.svg';
+import navManager from '../assets/nav-manager.svg';
 
 import { colors, responsive } from '../styles';
 
@@ -225,6 +227,43 @@ const SSubscribeForm = styled(SubscribeForm)`
   }
 `;
 
+const SButton = styled.a`
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 140px;
+  padding: 8px 20px 0 0;
+  height: 44px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.04), 0 0 1px 0 rgba(0, 0, 0, 0.02),
+    0 3px 6px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  background: #25B882;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-align: center;
+  cursor: pointer;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    padding: 2px;
+    width: 13px;
+    height: 13px;
+    mask-image: url(${navManager}) center no-repeat;
+    -webkit-mask: url(${navManager}) center no-repeat;
+    background-color: #fff;
+    transition: 0.15s ease;
+  }
+
+  &:hover:after {
+    transform: translateX(2.5px);
+  }
+`;
+
 const layoutTheme = {
   linkColor: colors.white,
   linkHover: colors.blueGray19BackgroundArrow,
@@ -266,9 +305,9 @@ const ExchangePage = ({ data, ...props }) => (
         <SAppStatic />
       </SSectionWrapper>
       <SNewsletter>
-        <h3>News</h3>
-        <p>Get Balance product updates</p>
-        <SSubscribeForm />
+        <h3>Try Exchange</h3>
+        <p>Trade from MetaMask, Ledger, and Trezor</p>
+        <SButton href="https://manager.balance.io">Manager</SButton>
       </SNewsletter>
     </SSectionApp>
   </Page>
