@@ -464,14 +464,14 @@ const STagline = styled.p`
   max-width: 648px;
   font-size: 1.25em;
   text-align: center;
-  color: #BAC7DB;
+  color: #bac7db;
   line-height: 1.45em;
   & a {
     transition: 0.1s ease;
-    color: #8FBFFF;
+    color: #8fbfff;
   }
   & a:hover {
-    color: #BED8FF;
+    color: #bed8ff;
     transition: 0s;
   }
   @media screen and (${responsive.sm.max}) {
@@ -1243,7 +1243,17 @@ const IndexPage = () => (
             <SContainer>
               <STitle>Balance Manager</STitle>
               <STagline>
-                Manager is an interface that connects to <a href="https://metamask.io" target="_blank">MetaMask</a> and <a href="https://www.ledgerwallet.com" target="_blank">Ledger</a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
+                Manager is an interface that connects to{' '}
+                <a href="https://metamask.io" target="_blank">
+                  MetaMask
+                </a>,{' '}
+                <a href="https://www.ledgerwallet.com/r/7931" target="_blank">
+                  Ledger
+                </a>{' '}
+                and{' '}
+                <a href="https://shop.trezor.io?a=balance.io" target="_blank">
+                  Trezor
+                </a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
