@@ -227,12 +227,13 @@ export const globalStyles = `
   }
 
   body {
+    background-color: rgb(${colors.backgroundNavy});
+    color: rgb(${colors.dark});
     font-family: 'Graphik', "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-style: normal;
   	font-stretch: normal;
     font-size: ${fonts.medium};
-    color: rgb(${colors.dark});
     overflow-y:auto;
     text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
