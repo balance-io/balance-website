@@ -331,7 +331,7 @@ const SMobileNav = styled.div`
   }
 `;
 
-const SMobileNavLinks = styled(Link)`
+const SMobileNavLinks = styled(({ activeColor, reveal, ...props }) => <Link {...props} />)`
   position: relative;
   box-sizing: border-box;
   display: flex;

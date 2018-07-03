@@ -72,7 +72,7 @@ const Section = ({
 );
 
 Section.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   background: PropTypes.node,
   center: PropTypes.bool,
   overflow: PropTypes.bool,
@@ -85,7 +85,7 @@ Section.propTypes = {
 Section.defaultProps = {
   background: null,
   center: false,
-  overflow: false,
+  overflow: null,
   maxWidth: 1000,
   minHeight: 0,
   color: null,
