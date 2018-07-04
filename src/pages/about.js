@@ -183,17 +183,17 @@ const STeamWrapper = styled.div`
   flex-direction: column;
   @media screen and (${responsive.md.max}) {
     display: flex;
-    align-items: center;
+    align-items: left;
   }
 `;
 
 const STeam = styled.div`
   width: 100%;
-  max-width: 370px;
+  max-width: 220px;
   display: flex;
   justify-content: space-between;
   margin: 12px;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 220px) {
     width: 100%;
     max-width: none;
   }
@@ -357,7 +357,7 @@ const SEmoji = styled.div`
 
 const SCardDescription = styled.div`
   font-size: ${fonts.small};
-  color: rgba(${colors.darkTwo}, 0.6);
+  color: rgba(${colors.darker});
   line-height: 1.31;
   text-align: left;
   border-top: 2px solid rgba(${colors.grey}, 0.1);
@@ -519,17 +519,91 @@ class AboutPage extends Component {
               </STeamWrapper>
 
               <SAbout>
-                <STitle>We’re building simple, powerful interfaces for the token economy.</STitle>
+                <STitle>
+                  We are{' '}
+                  <a
+                    href="https://twitter.com/owocki/status/930940008478978050"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    buidling
+                  </a>{' '}
+                  interfaces for the open source financial system
+                </STitle>
                 <SAboutParagraph>
-                  Balance began life as a side project. Ben, Christian and Richard built a personal
-                  finance tool for macOS. We launched the app in early 2017 and Apple featured the
-                  product on the front of the Mac App Store. We then started thinking about adding
-                  support for digital currencies. After building out a prototype we successfully
-                  raised a round of crowd funding.
+                  Balance began life as a side project in 2016 to make a beautiful interface for
+                  money. We launched our first{' '}
+                  <a
+                    href="https://www.macstories.net/reviews/balance-brings-financial-accounts-to-the-macs-menu-bar/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    macOS app in 2017
+                  </a>. We then started thinking about adding support for digital currencies. After
+                  releasing a{' '}
+                  <a
+                    href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    prototype
+                  </a>{' '}
+                  we raised a round of{' '}
+                  <a href="https://wefunder.com/balance" target="_blank" rel="noopener noreferrer">
+                    crowdfunding
+                  </a>.
                 </SAboutParagraph>
                 <SAboutParagraph>
-                  Our focus now is to build a great wallet and interface for the token economy. We
-                  are currently focused on Ethereum-based ERC-20 tokens.
+                  In 2018, we shipped a web app for interacting with popular Ethereum wallets called{' '}
+                  <a
+                    href="https://medium.com/balance-io/balance-manager-beta-6a5e64df3cd3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Balance Manager
+                  </a>. We are now focused on creating a great{' '}
+                  <a
+                    href="https://spectrum.chat/balance?thread=ba46fdb4-4e24-4650-88d1-0d88916c3f73"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    iOS wallet
+                  </a>{' '}
+                  for storing tokens and{' '}
+                  <a href="https://www.walletconnect.org" target="_blank" rel="noopener noreferrer">
+                    interacting with dapps
+                  </a>. The{' '}
+                  <a
+                    href="https://github.com/orgs/balance-io/people"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    core team
+                  </a>{' '}
+                  is supported by a growing number of{' '}
+                  <a
+                    href="https://twitter.com/ricburton/status/1006146248666177537"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    short-term
+                  </a>{' '}
+                  paid contractors on{' '}
+                  <a
+                    href="https://gitcoin.co/profile/balance-io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitCoin
+                  </a>{' '}
+                  and open source contributors on{' '}
+                  <a
+                    href="https://github.com/balance-io/balance-manager/graphs/contributors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>.
                 </SAboutParagraph>
               </SAbout>
             </SContent>
@@ -537,26 +611,32 @@ class AboutPage extends Component {
             <SSidebar>
               <SOpenRoles>
                 <SSubTitle>Want to join us?</SSubTitle>
-                <STagline>Open roles:</STagline>
                 <SRole>
-                  <img src={padlock} alt="security" />
                   <a
-                    href="https://angel.co/balance-io/jobs/329699-application-security-engineer"
+                    href="https://angel.co/balance-io/jobs"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >{`Application Security Engineer`}</a>
+                  >{`Apply on AngelList`}</a>
                 </SRole>
                 <STagline>
-                  We also would love to talk to any great people who are interested in making tokens
-                  easier to use. Just email:{' '}
-                  <a href="mailto:richard@balance.io" target="_blank" rel="noopener noreferrer">
-                    richard@balance.io
-                  </a>
+                  Anyone can contribute code on{' '}
+                  <a href="https://github.com/balance-io" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>{' '}
+                  or time on{' '}
+                  <a href="https://spectrum.chat/balance" target="_blank" rel="noopener noreferrer">
+                    Spectrum
+                  </a>.
                 </STagline>
               </SOpenRoles>
 
               <SContact>
                 <SSubTitle>Contact</SSubTitle>
+                <STagline>Studio address:</STagline>
+                <STagline strong compact>
+                  Williamsburg, Brooklyn, NY
+                </STagline>
+                <br />
                 <STagline>Registered address:</STagline>
                 <STagline strong compact>
                   548 Market St #90291 <br />

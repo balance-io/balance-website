@@ -249,7 +249,7 @@ const MeetupsPage = () => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Us
+              Done
             </a>
           </SMeetupLink>
         </SMeetupRow>
@@ -262,7 +262,7 @@ const MeetupsPage = () => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Us
+              Done
             </a>
           </SMeetupLink>
         </SMeetupRow>
@@ -275,20 +275,20 @@ const MeetupsPage = () => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Us
+              Done
             </a>
           </SMeetupLink>
         </SMeetupRow>
         <SMeetupRow>
           <SMeetupLocation>🇺🇸 New York</SMeetupLocation>
-          <SMeetupDate>TBD</SMeetupDate>
+          <SMeetupDate>Weekly S18</SMeetupDate>
           <SMeetupLink>
             <a
-              href="http://spectrum.chat/balance/meetups"
+              href="https://spectrum.chat/balance/summerofship"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Us
+              Join
             </a>
           </SMeetupLink>
         </SMeetupRow>
@@ -297,24 +297,11 @@ const MeetupsPage = () => (
           <SMeetupDate>TBD</SMeetupDate>
           <SMeetupLink>
             <a
-              href="http://spectrum.chat/balance/meetups"
+              href="https://spectrum.chat/thread/a065f468-b21d-4c50-b1d4-2a5ba36debd9"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Us
-            </a>
-          </SMeetupLink>
-        </SMeetupRow>
-        <SMeetupRow>
-          <SMeetupLocation>🇦🇷 Buenos Aires</SMeetupLocation>
-          <SMeetupDate>TBD</SMeetupDate>
-          <SMeetupLink>
-            <a
-              href="http://spectrum.chat/balance/meetups"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join Us
+              Join
             </a>
           </SMeetupLink>
         </SMeetupRow>
