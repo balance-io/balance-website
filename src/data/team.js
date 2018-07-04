@@ -57,32 +57,6 @@ export default [
     ]
   },
   {
-    name: `Pedro Gomes`,
-    profileImg: pedro,
-    twitter: `pedrouid`,
-    role: `Engineer`,
-    description: `Pedro has built out ecommerce stores and banking interfaces. He loves React and blockchains in equal measure.`,
-    emojis: [
-      { name: 'pedroFace', img: pedroFace },
-      { name: 'pedroFun', img: pedroFun },
-      { name: 'pedroWork', img: pedroWork },
-      { name: 'pedroParty', img: pedroParty }
-    ]
-  },
-  {
-    name: `Ben Baron`,
-    profileImg: ben,
-    twitter: `benbaron`,
-    role: `Engineer`,
-    description: `Ben built a popular music streaming app and worked on Anghami before joining Apple to work on Photos team.`,
-    emojis: [
-      { name: 'benFace', img: benFace },
-      { name: 'benFun', img: benFun },
-      { name: 'benWork', img: benWork },
-      { name: 'benParty', img: benParty }
-    ]
-  },
-  {
     name: `Richard Burton`,
     profileImg: richard,
     twitter: `ricburton`,
