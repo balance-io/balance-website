@@ -357,7 +357,7 @@ const SEmoji = styled.div`
 
 const SCardDescription = styled.div`
   font-size: ${fonts.small};
-  color: rgba(${colors.darker});
+  color: rgba(${colors.darker}, 0.95);
   line-height: 1.31;
   text-align: left;
   border-top: 2px solid rgba(${colors.grey}, 0.1);

@@ -35,7 +35,7 @@ export default [
     profileImg: jin,
     twitter: `jinrummie`,
     role: `Engineer`,
-    description: `Jin met Richard at Hacker School (now Recurse Center). Then she worked on machine learning infrastructure at eBay.`,
+    description: `Jin worked at UBS building trading tools for structured products before joining Hacker School, where she met Richard. Then she worked on machine learning infrastructure at eBay.`,
     emojis: [
       { name: 'jinFace', img: jinFace },
       { name: 'jinFun', img: jinFun },
@@ -48,7 +48,7 @@ export default [
     profileImg: christian,
     twitter: `chrisbaroni`,
     role: `Designer`,
-    description: `Christian has designed user interfaces and icons for Microsoft Office, Stripe and several successful startups.`,
+    description: `Christian has designed user interfaces and icons for Microsoft, Stripe and several startups.`,
     emojis: [
       { name: 'christianFace', img: christianFace },
       { name: 'christianFun', img: christianFun },
@@ -61,7 +61,7 @@ export default [
     profileImg: richard,
     twitter: `ricburton`,
     role: `Designer`,
-    description: `Richard bumped into Gavin and Vitalik in 2014 and spent time designing interface concepts for Ethereum before the sale.`,
+    description: `Richard bumped into Gavin and Vitalik in 2014 and spent time designing interface concepts for Ethereum. He also worked at Stripe.`,
     emojis: [
       { name: 'richardFace', img: richardFace },
       { name: 'richardFun', img: richardFun },
