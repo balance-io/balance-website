@@ -139,7 +139,7 @@ const SViralLoops = styled.button`
 
 const STokenMobile = styled.img`
   display: none;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   @media screen and (${responsive.sm.max}) {
     display: block;
@@ -277,7 +277,7 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-vs-coin`} minHeight={450} color={colors.navyBlue}>
+    <Section center id={`balance-token-vs-coin`} minHeight={450} color={colors.navyBlue} paddingBottom={100}>
       <SSectionWrapper left>
         <SFlex>
           <SContainer>
