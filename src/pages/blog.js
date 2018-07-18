@@ -226,7 +226,7 @@ const Blog = ({ data, errors }) => {
             );
           } else {
             return (
-              <Link key={post.id} to={`blog/${post.slug}`}>
+              <Link key={post.id} to={`${post.slug}`}>
                 <SPostCards medium={post.medium} idx={idx}>
                   <SDivider idx={idx}>
                     <div />
