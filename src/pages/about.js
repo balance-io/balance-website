@@ -478,46 +478,6 @@ class AboutPage extends Component {
         >
           <SSectionWrapper>
             <SContent>
-              <STeamWrapper>
-                <STeam>
-                  {team.map((member, idx) => (
-                    <STeamMember
-                      key={member.name}
-                      selected={this.state.selected === idx}
-                      onClick={() => this.onChangeSelected(idx)}
-                    >
-                      <img src={member.profileImg} alt={member.name} />
-                    </STeamMember>
-                  ))}
-                </STeam>
-                <SCardWrapper>
-                  <SCard selected={this.state.selected}>
-                    <img src={cardArrow} alt="arrow" />
-                    <SCardHeader>
-                      <SProfile>
-                        <p>{team[this.state.selected].name}</p>
-                        <p>
-                          {team[this.state.selected].role}
-                          <span>{' | '}</span>
-                          <a href={`https://twitter.com/${team[this.state.selected].twitter}`}>{`@${
-                            team[this.state.selected].twitter
-                          }`}</a>
-                        </p>
-                      </SProfile>
-                      <SCardEmojis>
-                        {team[this.state.selected].emojis.map(emoji => (
-                          <SEmoji key={emoji.name}>
-                            <img src={emoji.img} alt={emoji.name} />
-                          </SEmoji>
-                        ))}
-                      </SCardEmojis>
-                    </SCardHeader>
-
-                    <SCardDescription>{team[this.state.selected].description}</SCardDescription>
-                  </SCard>
-                </SCardWrapper>
-              </STeamWrapper>
-
               <SAbout>
                 <STitle>
                   We are{' '}
@@ -606,6 +566,45 @@ class AboutPage extends Component {
                   </a>.
                 </SAboutParagraph>
               </SAbout>
+              <STeamWrapper>
+                <STeam>
+                  {team.map((member, idx) => (
+                    <STeamMember
+                      key={member.name}
+                      selected={this.state.selected === idx}
+                      onClick={() => this.onChangeSelected(idx)}
+                    >
+                      <img src={member.profileImg} alt={member.name} />
+                    </STeamMember>
+                  ))}
+                </STeam>
+                <SCardWrapper>
+                  <SCard selected={this.state.selected}>
+                    <img src={cardArrow} alt="arrow" />
+                    <SCardHeader>
+                      <SProfile>
+                        <p>{team[this.state.selected].name}</p>
+                        <p>
+                          {team[this.state.selected].role}
+                          <span>{' | '}</span>
+                          <a href={`https://twitter.com/${team[this.state.selected].twitter}`}>{`@${
+                            team[this.state.selected].twitter
+                          }`}</a>
+                        </p>
+                      </SProfile>
+                      <SCardEmojis>
+                        {team[this.state.selected].emojis.map(emoji => (
+                          <SEmoji key={emoji.name}>
+                            <img src={emoji.img} alt={emoji.name} />
+                          </SEmoji>
+                        ))}
+                      </SCardEmojis>
+                    </SCardHeader>
+
+                    <SCardDescription>{team[this.state.selected].description}</SCardDescription>
+                  </SCard>
+                </SCardWrapper>
+              </STeamWrapper>
             </SContent>
 
             <SSidebar>
