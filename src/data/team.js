@@ -51,6 +51,7 @@ export default [
     description: `Christian has designed user interfaces and icons for Microsoft, Stripe and several startups.`,
     emojis: [
       { name: 'christianFace', img: christianFace },
+
       { name: 'christianFun', img: christianFun },
       { name: 'christianWork', img: christianWork },
       { name: 'christianParty', img: christianParty }
