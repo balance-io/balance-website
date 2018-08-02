@@ -8,7 +8,7 @@ import { colors, responsive, transitions } from '../styles';
 
 const SFooterWrapper = styled.div`
   width: 100%;
-  position: absolute;
+  position: relative;
   bottom: 0;
 `;
 
