@@ -6,6 +6,7 @@ import { colors, responsive } from '../styles';
 const SSection = styled.section`
   width: 100%;
   height: auto;
+  padding-bottom: ${({ paddingBottom }) => (paddingBottom ? `${paddingBottom}px` : '0px')};
   min-height: ${({ viewport, minHeight }) =>
     viewport ? `100vh` : minHeight ? `${minHeight}px` : 0};
   background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
