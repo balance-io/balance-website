@@ -1,6 +1,6 @@
-import sam from '../assets/advisors/sam.png';
-import chris from '../assets/advisors/chris.png';
-import josh from '../assets/advisors/josh.png';
+import sam from "../assets/advisors/sam.png";
+import chris from "../assets/advisors/chris.png";
+import josh from "../assets/advisors/josh.png";
 
 export default [
   {

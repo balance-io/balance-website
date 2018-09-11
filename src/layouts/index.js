@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { injectGlobal } from 'styled-components';
-import { globalStyles, colors } from '../styles';
-import { hideIntercom, showIntercom } from '../utils/helpers';
-import Helmet from 'react-helmet';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { injectGlobal } from "styled-components";
+import { globalStyles, colors } from "../styles";
+import { hideIntercom, showIntercom } from "../utils/helpers";
+import Helmet from "react-helmet";
 
 injectGlobal`${globalStyles}`;
 
@@ -20,14 +20,14 @@ const SContent = styled.div`
 `;
 
 const TemplateWrapper = ({ children, location, data }) => {
-  if (typeof window !== 'undefined') {
-    if (location.pathname.indexOf('blog') === -1) {
+  if (typeof window !== "undefined") {
+    if (location.pathname.indexOf("blog") === -1) {
       showIntercom();
-      if (location.pathname.indexOf('about') === -1) {
-        if (location.pathname.indexOf('exchange') === 1) {
+      if (location.pathname.indexOf("about") === -1) {
+        if (location.pathname.indexOf("exchange") === 1) {
           document.body.style.background = `rgb(${colors.blueGray19})`;
         } else {
-        document.body.style.background = `rgb(${colors.backgroundNavy})`;
+          document.body.style.background = `rgb(${colors.backgroundNavy})`;
         }
       } else {
         document.body.style.background = `rgb(${colors.darkerNavyBlue})`;
@@ -49,23 +49,23 @@ const TemplateWrapper = ({ children, location, data }) => {
       <Helmet
         title={title}
         meta={[
-          { name: 'description', content: description },
-          { name: 'keywords', content: keywords },
+          { name: "description", content: description },
+          { name: "keywords", content: keywords },
 
-          { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:site', content: twitterUsername },
-          { name: 'twitter:title', content: title },
-          { name: 'twitter:description', content: description },
-          { name: 'twitter:img:src', content: `${url}/${socialCard}` },
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "twitter:site", content: twitterUsername },
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+          { name: "twitter:img:src", content: `${url}/${socialCard}` },
 
-          { name: 'og:title', content: title },
-          { name: 'og:type', content: 'website' },
-          { name: 'og:url', content: url },
-          { name: 'og:image', content: `${url}/${socialCard}` },
-          { name: 'og:description', content: description },
+          { name: "og:title", content: title },
+          { name: "og:type", content: "website" },
+          { name: "og:url", content: url },
+          { name: "og:image", content: `${url}/${socialCard}` },
+          { name: "og:description", content: description },
 
-          { name: 'og:site_name', content: title },
-          { name: 'fb:admins', content: facebookId }
+          { name: "og:site_name", content: title },
+          { name: "fb:admins", content: facebookId }
         ]}
       />
       <SContent>{children()}</SContent>

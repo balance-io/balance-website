@@ -1,8 +1,8 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import Section from '../components/Section';
-import ethereumLogo from '../assets/ethereum-logo.png';
-import { responsive } from '../styles';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import Section from "../components/Section";
+import ethereumLogo from "../assets/ethereum-logo.png";
+import { responsive } from "../styles";
 
 const floating = keyframes`
   0%, 100% { transform: translateY(10%); }
@@ -26,23 +26,26 @@ const SPageHeader = styled.div`
 
 const SStaticLogo = styled.img`
   position: absolute;
-  height: ${({ height }) => (height ? `${height}px` : 'auto')};
-  left: ${({ height }) => (height ? `calc(50% - ((${height}px * 0.614) / 2))` : '50%')};
-  top: ${({ top }) => (top ? `${top}px` : 'auto')};
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  left: ${({ height }) =>
+    height ? `calc(50% - ((${height}px * 0.614) / 2))` : "50%"};
+  top: ${({ top }) => (top ? `${top}px` : "auto")};
 `;
 
 const SFloatingLogo = styled.img`
   position: absolute;
-  height: ${({ height }) => (height ? `${height}px` : 'auto')};
-  top: ${({ top }) => (top ? `${top}px` : 'auto')};
-  bottom: ${({ bottom }) => (bottom ? `${bottom}px` : 'auto')};
-  opacity: ${({ opacity }) => (opacity ? opacity : '1.0')};
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  top: ${({ top }) => (top ? `${top}px` : "auto")};
+  bottom: ${({ bottom }) => (bottom ? `${bottom}px` : "auto")};
+  opacity: ${({ opacity }) => (opacity ? opacity : "1.0")};
   left: ${({ left, windowSize }) =>
-    left ? `${Number(left / windowSize * 100).toFixed(2)}%` : 'auto'};
+    left ? `${Number((left / windowSize) * 100).toFixed(2)}%` : "auto"};
   right: ${({ right, windowSize }) =>
-    right ? `${Number(right / windowSize * 100).toFixed(2)}%` : 'auto'};
+    right ? `${Number((right / windowSize) * 100).toFixed(2)}%` : "auto"};
   animation: ${({ delay }) =>
-    delay ? `${floating} 4s -${delay}s infinite` : `${floating} 4s -1s infinite`};
+    delay
+      ? `${floating} 4s -${delay}s infinite`
+      : `${floating} 4s -1s infinite`};
 `;
 
 const SMobile = styled.div`
@@ -61,7 +64,12 @@ const EthereumPageHeader = () => (
   <Section id={`balance-token-header`} minHeight={350} maxWidth={null}>
     <SPageHeader>
       <SMobile>
-        <SStaticLogo height={189} top={112} src={ethereumLogo} alt="Ethereum Logo" />
+        <SStaticLogo
+          height={189}
+          top={112}
+          src={ethereumLogo}
+          alt="Ethereum Logo"
+        />
 
         <SFloatingLogo
           height={82}
@@ -119,7 +127,12 @@ const EthereumPageHeader = () => (
         />
       </SMobile>
       <SDesktop>
-        <SStaticLogo height={189} top={48} src={ethereumLogo} alt="Ethereum Logo" />
+        <SStaticLogo
+          height={189}
+          top={48}
+          src={ethereumLogo}
+          alt="Ethereum Logo"
+        />
 
         <SFloatingLogo
           delay={2}

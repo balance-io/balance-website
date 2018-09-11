@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Helmet from 'react-helmet';
-import Section from '../components/Section';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { colors, responsive } from '../styles';
-import { getTimeagoString } from '../utils/helpers';
-import TrianglesLeft from '../assets/blog-triangles-left.svg';
-import TrianglesRight from '../assets/blog-triangles-right.svg';
+import React from "react";
+import styled from "styled-components";
+import Helmet from "react-helmet";
+import Section from "../components/Section";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { colors, responsive } from "../styles";
+import { getTimeagoString } from "../utils/helpers";
+import TrianglesLeft from "../assets/blog-triangles-left.svg";
+import TrianglesRight from "../assets/blog-triangles-right.svg";
 
 const SBackgroundTriangles = styled.div`
   @media screen and (${responsive.sm.max}) {
@@ -104,7 +104,7 @@ const SAuthorName = styled.h5`
 const SPostContent = styled.div`
   & p {
     margin-bottom: 29px;
-    font-family: 'FreightText';
+    font-family: "FreightText";
     font-size: 1.3125em;
     line-height: 1.5714285714;
   }
@@ -163,27 +163,31 @@ const Post = ({ data }) => {
       <Helmet
         title={`${title} - ${siteTitle} Blog`}
         meta={[
-          { name: 'description', content: excerpt },
-          { name: 'keywords', content: tags },
+          { name: "description", content: excerpt },
+          { name: "keywords", content: tags },
 
-          { name: 'twitter:title', content: title },
-          { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:description', content: excerpt },
-          { name: 'twitter:image:src', content: featuredImage },
+          { name: "twitter:title", content: title },
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "twitter:description", content: excerpt },
+          { name: "twitter:image:src", content: featuredImage },
 
-          { name: 'og:title', content: title },
-          { name: 'og:type', content: 'article' },
-          { name: 'og:url', content: `${siteUrl}/post/${slug}` },
-          { name: 'og:description', content: excerpt },
-          { name: 'og:image', content: featuredImage },
+          { name: "og:title", content: title },
+          { name: "og:type", content: "article" },
+          { name: "og:url", content: `${siteUrl}/post/${slug}` },
+          { name: "og:description", content: excerpt },
+          { name: "og:image", content: featuredImage },
 
-          { name: 'article:published_time', content: date },
-          { name: 'article:author', content: authorName },
-          { name: 'article:section', content: category }
+          { name: "article:published_time", content: date },
+          { name: "article:author", content: authorName },
+          { name: "article:section", content: category }
         ]}
       />
       <Header theme={layoutTheme} />
-      <SPost maxWidth={700} fontColor={colors.dark} background={<SBackground />}>
+      <SPost
+        maxWidth={700}
+        fontColor={colors.dark}
+        background={<SBackground />}
+      >
         <header>
           <SInfo>
             <SAuthorImage>
@@ -191,7 +195,10 @@ const Post = ({ data }) => {
             </SAuthorImage>
             <SAuthorName>{authorName}</SAuthorName>
             <p>{authorBio}</p>
-            <p>{`Posted ${getTimeagoString(date, true)}  •  ${readingTime} min read`}</p>
+            <p>{`Posted ${getTimeagoString(
+              date,
+              true
+            )}  •  ${readingTime} min read`}</p>
           </SInfo>
           <h1>{title}</h1>
         </header>

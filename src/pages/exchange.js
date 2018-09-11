@@ -1,16 +1,16 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import Page from '../layouts/page';
-import Section from '../components/Section';
-import Link from 'gatsby-link';
-import SubscribeForm from '../components/SubscribeForm';
-import appExchange from '../assets/app-exchange.png';
-import backgroundArrow from '../assets/background-arrow-exchange.svg';
-import backgroundArrowMobile from '../assets/background-arrow-mobile-exchange.svg';
-import backgroundArrow2 from '../assets/background-arrow-2-exchange.svg';
-import navManager from '../assets/nav-manager.svg';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import Page from "../layouts/page";
+import Section from "../components/Section";
+import Link from "gatsby-link";
+import SubscribeForm from "../components/SubscribeForm";
+import appExchange from "../assets/app-exchange.png";
+import backgroundArrow from "../assets/background-arrow-exchange.svg";
+import backgroundArrowMobile from "../assets/background-arrow-mobile-exchange.svg";
+import backgroundArrow2 from "../assets/background-arrow-2-exchange.svg";
+import navManager from "../assets/nav-manager.svg";
 
-import { colors, responsive } from '../styles';
+import { colors, responsive } from "../styles";
 
 const SSection = styled(Section)`
   @media screen and (${responsive.md.min}) {
@@ -134,14 +134,14 @@ const STagline = styled.p`
   max-width: 648px;
   font-size: 1.25em;
   text-align: center;
-  color: #B3BCC5;
+  color: #b3bcc5;
   line-height: 1.45em;
   & a {
     transition: 0.1s ease;
-    color: #00BC7D;
+    color: #00bc7d;
   }
   & a:hover {
-    color: #00D181;
+    color: #00d181;
     transition: 0s;
   }
   @media screen and (${responsive.sm.max}) {
@@ -237,7 +237,7 @@ const SButton = styled.a`
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.04), 0 0 1px 0 rgba(0, 0, 0, 0.02),
     0 3px 6px 0 rgba(0, 0, 0, 0.06);
   border-radius: 12px;
-  background: #25B882;
+  background: #25b882;
   text-transform: uppercase;
   font-size: 1em;
   font-weight: 500;
@@ -246,7 +246,7 @@ const SButton = styled.a`
   cursor: pointer;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 12px;
     right: 14px;
@@ -279,7 +279,11 @@ const layoutTheme = {
 };
 
 const ExchangePage = ({ data, ...props }) => (
-  <Page title="Exchange" siteTitle={data.site.siteMetadata.title} theme={layoutTheme}>
+  <Page
+    title="Exchange"
+    siteTitle={data.site.siteMetadata.title}
+    theme={layoutTheme}
+  >
     <SBackgroundArrow />
     <SSection id={`balance-token`}>
       <SSectionWrapper>
@@ -289,7 +293,16 @@ const ExchangePage = ({ data, ...props }) => (
             <SContainer>
               <STitle>The easiest way to exchange tokens</STitle>
               <STagline>
-                Trade ERC-20 tokens with other people. Balance Exchange is powered by services like <a href="https://shapeshift.io" target="_blank">ShapeShift</a> and the <a href="https://0xproject.com" target="_blank">0x Project</a>.
+                Trade ERC-20 tokens with other people. Balance Exchange is
+                powered by services like{" "}
+                <a href="https://shapeshift.io" target="_blank">
+                  ShapeShift
+                </a>{" "}
+                and the{" "}
+                <a href="https://0xproject.com" target="_blank">
+                  0x Project
+                </a>
+                .
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
@@ -300,7 +313,7 @@ const ExchangePage = ({ data, ...props }) => (
       </SSectionWrapper>
     </SSection>
 
-    <SSectionApp >
+    <SSectionApp>
       <SSectionWrapper>
         <SAppStatic />
       </SSectionWrapper>

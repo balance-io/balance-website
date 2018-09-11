@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import Page from '../layouts/page';
-import Section from '../components/Section';
-import backgroundArrow from '../assets/background-arrow.svg';
-import backgroundArrowMobile from '../assets/background-arrow-mobile.svg';
-import map from '../assets/map.png';
+import React from "react";
+import styled from "styled-components";
+import Page from "../layouts/page";
+import Section from "../components/Section";
+import backgroundArrow from "../assets/background-arrow.svg";
+import backgroundArrowMobile from "../assets/background-arrow-mobile.svg";
+import map from "../assets/map.png";
 
-import { colors, responsive } from '../styles';
+import { colors, responsive } from "../styles";
 
 const SSection = styled(Section)`
   @media screen and (${responsive.md.min}) {
@@ -217,15 +217,16 @@ const MeetupsPage = () => (
             <SContainer>
               <STitle>Meetups</STitle>
               <STagline>
-                We want to talk to users, dapp developers, and our investors face-to-face as we
+                We want to talk to users, dapp developers, and our investors
+                face-to-face as we
                 <a
                   href="https://twitter.com/vitalikbuterin/status/971417459872882690"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {' '}
+                  {" "}
                   buidl
-                </a>{' '}
+                </a>{" "}
                 out Balance.
               </STagline>
             </SContainer>

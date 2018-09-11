@@ -1,20 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { colors, responsive } from '../styles';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { colors, responsive } from "../styles";
 
 const SSection = styled.section`
   width: 100%;
   height: auto;
-  padding-bottom: ${({ paddingBottom }) => (paddingBottom ? `${paddingBottom}px` : '0px')};
+  padding-bottom: ${({ paddingBottom }) =>
+    paddingBottom ? `${paddingBottom}px` : "0px"};
   min-height: ${({ viewport, minHeight }) =>
     viewport ? `100vh` : minHeight ? `${minHeight}px` : 0};
-  background: ${({ color }) => (color ? `rgb(${color})` : 'transparent')};
+  background: ${({ color }) => (color ? `rgb(${color})` : "transparent")};
   display: flex;
   justify-content: center;
   color: ${({ fontColor }) => `rgb(${fontColor})`};
   position: relative;
-  overflow: ${({ overflow }) => (overflow ? 'visible' : 'hidden')};
+  overflow: ${({ overflow }) => (overflow ? "visible" : "hidden")};
   @media screen and (${responsive.md.max}) {
     min-height: 0;
     height: auto;
@@ -23,7 +24,7 @@ const SSection = styled.section`
 
 const SContent = styled.div`
   width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : 'none')};
+  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}px` : "none")};
   margin: 0 auto;
   z-index: 0;
   ${({ center }) =>

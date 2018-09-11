@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'gatsby-link';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import twitter from '../assets/twitter.svg';
-import github from '../assets/github.svg';
-import { colors, responsive, transitions } from '../styles';
+import React from "react";
+import Link from "gatsby-link";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import twitter from "../assets/twitter.svg";
+import github from "../assets/github.svg";
+import { colors, responsive, transitions } from "../styles";
 
 const SFooterWrapper = styled.div`
   width: 100%;
@@ -13,7 +13,9 @@ const SFooterWrapper = styled.div`
 `;
 
 const SFooter = styled.footer`
-  border-top: ${({ theme }) => `2px solid rgba(${theme.footerDivider}, ${theme.footerDividerOpacity || 1})`};
+  border-top: ${({ theme }) =>
+    `2px solid rgba(${theme.footerDivider}, ${theme.footerDividerOpacity ||
+      1})`};
   width: 100%;
   max-width: 1028px;
   margin: 0 auto;
@@ -115,11 +117,19 @@ const Footer = ({ theme, ...props }) => (
         <SFooterLink href="https://balance.io/blog" rel="noreferrer noopener">
           Blog
         </SFooterLink>
-        <SFooterLink href="https://spectrum.chat/balance" rel="noreferrer noopener" target="_blank">
+        <SFooterLink
+          href="https://spectrum.chat/balance"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
           Community
         </SFooterLink>
         <SGatsbyLink to="/meetups">Meetups</SGatsbyLink>
-        <SFooterLink href="https://github.com/balance-io" rel="noreferrer noopener" target="_blank">
+        <SFooterLink
+          href="https://github.com/balance-io"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
           <SIconLinkGithub icon={github} color={colors.github} />
         </SFooterLink>
         <SFooterLink
