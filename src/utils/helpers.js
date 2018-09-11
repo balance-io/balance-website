@@ -4,8 +4,10 @@
  * @param  {Number} [maxLength=false]
  * @return {String}
  */
-export const ellipseText = (text = '', maxLength = false) =>
-  maxLength && text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+export const ellipseText = (text = "", maxLength = false) =>
+  maxLength && text.length > maxLength
+    ? `${text.substring(0, maxLength)}...`
+    : text;
 
 /**
  * @desc   Returns String for date in
@@ -17,32 +19,32 @@ export const ellipseText = (text = '', maxLength = false) =>
 
 export const getTimeagoString = (date, short, current) => {
   const monthsLong = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
   ];
   const monthsShort = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
   const limits = [60000, 3600000, 86400000, 604800000, 1209600000];
   if (!date) return null;
@@ -57,9 +59,11 @@ export const getTimeagoString = (date, short, current) => {
   const month = dateObj.getUTCMonth();
   const day = dateObj.getUTCDate();
   const diff = _current - timestamp;
-  let string = short ? `${monthsShort[month]} ${day}` : `${monthsLong[month]} ${day}`;
+  let string = short
+    ? `${monthsShort[month]} ${day}`
+    : `${monthsLong[month]} ${day}`;
   if (diff < limits[0]) {
-    string = 'just now';
+    string = "just now";
     return string;
   } else if (diff < limits[1]) {
     const timeDiff = Math.ceil(diff / limits[0]);
@@ -85,7 +89,9 @@ export const getTimeagoString = (date, short, current) => {
 
 export const getReadingTime = content => {
   if (!content) return null;
-  const articleWordLength = content.replace(/\s?[^a-zA-Z\d\s]\s/g, ' ').split(' ').length;
+  const articleWordLength = content
+    .replace(/\s?[^a-zA-Z\d\s]\s/g, " ")
+    .split(" ").length;
   const wordsPerMinute = 250;
   return Math.ceil(articleWordLength / wordsPerMinute);
 };
@@ -95,11 +101,11 @@ export const getReadingTime = content => {
  * @return {Void}
  */
 export const hideIntercom = () => {
-  const css = '#intercom-container { display: none }';
-  const head = document.head || document.getElementsByTagName('head')[0];
-  const style = document.createElement('style');
-  style.type = 'text/css';
-  style.id = 'hideIntercom';
+  const css = "#intercom-container { display: none }";
+  const head = document.head || document.getElementsByTagName("head")[0];
+  const style = document.createElement("style");
+  style.type = "text/css";
+  style.id = "hideIntercom";
 
   if (style.styleSheet) {
     style.styleSheet.cssText = css;
@@ -115,7 +121,7 @@ export const hideIntercom = () => {
  * @return {Void}
  */
 export const showIntercom = () => {
-  const style = document.getElementById('hideIntercom');
+  const style = document.getElementById("hideIntercom");
   if (style) {
     style.parentNode.removeChild(style);
   }
@@ -126,7 +132,8 @@ export const showIntercom = () => {
  * @param {string} string
  * @return {Void}
  */
-export const capitalise = string => string.slice(0, 1).toUpperCase() + string.slice(1);
+export const capitalise = string =>
+  string.slice(0, 1).toUpperCase() + string.slice(1);
 
 /**
  * @desc returns url parameter value
@@ -136,12 +143,12 @@ export const capitalise = string => string.slice(0, 1).toUpperCase() + string.sl
  */
 export const getUrlParameter = (
   parameter,
-  url = typeof window !== 'undefined' ? window.location.href : ''
+  url = typeof window !== "undefined" ? window.location.href : ""
 ) => {
-  let name = parameter.replace(/[[]]/g, '\\$&');
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  let name = parameter.replace(/[[]]/g, "\\$&");
+  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
   const results = regex.exec(url);
   if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 };

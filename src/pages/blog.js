@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
-import Section from '../components/Section';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import mediumLogo from '../assets/medium-logo.svg';
-import { colors, transitions, responsive } from '../styles';
-import { ellipseText, getTimeagoString } from '../utils/helpers';
+import React from "react";
+import styled from "styled-components";
+import Link from "gatsby-link";
+import Helmet from "react-helmet";
+import Section from "../components/Section";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import mediumLogo from "../assets/medium-logo.svg";
+import { colors, transitions, responsive } from "../styles";
+import { ellipseText, getTimeagoString } from "../utils/helpers";
 
 const SBlog = styled(Section)`
   padding: 48px 0 12px;
@@ -24,14 +24,14 @@ const SBlog = styled(Section)`
   }
 `;
 const dividerColors = [
-  '#A539BD',
-  '#9251AC',
-  '#32325D',
-  '#3079C0',
-  '#217AB7',
-  '#00AEA5',
-  '#517299',
-  '#54606C'
+  "#A539BD",
+  "#9251AC",
+  "#32325D",
+  "#3079C0",
+  "#217AB7",
+  "#00AEA5",
+  "#517299",
+  "#54606C"
 ];
 
 const SDivider = styled.div`
@@ -40,7 +40,7 @@ const SDivider = styled.div`
   height: 4px;
   overflow: hidden;
   margin-bottom: 18px;
-  display: ${({ idx }) => (idx === 0 ? 'none' : 'block')};
+  display: ${({ idx }) => (idx === 0 ? "none" : "block")};
   background: rgb(${colors.dark});
   @media screen and (${responsive.sm.max}) {
     width: 110%;
@@ -69,7 +69,7 @@ const SPostCards = styled.div`
   overflow: hidden;
   & p,
   & h2 {
-    padding-right: ${({ medium }) => (medium ? '50px' : 0)};
+    padding-right: ${({ medium }) => (medium ? "50px" : 0)};
   }
   @media screen and (${responsive.sm.max}) {
     border-radius: 0;
@@ -123,7 +123,7 @@ const SPostTitle = styled.h2`
 `;
 
 const SPostSummary = styled.p`
-  font-family: 'FreightText';
+  font-family: "FreightText";
   font-size: 1.125em;
   line-height: 1.3333333333;
   font-weight: 400;
@@ -140,26 +140,28 @@ const SMediumLogo = styled.img`
   position: absolute;
   height: 44px;
   width: 44px;
-  right: ${({ first }) => (first ? '20px' : '5px')};
-  bottom: ${({ first }) => (first ? '10px' : '0')};
+  right: ${({ first }) => (first ? "20px" : "5px")};
+  bottom: ${({ first }) => (first ? "10px" : "0")};
 `;
 
 const mergePosts = (contentful, medium) => {
   const allPosts = contentful.concat(medium);
   const parsedPosts = allPosts.map(post => {
     const result = {
-      id: '',
-      slug: '',
-      date: '',
-      title: '',
-      excerpt: '',
-      readingTime: '',
+      id: "",
+      slug: "",
+      date: "",
+      title: "",
+      excerpt: "",
+      readingTime: "",
       medium: false
     };
     result.id = post.node.id;
     result.slug = post.node.slug;
-    result.date = isNaN(post.node.date) ? Date.parse(post.node.date) : Number(post.node.date);
-    if (typeof post.node.title === 'string') {
+    result.date = isNaN(post.node.date)
+      ? Date.parse(post.node.date)
+      : Number(post.node.date);
+    if (typeof post.node.title === "string") {
       result.medium = true;
       result.title = post.node.title;
     } else {
@@ -208,19 +210,29 @@ const Blog = ({ data, errors }) => {
         {posts.map((post, idx) => {
           if (post.medium) {
             return (
-              <a key={post.id} href={`https://medium.com/balance-io/${post.slug}-${post.id}`}>
+              <a
+                key={post.id}
+                href={`https://medium.com/balance-io/${post.slug}-${post.id}`}
+              >
                 <SPostCards medium={post.medium} idx={idx}>
                   <SDivider idx={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo idx={idx}>{`${getTimeagoString(post.date, true)}  •  ${
-                    post.readingTime
-                  } min read`}</SPostInfo>
+                  <SPostInfo idx={idx}>{`${getTimeagoString(
+                    post.date,
+                    true
+                  )}  •  ${post.readingTime} min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>
                   <SPostSummary>
-                    {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
+                    {idx > 0
+                      ? ellipseText(post.excerpt, 120)
+                      : ellipseText(post.excerpt, 240)}
                   </SPostSummary>
-                  <SMediumLogo first={idx === 0} src={mediumLogo} alt="medium" />
+                  <SMediumLogo
+                    first={idx === 0}
+                    src={mediumLogo}
+                    alt="medium"
+                  />
                 </SPostCards>
               </a>
             );
@@ -231,12 +243,15 @@ const Blog = ({ data, errors }) => {
                   <SDivider idx={idx}>
                     <div />
                   </SDivider>
-                  <SPostInfo idx={idx}>{`${getTimeagoString(post.date, true)}  •  ${
-                    post.readingTime
-                  } min read`}</SPostInfo>
+                  <SPostInfo idx={idx}>{`${getTimeagoString(
+                    post.date,
+                    true
+                  )}  •  ${post.readingTime} min read`}</SPostInfo>
                   <SPostTitle>{post.title}</SPostTitle>
                   <SPostSummary>
-                    {idx > 0 ? ellipseText(post.excerpt, 120) : ellipseText(post.excerpt, 240)}
+                    {idx > 0
+                      ? ellipseText(post.excerpt, 120)
+                      : ellipseText(post.excerpt, 240)}
                   </SPostSummary>
                 </SPostCards>
               </Link>

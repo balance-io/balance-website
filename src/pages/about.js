@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import Page from '../layouts/page';
-import Section from '../components/Section';
-import blackTriangles from '../assets/black-triangles.png';
-import yellowTriangles from '../assets/yellow-triangles.png';
-import purpleTriangles from '../assets/purple-triangles.png';
-import padlock from '../assets/padlock.svg';
-import cardArrow from '../assets/card-arrow.png';
-import team from '../data/team';
-import { colors, fonts, transitions, responsive } from '../styles';
+import React, { Component } from "react";
+import styled from "styled-components";
+import Page from "../layouts/page";
+import Section from "../components/Section";
+import blackTriangles from "../assets/black-triangles.png";
+import yellowTriangles from "../assets/yellow-triangles.png";
+import purpleTriangles from "../assets/purple-triangles.png";
+import padlock from "../assets/padlock.svg";
+import cardArrow from "../assets/card-arrow.png";
+import team from "../data/team";
+import { colors, fonts, transitions, responsive } from "../styles";
 
 const SBlackBackground = styled.div`
   position: absolute;
@@ -208,7 +208,9 @@ const STeamMember = styled(SImageWrapper)`
   border-width: 2px;
   border-style: solid;
   border-color: ${({ selected }) =>
-    selected ? `rgba(${colors.brightBlue}, 0.8)` : `rgba(${colors.brightBlue}, 0)`};
+    selected
+      ? `rgba(${colors.brightBlue}, 0.8)`
+      : `rgba(${colors.brightBlue}, 0)`};
   }
   & img {
     border-radius: 50%;
@@ -430,9 +432,11 @@ const SContact = styled(SContainer)`
 const STagline = styled(SParagraph)`
   font-size: 1em;
   color: ${({ strong }) =>
-    strong ? `rgba(${colors.lightGrey}, 0.9)` : `rgba(${colors.lightGrey}, 0.6)`};
+    strong
+      ? `rgba(${colors.lightGrey}, 0.9)`
+      : `rgba(${colors.lightGrey}, 0.6)`};
   font-weight: ${({ strong }) => (strong ? 500 : 400)};
-  line-height: ${({ strong }) => (strong ? '1.5' : '1.63')};
+  line-height: ${({ strong }) => (strong ? "1.5" : "1.63")};
   margin-bottom: 4px;
 `;
 
@@ -461,13 +465,18 @@ class AboutPage extends Component {
     if (index || index === 0) {
       this.setState({ selected: index });
     } else {
-      let next = this.state.selected + 1 > team.length - 1 ? 0 : this.state.selected + 1;
+      let next =
+        this.state.selected + 1 > team.length - 1 ? 0 : this.state.selected + 1;
       this.setState({ selected: next });
     }
   };
   render() {
     return (
-      <Page title="About" theme={layoutTheme} siteTitle={this.props.data.site.siteMetadata.title}>
+      <Page
+        title="About"
+        theme={layoutTheme}
+        siteTitle={this.props.data.site.siteMetadata.title}
+      >
         <SSection
           viewport
           center
@@ -480,90 +489,104 @@ class AboutPage extends Component {
             <SContent>
               <SAbout>
                 <STitle>
-                  We are{' '}
+                  We are{" "}
                   <a
                     href="https://twitter.com/owocki/status/930940008478978050"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     buidling
-                  </a>{' '}
+                  </a>{" "}
                   interfaces for the open source financial system
                 </STitle>
                 <SAboutParagraph>
-                  Balance began life as a side project in 2016 to make a beautiful interface for
-                  money. We launched our first{' '}
+                  Balance began life as a side project in 2016 to make a
+                  beautiful interface for money. We launched our first{" "}
                   <a
                     href="https://www.macstories.net/reviews/balance-brings-financial-accounts-to-the-macs-menu-bar/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     macOS app in 2017
-                  </a>. We then started thinking about adding support for digital currencies. After
-                  releasing a{' '}
+                  </a>
+                  . We then started thinking about adding support for digital
+                  currencies. After releasing a{" "}
                   <a
                     href="https://medium.com/balance-io/launching-balance-open-11ec6b7bc848"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     prototype
-                  </a>{' '}
-                  we raised a round of{' '}
-                  <a href="https://wefunder.com/balance" target="_blank" rel="noopener noreferrer">
+                  </a>{" "}
+                  we raised a round of{" "}
+                  <a
+                    href="https://wefunder.com/balance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     crowdfunding
-                  </a>.
+                  </a>
+                  .
                 </SAboutParagraph>
                 <SAboutParagraph>
-                  In 2018, we shipped a web app for interacting with popular Ethereum wallets called{' '}
+                  In 2018, we shipped a web app for interacting with popular
+                  Ethereum wallets called{" "}
                   <a
                     href="https://medium.com/balance-io/balance-manager-beta-6a5e64df3cd3"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Balance Manager
-                  </a>. We are now focused on creating a great{' '}
+                  </a>
+                  . We are now focused on creating a great{" "}
                   <a
                     href="https://spectrum.chat/balance?thread=ba46fdb4-4e24-4650-88d1-0d88916c3f73"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     iOS wallet
-                  </a>{' '}
-                  for storing tokens and{' '}
-                  <a href="https://www.walletconnect.org" target="_blank" rel="noopener noreferrer">
+                  </a>{" "}
+                  for storing tokens and{" "}
+                  <a
+                    href="https://www.walletconnect.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     interacting with dapps
-                  </a>. The{' '}
+                  </a>
+                  . The{" "}
                   <a
                     href="https://github.com/orgs/balance-io/people"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     core team
-                  </a>{' '}
-                  is supported by a growing number of{' '}
+                  </a>{" "}
+                  is supported by a growing number of{" "}
                   <a
                     href="https://twitter.com/ricburton/status/1006146248666177537"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     short-term
-                  </a>{' '}
-                  paid contractors on{' '}
+                  </a>{" "}
+                  paid contractors on{" "}
                   <a
                     href="https://gitcoin.co/profile/balance-io"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     GitCoin
-                  </a>{' '}
-                  and open source contributors on{' '}
+                  </a>{" "}
+                  and open source contributors on{" "}
                   <a
                     href="https://github.com/balance-io/balance-manager/graphs/contributors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     GitHub
-                  </a>.
+                  </a>
+                  .
                 </SAboutParagraph>
               </SAbout>
               <STeamWrapper>
@@ -586,10 +609,12 @@ class AboutPage extends Component {
                         <p>{team[this.state.selected].name}</p>
                         <p>
                           {team[this.state.selected].role}
-                          <span>{' | '}</span>
-                          <a href={`https://twitter.com/${team[this.state.selected].twitter}`}>{`@${
-                            team[this.state.selected].twitter
-                          }`}</a>
+                          <span>{" | "}</span>
+                          <a
+                            href={`https://twitter.com/${
+                              team[this.state.selected].twitter
+                            }`}
+                          >{`@${team[this.state.selected].twitter}`}</a>
                         </p>
                       </SProfile>
                       <SCardEmojis>
@@ -601,7 +626,9 @@ class AboutPage extends Component {
                       </SCardEmojis>
                     </SCardHeader>
 
-                    <SCardDescription>{team[this.state.selected].description}</SCardDescription>
+                    <SCardDescription>
+                      {team[this.state.selected].description}
+                    </SCardDescription>
                   </SCard>
                 </SCardWrapper>
               </STeamWrapper>
@@ -618,14 +645,23 @@ class AboutPage extends Component {
                   >{`Apply on AngelList`}</a>
                 </SRole>
                 <STagline>
-                  Anyone can contribute code on{' '}
-                  <a href="https://github.com/balance-io" target="_blank" rel="noopener noreferrer">
+                  Anyone can contribute code on{" "}
+                  <a
+                    href="https://github.com/balance-io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     GitHub
-                  </a>{' '}
-                  or time on{' '}
-                  <a href="https://spectrum.chat/balance" target="_blank" rel="noopener noreferrer">
+                  </a>{" "}
+                  or time on{" "}
+                  <a
+                    href="https://spectrum.chat/balance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Spectrum
-                  </a>.
+                  </a>
+                  .
                 </STagline>
               </SOpenRoles>
 
@@ -644,7 +680,11 @@ class AboutPage extends Component {
                 <br />
                 <STagline>Email:</STagline>
                 <STagline strong>
-                  <a href="mailto:support@balance.io" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="mailto:support@balance.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     support@balance.io
                   </a>
                 </STagline>
