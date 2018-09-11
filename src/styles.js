@@ -1,90 +1,90 @@
 export const colors = {
-  white: '255, 255, 255',
-  black: '0, 0, 0',
-  lightGrey: '216, 216, 216',
-  grey: '187, 187, 187',
-  softGrey: '161, 161, 172',
-  blueishGrey: '28, 34, 42',
-  blueGray19: '38, 43, 49',
-  blueGray19BackgroundArrow: '46, 52, 59',
-  darker: '25, 25, 25',
-  dark: '51, 51, 51',
-  darkTwo: '47, 49, 55',
-  darkerNavyBlue: '12, 12, 13',
-  darkNavyBlue: '12, 19, 28',
-  navyBlue: '17, 23, 31',
-  lightNavyBlue: '44, 49, 51',
-  brightBlue: '58, 113, 242',
-  lightBrightBlue: '89, 158, 255',
-  blue: '58, 113, 242',
-  lightBlue: '147, 160, 178',
-  lighterBlue: '157, 171, 187',
-  green: '11, 176, 113',
-  lightPurple: '139, 78, 167',
-  purple: '50, 50, 93',
-  red: '221, 69, 65',
-  twitter: '93, 156, 245',
-  backgroundGray: '44, 47, 56',
-  backgroundNavy: '7, 24, 39',
-  darkBackground: '1, 31, 60',
-  lightHeaderGrey: '204, 230, 227',
-  lightFooterDivider: '202, 208, 216',
-  darkFooterDivider: '31, 45, 61',
-  darkFooterLinks: '49, 51, 54',
-  github: '52, 54, 57',
-  balanceGreen: '0, 192, 120',
-  exchangeGreen: '37, 184, 130',
-  managerButton: '61, 107, 168'
+  white: "255, 255, 255",
+  black: "0, 0, 0",
+  lightGrey: "216, 216, 216",
+  grey: "187, 187, 187",
+  softGrey: "161, 161, 172",
+  blueishGrey: "28, 34, 42",
+  blueGray19: "38, 43, 49",
+  blueGray19BackgroundArrow: "46, 52, 59",
+  darker: "25, 25, 25",
+  dark: "51, 51, 51",
+  darkTwo: "47, 49, 55",
+  darkerNavyBlue: "12, 12, 13",
+  darkNavyBlue: "12, 19, 28",
+  navyBlue: "17, 23, 31",
+  lightNavyBlue: "44, 49, 51",
+  brightBlue: "58, 113, 242",
+  lightBrightBlue: "89, 158, 255",
+  blue: "58, 113, 242",
+  lightBlue: "147, 160, 178",
+  lighterBlue: "157, 171, 187",
+  green: "11, 176, 113",
+  lightPurple: "139, 78, 167",
+  purple: "50, 50, 93",
+  red: "221, 69, 65",
+  twitter: "93, 156, 245",
+  backgroundGray: "44, 47, 56",
+  backgroundNavy: "7, 24, 39",
+  darkBackground: "1, 31, 60",
+  lightHeaderGrey: "204, 230, 227",
+  lightFooterDivider: "202, 208, 216",
+  darkFooterDivider: "31, 45, 61",
+  darkFooterLinks: "49, 51, 54",
+  github: "52, 54, 57",
+  balanceGreen: "0, 192, 120",
+  exchangeGreen: "37, 184, 130",
+  managerButton: "61, 107, 168"
 };
 
 export const fonts = {
-  tiny: '10px',
-  small: '12px',
-  medium: '16px',
-  large: '18px',
-  big: '22px',
-  h1: '42px',
-  h2: '32px',
-  h3: '24px',
-  h4: '20px',
-  h5: '17px',
-  h6: '14px'
+  tiny: "10px",
+  small: "12px",
+  medium: "16px",
+  large: "18px",
+  big: "22px",
+  h1: "42px",
+  h2: "32px",
+  h3: "24px",
+  h4: "20px",
+  h5: "17px",
+  h6: "14px"
 };
 
 export const transitions = {
-  short: 'all 0.1s ease-in-out',
-  base: 'all 0.2s ease-in-out',
-  long: 'all 0.3s ease-in-out'
+  short: "all 0.1s ease-in-out",
+  base: "all 0.2s ease-in-out",
+  long: "all 0.3s ease-in-out"
 };
 
 export const responsive = {
   short: {
-    min: 'min-height: 479px',
-    max: 'max-height: 480px'
+    min: "min-height: 479px",
+    max: "max-height: 480px"
   },
   xxs: {
-    min: 'min-width: 359px',
-    max: 'max-width: 360px'
+    min: "min-width: 359px",
+    max: "max-width: 360px"
   },
   xs: {
-    min: 'min-width: 479px',
-    max: 'max-width: 480px'
+    min: "min-width: 479px",
+    max: "max-width: 480px"
   },
   sm: {
-    min: 'min-width: 639px',
-    max: 'max-width: 640px'
+    min: "min-width: 639px",
+    max: "max-width: 640px"
   },
   md: {
-    min: 'min-width: 959px',
-    max: 'max-width: 960px'
+    min: "min-width: 959px",
+    max: "max-width: 960px"
   },
   lg: {
-    min: 'min-width: 1023px',
-    max: 'max-width: 1024px'
+    min: "min-width: 1023px",
+    max: "max-width: 1024px"
   },
   xl: {
-    min: 'min-width: 1399px',
-    max: 'max-width: 1400px'
+    min: "min-width: 1399px",
+    max: "max-width: 1400px"
   }
 };
 

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import jsonp from 'jsonp';
-import styled from 'styled-components';
-import inputSubmit from '../assets/input-submit.svg';
-import { fonts, colors, transitions } from '../styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import jsonp from "jsonp";
+import styled from "styled-components";
+import inputSubmit from "../assets/input-submit.svg";
+import { fonts, colors, transitions } from "../styles";
 
 const SForm = styled.form`
   position: relative;
@@ -25,14 +25,14 @@ const SForm = styled.form`
     transition: 0.2s;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     border-radius: 8px;
-    color: ${({ dark }) => (dark ? '#FFFFFF' : '#313336')};
-    background: ${({ dark }) => (dark ? '#3A4F65' : '#FFFFFF')};
+    color: ${({ dark }) => (dark ? "#FFFFFF" : "#313336")};
+    background: ${({ dark }) => (dark ? "#3A4F65" : "#FFFFFF")};
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.11), 0 1px 3px 0 rgba(0, 0, 0, 0.08),
       inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
   }
 
   & input::-webkit-input-placeholder {
-    color: ${({ dark }) => (dark ? '#FFFFFF' : '#BDBDBE')};
+    color: ${({ dark }) => (dark ? "#FFFFFF" : "#BDBDBE")};
   }
 
   & button {
@@ -45,7 +45,7 @@ const SForm = styled.form`
     -webkit-mask: url(${inputSubmit}) center no-repeat;
     background-size: 19px 17px;
     background-position: 0 0;
-    background: ${({ dark }) => (dark ? '#FFFFFF' : '#313336')};
+    background: ${({ dark }) => (dark ? "#FFFFFF" : "#313336")};
     cursor: pointer;
     transition: 0.2s;
     transform: translateX(2px) translateY(-0.5px);
@@ -60,8 +60,8 @@ const SMessage = styled.p`
   font-size: ${fonts.medium};
   transition: ${transitions.base};
   opacity: ${({ show }) => (show ? 0.8 : 0)};
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  pointer-events: ${({ show }) => (show ? 'auto' : 'none')};
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+  pointer-events: ${({ show }) => (show ? "auto" : "none")};
 `;
 
 let messageTimeout = null;
@@ -69,9 +69,9 @@ let messageTimeout = null;
 class SubscribeForm extends Component {
   state = {
     dark: true,
-    status: '',
-    message: '',
-    input: ''
+    status: "",
+    message: "",
+    input: ""
   };
   onChange = ({ target }) => {
     this.setState({ input: target.value });
@@ -87,12 +87,12 @@ class SubscribeForm extends Component {
   onStatusChange = (state, callback) => {
     clearTimeout(messageTimeout);
     this.setState(state);
-    if (state.status !== 'sending') {
+    if (state.status !== "sending") {
       messageTimeout = setTimeout(
         () =>
           this.setState({
-            status: '',
-            message: ''
+            status: "",
+            message: ""
           }),
         3000
       );
@@ -102,69 +102,76 @@ class SubscribeForm extends Component {
   onSubmit = e => {
     const options = this.props.options;
     e.preventDefault();
-    if (!this.state.input || this.state.input.length < 5 || this.state.input.indexOf('@') === -1) {
+    if (
+      !this.state.input ||
+      this.state.input.length < 5 ||
+      this.state.input.indexOf("@") === -1
+    ) {
       this.onStatusChange({
-        status: 'error',
-        message: 'Email is invalid'
+        status: "error",
+        message: "Email is invalid"
       });
       return;
     }
-    const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${options.userId}&id=${
-      options.listId
-    }&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(this.state.input)}`;
+    const url = `//${options.server}.list-manage.com/subscribe/post-json?u=${
+      options.userId
+    }&id=${options.listId}&ORIGIN=${options.origin}&EMAIL=${encodeURIComponent(
+      this.state.input
+    )}`;
     this.onStatusChange(
       {
-        status: 'sending',
-        message: ''
+        status: "sending",
+        message: ""
       },
       () =>
-        jsonp(url, { param: 'c' }, (err, data) => {
+        jsonp(url, { param: "c" }, (err, data) => {
           let error = null;
           let result = null;
           if (err) {
             this.onStatusChange({
-              status: 'error'
+              status: "error"
             });
-          } else if (data.result !== 'success') {
-            if (data.msg.includes('already subscribed')) {
-              error = { message: 'EMAIL_ALREADY_SUBCRIBED' };
+          } else if (data.result !== "success") {
+            if (data.msg.includes("already subscribed")) {
+              error = { message: "EMAIL_ALREADY_SUBCRIBED" };
               this.onStatusChange({
-                status: 'error',
+                status: "error",
                 message: `Sorry, you've already signed up with this email`
               });
-            } else if (data.msg.includes('too many recent signup requests')) {
-              error = { message: 'TOO_MANY_SIGNUP_REQUESTS' };
+            } else if (data.msg.includes("too many recent signup requests")) {
+              error = { message: "TOO_MANY_SIGNUP_REQUESTS" };
               this.onStatusChange({
-                status: 'error',
+                status: "error",
                 message: `Too many signup requests, please try again later`
               });
             } else {
-              error = { message: 'UNKNOWN_ERROR' };
+              error = { message: "UNKNOWN_ERROR" };
               this.onStatusChange({
-                status: 'error'
+                status: "error"
               });
             }
           } else {
             result = { email: this.state.input };
             this.onStatusChange({
-              status: 'success'
+              status: "success"
             });
           }
-          if (this.props.options.callback) this.props.options.callback(error, result);
+          if (this.props.options.callback)
+            this.props.options.callback(error, result);
         })
     );
   };
   renderMessage = () => {
     if (!this.state.message) {
       switch (this.state.status) {
-        case 'error':
+        case "error":
           return this.props.messages.error;
-        case 'success':
+        case "success":
           return this.props.messages.success;
-        case 'sending':
+        case "sending":
           return this.props.messages.sending;
         default:
-          return '';
+          return "";
       }
     }
     return this.state.message;
@@ -184,7 +191,7 @@ class SubscribeForm extends Component {
         />
         <button type="submit" />
         <SMessage
-          color={this.state.status === 'error' ? colors.red : colors.white}
+          color={this.state.status === "error" ? colors.red : colors.white}
           show={this.state.status}
         >
           {this.renderMessage()}
@@ -201,16 +208,16 @@ SubscribeForm.propTypes = {
 
 SubscribeForm.defaultProps = {
   options: {
-    server: 'money.us11',
-    userId: 'a3f87e208a9f9896949b4f336',
-    listId: '3985713da6',
-    origin: ''
+    server: "money.us11",
+    userId: "a3f87e208a9f9896949b4f336",
+    listId: "3985713da6",
+    origin: ""
   },
   messages: {
-    inputPlaceholder: 'Your email',
-    sending: 'Sending...',
-    success: 'Check your email',
-    error: 'Oops, something went wrong'
+    inputPlaceholder: "Your email",
+    sending: "Sending...",
+    success: "Check your email",
+    error: "Oops, something went wrong"
   }
 };
 

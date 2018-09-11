@@ -1,40 +1,40 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import Page from '../layouts/page';
-import Section from '../components/Section';
-import SubscribeForm from '../components/SubscribeForm';
-import app from '../assets/app.png';
-import appStatic from '../assets/app-static.png';
-import appBalances from '../assets/app-balances.png';
-import appTransactions from '../assets/app-transactions.png';
-import sendingStatus from '../assets/sending-status.png';
-import sendingSpinner from '../assets/sending-spinner.png';
-import sentStatus from '../assets/sent-status.png';
-import receiveLabel from '../assets/receive-label.png';
-import sendLabel from '../assets/send-label.png';
-import sendModal from '../assets/send-modal.png';
-import tabBackground from '../assets/tab-background.png';
-import tabBalances from '../assets/tab-balances.png';
-import tabTransactions from '../assets/tab-transactions.png';
-import ethAddress from '../assets/eth-address.png';
-import tokenAmount from '../assets/token-amount.png';
-import usdAmount from '../assets/usd-amount.png';
-import sendMax from '../assets/send-max.png';
-import feeAverage from '../assets/fee-average.png';
-import feeAverageSelected from '../assets/fee-average-selected.png';
-import feeFast from '../assets/fee-fast.png';
-import feeFastSelected from '../assets/fee-fast-selected.png';
-import backgroundArrow from '../assets/background-arrow.svg';
-import backgroundArrowMobile from '../assets/background-arrow-mobile.svg';
-import backgroundArrow2 from '../assets/background-arrow-2.svg';
-import backgroundArrow3 from '../assets/background-arrow-3.svg';
-import balanceWalletPreview from '../assets/balance-wallet-preview.png';
-import featurePrivate from '../assets/feature-private.svg';
-import featureERC20 from '../assets/feature-erc20.svg';
-import featureWalletConnect from '../assets/feature-walletconnect.svg';
-import featureFast from '../assets/feature-fast.svg';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import Page from "../layouts/page";
+import Section from "../components/Section";
+import SubscribeForm from "../components/SubscribeForm";
+import app from "../assets/app.png";
+import appStatic from "../assets/app-static.png";
+import appBalances from "../assets/app-balances.png";
+import appTransactions from "../assets/app-transactions.png";
+import sendingStatus from "../assets/sending-status.png";
+import sendingSpinner from "../assets/sending-spinner.png";
+import sentStatus from "../assets/sent-status.png";
+import receiveLabel from "../assets/receive-label.png";
+import sendLabel from "../assets/send-label.png";
+import sendModal from "../assets/send-modal.png";
+import tabBackground from "../assets/tab-background.png";
+import tabBalances from "../assets/tab-balances.png";
+import tabTransactions from "../assets/tab-transactions.png";
+import ethAddress from "../assets/eth-address.png";
+import tokenAmount from "../assets/token-amount.png";
+import usdAmount from "../assets/usd-amount.png";
+import sendMax from "../assets/send-max.png";
+import feeAverage from "../assets/fee-average.png";
+import feeAverageSelected from "../assets/fee-average-selected.png";
+import feeFast from "../assets/fee-fast.png";
+import feeFastSelected from "../assets/fee-fast-selected.png";
+import backgroundArrow from "../assets/background-arrow.svg";
+import backgroundArrowMobile from "../assets/background-arrow-mobile.svg";
+import backgroundArrow2 from "../assets/background-arrow-2.svg";
+import backgroundArrow3 from "../assets/background-arrow-3.svg";
+import balanceWalletPreview from "../assets/balance-wallet-preview.png";
+import featurePrivate from "../assets/feature-private.svg";
+import featureERC20 from "../assets/feature-erc20.svg";
+import featureWalletConnect from "../assets/feature-walletconnect.svg";
+import featureFast from "../assets/feature-fast.svg";
 
-import { colors, responsive } from '../styles';
+import { colors, responsive } from "../styles";
 
 const step1 = keyframes`
   0 {
@@ -586,7 +586,8 @@ const SAppTransactions = styled.div`
   animation-duration: 0.5s, 0.5s;
   animation-delay: 11.35s, 17s;
   animation-fill-mode: forwards, forwards;
-  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1), cubic-bezier(0.77, 0, 0.175, 1);
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1),
+    cubic-bezier(0.77, 0, 0.175, 1);
 `;
 
 const SSendingStatus = styled.div`
@@ -684,8 +685,9 @@ const STabTransactions = styled.div`
 const SButton = styled.div`
   position: absolute;
   height: 32px;
-  box-shadow: 0 5px 10px 0 rgba(59, 59, 92, 0.04), 0 0 1px 0 rgba(50, 50, 93, 0.02),
-    0 3px 6px 0 rgba(0, 0, 0, 0.06), inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 10px 0 rgba(59, 59, 92, 0.04),
+    0 0 1px 0 rgba(50, 50, 93, 0.02), 0 3px 6px 0 rgba(0, 0, 0, 0.06),
+    inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
   border-radius: 8px;
 `;
 
@@ -737,13 +739,15 @@ const SSendModal = styled.div`
   width: 494px;
   height: 465px;
   background: #f5f6fa;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15), 0 15px 35px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15),
+    0 15px 35px 0 rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   animation-name: ${step3}, ${step12};
   animation-duration: 0.7s, 0.4s;
   animation-delay: 2.35s, 9.25s;
   animation-fill-mode: backwards, forwards;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1), cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1),
+    cubic-bezier(0.6, -0.28, 0.735, 0.045);
   will-change: transform;
   pointer-events: none !important;
 `;
@@ -1049,8 +1053,8 @@ const SFeatureIcon = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.08),
-    inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.06),
+    0 1px 3px 0 rgba(0, 0, 0, 0.08), inset 0 0 1px 0 rgba(0, 0, 0, 0.06);
 `;
 
 const SFeatureInfoLeft = styled.div`
@@ -1243,17 +1247,20 @@ const IndexPage = () => (
             <SContainer>
               <STitle>Balance Manager</STitle>
               <STagline>
-                Manager is an interface that connects to{' '}
+                Manager is an interface that connects to{" "}
                 <a href="https://metamask.io" target="_blank">
                   MetaMask
-                </a>,{' '}
+                </a>
+                ,{" "}
                 <a href="https://www.ledgerwallet.com/r/7931" target="_blank">
                   Ledger
-                </a>{' '}
-                and{' '}
+                </a>{" "}
+                and{" "}
                 <a href="https://shop.trezor.io?a=balance.io" target="_blank">
                   Trezor
-                </a>, allowing you to view and send your <a href="/erc20-tokens">ERC-20 tokens</a>.
+                </a>
+                , allowing you to view and send your{" "}
+                <a href="/erc20-tokens">ERC-20 tokens</a>.
               </STagline>
               {/*<SButtonLink>
                 OPEN MANAGER<img src={arrowRightCircle} alt="arrow in circle pointing right" />
@@ -1354,8 +1361,8 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Private and secure</h3>
                 <p>
-                  The keys to your tokens are securely stored on your phone, giving you full control
-                  of your own digital assets.
+                  The keys to your tokens are securely stored on your phone,
+                  giving you full control of your own digital assets.
                 </p>
               </SFeatureInfoLeft>
             </SFeatureSecurity>
@@ -1367,20 +1374,40 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>Simple exchange</h3>
                 <p>
-                  Buy and store dozens of tokens using our simple token trading interface powered by{' '}
-                  <a href="http://shapeshift.io" target="_blank" rel="noopener noreferrer">
+                  Buy and store dozens of tokens using our simple token trading
+                  interface powered by{" "}
+                  <a
+                    href="http://shapeshift.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     ShapeShift
-                  </a>,{' '}
-                  <a href="https://0xproject.com" target="_blank" rel="noopener noreferrer">
+                  </a>
+                  ,{" "}
+                  <a
+                    href="https://0xproject.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     0x
-                  </a>,{' '}
-                  <a href="https://oasis.direct" target="_blank" rel="noopener noreferrer">
+                  </a>
+                  ,{" "}
+                  <a
+                    href="https://oasis.direct"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Oasis
-                  </a>{' '}
-                  &{' '}
-                  <a href="https://kyber.network" target="_blank" rel="noopener noreferrer">
+                  </a>{" "}
+                  &{" "}
+                  <a
+                    href="https://kyber.network"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Kyber
-                  </a>.
+                  </a>
+                  .
                 </p>
               </SFeatureInfoLeft>
             </SFeatureERC20>
@@ -1392,12 +1419,16 @@ const IndexPage = () => (
               <SFeatureInfoLeft>
                 <h3>WalletConnect</h3>
                 <p>
-                  Interact with dapps on the web using the built-in QR code scanner. This is powered
-                  by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    {' '}
+                  Interact with dapps on the web using the built-in QR code
+                  scanner. This is powered by the
+                  <a
+                    href="http://walletconnect.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {" "}
                     WalletConnect
-                  </a>{' '}
+                  </a>{" "}
                   standard.
                 </p>
               </SFeatureInfoLeft>
@@ -1414,12 +1445,16 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>WalletConnect</h3>
                 <p>
-                  Interact with dapps on the web using the built-in QR code scanner. This is powered
-                  by the
-                  <a href="http://walletconnect.org" target="_blank" rel="noopener noreferrer">
-                    {' '}
+                  Interact with dapps on the web using the built-in QR code
+                  scanner. This is powered by the
+                  <a
+                    href="http://walletconnect.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {" "}
                     WalletConnect
-                  </a>{' '}
+                  </a>{" "}
                   standard.
                 </p>
               </SFeatureInfoRight>
@@ -1432,8 +1467,8 @@ const IndexPage = () => (
               <SFeatureInfoRight>
                 <h3>Fast and easy</h3>
                 <p>
-                  Send and receive Ether and tokens quickly and easily. Lightning fast search and
-                  transaction history.
+                  Send and receive Ether and tokens quickly and easily.
+                  Lightning fast search and transaction history.
                 </p>
               </SFeatureInfoRight>
             </SFeatureFastEasy>

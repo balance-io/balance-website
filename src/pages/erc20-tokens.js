@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import Page from '../layouts/page';
-import Section from '../components/Section';
-import TokenAnimation from '../components/TokenAnimation';
-import solidityExample from '../assets/solidity-example.png';
-import erc20vsCoin from '../assets/erc20-vs-coin.png';
-import tokenUses from '../assets/token-uses.png';
-import balanceTokenPreview from '../assets/balance-token-preview2.png';
-import balanceTokenTrianglesTwo from '../assets/balance-token-triangles2.svg';
-import balanceTokenMobile from '../assets/balance-token-mobile.png';
-import { colors, fonts, responsive } from '../styles';
+import React from "react";
+import styled from "styled-components";
+import Page from "../layouts/page";
+import Section from "../components/Section";
+import TokenAnimation from "../components/TokenAnimation";
+import solidityExample from "../assets/solidity-example.png";
+import erc20vsCoin from "../assets/erc20-vs-coin.png";
+import tokenUses from "../assets/token-uses.png";
+import balanceTokenPreview from "../assets/balance-token-preview2.png";
+import balanceTokenTrianglesTwo from "../assets/balance-token-triangles2.svg";
+import balanceTokenMobile from "../assets/balance-token-mobile.png";
+import { colors, fonts, responsive } from "../styles";
 
 const SBackgroundImageTwo = styled.div`
   position: absolute;
@@ -29,14 +29,14 @@ const SSectionWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : 'none')};
+  min-height: ${({ minHeight }) => (minHeight ? `${minHeight}px` : "none")};
   @media screen and (${responsive.sm.min}) {
     & > div:first-child {
       order: ${({ left }) => (left ? 1 : 0)};
-      padding-left: ${({ left }) => (left ? '30px' : 0)};
+      padding-left: ${({ left }) => (left ? "30px" : 0)};
     }
     & > div:nth-child(2) {
-      padding-left: ${({ left }) => (left ? 0 : '30px')};
+      padding-left: ${({ left }) => (left ? 0 : "30px")};
     }
   }
   @media screen and (${responsive.sm.max}) {
@@ -139,7 +139,7 @@ const SViralLoops = styled.button`
 
 const STokenMobile = styled.img`
   display: none;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   @media screen and (${responsive.sm.max}) {
     display: block;
@@ -185,24 +185,38 @@ const layoutTheme = {
 };
 
 const Erc20Page = ({ data, ...props }) => (
-  <Page title="ERC-20 Tokens" siteTitle={data.site.siteMetadata.title} theme={layoutTheme}>
-    <Section center id={`balance-token-intro`} minHeight={450} color={colors.navyBlue}>
+  <Page
+    title="ERC-20 Tokens"
+    siteTitle={data.site.siteMetadata.title}
+    theme={layoutTheme}
+  >
+    <Section
+      center
+      id={`balance-token-intro`}
+      minHeight={450}
+      color={colors.navyBlue}
+    >
       <SSectionWrapper>
         <SFlex>
           <SContainer>
-            <STokenMobile src={balanceTokenMobile} alt="Balance Ethereum Wallet" />
+            <STokenMobile
+              src={balanceTokenMobile}
+              alt="Balance Ethereum Wallet"
+            />
             <STitle>What is an ERC-20 token?</STitle>
             <STagline>
-              The most popular form of “token” is the ERC-20 token. This is a standard of token that
-              lives on the Ethereum blockchain. The term ERC-20 stands for an{' '}
+              The most popular form of “token” is the ERC-20 token. This is a
+              standard of token that lives on the Ethereum blockchain. The term
+              ERC-20 stands for an{" "}
               <a
                 href="https://github.com/ethereum/eips/issues/20"
                 target="_blank"
                 rel="noreferrer noopener"
               >
                 Ethereum Request for Comment number 20
-              </a>, which effectively means it was the 20th major improvement proposed by one of the
-              Ethereum contributors.
+              </a>
+              , which effectively means it was the 20th major improvement
+              proposed by one of the Ethereum contributors.
             </STagline>
           </SContainer>
         </SFlex>
@@ -227,12 +241,19 @@ const Erc20Page = ({ data, ...props }) => (
           <SContainer>
             <STitle>How are they created?</STitle>
             <STagline>
-              Every day, thousands of ERC-20 tokens are created on the Ethereum network by
-              developers around the world. They are built with code which is then{' '}
-              <a href="https://ethereum.org/token" target="_blank" rel="noreferrer noopener">
+              Every day, thousands of ERC-20 tokens are created on the Ethereum
+              network by developers around the world. They are built with code
+              which is then{" "}
+              <a
+                href="https://ethereum.org/token"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 published on Ethereum
-              </a>. The code conforms to the ERC-20 standard which defines things like the number of
-              tokens, ticker symbol, and how to transfer them from one wallet to another.
+              </a>
+              . The code conforms to the ERC-20 standard which defines things
+              like the number of tokens, ticker symbol, and how to transfer them
+              from one wallet to another.
             </STagline>
           </SContainer>
         </SFlex>
@@ -245,24 +266,30 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-utility`} minHeight={450} color={colors.navyBlue}>
+    <Section
+      center
+      id={`balance-token-utility`}
+      minHeight={450}
+      color={colors.navyBlue}
+    >
       <SSectionWrapper>
         <SFlex>
           <SContainer>
             <STitle>What are tokens used for?</STitle>
             <STagline>
-              Tokens can represent anything: from a part of a new protocol to a share in a company.
-              Today, lots of tokens are being created in{' '}
+              Tokens can represent anything: from a part of a new protocol to a
+              share in a company. Today, lots of tokens are being created in{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Initial_coin_offering"
                 target="_blank"
                 rel="noreferrer noopener"
               >
                 Initial Coin Offerings (ICOs)
-              </a>{' '}
-              where you are investing into a new project in the crypto-currency space. Each of these
-              projects has a different reason for launching a token. The vast majority of them are
-              useless. Some of them have the potential to be incredibly valuable.
+              </a>{" "}
+              where you are investing into a new project in the crypto-currency
+              space. Each of these projects has a different reason for launching
+              a token. The vast majority of them are useless. Some of them have
+              the potential to be incredibly valuable.
             </STagline>
           </SContainer>
         </SFlex>
@@ -277,52 +304,108 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-vs-coin`} minHeight={450} color={colors.navyBlue}>
+    <Section
+      center
+      id={`balance-token-vs-coin`}
+      minHeight={450}
+      color={colors.navyBlue}
+      paddingBottom={100}
+    >
       <SSectionWrapper left>
         <SFlex>
           <SContainer>
             <STitle>How can I tell if it is ERC-20?</STitle>
             <STagline>
-              Although lots of tokens live on the Ethereum blockchain, many do not. Some tokens
-              exist on other blockchain platforms like{' '}
-              <a href="https://neo.org/" target="_blank" rel="noreferrer noopener">
+              Although lots of tokens live on the Ethereum blockchain, many do
+              not. Some tokens exist on other blockchain platforms like{" "}
+              <a
+                href="https://neo.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Neo
-              </a>,{' '}
-              <a href="http://www.omnilayer.org/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="http://www.omnilayer.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Omni
-              </a>,{' '}
-              <a href="https://nxtplatform.org/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="https://nxtplatform.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Nxt
-              </a>{' '}
-              and{' '}
-              <a href="https://wavesplatform.com/" target="_blank" rel="noreferrer noopener">
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://wavesplatform.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Waves
               </a>
-              . There are many coins that exist on their own chain. For example,{' '}
-              <a href="https://bitcoin.org/en/" target="_blank" rel="noreferrer noopener">
+              . There are many coins that exist on their own chain. For example,{" "}
+              <a
+                href="https://bitcoin.org/en/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Bitcoin
-              </a>,{' '}
-              <a href="https://litecoin.com/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="https://litecoin.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Litecoin
-              </a>,{' '}
-              <a href="https://z.cash/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="https://z.cash/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Zcash
-              </a>,{' '}
-              <a href="https://www.stellar.org/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="https://www.stellar.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Stellar
-              </a>,{' '}
-              <a href="https://www.decred.org/" target="_blank" rel="noreferrer noopener">
+              </a>
+              ,{" "}
+              <a
+                href="https://www.decred.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 DCred
-              </a>{' '}
-              and{' '}
-              <a href="https://www.tezos.com/" target="_blank" rel="noreferrer noopener">
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://www.tezos.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Tezos
-              </a>{' '}
-              are all coins that are totally separate. A quick way to find out if a token is running
-              on Ethereum is to check{' '}
-              <a href="https://coinmarketcap.com/tokens/" target="_blank" rel="noreferrer noopener">
+              </a>{" "}
+              are all coins that are totally separate. A quick way to find out
+              if a token is running on Ethereum is to check{" "}
+              <a
+                href="https://coinmarketcap.com/tokens/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 CoinMarketCap.com/tokens
-              </a>{' '}
+              </a>{" "}
               and see the platform section.
             </STagline>
           </SContainer>
@@ -338,7 +421,12 @@ const Erc20Page = ({ data, ...props }) => (
       </SSectionWrapper>
     </Section>
 
-    <Section center id={`balance-token-join`} minHeight={200} color={colors.navyBlue} />
+    <Section
+      center
+      id={`balance-token-join`}
+      minHeight={200}
+      color={colors.navyBlue}
+    />
   </Page>
 );
 

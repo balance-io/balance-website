@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
-import balanceCircleLogo from '../assets/balance-circle-logo.svg';
-import tokenList from '../data/tokens';
-import { colors, fonts, transitions } from '../styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled, { keyframes } from "styled-components";
+import balanceCircleLogo from "../assets/balance-circle-logo.svg";
+import tokenList from "../data/tokens";
+import { colors, fonts, transitions } from "../styles";
 
-const generateCycleAnimation = ({ totalItems, pauseDuration, spinDuration, clockwise = true }) => {
-  const items = (Array(totalItems).join('0') + '0').split('');
+const generateCycleAnimation = ({
+  totalItems,
+  pauseDuration,
+  spinDuration,
+  clockwise = true
+}) => {
+  const items = (Array(totalItems).join("0") + "0").split("");
   const cycleDuration = pauseDuration + spinDuration;
   const totalDuration = cycleDuration * totalItems;
   const totalPercentage = 100;
   const cyclePercentage = totalPercentage / totalItems;
-  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
+  const pausePercentage = (pauseDuration / cycleDuration) * cyclePercentage;
   const totalAngle = 360;
   const cycleAngle = totalAngle / totalItems;
 
@@ -20,12 +25,18 @@ const generateCycleAnimation = ({ totalItems, pauseDuration, spinDuration, clock
       const cycleNumber = index + 1;
       const currentCyclePercentage = cycleNumber * cyclePercentage;
 
-      const spinStartPercentage = Number(currentCyclePercentage - cyclePercentage).toPrecision(4);
+      const spinStartPercentage = Number(
+        currentCyclePercentage - cyclePercentage
+      ).toPrecision(4);
       const spinStopPercentage = Number(
         currentCyclePercentage - pausePercentage - 0.01
       ).toPrecision(4);
-      const pauseStartPercentage = Number(currentCyclePercentage - pausePercentage).toPrecision(4);
-      const pauseStopPercentage = Number(currentCyclePercentage - 0.01).toPrecision(4);
+      const pauseStartPercentage = Number(
+        currentCyclePercentage - pausePercentage
+      ).toPrecision(4);
+      const pauseStopPercentage = Number(
+        currentCyclePercentage - 0.01
+      ).toPrecision(4);
 
       const currentCycleAngle = cycleNumber * cycleAngle;
       const spinStartAngle = currentCycleAngle - cycleAngle;
@@ -48,19 +59,25 @@ const generateCycleAnimation = ({ totalItems, pauseDuration, spinDuration, clock
       }
     `;
     })
-    .join('');
+    .join("");
 
   const animation = keyframes`${animationString}`;
 
   return `${animation} ${totalDuration}s ease infinite`;
 };
 
-const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, spinDuration }) => {
+const generatePopupAnimation = ({
+  index,
+  popupShift,
+  totalItems,
+  pauseDuration,
+  spinDuration
+}) => {
   const cycleDuration = pauseDuration + spinDuration;
   const totalDuration = cycleDuration * totalItems;
   const totalPercentage = 100;
   const cyclePercentage = totalPercentage / totalItems;
-  const pausePercentage = pauseDuration / cycleDuration * cyclePercentage;
+  const pausePercentage = (pauseDuration / cycleDuration) * cyclePercentage;
 
   function shiftNumber(number, shift, max) {
     const inc = number + shift;
@@ -73,12 +90,19 @@ const generatePopupAnimation = ({ index, popupShift, totalItems, pauseDuration, 
   }
 
   const cycleNumber = shiftNumber(index + 1, popupShift, totalItems);
-  const indexedCyclePercentage = cyclePercentage - (cycleNumber - 1) * cyclePercentage;
+  const indexedCyclePercentage =
+    cyclePercentage - (cycleNumber - 1) * cyclePercentage;
 
-  const pauseStartPercentage = Number(indexedCyclePercentage - pausePercentage).toPrecision(4);
-  const beforePauseStartPercentage = Number(pauseStartPercentage - 1).toPrecision(4);
+  const pauseStartPercentage = Number(
+    indexedCyclePercentage - pausePercentage
+  ).toPrecision(4);
+  const beforePauseStartPercentage = Number(
+    pauseStartPercentage - 1
+  ).toPrecision(4);
   const pauseStopPercentage = Number(indexedCyclePercentage - 1).toPrecision(4);
-  const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(4);
+  const afterPauseStopPercentage = Number(indexedCyclePercentage).toPrecision(
+    4
+  );
 
   const animationString = `
       ${shiftNumber(beforePauseStartPercentage, 0, 100)}% {
@@ -198,7 +222,13 @@ const STokenLogo = styled.div`
       rotate(${-angle}deg)`;
   }};
   ${STokenDescription} {
-    animation: ${({ index, popupShift, totalItems, pauseDuration, spinDuration }) =>
+    animation: ${({
+      index,
+      popupShift,
+      totalItems,
+      pauseDuration,
+      spinDuration
+    }) =>
       generatePopupAnimation({
         index,
         popupShift,
@@ -221,17 +251,30 @@ const SOuterCircle = styled.div`
   width: ${({ circleSize }) => `${circleSize}px`};
   height: ${({ circleSize }) => `${circleSize}px`};
   animation: ${({ totalItems, pauseDuration, spinDuration }) =>
-    generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: true })};
+    generateCycleAnimation({
+      totalItems,
+      pauseDuration,
+      spinDuration,
+      clockwise: true
+    })};
   ${STokenContent} {
     animation: ${({ totalItems, pauseDuration, spinDuration }) =>
-      generateCycleAnimation({ totalItems, pauseDuration, spinDuration, clockwise: false })};
+      generateCycleAnimation({
+        totalItems,
+        pauseDuration,
+        spinDuration,
+        clockwise: false
+      })};
   }
 `;
 
 class TokenAnimation extends Component {
   render() {
     return (
-      <StyledWrapper circleSize={this.props.circleSize} itemSize={this.props.itemSize}>
+      <StyledWrapper
+        circleSize={this.props.circleSize}
+        itemSize={this.props.itemSize}
+      >
         <SOuterCircle
           circleSize={this.props.circleSize}
           totalItems={this.props.tokens.length}
@@ -257,8 +300,12 @@ class TokenAnimation extends Component {
                     <p>{token.description}</p>
                   </div>
                   <div>
-                    <a href={token.url} rel="noreferrer noopener" target="_blank">
-                      {token.url.replace(/(https?:\/\/)/g, '')}
+                    <a
+                      href={token.url}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {token.url.replace(/(https?:\/\/)/g, "")}
                     </a>
                   </div>
                 </STokenDescription>
@@ -268,8 +315,12 @@ class TokenAnimation extends Component {
                     <p>{token.description}</p>
                   </div>
                   <div>
-                    <a href={token.url} rel="noreferrer noopener" target="_blank">
-                      {token.url.replace(/(https?:\/\/)/g, '')}
+                    <a
+                      href={token.url}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {token.url.replace(/(https?:\/\/)/g, "")}
                     </a>
                   </div>
                 </STokenDescriptionDuplicate>
@@ -277,7 +328,10 @@ class TokenAnimation extends Component {
             </STokenLogo>
           ))}
         </SOuterCircle>
-        <SInnerCircle circleSize={this.props.circleSize} src={balanceCircleLogo} />
+        <SInnerCircle
+          circleSize={this.props.circleSize}
+          src={balanceCircleLogo}
+        />
       </StyledWrapper>
     );
   }

@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
-import styled from 'styled-components';
-import navMenuButton from '../assets/nav-menu-button.svg';
-import mobileNavClose from '../assets/mobile-nav-close.svg';
-import balanceLogo from '../assets/balance-logo.svg';
-import balanceLogoMobile from '../assets/balance-logo-mobile.svg';
-import navAbout from '../assets/nav-about.svg';
-import navTokens from '../assets/nav-tokens.svg';
-import navBlog from '../assets/nav-blog.svg';
-import navAboutMiddle from '../assets/nav-about-middle.svg';
-import navTokensMiddle from '../assets/nav-tokens-middle.svg';
-import navBlogMiddle from '../assets/nav-blog-middle.svg';
-import navManager from '../assets/nav-manager.svg';
-import { colors, responsive, transitions } from '../styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Link from "gatsby-link";
+import styled from "styled-components";
+import navMenuButton from "../assets/nav-menu-button.svg";
+import mobileNavClose from "../assets/mobile-nav-close.svg";
+import balanceLogo from "../assets/balance-logo.svg";
+import balanceLogoMobile from "../assets/balance-logo-mobile.svg";
+import navAbout from "../assets/nav-about.svg";
+import navTokens from "../assets/nav-tokens.svg";
+import navBlog from "../assets/nav-blog.svg";
+import navAboutMiddle from "../assets/nav-about-middle.svg";
+import navTokensMiddle from "../assets/nav-tokens-middle.svg";
+import navBlogMiddle from "../assets/nav-blog-middle.svg";
+import navManager from "../assets/nav-manager.svg";
+import { colors, responsive, transitions } from "../styles";
 
 const SHeader = styled.div`
   width: 100%;
@@ -119,7 +119,7 @@ const SNavLinks = styled(Link)`
 
 const SNavLinksAbout = SNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 17px;
     left: 2px;
@@ -135,7 +135,7 @@ const SNavLinksAbout = SNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 17px;
     left: 2px;
@@ -158,7 +158,7 @@ const SNavLinksAbout = SNavLinks.extend`
 
 const SNavLinksTokens = SNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 17px;
     left: 3px;
@@ -170,7 +170,7 @@ const SNavLinksTokens = SNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 17px;
     left: 3px;
@@ -189,7 +189,7 @@ const SNavLinksTokens = SNavLinks.extend`
 
 const SNavLinksBlog = SNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 18px;
     left: 3px;
@@ -201,7 +201,7 @@ const SNavLinksBlog = SNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 18px;
     left: 3px;
@@ -218,7 +218,7 @@ const SNavLinksBlog = SNavLinks.extend`
   }
 `;
 
-const SExternalLink = SNavLinks.withComponent('a');
+const SExternalLink = SNavLinks.withComponent("a");
 
 const SNavLinksManager = SExternalLink.extend`
   position: absolute;
@@ -227,7 +227,7 @@ const SNavLinksManager = SExternalLink.extend`
   color: #fff;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 17px;
     right: 0px;
@@ -245,7 +245,7 @@ const SNavLinksManager = SExternalLink.extend`
   }
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 9px;
     left: 14px;
@@ -284,10 +284,12 @@ const SMobileNavToggle = styled.div`
   transition: ${transitions.base};
   transform: scale(1);
   background: ${({ theme }) => `rgb(${theme.mobileToggleColor})`};
-  opacity: ${({ reveal }) => (reveal ? '0' : '1')};
+  opacity: ${({ reveal }) => (reveal ? "0" : "1")};
   transform: ${({ reveal }) =>
-    reveal ? 'rotate3d(1,1,0,-20deg) scale(.8)' : 'rotate3d(0, 0, 0, 0) scale(1)'};
-  pointer-events: ${({ reveal }) => (reveal ? 'none' : 'auto')};
+    reveal
+      ? "rotate3d(1,1,0,-20deg) scale(.8)"
+      : "rotate3d(0, 0, 0, 0) scale(1)"};
+  pointer-events: ${({ reveal }) => (reveal ? "none" : "auto")};
   @media (hover: hover) {
     &:hover {
       opacity: 0.5;
@@ -323,15 +325,18 @@ const SMobileNav = styled.div`
       0 15px 35px 0 rgba(0, 0, 0, 0.06), 0 50px 100px 0 rgba(0, 0, 0, 0.1);
     will-change: transform, opacity;
     transition-property: transform, opacity;
-    opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
-    pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-    transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
+    opacity: ${({ reveal }) => (reveal ? "1" : " 0")};
+    pointer-events: ${({ reveal }) => (reveal ? "auto" : " none")};
+    transform: ${({ reveal }) =>
+      reveal ? "rotate3d(0,0,0,0)" : " rotate3d(1, 1, 0, -20deg)"};
     transform-origin: 100% 0;
     transition: ${transitions.base};
   }
 `;
 
-const SMobileNavLinks = styled(({ activeColor, reveal, ...props }) => <Link {...props} />)`
+const SMobileNavLinks = styled(({ activeColor, reveal, ...props }) => (
+  <Link {...props} />
+))`
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -341,13 +346,15 @@ const SMobileNavLinks = styled(({ activeColor, reveal, ...props }) => <Link {...
   height: 65px;
   opacity: 0;
   cursor: pointer;
-  color: ${({ selected, activeColor }) => (activeColor && selected ? `#011F3C` : `#798593`)};
+  color: ${({ selected, activeColor }) =>
+    activeColor && selected ? `#011F3C` : `#798593`};
   text-transform: uppercase;
   letter-spacing: 0.7px;
   transition: ${transitions.short};
-  opacity: ${({ reveal }) => (reveal ? '1' : ' 0')};
-  pointer-events: ${({ reveal }) => (reveal ? 'auto' : ' none')};
-  transform: ${({ reveal }) => (reveal ? 'rotate3d(0,0,0,0)' : ' rotate3d(1, 1, 0, -20deg)')};
+  opacity: ${({ reveal }) => (reveal ? "1" : " 0")};
+  pointer-events: ${({ reveal }) => (reveal ? "auto" : " none")};
+  transform: ${({ reveal }) =>
+    reveal ? "rotate3d(0,0,0,0)" : " rotate3d(1, 1, 0, -20deg)"};
 
   & > span {
     margin-left: 44px;
@@ -370,7 +377,7 @@ const SMobileNavLinks = styled(({ activeColor, reveal, ...props }) => <Link {...
 
 const SMobileNavLinksAbout = SMobileNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 23px;
     left: 19px;
@@ -387,7 +394,7 @@ const SMobileNavLinksAbout = SMobileNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 23px;
     left: 19px;
@@ -411,7 +418,7 @@ const SMobileNavLinksAbout = SMobileNavLinks.extend`
 
 const SMobileNavLinksTokens = SMobileNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 23px;
     left: 20px;
@@ -424,7 +431,7 @@ const SMobileNavLinksTokens = SMobileNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 23px;
     left: 20px;
@@ -444,7 +451,7 @@ const SMobileNavLinksTokens = SMobileNavLinks.extend`
 
 const SMobileNavLinksBlog = SMobileNavLinks.extend`
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 23.5px;
     left: 20px;
@@ -457,7 +464,7 @@ const SMobileNavLinksBlog = SMobileNavLinks.extend`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 23.5px;
     left: 20px;
@@ -490,7 +497,7 @@ const SMobileNavClose = styled.div`
   background-color: #011f3c;
   transform-origin: top right;
   transition: ${transitions.base};
-  transform: ${({ reveal }) => (reveal ? 'scale(1)' : 'scale(0.8)')};
+  transform: ${({ reveal }) => (reveal ? "scale(1)" : "scale(0.8)")};
   cursor: pointer;
 `;
 
@@ -519,32 +526,59 @@ class Header extends Component {
   };
   render = () => {
     const { theme, ...props } = this.props;
-    const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+    const pathname =
+      typeof window !== "undefined" ? window.location.pathname : "";
     return (
       <SHeader {...props}>
         <STopSection>
           <SNav>
             <SLink
-              onClick={() => ga('send', 'event', 'Homepage', 'click', 'Header - click Homepage')}
+              onClick={() =>
+                ga(
+                  "send",
+                  "event",
+                  "Homepage",
+                  "click",
+                  "Header - click Homepage"
+                )
+              }
               to="/"
             >
               <SLogo theme={theme} />
             </SLink>
             <SNavList theme={theme}>
               <SNavLinksAbout
-                onClick={() => ga('send', 'event', 'About', 'click', 'Header - click About')}
+                onClick={() =>
+                  ga("send", "event", "About", "click", "Header - click About")
+                }
                 to="/about"
               >
                 <p>About</p>
               </SNavLinksAbout>
               <SNavLinksTokens
-                onClick={() => ga('send', 'event', 'Tokens', 'click', 'Header - click Tokens')}
+                onClick={() =>
+                  ga(
+                    "send",
+                    "event",
+                    "Tokens",
+                    "click",
+                    "Header - click Tokens"
+                  )
+                }
                 to="/erc20-tokens"
               >
                 <p>Tokens</p>
               </SNavLinksTokens>
               <SNavLinksBlog
-                onClick={() => ga('send', 'event', 'Exchange', 'click', 'Header - click Exchange')}
+                onClick={() =>
+                  ga(
+                    "send",
+                    "event",
+                    "Exchange",
+                    "click",
+                    "Header - click Exchange"
+                  )
+                }
                 to="/exchange"
               >
                 <p>Exchange</p>
@@ -591,7 +625,10 @@ class Header extends Component {
               >
                 <span>Exchange</span>
               </SMobileNavLinksBlog>
-              <SMobileNavClose reveal={this.state.navReveal} onClick={this.hideNavReveal} />
+              <SMobileNavClose
+                reveal={this.state.navReveal}
+                onClick={this.hideNavReveal}
+              />
             </SMobileNav>
             <SMobileNavDivider />
           </SNav>
