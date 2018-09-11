@@ -114,6 +114,12 @@ const Footer = ({ theme, ...props }) => (
     <SFooter theme={theme}>
       <SCopyright theme={theme}>© Balance</SCopyright>
       <SFooterList>
+        <SFooterLink
+          href="https://support.balance.io/"
+          rel="noreferrer noopener"
+        >
+          Support
+        </SFooterLink>
         <SFooterLink href="https://balance.io/blog" rel="noreferrer noopener">
           Blog
         </SFooterLink>
