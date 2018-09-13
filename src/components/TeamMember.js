@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { colors, fonts, transitions, responsive } from "../styles";
+import { colors } from "../styles";
 
 const STeamMember = styled.div`
   width: 64px;
