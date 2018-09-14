@@ -172,7 +172,7 @@ class CrowdfundingPage extends Component {
                   <Countries>
                     {includedCountries.map(country => (
                       <Country>
-                        <Emoji symbol="🚩" />
+                        <Emoji symbol={country.flag} />
                         {country.name}
                       </Country>
                     ))}
@@ -187,7 +187,7 @@ class CrowdfundingPage extends Component {
                   <Countries>
                     {excludedCountries.map(country => (
                       <Country>
-                        <Emoji symbol="🚩" />
+                        <Emoji symbol={country.flag} />
                         {country.name}
                       </Country>
                     ))}
