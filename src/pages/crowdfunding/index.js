@@ -197,9 +197,6 @@ class CrowdfundingPage extends Component {
             </div>
           </Flex>
         </Container>
-        <Section>
-          <h1>Crowdfunding</h1>
-        </Section>
       </Page>
     );
   }
