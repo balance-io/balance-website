@@ -5,25 +5,61 @@ import Section from "../../components/Section";
 import Container from "../../components/new/Container";
 import Flex from "../../components/new/Flex";
 import Emoji from "../../components/new/Emoji";
+import {
+  PurpleDivider,
+  PinkDivider,
+  BlueDivider
+} from "../../components/new/Divider";
 
-import { includedCountries, excludedCountries } from "../../data/crowdfunding";
+const EmailInput = styled.input`
+  all: unset;
+  font-weight: 500;
+  font-size: 24px;
+  height: 40px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 
-import crowdFundingImage from "../../assets/crowfunding-logo.png";
-import crowdFundingImage2x from "../../assets/crowfunding-logo@2x.png";
+  &::-webkit-input-placeholder,
+  &::placeholder {
+    color: rgba(120, 102, 255, 0.3);
+  }
+`;
+
+const Button = styled.button`
+  height: 48px;
+  border-radius: 48px;
+  padding: 16px 18px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  background-color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition-property: background-color, transform;
+  transition-duration: 0.125s;
+  transition-timing-function: ease-out;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08), 0 8px 16px 0 rgba(0, 0, 0, 0.1),
+    inset 0px 1px 0 0 rgba(255, 255, 255, 0.2);
+
+  &:focus,
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+
+const SubmitButton = styled(Button)`
+  background-color: #d166ff;
+  &:hover {
+    background-color: #bf78ff;
+  }
+  &:focus,
+  &:active {
+    background-color: #d557df;
+  }
+`;
 
 import { mailchimpMemberCount } from "../../utils/api";
-
-const Countries = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-`;
-
-const Country = styled.div`
-  line-height: 24px;
-  font-size: 18px;
-  white-space: nowrap;
-  margin-bottom: 16px;
-`;
 
 class CrowdfundingPage extends Component {
   constructor(props) {
@@ -39,161 +75,129 @@ class CrowdfundingPage extends Component {
         title="Crowdfunding"
         siteTitle={this.props.data.site.siteMetadata.title}
       >
-        <Container>
+        <Container maxWidth={600}>
           <Flex>
-            <div>
-              <h1>Crowdfunding</h1>
+            <div style={{ padding: "200px 0" }}>
+              <h1>Invest in Balance</h1>
               <p>
-                We will be raising $3–4m of capital to fund the next stage of
-                Balance in October. Pre-register your interest here. This is not
-                a token sale or ICO.
+                In October, we will be raising $3–4m of capital to fund the next
+                stage of Balance. Pre-register your interest here.
               </p>
               <form action="">
-                <p>Which country are you a resident in?</p>
-                <fieldset>
-                  <legend>
-                    The platforms we have picked support{" "}
-                    <a href="">94 countries</a>.
-                  </legend>
-                  <Flex justifyContent="space-around">
-                    <div>
-                      <label>
-                        <Emoji symbol="🇪🇺" />
-                        Europe
-                        <input
-                          type="radio"
-                          value="eu"
-                          name="countries"
-                          onClick={() =>
-                            this.setState({ showOtherCountries: false })
-                          }
-                          defaultChecked
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <Emoji symbol="🇺🇸" />
-                        United States
-                        <input
-                          type="radio"
-                          value="us"
-                          name="countries"
-                          onClick={() =>
-                            this.setState({ showOtherCountries: false })
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <Emoji symbol="🌍" />
-                        Other Countries
-                        <input
-                          type="radio"
-                          value="other"
-                          onClick={() =>
-                            this.setState({ showOtherCountries: true })
-                          }
-                          name="countries"
-                        />
-                      </label>
-                    </div>
-                  </Flex>
-                </fieldset>
-                <p>How much would you like to invest?</p>
-                <fieldset>
-                  <legend>We will do our best to include everyone.</legend>
-                  <Flex justifyContent="space-around">
-                    <div>
-                      <label>
-                        $10-1,000
-                        <input
-                          type="radio"
-                          value="10_1000"
-                          name="investment"
-                          defaultChecked
-                        />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        $1,000+
-                        <input type="radio" value="1000" name="investment" />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        $10,000+
-                        <input type="radio" value="10000" name="investment" />
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        $100,000+
-                        <input type="radio" value="100000" name="investment" />
-                      </label>
-                    </div>
-                  </Flex>
-                </fieldset>
+                <BlueDivider />
+
                 <div>
-                  <label>
-                    Email
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      required
-                      placeholder="your@email.com"
-                    />
-                  </label>
-                  <button type="submit">Register</button>
+                  <p>Which country are you a resident in?</p>
+                  <fieldset>
+                    <legend>
+                      The platforms we have picked support{" "}
+                      <a href="">94 countries</a>.
+                    </legend>
+                    <Flex justifyContent="space-around">
+                      <div>
+                        <label>
+                          <Emoji symbol="🇪🇺" />
+                          Europe
+                          <input
+                            type="radio"
+                            value="eu"
+                            name="countries"
+                            onClick={() =>
+                              this.setState({ showOtherCountries: false })
+                            }
+                            defaultChecked
+                          />
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <Emoji symbol="🇺🇸" />
+                          United States
+                          <input
+                            type="radio"
+                            value="us"
+                            name="countries"
+                            onClick={() =>
+                              this.setState({ showOtherCountries: false })
+                            }
+                          />
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <Emoji symbol="🌍" />
+                          Other Countries
+                          <input type="radio" value="other" name="countries" />
+                        </label>
+                      </div>
+                    </Flex>
+                  </fieldset>
+                </div>
+
+                <PurpleDivider />
+
+                <div>
+                  <p>How much would you like to invest?</p>
+                  <fieldset>
+                    <legend>We will do our best to include everyone.</legend>
+                    <Flex justifyContent="space-around">
+                      <div>
+                        <label>
+                          $10-1,000
+                          <input
+                            type="radio"
+                            value="10_1000"
+                            name="investment"
+                            defaultChecked
+                          />
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          $1,000+
+                          <input type="radio" value="1000" name="investment" />
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          $10,000+
+                          <input type="radio" value="10000" name="investment" />
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          $100,000+
+                          <input
+                            type="radio"
+                            value="100000"
+                            name="investment"
+                          />
+                        </label>
+                      </div>
+                    </Flex>
+                  </fieldset>
+                </div>
+
+                <div>
+                  <EmailInput
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder="Type your email"
+                  />
+                  <PinkDivider />
+                  <p>10,000 are on the list</p>
+                </div>
+
+                <div style={{ textAlign: "right" }}>
+                  <SubmitButton>Submit</SubmitButton>
+                  <p style={{ fontSize: 14, color: "#d166ff", opacity: 0.4 }}>
+                    Seedrs, UK Ltd. is a third party service and does not have
+                    liability for the investment.
+                  </p>
                 </div>
               </form>
-              <p>10,000 are on the list</p>
-              <p>
-                Seedrs, UK Ltd. is a third party service and does not have
-                liability for the investment.
-              </p>
-            </div>
-            <div>
-              <img
-                src={crowdFundingImage}
-                srcSet={`${crowdFundingImage2x} 2x`}
-                alt="Crowdfunding investors masked behind the Balance logo"
-              />
-              {this.state.showOtherCountries ? (
-                <div>
-                  <h4>Included countries</h4>
-                  <p>
-                    If you live in one of these countries outside of the EU and
-                    US, you can invest in our crowdfunding round.
-                  </p>
-                  <Countries>
-                    {includedCountries.map(country => (
-                      <Country>
-                        <Emoji symbol={country.flag} />
-                        {country.name}
-                      </Country>
-                    ))}
-                  </Countries>
-
-                  <h4>Excluded countries</h4>
-                  <p>
-                    We are really sorry that we cannot unacreddited investors
-                    from countries not included in the list above. In
-                    particular, we know we have lots of support from:
-                  </p>
-                  <Countries>
-                    {excludedCountries.map(country => (
-                      <Country>
-                        <Emoji symbol={country.flag} />
-                        {country.name}
-                      </Country>
-                    ))}
-                  </Countries>
-                </div>
-              ) : null}
             </div>
           </Flex>
         </Container>
