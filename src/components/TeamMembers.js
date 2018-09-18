@@ -147,9 +147,9 @@ const SCard = styled.div`
 `;
 
 const SCardDescription = styled.div`
-  font-size: ${fonts.small};
+  font-size: 0.9em;
   color: rgba(${colors.darker}, 0.95);
-  line-height: 1.31;
+  line-height: 1.4;
   text-align: left;
   border-top: 2px solid rgba(${colors.grey}, 0.1);
   width: 100%;
