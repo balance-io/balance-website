@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Page from "../layouts/page";
 import TeamMembers from "../components/TeamMembers";
 import Section from "../components/Section";
+import PressArticle from "../components/PressArticle";
 import AboutBackground from "../components/backgrounds/AboutBackground";
 import padlock from "../assets/padlock.svg";
 import cardArrow from "../assets/card-arrow.png";
@@ -315,6 +316,23 @@ const AboutPage = ({ data }) => (
             </SAboutParagraph>
           </SAbout>
           <TeamMembers />
+          <SAbout>
+            <STitle>In the news</STitle>
+            <SAboutParagraph>
+              Some of the articles, videos, podcasts from the communtiy talking
+              about us and the team.
+            </SAboutParagraph>
+            {data.allContentfulPressCoverage.edges.map(article => {
+              return (
+                <PressArticle
+                  date={article.node.date}
+                  outlet={article.node.outlet.name}
+                  link={article.node.link}
+                  headline={article.node.headline}
+                />
+              );
+            })}
+          </SAbout>
         </SContent>
 
         <SSidebar>
@@ -385,6 +403,19 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    allContentfulPressCoverage {
+      edges {
+        node {
+          headline
+          link
+          type
+          date
+          outlet {
+            name
+          }
+        }
       }
     }
   }
