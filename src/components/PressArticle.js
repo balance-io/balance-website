@@ -67,7 +67,7 @@ const Article = styled.article`
 
 const PressArticle = ({ date, outlet, link, headline }) => (
   <Article>
-    {date ? <Date>{dayjs(date).format("MMMM DD, YYYY")}</Date> : null}
+    <Date>{dayjs(date).format("MMMM DD, YYYY")}</Date>
     <Link target="_blank" rel="noopener" href={link}>
       <Headline>{headline}</Headline>
     </Link>
@@ -76,7 +76,7 @@ const PressArticle = ({ date, outlet, link, headline }) => (
 );
 
 PressArticle.propTypes = {
-  date: PropTypes.string,
+  date: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   outlet: PropTypes.object.isRequired,
   headline: PropTypes.string.isRequired

@@ -334,6 +334,7 @@ const AboutPage = ({ data }) => (
             {data.allContentfulPressCoverage.edges.map(article => {
               return (
                 <PressArticle
+                  key={article.node.id}
                   date={article.node.date}
                   outlet={article.node.outlet}
                   link={article.node.link}
@@ -417,6 +418,7 @@ export const query = graphql`
     allContentfulPressCoverage(sort: { fields: [date], order: DESC }) {
       edges {
         node {
+          id
           headline
           link
           date
