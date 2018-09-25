@@ -39,6 +39,7 @@ const Headline = styled.h4`
   @media screen and (${responsive.sm.max}) {
     font-size: 6vw;
   }
+  max-width: 585px;
 `;
 
 const Article = styled.article`

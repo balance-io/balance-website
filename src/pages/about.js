@@ -414,7 +414,7 @@ export const query = graphql`
         title
       }
     }
-    allContentfulPressCoverage {
+    allContentfulPressCoverage(sort: { fields: [date], order: DESC }) {
       edges {
         node {
           headline
