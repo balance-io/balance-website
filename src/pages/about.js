@@ -90,6 +90,13 @@ const SContent = styled.div`
   }
 `;
 
+const SPressContainer = styled(SContainer)`
+  margin: 10px;
+  @media screen and (${responsive.sm.max}) {
+    margin: 20px;
+  }
+`;
+
 const SAbout = styled(SContainer)`
   margin: 10px;
 
@@ -318,21 +325,23 @@ const AboutPage = ({ data }) => (
           <TeamMembers />
           <SAbout>
             <STitle>In the news</STitle>
-            <SAboutParagraph>
+            <SAboutParagraph style={{ marginBottom: 40 }}>
               Some of the articles, videos, podcasts from the communtiy talking
               about us and the team.
             </SAboutParagraph>
+          </SAbout>
+          <SPressContainer>
             {data.allContentfulPressCoverage.edges.map(article => {
               return (
                 <PressArticle
                   date={article.node.date}
-                  outlet={article.node.outlet.name}
+                  outlet={article.node.outlet}
                   link={article.node.link}
                   headline={article.node.headline}
                 />
               );
             })}
-          </SAbout>
+          </SPressContainer>
         </SContent>
 
         <SSidebar>
@@ -410,7 +419,6 @@ export const query = graphql`
         node {
           headline
           link
-          type
           date
           outlet {
             name

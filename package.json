@@ -5,6 +5,7 @@
   "author": "Pedro Gomes",
   "dependencies": {
     "axios": "^0.18.0",
+    "dayjs": "^1.7.6",
     "gatsby": "^1.9.217",
     "gatsby-link": "^1.6.20",
     "gatsby-plugin-google-analytics": "^1.0.8",
