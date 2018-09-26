@@ -23,7 +23,7 @@ const Date = P.extend`
 `;
 
 const Outlet = P.extend`
-  margin-top: 16px;
+  margin-top: 8px;
   padding-bottom: 24px;
 `;
 
