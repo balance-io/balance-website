@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Page from "../layouts/page";
 import TeamMembers from "../components/TeamMembers";
 import Section from "../components/Section";
+import PressArticle from "../components/PressArticle";
 import AboutBackground from "../components/backgrounds/AboutBackground";
 import padlock from "../assets/padlock.svg";
 import cardArrow from "../assets/card-arrow.png";
@@ -86,6 +87,13 @@ const SContent = styled.div`
   }
   @media screen and (${responsive.sm.max}) {
     margin-bottom: 0;
+  }
+`;
+
+const SPressContainer = styled(SContainer)`
+  margin: 10px;
+  @media screen and (${responsive.sm.max}) {
+    margin: 20px;
   }
 `;
 
@@ -315,6 +323,26 @@ const AboutPage = ({ data }) => (
             </SAboutParagraph>
           </SAbout>
           <TeamMembers />
+          <SAbout>
+            <STitle>In the news</STitle>
+            <SAboutParagraph style={{ marginBottom: 40 }}>
+              Some of the articles, videos, podcasts from the communtiy talking
+              about us and the team.
+            </SAboutParagraph>
+          </SAbout>
+          <SPressContainer>
+            {data.allContentfulPressCoverage.edges.map(article => {
+              return (
+                <PressArticle
+                  key={article.node.id}
+                  date={article.node.date}
+                  outlet={article.node.outlet}
+                  link={article.node.link}
+                  headline={article.node.headline}
+                />
+              );
+            })}
+          </SPressContainer>
         </SContent>
 
         <SSidebar>
@@ -385,6 +413,19 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    allContentfulPressCoverage(sort: { fields: [date], order: DESC }) {
+      edges {
+        node {
+          id
+          headline
+          link
+          date
+          outlet {
+            name
+          }
+        }
       }
     }
   }

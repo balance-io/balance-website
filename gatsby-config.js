@@ -6,8 +6,8 @@ module.exports = {
     description: `Store and secure all your ERC-20 tokens in one place`,
     keywords: `blockchain, tokens, cryptocurrency, wallet, interface, ethereum, bitcoin`,
     socialCard: `social-media-card.png`,
-    twitterUsername: "@balance_io",
-    facebookId: "1748891795369317"
+    twitterUsername: `@balance_io`,
+    facebookId: `1748891795369317`
   },
   plugins: [
     {
@@ -20,7 +20,14 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `0in2z5jkbaay`,
-        accessToken: `8a07f78be235d70f1bb3aee5d324b30e90275a542173a923604dcc12235ef33c`
+        accessToken:
+          process.env.NODE_ENV === `production`
+            ? `8a07f78be235d70f1bb3aee5d324b30e90275a542173a923604dcc12235ef33c`
+            : `867c7755ab38b021fd0bda2c1736c3221ee21ed9f3eb780178384f8d70781735`,
+        host:
+          process.env.NODE_ENV === `production`
+            ? `cdn.contentful.com`
+            : `preview.contentful.com`
       }
     },
     {
