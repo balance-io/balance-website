@@ -1,8 +1,7 @@
 import jin from "../assets/team/jin.png";
 import christian from "../assets/team/christian.png";
-import pedro from "../assets/team/pedro.png";
-import ben from "../assets/team/ben.png";
 import richard from "../assets/team/richard.png";
+import mike from "../assets/team/mike.jpg"
 
 import jinFace from "../assets/team-emoji/jin-face.png";
 import jinFun from "../assets/team-emoji/jin-fun.png";
@@ -14,20 +13,16 @@ import christianFun from "../assets/team-emoji/christian-fun.png";
 import christianWork from "../assets/team-emoji/christian-work.png";
 import christianParty from "../assets/team-emoji/christian-party.png";
 
-import pedroFace from "../assets/team-emoji/pedro-face.png";
-import pedroFun from "../assets/team-emoji/pedro-fun.png";
-import pedroWork from "../assets/team-emoji/pedro-work.png";
-import pedroParty from "../assets/team-emoji/pedro-party.png";
-
-import benFace from "../assets/team-emoji/ben-face.png";
-import benFun from "../assets/team-emoji/ben-fun.png";
-import benWork from "../assets/team-emoji/ben-work.png";
-import benParty from "../assets/team-emoji/ben-party.png";
-
 import richardFace from "../assets/team-emoji/richard-face.png";
 import richardFun from "../assets/team-emoji/richard-fun.png";
 import richardWork from "../assets/team-emoji/richard-work.png";
 import richardParty from "../assets/team-emoji/richard-party.png";
+
+import mikeFace from "../assets/team-emoji/mike-face.png";
+import mikeFun from "../assets/team-emoji/mike-fun.png";
+import mikeWork from "../assets/team-emoji/mike-work.png";
+import mikeParty from "../assets/team-emoji/mike-party.png";
+
 
 export default [
   {
@@ -68,6 +63,19 @@ export default [
       { name: "richardFun", img: richardFun },
       { name: "richardWork", img: richardWork },
       { name: "richardParty", img: richardParty }
+    ]
+  },
+  {
+    name: `Mike Demarais`,
+    profileImg: mike,
+    twitter: `mikedemarais`,
+    role: `Engineer`,
+    description: `Beast coast weirdo doing things on the internet with a fascination with mechanical keyboards. Snapchat maximalist.`,
+    emojis: [
+      { name: "mikeFace", img: mikeFace },
+      { name: "mikeFun", img: mikeFun },
+      { name: "mikeWork", img: mikeWork },
+      { name: "mikeParty", img: mikeParty }
     ]
   }
 ];
