@@ -70,7 +70,7 @@ export default [
     profileImg: mike,
     twitter: `mikedemarais`,
     role: `Engineer`,
-    description: `Beast coast hipster doing things on the internet with a fascination with mechanical keyboards. One of the last you know on Snapchat.`,
+    description: `Beast coast weirdo doing things on the internet with a fascination with mechanical keyboards. Snapchat maximalist.`,
     emojis: [
       { name: "mikeFace", img: mikeFace },
       { name: "mikeFun", img: mikeFun },
