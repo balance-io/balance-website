@@ -1,8 +1,7 @@
 import jin from "../assets/team/jin.png";
 import christian from "../assets/team/christian.png";
-import pedro from "../assets/team/pedro.png";
-import ben from "../assets/team/ben.png";
 import richard from "../assets/team/richard.png";
+import mike from "../assets/team/mike.jpg"
 
 import jinFace from "../assets/team-emoji/jin-face.png";
 import jinFun from "../assets/team-emoji/jin-fun.png";
@@ -69,5 +68,12 @@ export default [
       { name: "richardWork", img: richardWork },
       { name: "richardParty", img: richardParty }
     ]
+  },
+  {
+    name: `Mike Demarais`,
+    profileImg: mike,
+    twitter: `mikedemarais`,
+    role: `Engineer`,
+    description: `Beast coast hipster doing things on the internet with a fascination with mechanical keyboards. One of the last you know on Snapchat.`
   }
 ];

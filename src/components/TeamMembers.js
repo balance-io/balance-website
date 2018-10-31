@@ -158,7 +158,7 @@ const SCardDescription = styled.div`
 
 const STeam = styled.div`
   width: 100%;
-  max-width: 220px;
+  max-width: 292px;
   display: flex;
   justify-content: space-between;
   margin: 12px;
@@ -228,13 +228,14 @@ class TeamMembers extends Component {
                   >{`@${team[this.state.selected].twitter}`}</a>
                 </p>
               </SProfile>
-              <SCardEmojis>
+              {team[this.state.selected].emojis && (
+                <SCardEmojis>
                 {team[this.state.selected].emojis.map(emoji => (
                   <SEmoji key={emoji.name}>
                     <img src={emoji.img} alt={emoji.name} />
                   </SEmoji>
                 ))}
-              </SCardEmojis>
+              </SCardEmojis>)}
             </SCardHeader>
 
             <SCardDescription>
