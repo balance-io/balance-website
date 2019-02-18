@@ -19,13 +19,15 @@ const Layout = ({ children }) => (
       }
     `}
     render={({ site: { siteMetadata } }) => (
-      <Container>
-        <Header metadata={siteMetadata} />
+      <>
+        <Container>
+          <Header metadata={siteMetadata} />
+        </Container>
 
         <main>{children}</main>
 
         <footer>© Balance</footer>
-      </Container>
+      </>
     )}
   />
 );
