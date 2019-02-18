@@ -1,35 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StaticQuery, graphql } from "gatsby";
-
-import Header from "../Header";
-import Container from "../Container";
+import { Box } from "rebass";
 
 const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            supportUrl
-            managerUrl
-          }
-        }
-      }
-    `}
-    render={({ site: { siteMetadata } }) => (
-      <>
-        <Container>
-          <Header metadata={siteMetadata} />
-        </Container>
-
-        <main>{children}</main>
-
-        <footer>© Balance</footer>
-      </>
-    )}
-  />
+  <Box bg="#F8F8FA">
+    {children}
+    <footer>© Balance</footer>
+  </Box>
 );
 
 Layout.propTypes = {

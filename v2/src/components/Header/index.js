@@ -1,5 +1,4 @@
-import { Link } from "gatsby";
-import PropTypes from "prop-types";
+import { StaticQuery, graphql, Link } from "gatsby";
 import React from "react";
 import { Flex, Image, Link as RebassLink } from "rebass";
 
@@ -11,30 +10,33 @@ const ExternalLink = ({ href, children, ...rest }) => (
   </RebassLink>
 );
 
-const Header = ({ metadata }) => (
-  <Flex as="header" alignItems="center" justifyContent="space-evenly">
-    <ExternalLink href={metadata.supportUrl}>Support</ExternalLink>
-    <Link to="/">
-      <Image
-        alt={metadata.siteTitle}
-        src={wordmark}
-        style={{ verticalAlign: "middle" }}
-      />
-    </Link>
-    <ExternalLink href={metadata.managerUrl}>Manager</ExternalLink>
-  </Flex>
+const Header = () => (
+  <StaticQuery
+    query={graphql`
+      query SiteTitleQuery {
+        site {
+          siteMetadata {
+            title
+            supportUrl
+            managerUrl
+          }
+        }
+      }
+    `}
+    render={({ site: { siteMetadata } }) => (
+      <Flex as="header" alignItems="center" justifyContent="space-evenly">
+        <ExternalLink href={siteMetadata.supportUrl}>Support</ExternalLink>
+        <Link to="/">
+          <Image
+            alt={siteMetadata.siteTitle}
+            src={wordmark}
+            style={{ verticalAlign: "middle" }}
+          />
+        </Link>
+        <ExternalLink href={siteMetadata.managerUrl}>Manager</ExternalLink>
+      </Flex>
+    )}
+  />
 );
-
-Header.propTypes = {
-  metadata: PropTypes.shape({
-    siteTitle: PropTypes.string.isRequired,
-    supportUrl: PropTypes.string.isRequired,
-    managerUrl: PropTypes.string.isRequired
-  })
-};
-
-Header.defaultProps = {
-  siteTitle: ``
-};
 
 export default Header;
