@@ -13,6 +13,16 @@ module.exports = {
         path: `${__dirname}/src/images`
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-77954108-1",
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        cookieDomain: process.env.URL || "http://localhost:8000"
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,

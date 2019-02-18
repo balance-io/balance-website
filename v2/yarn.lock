@@ -4950,6 +4950,13 @@ gatsby-link@^2.0.10:
     "@types/reach__router" "^1.0.0"
     prop-types "^15.6.1"
 
+gatsby-plugin-google-analytics@^2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.0.14.tgz#b6f7e84f5eb6bcacd5831fe5dd8e8a3367136678"
+  integrity sha512-sFD73d9isJQknnDAAkDidaybHJx6VIaLfy3nO3DwbFaitvZ08RimbynYOkcWAeA0zwwix2RgAvbq/9pAmtTb/A==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 gatsby-plugin-mailchimp@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-mailchimp/-/gatsby-plugin-mailchimp-4.0.0.tgz#9747949b3c4dadea8406e087d83da43106e34b05"
