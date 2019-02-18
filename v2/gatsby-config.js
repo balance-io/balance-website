@@ -2,7 +2,9 @@ module.exports = {
   siteMetadata: {
     title: `Balance`,
     description: ``,
-    author: `@balance_io`
+    author: `@balance_io`,
+    supportUrl: `https://support.balance.io/`,
+    managerUrl: `https://manager.balance.io/`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
