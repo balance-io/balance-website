@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Flex, Image, Link as RebassLink } from "rebass";
 
-import wordmark from "../images/balance-wordmark.svg";
+import wordmark from "../../images/balance-wordmark.svg";
 
 const ExternalLink = ({ href, children, ...rest }) => (
-  <RebassLink href={href} rel="noopener noreferrer" target="_blank">
+  <RebassLink href={href} rel="noopener noreferrer" target="_blank" {...rest}>
     {children}
   </RebassLink>
 );
