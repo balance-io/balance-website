@@ -2,4 +2,4 @@
   base = "v2/"
   publish = "v2/public"
   functions = "v2/lambda"
-  command = "npm run build"
+  command = "npm run build && npm run build:lambda"
