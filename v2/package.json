@@ -22,6 +22,11 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+    "build:lambda": "netlify-lambda build functions",
+    "start:lambda": "netlify-lambda serve functions"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.4.2"
   }
 }
