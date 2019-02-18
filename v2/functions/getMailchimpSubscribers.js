@@ -9,15 +9,13 @@ exports.handler = async (event, context) => {
       headers: {
         Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`
       }
-    }).json();
-
-    console.log(response);
+    });
 
     return {
       statusCode: 200,
       body: response.body
     };
   } catch (error) {
-    console.log("Error: ", error.response.body);
+    console.log(`Error: ${JSON.stringify(error)}`);
   }
 };
