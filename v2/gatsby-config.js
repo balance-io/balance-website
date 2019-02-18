@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Balance`,
     description: ``,
-    author: `@balance_io`,
+    author: `@balance_io`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -10,12 +10,18 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-mailchimp`,
+      options: {
+        endpoint: `https://balance.us11.list-manage.com/subscribe/post?u=a3f87e208a9f9896949b4f336&amp;id=3985713da6`
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -25,8 +31,8 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#fff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
+        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+      }
     }
-  ],
-}
+  ]
+};
