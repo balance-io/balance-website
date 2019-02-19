@@ -13,7 +13,9 @@ import tweets from "../data/tweets.json";
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <Header />
+    <Container>
+      <Header />
+    </Container>
     <main>
       <Box>
         <Wave color="pink" />

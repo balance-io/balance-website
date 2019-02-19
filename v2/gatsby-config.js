@@ -4,7 +4,12 @@ module.exports = {
     description: ``,
     author: `@balance_io`,
     supportUrl: `https://support.balance.io/`,
-    managerUrl: `https://manager.balance.io/`
+    managerUrl: `https://manager.balance.io/`,
+    meetupUrl: `https://spectrum.chat/balance/meetups`,
+    twitterUrl: `https://twitter.com/balance_io`,
+    blogUrl: `https://medium.com/balance-io`,
+    githubUrl: `http://github.com/balance-io/`,
+    forumUrl: `https://spectrum.chat/balance`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
