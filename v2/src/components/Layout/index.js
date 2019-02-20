@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #F8F8FA;
   }
+
+  strong {
+    font-weight: 500;
+  }
 `;
 
 const Layout = ({ children }) => (
@@ -17,7 +21,6 @@ const Layout = ({ children }) => (
     <>
       <GlobalStyle />
       {children}
-      <footer>© Balance</footer>
     </>
   </ThemeProvider>
 );

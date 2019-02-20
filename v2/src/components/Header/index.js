@@ -1,19 +1,15 @@
 import { StaticQuery, graphql, Link } from "gatsby";
 import React from "react";
-import { Flex, Image, Link as RebassLink } from "rebass";
+import { Flex, Image } from "rebass";
+
+import { ExternalLink } from "../Links";
 
 import wordmark from "../../images/balance-wordmark.svg";
-
-const ExternalLink = ({ href, children, ...rest }) => (
-  <RebassLink href={href} rel="noopener noreferrer" target="_blank" {...rest}>
-    {children}
-  </RebassLink>
-);
 
 const Header = () => (
   <StaticQuery
     query={graphql`
-      query SiteTitleQuery {
+      query HeaderQuery {
         site {
           siteMetadata {
             title
@@ -24,8 +20,8 @@ const Header = () => (
       }
     `}
     render={({ site: { siteMetadata } }) => (
-      <Flex as="header" alignItems="center" justifyContent="space-evenly">
-        <ExternalLink href={siteMetadata.supportUrl}>Support</ExternalLink>
+      <Flex as="header" alignItems="center" justifyContent="space-evenly" py={4}>
+        <ExternalLink fontSize={4} href={siteMetadata.supportUrl}>Support</ExternalLink>
         <Link to="/">
           <Image
             alt={siteMetadata.siteTitle}
@@ -33,7 +29,7 @@ const Header = () => (
             style={{ verticalAlign: "middle" }}
           />
         </Link>
-        <ExternalLink href={siteMetadata.managerUrl}>Manager</ExternalLink>
+        <ExternalLink fontSize={4} href={siteMetadata.managerUrl}>Manager</ExternalLink>
       </Flex>
     )}
   />

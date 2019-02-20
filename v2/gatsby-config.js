@@ -5,11 +5,13 @@ module.exports = {
     author: `@balance_io`,
     supportUrl: `https://support.balance.io/`,
     managerUrl: `https://manager.balance.io/`,
-    meetupUrl: `https://spectrum.chat/balance/meetups`,
-    twitterUrl: `https://twitter.com/balance_io`,
-    blogUrl: `https://medium.com/balance-io`,
-    githubUrl: `http://github.com/balance-io/`,
-    forumUrl: `https://spectrum.chat/balance`
+    urls: [
+      { url: "https://twitter.com/balance_io", label: "Twitter" },
+      { url: "https://medium.com/balance-io", label: "Blog" },
+      { url: "http://github.com/balance-io/", label: "GitHub" },
+      { url: "https://spectrum.chat/balance", label: "Forum" },
+      { url: "https://spectrum.chat/balance/meetups", label: "Meetups" }
+    ]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
