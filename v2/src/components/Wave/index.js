@@ -24,7 +24,14 @@ const getWaveColor = color => {
   }
 };
 
-const Wave = ({ color }) => <Image src={getWaveColor(color)} />;
+const Wave = ({ color }) => (
+  <Image
+    css={`
+      vertical-align: middle;
+    `}
+    src={getWaveColor(color)}
+  />
+);
 
 Wave.propTypes = {
   color: PropTypes.oneOf(["pink", "blue", "green", "purple", "yellow"])

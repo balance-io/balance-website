@@ -3,11 +3,12 @@ import { Card } from "rebass";
 
 const Badge = props => (
   <Card
-    color="white"
-    bg="blue"
+    color="freeSpeachGreen"
+    bg="snowyMint"
     {...props}
-    px={3}
+    px={2}
     py={1}
+    fontSize={1}
     borderRadius={9999}
     css={{
       display: "inline-block"
