@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Button, Text, Link, Card, Flex } from "rebass";
+import { Box, Heading, Button, Text, Link, Card, Flex, Image } from "rebass";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 
 import Layout from "../components/Layout";
@@ -10,6 +10,12 @@ import Wave from "../components/Wave";
 
 import tweets from "../data/tweets.json";
 import Footer from "../components/Footer";
+import Integration from "../components/Integration";
+
+import integrations from "../data/integrations.json";
+
+import device from "../images/device.png";
+import badge from "../images/app-store-badge.svg";
 
 const IndexPage = () => (
   <Layout>
@@ -29,16 +35,48 @@ const IndexPage = () => (
         <Wave color="green" />
         <Wave color="yellow" />
 
+        {/* Intro */}
         <Container>
           <Box>
-            <Heading>Welcome to the open financial system</Heading>
-            <Text>
+            <Heading as="h1" textAlign="center" fontSize={5} color="text">
+              Welcome to the open financial system
+            </Heading>
+            <Text as="p" textAlign="center" fontSize={4} color="textLighter">
               Get access to the best tools and investment opportunities that are
               being built on Ethereum.
             </Text>
           </Box>
+        </Container>
+
+        {/* Device */}
+        <Container>
+          <Flex justifyContent="center">
+            <Image
+              src={device}
+              css={`
+                vertical-align: middle;
+              `}
+            />
+          </Flex>
+        </Container>
+        {/* Cards */}
+        <Flex>
+          {integrations.map((integration, index) => (
+            <Integration key={index} {...integration} />
+          ))}
+        </Flex>
+        <Container>
           {/* App Store */}
-          download on app store
+          <Flex justifyContent="center" my={5}>
+            <Link href="https://testflight.apple.com/join/QXCgM6bu">
+              <Image
+                css={`
+                  vertical-align: middle;
+                `}
+                src={badge}
+              />
+            </Link>
+          </Flex>
         </Container>
       </Box>
 
