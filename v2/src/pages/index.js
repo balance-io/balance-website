@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import Container from "../components/Container";
 import SEO from "../components/SEO";
 import Header from "../components/Header";
-import Wave from "../components/Wave";
+import Waves from "../components/Wave";
 
 import tweets from "../data/tweets.json";
 import Footer from "../components/Footer";
@@ -14,7 +14,9 @@ import Integration from "../components/Integration";
 
 import integrations from "../data/integrations.json";
 
-import device from "../images/device.png";
+import device from "../images/iphone.png";
+import device2x from "../images/iphone@2x.png";
+
 import badge from "../images/app-store-badge.svg";
 
 const IndexPage = () => (
@@ -29,12 +31,6 @@ const IndexPage = () => (
     {/* Main */}
     <Box as="main">
       <Box>
-        <Wave color="pink" />
-        <Wave color="blue" />
-        <Wave color="purple" />
-        <Wave color="green" />
-        <Wave color="yellow" />
-
         {/* Intro */}
         <Container>
           <Box>
@@ -49,16 +45,24 @@ const IndexPage = () => (
         </Container>
 
         {/* Device */}
-        <Container>
-          <Flex justifyContent="center">
-            <Image
-              src={device}
-              css={`
-                vertical-align: middle;
-              `}
-            />
-          </Flex>
-        </Container>
+        <Box
+          css={`
+            position: relative;
+          `}
+        >
+          <Waves />
+
+          <Container>
+            <Flex justifyContent="center">
+              <Image
+                src={device}
+                css={`
+                  vertical-align: middle;
+                `}
+              />
+            </Flex>
+          </Container>
+        </Box>
         {/* Cards */}
         <Flex>
           {integrations.map((integration, index) => (
@@ -102,12 +106,14 @@ const IndexPage = () => (
               </Flex>
             </Card>
           </Box>
+        </Container>
 
-          {/* Tweets */}
+        {/* Tweets */}
+        <Container maxWidth={1136}>
+          <Text fontSize={3} textAlign="center" as="p" mt={0} mb={4}>
+            Follow <Link color="deepSkyBlue" href="">@balance_io</Link> on Twitter
+          </Text>
           <Box>
-            <Text fontSize={3} textAlign="center">
-              Follow <Link href="">@balance_io</Link> on Twitter
-            </Text>
             {tweets.map(tweet => (
               <TwitterTweetEmbed tweetId={tweet} />
             ))}
@@ -117,7 +123,7 @@ const IndexPage = () => (
     </Box>
 
     {/* Footer */}
-    <Box bg="white" py={3}>
+    <Box bg="white" py={4}>
       <Container>
         <Footer />
       </Container>
