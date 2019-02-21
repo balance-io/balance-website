@@ -21,7 +21,7 @@ const Footer = () => (
     render={({ site: { siteMetadata } }) => (
       <Flex as="footer" justifyContent="space-evenly" alignItems="center">
         {siteMetadata.urls.map((link, index) => (
-          <ExternalLink fontSize={1} key={index} href={link.url}>
+          <ExternalLink color="textDark" fontSize={1} key={index} href={link.url}>
             {link.label}
           </ExternalLink>
         ))}
