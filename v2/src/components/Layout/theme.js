@@ -8,6 +8,8 @@ export default {
     freeSpeachGreen: "#55D134",
     snowyMint: "#E0FBD8",
     text: "#25292E",
+    textDark: "#191817",
+    deepSkyBlue: "#00A2F8",
     textLight: "#3C4252",
     textLighter: "#868B96"
   },
