@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import Container from "../components/Container";
 import SEO from "../components/SEO";
 import Header from "../components/Header";
-import Waves from "../components/Wave";
+import Waves from "../components/Waves";
 
 import tweets from "../data/tweets.json";
 import Footer from "../components/Footer";
