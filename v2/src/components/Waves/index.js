@@ -45,6 +45,7 @@ Wave.propTypes = {
 
 const WavesWrapper = styled.div`
   position: absolute;
+  overflow: hidden;
   width: 100%;
   transform: translateY(-50%);
   z-index: -1;
