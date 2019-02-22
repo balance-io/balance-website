@@ -33,12 +33,29 @@ const IndexPage = () => (
     <Box as="main">
       <Box>
         {/* Intro */}
-        <Container>
+        <Container pt={3}>
           <Box>
-            <Heading as="h1" textAlign="center" fontSize={5} color="text">
+            <Heading
+              as="h1"
+              fontFamily="graphik"
+              textAlign="center"
+              fontSize={5}
+              color="text"
+            >
               Welcome to the open financial system
             </Heading>
-            <Text as="p" textAlign="center" fontSize={4} color="textLighter">
+            <Text
+              as="p"
+              width={580}
+              fontFamily="graphik"
+              lineHeight={1.4}
+              mx="auto"
+              mb={0}
+              textAlign="center"
+              fontSize={4}
+              mt={3}
+              color="textLighter"
+            >
               Get access to the best tools and investment opportunities that are
               being built on Ethereum.
             </Text>
@@ -53,8 +70,9 @@ const IndexPage = () => (
         >
           <Waves />
 
-          <Container my={5}>
+          <Container my={4}>
             <Box
+              mx="auto"
               css={`
                 display: block;
                 max-width: 432px;
@@ -69,8 +87,8 @@ const IndexPage = () => (
                   position: absolute;
                   background-image: linear-gradient(
                     to bottom,
-                    #00E5CF 0%,
-                    #C54BE5 100%
+                    #00e5cf 0%,
+                    #c54be5 100%
                   );
                   width: 100%;
                   height: 100%;

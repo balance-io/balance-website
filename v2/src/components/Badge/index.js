@@ -9,6 +9,7 @@ const Badge = props => (
     px={2}
     py={1}
     fontSize={1}
+    fontFamily="graphik"
     borderRadius={9999}
     css={{
       display: "inline-block"

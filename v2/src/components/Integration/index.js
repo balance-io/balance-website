@@ -37,10 +37,17 @@ const Integration = ({ name, description, brand, status, active, ...rest }) => (
 
     <Squircle mb={3} bg={brand} />
 
-    <Heading as="h3" color="text">
+    <Heading as="h3" fontFamily="graphik" color="text">
       {name}
     </Heading>
-    <Text as="p" mt={2} mb="" color="textLighter" lineHeight={1.4}>
+    <Text
+      as="p"
+      mt={2}
+      mb={0}
+      fontFamily="graphik"
+      color="textLighter"
+      lineHeight={1.4}
+    >
       {description}
     </Text>
   </Card>

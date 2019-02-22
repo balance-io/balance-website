@@ -1,5 +1,8 @@
 export default {
   fontSizes: [12, 14, 16, 18, 20, 40],
+  fonts: {
+    graphik: "Graphik, sans-serif"
+  },
   colors: {
     maker: "#30BD9F",
     uniswap: "#C54BE5",
