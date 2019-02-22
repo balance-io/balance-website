@@ -9,7 +9,11 @@ const Subscribers = () => {
   const fetchSubscribers = () =>
     fetch("/.netlify/functions/getMailchimpSubscribers")
       .then(res => res.json())
-      .then(json => setSubscribers(json.stats.member_count));
+      .then(json => setSubscribers(json.stats.member_count))
+      .catch(err => {
+        console.log(err);
+        setSubscribers(4000);
+      });
 
   useEffect(() => {
     fetchSubscribers();
