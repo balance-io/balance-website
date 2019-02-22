@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Heading, Card, Box, Flex } from "rebass";
+import { Text, Heading, Card, Flex } from "rebass";
 import PropTypes from "prop-types";
 
 import Badge from "../Badge";
@@ -18,7 +18,7 @@ const Squircle = props => {
   );
 };
 
-const Integration = ({ name, description, brand, status, active }) => (
+const Integration = ({ name, description, brand, status, active, ...rest }) => (
   <Card
     py={3}
     px={24}
@@ -29,6 +29,7 @@ const Integration = ({ name, description, brand, status, active }) => (
         : "0 9px 45px 0 rgba(37,41,46,0.32)"
     }
     borderRadius="12.6px"
+    {...rest}
   >
     <Flex justifyContent="flex-end">
       <Badge mr={"-8px"}>{status ? status : "IN PROGRESS"}</Badge>
@@ -36,7 +37,9 @@ const Integration = ({ name, description, brand, status, active }) => (
 
     <Squircle mb={3} bg={brand} />
 
-    <Heading as="h3" color="text">{name}</Heading>
+    <Heading as="h3" color="text">
+      {name}
+    </Heading>
     <Text as="p" mt={2} mb="" color="textLighter" lineHeight={1.4}>
       {description}
     </Text>
