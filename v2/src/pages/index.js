@@ -53,18 +53,42 @@ const IndexPage = () => (
         >
           <Waves />
 
-          <Container>
-            <Image
-              src={device2x}
-              my={5}
-              mx="auto"
+          <Container my={5}>
+            <Box
               css={`
                 display: block;
-                max-width: 320px;
+                max-width: 432px;
+                max-height: 864px;
                 width: 100%;
                 vertical-align: middle;
+                position: relative;
+                z-index: auto;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  background-image: linear-gradient(
+                    to bottom,
+                    #00E5CF 0%,
+                    #C54BE5 100%
+                  );
+                  width: 100%;
+                  height: 100%;
+                  top: 25px;
+                  left: 29px;
+                  max-width: 375px;
+                  max-height: 812px;
+                  z-index: -1;
+                }
               `}
-            />
+            >
+              <Image
+                src={device2x}
+                css={`
+                  z-index: 1;
+                `}
+              />
+            </Box>
           </Container>
         </Box>
 
