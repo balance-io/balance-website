@@ -21,6 +21,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-hanger": "^1.1.2",
     "react-helmet": "^5.2.0",
     "react-twitter-embed": "^2.0.4",
     "rebass": "^3.0.1",

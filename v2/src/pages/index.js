@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Button, Text, Link, Card, Flex, Image } from "rebass";
+import { Box, Heading, Text, Link, Flex, Image } from "rebass";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 
 import Layout from "../components/Layout";
@@ -10,12 +10,12 @@ import Waves from "../components/Waves";
 
 import Footer from "../components/Footer";
 import Integration from "../components/Integration";
-import Subscribers from "../components/Subscribers";
+import Community from "../components/Community";
 
 import tweets from "../data/tweets.json";
 import integrations from "../data/integrations.json";
 
-import device from "../images/iphone.png";
+// import device from "../images/iphone.png";
 import device2x from "../images/iphone@2x.png";
 
 import badge from "../images/app-store-badge.svg";
@@ -93,30 +93,8 @@ const IndexPage = () => (
 
       <Box bg="white" py={4}>
         {/* Community */}
-        <Container>
-          <Box mb={[4, 5]}>
-            <Heading textAlign="center" fontWeight={2} fontSize={3}>
-              Join the <strong>Balance Community</strong>
-            </Heading>
-
-            <Flex justifyContent="center" my={3}>
-              <Card
-                p={1}
-                width={1 / 3}
-                borderRadius={6.4}
-                border="1px solid #d6d6d6"
-                bg="#fafbfc"
-                boxShadow="0 2px 3px 0 rgba(241, 241, 241, 0.5)"
-              >
-                <Flex justifyContent="space-between">
-                  <input placeholder="your@email.com" type="email" />
-                  <Button variant="foam">Join Us</Button>
-                </Flex>
-              </Card>
-            </Flex>
-
-            <Subscribers />
-          </Box>
+        <Container mb={[4, 5]}>
+          <Community />
         </Container>
 
         {/* Tweets */}
