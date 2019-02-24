@@ -44,6 +44,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-intercom`,
+      options: {
+        appId: 'j0fl7v0m',
+        includeInDevelopment: false,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Balance`,
@@ -54,7 +61,9 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/balance-icon.png`
       }
-    }
+    },
+    `gatsby-plugin-netlify-cache`,
+    `gatsby-plugin-netlify`
   ],
   developMiddleware: app => {
     app.use(
