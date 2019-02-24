@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Heading, Text, Link, Flex, Image } from "rebass";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import Masonry from "react-masonry-component";
 
 import Layout from "../components/Layout";
 import Container from "../components/Container";
@@ -148,15 +149,15 @@ const IndexPage = () => (
             </Link>{" "}
             on Twitter
           </Text>
-          <Box>
+          <Masonry enableResizableChildren={true} options={{ gutter: 20 }}>
             {tweets.map((tweet, index) => (
               <TwitterTweetEmbed
                 key={index}
-                options={{ height: 250 }}
+                options={{ conversation: "none", dnt: true, cards: "hidden" }}
                 tweetId={tweet}
               />
             ))}
-          </Box>
+          </Masonry>
         </Container>
       </Box>
     </Box>

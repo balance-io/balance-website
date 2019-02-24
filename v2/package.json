@@ -23,6 +23,7 @@
     "react-dom": "^16.8.2",
     "react-hanger": "^1.1.2",
     "react-helmet": "^5.2.0",
+    "react-masonry-component": "^6.2.1",
     "react-twitter-embed": "^2.0.4",
     "rebass": "^3.0.1",
     "styled-components": "^4.1.3"
