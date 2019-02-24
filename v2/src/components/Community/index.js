@@ -50,7 +50,6 @@ const Community = () => {
       <Flex justifyContent="center" my={3}>
         <Card
           p={1}
-          width={1 / 3}
           borderRadius={6.4}
           border="1px solid #d6d6d6"
           bg="#fafbfc"
@@ -63,6 +62,7 @@ const Community = () => {
               value={email.value}
               onChange={email.onChange}
               type="email"
+              required
               mr={1}
               bg="transparent"
               p={0}

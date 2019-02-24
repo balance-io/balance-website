@@ -3,6 +3,11 @@ export default {
   fonts: {
     graphik: "Graphik, sans-serif"
   },
+  fontWeights: {
+    semibold: 600,
+    medium: 500,
+    regular: 400
+  },
   colors: {
     maker: "#30BD9F",
     uniswap: "#C54BE5",

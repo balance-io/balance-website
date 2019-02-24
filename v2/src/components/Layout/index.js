@@ -10,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #F8F8FA;
   }
+  
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
   strong {
     font-weight: 500;

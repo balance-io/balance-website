@@ -21,7 +21,7 @@ const Header = () => (
     `}
     render={({ site: { siteMetadata } }) => (
       <Flex as="header" alignItems="center" justifyContent="space-evenly" py={4}>
-        <ExternalLink fontSize={4} href={siteMetadata.supportUrl}>Support</ExternalLink>
+        <ExternalLink fontSize={4} color="textLighter" href={siteMetadata.supportUrl}>Support</ExternalLink>
         <Link to="/">
           <Image
             alt={siteMetadata.siteTitle}
@@ -29,7 +29,7 @@ const Header = () => (
             style={{ verticalAlign: "middle" }}
           />
         </Link>
-        <ExternalLink fontSize={4} href={siteMetadata.managerUrl}>Manager</ExternalLink>
+        <ExternalLink fontSize={4} color="textLighter" href={siteMetadata.managerUrl}>Manager</ExternalLink>
       </Flex>
     )}
   />

@@ -42,6 +42,7 @@ const IndexPage = () => (
               textAlign="center"
               fontSize={5}
               color="text"
+              fontWeight="semibold"
             >
               Welcome to the open financial system
             </Heading>
@@ -49,6 +50,7 @@ const IndexPage = () => (
               as="p"
               width={580}
               fontFamily="graphik"
+              fontWeight="regular"
               lineHeight={1.4}
               mx="auto"
               mb={0}
