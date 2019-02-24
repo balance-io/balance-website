@@ -48,11 +48,9 @@ const IndexPage = () => (
             </Heading>
             <Text
               as="p"
-              width={580}
               fontFamily="graphik"
               fontWeight="regular"
               lineHeight={1.4}
-              mx="auto"
               mb={0}
               textAlign="center"
               fontSize={4}

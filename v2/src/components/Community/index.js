@@ -72,7 +72,7 @@ const Community = () => {
             />
 
             <Button type="submit" variant="foam">
-              Join Us
+              Join us
             </Button>
           </Flex>
         </Card>
