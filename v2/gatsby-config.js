@@ -5,7 +5,7 @@ module.exports = {
     title: `Balance`,
     description: ``,
     author: `@balance_io`,
-    supportUrl: `https://support.balance.io/`,
+    supportUrl: `http://support.balance.io/`,
     managerUrl: `https://manager.balance.io/`,
     urls: [
       { url: "https://twitter.com/balance_io", label: "Twitter" },
