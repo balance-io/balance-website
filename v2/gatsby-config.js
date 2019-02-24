@@ -10,7 +10,7 @@ module.exports = {
     urls: [
       { url: "https://twitter.com/balance_io", label: "Twitter" },
       { url: "https://medium.com/balance-io", label: "Blog" },
-      { url: "http://github.com/balance-io/", label: "GitHub" },
+      { url: "https://github.com/balance-io/", label: "GitHub" },
       { url: "https://spectrum.chat/balance", label: "Forum" },
       { url: "https://spectrum.chat/balance/meetups", label: "Meetups" }
     ]
