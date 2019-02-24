@@ -3,6 +3,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import PropTypes from "prop-types";
 
 import "modern-normalize";
+import "./fonts.css";
 
 import theme from "./theme";
 
