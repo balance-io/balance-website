@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Heading, Text, Link, Flex, Image } from "rebass";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import Masonry from "react-masonry-component";
 
 import Layout from "../components/Layout";
 import Container from "../components/Container";
@@ -11,15 +9,17 @@ import Waves from "../components/Waves";
 
 import Footer from "../components/Footer";
 import Integration from "../components/Integration";
-import Community from "../components/Community";
+import { Subscribers, SubscriptionForm } from "../components/Community";
+import Tweets from "../components/Tweets";
 
-import tweets from "../data/tweets.json";
 import integrations from "../data/integrations.json";
 
 // import device from "../images/iphone.png";
 import device2x from "../images/iphone@2x.png";
 
 import badge from "../images/app-store-badge.svg";
+import { ExternalLink } from "../components/Links";
+import Strong from "../components/Strong";
 
 const IndexPage = () => (
   <Layout>
@@ -137,27 +137,34 @@ const IndexPage = () => (
       <Box bg="white" py={4}>
         {/* Community */}
         <Container mb={[4, 5]}>
-          <Community />
+          <Heading fontWeight="regular" textAlign="center" fontSize={3}>
+            Join the <Strong>Balance Community</Strong>
+          </Heading>
+          <Flex justifyContent="center" my={3}>
+            <SubscriptionForm />
+          </Flex>
+          <Subscribers />
         </Container>
 
         {/* Tweets */}
         <Container maxWidth={1136}>
-          <Text fontSize={3} textAlign="center" as="p" mt={0} mb={4}>
+          <Heading
+            fontWeight="regular"
+            textAlign="center"
+            fontSize={3}
+            mt={0}
+            mb={22}
+          >
             Follow{" "}
-            <Link color="deepSkyBlue" href="">
-              @balance_io
-            </Link>{" "}
+            <ExternalLink
+              color="deepSkyBlue"
+              href="https://twitter.com/balance_io"
+            >
+              <Strong>@balance_io</Strong>
+            </ExternalLink>{" "}
             on Twitter
-          </Text>
-          <Masonry enableResizableChildren={true} options={{ gutter: 20 }}>
-            {tweets.map((tweet, index) => (
-              <TwitterTweetEmbed
-                key={index}
-                options={{ conversation: "none", dnt: true, cards: "hidden" }}
-                tweetId={tweet}
-              />
-            ))}
-          </Masonry>
+          </Heading>
+          <Tweets />
         </Container>
       </Box>
     </Box>
