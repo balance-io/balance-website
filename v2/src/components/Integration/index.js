@@ -1,20 +1,50 @@
 import React from "react";
-import { Text, Heading, Card, Flex } from "rebass";
+import { Text, Heading, Card, Flex, Image } from "rebass";
 import PropTypes from "prop-types";
 
 import Badge from "../Badge";
 
-const Squircle = props => {
+import maker from "../../images/integrations/maker.svg";
+import opensea from "../../images/integrations/opensea.svg";
+import uniswap from "../../images/integrations/uniswap.svg";
+import veil from "../../images/integrations/veil.svg";
+
+const Squircle = props => (
+  <Card
+    width="32px"
+    borderRadius="10px"
+    boxShadow="0 4px 5px 0 rgba(37,41,46,0.04), 0 1px 3px 0 rgba(37,41,46,0.08)"
+    css={{ height: 32 }}
+    {...props}
+  />
+);
+
+const BrandSquircle = ({ brand }) => {
+  let brandLogo;
+
+  switch (brand) {
+    case "opensea":
+    default:
+      brandLogo = opensea;
+      break;
+    case "maker":
+      brandLogo = maker;
+      break;
+    case "veil":
+      brandLogo = veil;
+      break;
+    case "uniswap":
+      brandLogo = uniswap;
+      break;
+    case "compound":
+      brandLogo = "";
+      break;
+  }
+
   return (
-    <Card
-      width="32px"
-      borderRadius="10px"
-      boxShadow="0 4px 5px 0 rgba(37,41,46,0.04), 0 1px 3px 0 rgba(37,41,46,0.08)"
-      css={`
-        height: 32px;
-      `}
-      {...props}
-    />
+    <Squircle mb={3} bg={brand}>
+      <Image src={brandLogo} css={{ verticalAlign: "middle" }} />
+    </Squircle>
   );
 };
 
@@ -32,19 +62,18 @@ const Integration = ({ name, description, brand, status, active, ...rest }) => (
     {...rest}
   >
     <Flex justifyContent="flex-end">
-      <Badge mr={"-8px"}>{status ? status : "IN PROGRESS"}</Badge>
+      <Badge mr={"-8px"}>{status ? status : "VOTED"}</Badge>
     </Flex>
 
-    <Squircle mb={3} bg={brand} />
+    <BrandSquircle brand={brand} />
 
     <Heading as="h3" fontFamily="graphik" fontWeight="medium" color="text">
       {name}
     </Heading>
     <Text
       as="p"
-      mt={2}
+      my={2}
       fontWeight="regular"
-      mb={0}
       fontFamily="graphik"
       color="textLighter"
       lineHeight={1.4}

@@ -8,8 +8,7 @@
   {
     "name": "Veil",
     "description": "Participate in Veil markets directly from Balance and redeem your shares when a market ends.",
-    "brand": "veil",
-    "status": "VOTED"
+    "brand": "veil"
   },
   {
     "name": "Maker CDPs",
@@ -20,13 +19,11 @@
   {
     "name": "OpenSea",
     "description": "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-    "brand": "white",
-    "status": "👍"
+    "brand": "white"
   },
   {
     "name": "Compound",
     "description": "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
-    "brand": "compound",
-    "status": "👍"
+    "brand": "compound"
   }
 ]
