@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  strong {
+  b, strong {
     font-weight: 500;
   }
 `;

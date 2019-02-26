@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "rebass";
 
-const ExternalLink = ({ href, children, ...rest }) => (
+const ExternalLink = props => (
   <Link
-    href={href}
-    css={`
-      text-decoration: none;
-    `}
+    {...props}
     rel="noopener noreferrer"
     target="_blank"
-    {...rest}
-  >
-    {children}
-  </Link>
+    css={{
+      textDecoration: "none"
+    }}
+  />
 );
 
 export { ExternalLink };
