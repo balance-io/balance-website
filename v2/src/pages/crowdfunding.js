@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Heading, Text, Flex, Button as RebassButton } from "rebass";
 import styled from "styled-components";
 import { useFormState } from "react-use-form-state";
+import addToMailchimp from "../../plugins/gatsby-plugin-mailchimp";
 import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 
@@ -9,8 +10,10 @@ import Layout from "../components/Layout";
 import Container from "../components/Container";
 import SEO from "../components/SEO";
 import { SharesIcon, SubmitIcon } from "../components/Icons";
+import { MailchimpResponse } from "../components/Community";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const gradientBorders = {
   opaqueWhiteBlack: "to right, rgba(255, 255, 255, 0.08), #000",
@@ -169,7 +172,7 @@ const Invest = () => (
       fontFamily="graphik"
       fontWeight="semibold"
       mt={32}
-      fontSize={48}
+      fontSize={[40, 48]}
       mb={16}
     >
       Invest in Balance
@@ -177,7 +180,7 @@ const Invest = () => (
     <Text
       as="p"
       textAlign="center"
-      fontSize={20}
+      fontSize={[18, 20]}
       lineHeight={1.5}
       mb={32}
       fontFamily="graphik"
@@ -244,8 +247,14 @@ const Crowdfunding = () => (
         not have liability for the investment.
       </Text>
     </Container>
+
+    <Container mb={4}>
+      <Footer light />
+    </Container>
   </Layout>
 );
+
+const crowdfundingEndpoint = `https://balance.us11.list-manage.com/subscribe/post?u=a3f87e208a9f9896949b4f336&amp;id=25406fd6f1`;
 
 const CrowdfundingForm = () => {
   const [formState, { email, radio }] = useFormState({
@@ -253,12 +262,48 @@ const CrowdfundingForm = () => {
     INVESTAMT: "$10 - $1,000"
   });
 
-  return (
-    <Box as="form">
-      {/* <pre>
-        <code>{JSON.stringify(formState.values, null, 2)}</code>
-      </pre> */}
+  const [result, setResult] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const response = await addToMailchimp(
+      formState.values.EMAIL,
+      {
+        LOCATION: formState.values.LOCATION,
+        INVESTAMT: formState.values.INVESTAMT
+      },
+      crowdfundingEndpoint
+    );
+
+    await setResult(response);
+
+    await setSubmitted(true);
+  };
+
+  if (submitted)
+    return (
+      <Text
+        textAlign="center"
+        color="white"
+        fontSize={[18, 20]}
+        fontFamily="graphik"
+        fontWeight="medium"
+        css={{ maxWidth: 420 }}
+        mx="auto"
+        mb={64}
+        lineHeight={1.5}
+      >
+        <MailchimpResponse
+          dark
+          dangerouslySetInnerHTML={{ __html: result.msg }}
+        />
+      </Text>
+    );
+
+  return (
+    <Box as="form" onSubmit={handleSubmit}>
       <Divider />
       <FieldsetHeading>Which country are you a resident in?</FieldsetHeading>
       <Fieldset mb={64}>
@@ -308,11 +353,11 @@ const CrowdfundingForm = () => {
           </Box>
           <Box>
             <Label
-              active={radio("INVESTAMT", "$1,000+").checked}
+              active={radio("INVESTAMT", "$1,000").checked}
               activeGradient={gradientBorders.purplePurpleBlack}
             >
               $1,000+
-              <Input {...radio("INVESTAMT", "$1,000+")} />
+              <Input {...radio("INVESTAMT", "$1,000")} />
             </Label>
           </Box>
           <Box>
@@ -321,7 +366,7 @@ const CrowdfundingForm = () => {
               activeGradient={gradientBorders.purplePurpleBlack}
             >
               $10,000+
-              <Input {...radio("INVESTAMT", "$10,000+")} />
+              <Input {...radio("INVESTAMT", "$10,000")} />
             </Label>
           </Box>
           <Box>
@@ -330,7 +375,7 @@ const CrowdfundingForm = () => {
               activeGradient={gradientBorders.purplePurpleBlack}
             >
               $100,000+
-              <Input {...radio("INVESTAMT", "$100,000+")} />
+              <Input {...radio("INVESTAMT", "$100,000")} />
             </Label>
           </Box>
         </Flex>

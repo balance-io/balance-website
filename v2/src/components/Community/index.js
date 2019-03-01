@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Card, Flex, Button, Text, Box } from "rebass";
-import addToMailchimp from "gatsby-plugin-mailchimp";
+import addToMailchimp from "../../../plugins/gatsby-plugin-mailchimp";
 import styled from "styled-components";
 import { useInput } from "react-hanger";
 
-const MailchimpResponse = styled(Box).attrs({ as: "span" })`
+export const MailchimpResponse = styled(Box).attrs({ as: "span" })`
   a {
-    color: #191817;
+    color: ${props => props.dark ? "#7866FF" : "#191817"};
     text-decoration: none;
     font-weight: 500;
   }
 `;
+
+const newsletterEndpoint = `https://balance.us11.list-manage.com/subscribe/post?u=a3f87e208a9f9896949b4f336&amp;id=3985713da6`;
 
 const Subscribers = () => {
   const [subscribers, setSubscribers] = useState(0);
@@ -43,7 +45,11 @@ const SubscriptionForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const response = await addToMailchimp(email.value);
+    const response = await addToMailchimp(
+      email.value,
+      null,
+      newsletterEndpoint
+    );
 
     await setResult(response);
 
