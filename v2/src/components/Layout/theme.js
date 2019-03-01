@@ -25,7 +25,8 @@ export default {
     text: "#25292E",
     textDark: "#191817",
     textLight: "#3C4252",
-    textLighter: "#868B96"
+    textLighter: "#868B96",
+    textLightest: "#A9B0B8"
   },
   buttons: {
     foam: {

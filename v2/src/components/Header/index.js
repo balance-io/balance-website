@@ -29,7 +29,7 @@ const Header = ({ light }) => (
       >
         <ExternalLink
           fontSize={4}
-          color="textLighter"
+          color={light ? "textLightest" : "textLighter"}
           href={siteMetadata.supportUrl}
         >
           Support
@@ -43,7 +43,7 @@ const Header = ({ light }) => (
         </Link>
         <ExternalLink
           fontSize={4}
-          color="textLighter"
+          color={light ? "textLightest" : "textLighter"}
           href={siteMetadata.managerUrl}
         >
           Manager
@@ -55,6 +55,6 @@ const Header = ({ light }) => (
 
 Header.defaultProps = {
   light: false
-}
+};
 
 export default Header;

@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby";
 
 import { ExternalLink } from "../Links";
 
-const Footer = () => (
+const Footer = ({ light }) => (
   <StaticQuery
     query={graphql`
       query FooterQuery {
@@ -21,7 +21,12 @@ const Footer = () => (
     render={({ site: { siteMetadata } }) => (
       <Flex as="footer" justifyContent="space-evenly" alignItems="center">
         {siteMetadata.urls.map((link, index) => (
-          <ExternalLink color="textDark" fontSize={1} key={index} href={link.url}>
+          <ExternalLink
+            color={light ? "textLighter" : "textDark"}
+            fontSize={1}
+            key={index}
+            href={link.url}
+          >
             {link.label}
           </ExternalLink>
         ))}
@@ -29,5 +34,9 @@ const Footer = () => (
     )}
   />
 );
+
+Footer.defaultProps = {
+  light: false
+};
 
 export default Footer;
