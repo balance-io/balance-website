@@ -102,8 +102,8 @@ const IndexPage = () => (
             </Text>
             <Flex justifyContent="center" my={4}>
               <Announcement
-                pill="Big news"
-                message="Invest in Balance"
+                pill="We're Growing"
+                message="Invest in the future"
                 to="/crowdfunding/"
               />
             </Flex>
