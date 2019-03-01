@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Heading, Text, Link, Flex, Image } from "rebass";
+import { useStaticQuery } from "gatsby";
+import { Box, Heading, Text, Link, Flex, Image as Img } from "rebass";
+import Image from "gatsby-image";
 
 import Layout from "../components/Layout";
 import Container from "../components/Container";
@@ -8,18 +10,52 @@ import Header from "../components/Header";
 import Waves from "../components/Waves";
 
 import Footer from "../components/Footer";
-import Integration from "../components/Integration";
+// import Integration from "../components/Integration";
 import { Subscribers, SubscriptionForm } from "../components/Community";
 import Tweets from "../components/Tweets";
 
-import integrations from "../data/integrations.json";
+// import integrations from "../data/integrations.json";
 
-// import device from "../images/iphone.png";
-import device2x from "../images/iphone@2x.png";
+// // import device from "../images/iphone.png";
+// import device2x from "../images/iphone@2x.png";
 
 import badge from "../images/app-store-badge.svg";
 import { ExternalLink } from "../components/Links";
 import Strong from "../components/Strong";
+
+// const Device = props => (
+//   <Box
+//     css={`
+//       display: block;
+//       max-width: 432px;
+//       max-height: 864px;
+//       width: 100%;
+//       vertical-align: middle;
+//       position: relative;
+//       z-index: auto;
+
+//       &::after {
+//         content: "";
+//         position: absolute;
+//         background-image: linear-gradient(to bottom, #00e5cf 0%, #c54be5 100%);
+//         width: 100%;
+//         height: 100%;
+//         top: 25px;
+//         left: 29px;
+//         max-width: 375px;
+//         max-height: 812px;
+//         z-index: -1;
+//       }
+//     `}
+//   >
+//     {/* <Image
+//       src={device2x}
+//       css={`
+//         z-index: 1;
+//       `}
+//     /> */}
+//   </Box>
+// );
 
 const IndexPage = () => (
   <Layout>
@@ -52,6 +88,8 @@ const IndexPage = () => (
               fontWeight="regular"
               lineHeight={1.4}
               mb={0}
+              mx="auto"
+              css={{maxWidth: 576}}
               textAlign="center"
               fontSize={4}
               mt={3}
@@ -72,64 +110,23 @@ const IndexPage = () => (
           <Waves />
 
           <Container my={4}>
-            <Box
-              mx="auto"
-              css={`
-                display: block;
-                max-width: 432px;
-                max-height: 864px;
-                width: 100%;
-                vertical-align: middle;
-                position: relative;
-                z-index: auto;
-
-                &::after {
-                  content: "";
-                  position: absolute;
-                  background-image: linear-gradient(
-                    to bottom,
-                    #00e5cf 0%,
-                    #c54be5 100%
-                  );
-                  width: 100%;
-                  height: 100%;
-                  top: 25px;
-                  left: 29px;
-                  max-width: 375px;
-                  max-height: 812px;
-                  z-index: -1;
-                }
-              `}
-            >
-              <Image
-                src={device2x}
-                css={`
-                  z-index: 1;
-                `}
-              />
-            </Box>
+            <Flex justifyContent="center">
+              <Phone />
+            </Flex>
           </Container>
         </Box>
 
         {/* Cards */}
-        <Flex>
+        {/* <Flex>
           {integrations.map((integration, index) => (
             <Integration key={index} {...integration} />
           ))}
-        </Flex>
+        </Flex> */}
 
         {/* App Store */}
         <Container>
-          <Flex justifyContent="center" my={5}>
-            <Link href="https://testflight.apple.com/join/QXCgM6bu">
-              <Image
-                css={`
-                  height: 56px;
-                  vertical-align: middle;
-                `}
-                src={badge}
-              />
-            </Link>
+          <Flex justifyContent="center" mb={5}>
+            <AppStoreBadge />
           </Flex>
         </Container>
       </Box>
@@ -176,6 +173,34 @@ const IndexPage = () => (
       </Container>
     </Box>
   </Layout>
+);
+
+const Phone = () => {
+  const image = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "iphone@2x.png" }) {
+        childImageSharp {
+          fixed(height: 576) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+    }
+  `);
+
+  return <Image fixed={image.file.childImageSharp.fixed} />;
+};
+
+const AppStoreBadge = () => (
+  <Link href="https://testflight.apple.com/join/QXCgM6bu">
+    <Img
+      css={`
+        height: 56px;
+        vertical-align: middle;
+      `}
+      src={badge}
+    />
+  </Link>
 );
 
 export default IndexPage;

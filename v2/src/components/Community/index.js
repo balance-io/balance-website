@@ -56,6 +56,7 @@ const SubscriptionForm = () => {
           value={email.value}
           onChange={email.onChange}
           type="email"
+          width={200}
           required
           mr={1}
           bg="transparent"
