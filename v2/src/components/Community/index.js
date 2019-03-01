@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Card, Flex, Button, Text } from "rebass";
+import { Card, Flex, Button, Text, Box } from "rebass";
 import addToMailchimp from "gatsby-plugin-mailchimp";
+import styled from "styled-components";
 import { useInput } from "react-hanger";
+
+const MailchimpResponse = styled(Box).attrs({as: "span"})`
+  a {
+    color: #191817;
+    text-decoration: none;
+    font-weight: 500;
+  }
+`
+
 
 const Subscribers = () => {
   const [subscribers, setSubscribers] = useState(0);
@@ -28,8 +38,8 @@ const Subscribers = () => {
 
 const SubscriptionForm = () => {
   const email = useInput("");
-
   const [result, setResult] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -38,8 +48,21 @@ const SubscriptionForm = () => {
 
     await setResult(response);
 
-    await window.alert(JSON.stringify(result, null, 2));
+    await setSubmitted(true);
   };
+
+  if (submitted)
+    return (
+      <Text
+        textAlign="center"
+        color="textLight"
+        css={{ maxWidth: 480 }}
+        mx="auto"
+        lineHeight={1.5}
+      >
+        <MailchimpResponse dangerouslySetInnerHTML={{ __html: result.msg }} />
+      </Text>
+    );
 
   return (
     <Card
