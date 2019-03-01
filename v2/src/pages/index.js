@@ -19,6 +19,8 @@ import Tweets from "../components/Tweets";
 // // import device from "../images/iphone.png";
 // import device2x from "../images/iphone@2x.png";
 
+import { Announcement } from "../components/Badge";
+
 import badge from "../images/app-store-badge.svg";
 import { ExternalLink } from "../components/Links";
 import Strong from "../components/Strong";
@@ -89,7 +91,7 @@ const IndexPage = () => (
               lineHeight={1.4}
               mb={0}
               mx="auto"
-              css={{maxWidth: 576}}
+              css={{ maxWidth: 576 }}
               textAlign="center"
               fontSize={4}
               mt={3}
@@ -98,6 +100,13 @@ const IndexPage = () => (
               Get access to the best tools and investment opportunities that are
               being built on Ethereum.
             </Text>
+            <Flex justifyContent="center" my={4}>
+              <Announcement
+                pill="important"
+                message="Beeg Yoshi Needs Your Help"
+                to="/crowdfunding/"
+              />
+            </Flex>
           </Box>
         </Container>
 
