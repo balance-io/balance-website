@@ -49,7 +49,8 @@ const WavesWrapper = styled.div`
   width: 100%;
   transform: translateY(-50%);
   z-index: -1;
-  height: 275px;
+  height: 280px;
+  margin-top: -32px;
   top: 50%;
 `;
 
