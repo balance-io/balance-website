@@ -11,6 +11,7 @@ const SEO = ({ description, lang, meta, title }) => {
       site {
         siteMetadata {
           title
+          longTitle
           description
           author
         }
@@ -26,6 +27,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang
       }}
       title={title}
+      defaultTitle={siteMetadata.longTitle}
       titleTemplate={`%s | ${siteMetadata.title}`}
       meta={[
         {
@@ -74,7 +76,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default SEO;

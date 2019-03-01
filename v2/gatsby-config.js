@@ -3,7 +3,8 @@ const proxy = require("http-proxy-middleware");
 module.exports = {
   siteMetadata: {
     title: `Balance`,
-    description: `Welcome to the open financial system`,
+    description: `Welcome to the Open Financial System`,
+    longTitle: `Balance - The Open Financial System`,
     author: `@balance_io`,
     supportUrl: `http://support.balance.io/`,
     managerUrl: `https://manager.balance.io/`,

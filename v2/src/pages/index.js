@@ -61,7 +61,7 @@ import Strong from "../components/Strong";
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO />
 
     {/* Header */}
     <Container>
@@ -82,7 +82,7 @@ const IndexPage = () => (
               color="text"
               fontWeight="semibold"
             >
-              Welcome to the open financial system
+              Welcome to the Open Financial System
             </Heading>
             <Text
               as="p"
@@ -102,8 +102,8 @@ const IndexPage = () => (
             </Text>
             <Flex justifyContent="center" my={4}>
               <Announcement
-                pill="important"
-                message="Beeg Yoshi Needs Your Help"
+                pill="Big news"
+                message="Invest in Balance"
                 to="/crowdfunding/"
               />
             </Flex>
