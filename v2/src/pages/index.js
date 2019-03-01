@@ -187,9 +187,9 @@ const IndexPage = () => (
 const Phone = () => {
   const image = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "iphone@2x.png" }) {
+      file(relativePath: { eq: "app-screenshot.png" }) {
         childImageSharp {
-          fixed(height: 576) {
+          fixed(height: 544) {
             ...GatsbyImageSharpFixed_withWebp_noBase64
           }
         }
