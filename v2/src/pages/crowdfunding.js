@@ -250,9 +250,9 @@ const CrowdfundingForm = () => {
 
   return (
     <Box as="form">
-      <pre>
+      {/* <pre>
         <code>{JSON.stringify(formState.values, null, 2)}</code>
-      </pre>
+      </pre> */}
 
       <Divider />
       <FieldsetHeading>Which country are you a resident in?</FieldsetHeading>
