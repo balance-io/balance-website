@@ -10,7 +10,7 @@ import Container from "../components/Container";
 import SEO from "../components/SEO";
 import { SharesIcon, SubmitIcon } from "../components/Icons";
 
-// import Header from "../components/Header";
+import Header from "../components/Header";
 
 const gradientBorders = {
   opaqueWhiteBlack: "to right, rgba(255, 255, 255, 0.08), #000",
@@ -183,8 +183,9 @@ const Invest = () => (
       fontFamily="graphik"
       color="#A9B0B8"
     >
-      In March, we will be raising $3–4m of capital to fund the next stage of
-      Balance. Pre-register your interest here.
+      In March, Balance will be raising additional capital through equity
+      crowdfunding to fund the next stages of development. Please register your
+      interest below.
     </Text>
   </>
 );
@@ -218,7 +219,11 @@ const Crowdfunding = () => (
   <Layout dark>
     <SEO title="Crowdfunding" />
 
-    <Container maxWidth={564} mb={80}>
+    <Container>
+      <Header light />
+    </Container>
+
+    <Container as="main" maxWidth={564} mb={80}>
       <Flex flexDirection="column" alignItems="center" mb={64} mt={80}>
         <Invest />
 
@@ -235,8 +240,8 @@ const Crowdfunding = () => (
         fontSize={12}
         css={{ opacity: 0.4, maxWidth: 250 }}
       >
-        Seedrs, UK Ltd. is a third party service and does not have liability for
-        the investment.
+        Republic.co operated by OpenDeal Inc. is a third party service and does
+        not have liability for the investment.
       </Text>
     </Container>
   </Layout>
@@ -258,7 +263,7 @@ const CrowdfundingForm = () => {
       <FieldsetHeading>Which country are you a resident in?</FieldsetHeading>
       <Fieldset mb={64}>
         <Legend color="#66BBFF">
-          The platforms we have picked support 94 countries.
+          Our equity crowdfunding round will be hosted on Republic.co
         </Legend>
         <Flex justifyContent="space-between">
           <Box>
