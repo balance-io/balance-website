@@ -9,7 +9,8 @@ import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #F8F8FA;
+    background-color: ${props => (props.dark ? "#000" : "#F8F8FA")};
+    color: ${props => (props.dark ? "#fff" : "unset")};
   }
   
   html {
@@ -22,14 +23,18 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, dark }) => (
   <ThemeProvider theme={theme}>
     <>
-      <GlobalStyle />
+      <GlobalStyle dark={dark} />
       {children}
     </>
   </ThemeProvider>
 );
+
+Layout.defaultProps = {
+  dark: false
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired

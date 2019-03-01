@@ -9469,6 +9469,11 @@ react-twitter-embed@^2.0.4:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
+react-use-form-state@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-use-form-state/-/react-use-form-state-0.6.1.tgz#b7da1230dbadd085631c7908ec5dc75374b63638"
+  integrity sha512-DEvyyfkNl/XUXpGhakeHdNEgPINqHIvrVsvpkrSJcQcjJv1Uw6MJ1EWVLCzWsRFEhJQEuuMklrYCnFTqTbeLFg==
+
 react@^16.8.2:
   version "16.8.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.2.tgz#83064596feaa98d9c2857c4deae1848b542c9c0c"
