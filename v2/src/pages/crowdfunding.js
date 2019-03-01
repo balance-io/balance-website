@@ -152,16 +152,16 @@ const Button = styled(RebassButton).attrs({
   }
 `;
 
-const Emoji = props => (
-  <Text
-    as="span"
-    role="img"
-    aria-label={props.label ? props.label : ""}
-    aria-hidden={props.label ? "false" : "true"}
-  >
-    {props.symbol}
-  </Text>
-);
+// const Emoji = props => (
+//   <Text
+//     as="span"
+//     role="img"
+//     aria-label={props.label ? props.label : ""}
+//     aria-hidden={props.label ? "false" : "true"}
+//   >
+//     {props.symbol}
+//   </Text>
+// );
 
 const containerWidth = 564;
 
@@ -396,9 +396,9 @@ const CrowdfundingForm = () => {
         <Input {...email("EMAIL")} required placeholder="Type your email" />
         <Divider gradient={gradientBorders.pinkPurpleBlack} mb={10} />
 
-        <Text fontWeight="medium" lineHeight={1.5} color="#7866FF">
+        {/* <Text fontWeight="medium" lineHeight={1.5} color="#7866FF">
           {Number(2525).toLocaleString()} people are on the list.
-        </Text>
+        </Text> */}
 
         <Flex mt={48} mb={16} justifyContent="center">
           <Button>
