@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import { Box, Heading, Text, Link, Flex, Image as Img } from "rebass";
 import Image from "gatsby-image";
 

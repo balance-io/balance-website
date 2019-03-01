@@ -1,41 +1,72 @@
 import React from "react";
-import { Image } from "rebass";
+import { useStaticQuery, graphql } from "gatsby";
+import Image from "gatsby-image";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import pink from "../../images/pink.png";
-import blue from "../../images/blue.png";
-import green from "../../images/green.png";
-import purple from "../../images/purple.png";
-import yellow from "../../images/yellow.png";
+const Wave = ({ color, offset }) => {
+  const image = useStaticQuery(graphql`
+    query {
+      yellow: file(relativePath: { eq: "yellow.png" }) {
+        childImageSharp {
+          fixed(height: 174) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
 
-const getWaveColor = color => {
-  switch (color) {
-    case "pink":
-      return pink;
-    case "blue":
-      return blue;
-    case "green":
-      return green;
-    case "purple":
-      return purple;
-    case "yellow":
-    default:
-      return yellow;
-  }
+      blue: file(relativePath: { eq: "blue.png" }) {
+        childImageSharp {
+          fixed(height: 177) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+
+      green: file(relativePath: { eq: "green.png" }) {
+        childImageSharp {
+          fixed(height: 196) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+
+      purple: file(relativePath: { eq: "purple.png" }) {
+        childImageSharp {
+          fixed(height: 186) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+
+      pink: file(relativePath: { eq: "pink.png" }) {
+        childImageSharp {
+          fixed(height: 191) {
+            ...GatsbyImageSharpFixed_withWebp_noBase64
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <WaveImage offset={offset} fixed={image[color].childImageSharp.fixed} />
+  );
 };
 
-const WaveImage = styled(Image)`
+const WaveImage = styled(Image).attrs({
+  style: {
+    position: "absolute",
+    display: "inline"
+  }
+})`
   position: absolute;
   top: ${props => (props.offset ? `${props.offset}px` : 0)};
   transform: translateX(-50%);
   left: 50%;
   max-width: unset;
+  display: inline;
 `;
-
-const Wave = ({ color, offset }) => (
-  <WaveImage src={getWaveColor(color)} offset={offset} />
-);
 
 Wave.propTypes = {
   color: PropTypes.oneOf(["pink", "blue", "green", "purple", "yellow"])
