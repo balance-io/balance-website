@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Heading, Text, Flex, Button as RebassButton } from "rebass";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useFormState } from "react-use-form-state";
 import addToMailchimp from "../../plugins/gatsby-plugin-mailchimp";
 import { useStaticQuery, graphql } from "gatsby";
@@ -163,60 +163,19 @@ const Emoji = props => (
   </Text>
 );
 
-const Invest = () => (
-  <>
-    <Balance />
-    <Heading
-      as="h1"
-      textAlign="center"
-      fontFamily="graphik"
-      fontWeight="semibold"
-      mt={32}
-      fontSize={[40, 48]}
-      mb={16}
-    >
-      Invest in Balance
-    </Heading>
-    <Text
-      as="p"
-      textAlign="center"
-      fontSize={[18, 20]}
-      lineHeight={1.5}
-      mb={32}
-      fontFamily="graphik"
-      color="#A9B0B8"
-    >
-      In March, Balance will be raising additional capital through equity
-      crowdfunding to fund the next stages of development. Please register your
-      interest below.
-    </Text>
-  </>
-);
+const containerWidth = 564;
 
-const InvestorsBenefit = () => (
-  <GradientBorder
-    py={1}
-    px={20}
-    gradient={gradientBorders.blackPurpleBlack}
-    border={1}
-    alignItems="center"
-  >
-    <SharesIcon />
-    <Text
-      ml={2}
-      mt={11}
-      mb={14}
-      fontFamily="graphik"
-      fontWeight="medium"
-      color="#A9B0B8"
-      fontSize={16}
-      lineHeight={1}
-      letterSpacing={0.2}
-    >
-      Investors will receive shares of the company.
-    </Text>
-  </GradientBorder>
-);
+const RadioGroup = styled(Flex).attrs({
+  justifyContent: "space-between"
+})`
+  @media only screen and (max-width: ${containerWidth}px) {
+    flex-direction: column;
+
+    & > ${Box} {
+      margin-bottom: 1rem;
+    }
+  }
+`;
 
 const Crowdfunding = () => (
   <Layout dark>
@@ -226,11 +185,63 @@ const Crowdfunding = () => (
       <Header light />
     </Container>
 
-    <Container as="main" maxWidth={564} mb={80}>
+    <Container as="main" maxWidth={containerWidth} mb={80}>
       <Flex flexDirection="column" alignItems="center" mb={64} mt={80}>
-        <Invest />
+        <Balance />
+        <Heading
+          as="h1"
+          textAlign="center"
+          fontFamily="graphik"
+          fontWeight="semibold"
+          mt={32}
+          fontSize={[40, 48]}
+          mb={16}
+        >
+          Invest in Balance
+        </Heading>
+        <Text
+          as="p"
+          textAlign="center"
+          fontSize={[18, 20]}
+          lineHeight={1.5}
+          mb={32}
+          fontFamily="graphik"
+          color="#A9B0B8"
+        >
+          In March, Balance will be raising additional capital through equity
+          crowdfunding to fund the next stages of development. Please register
+          your interest below.
+        </Text>
 
-        <InvestorsBenefit />
+        <GradientBorder
+          py={1}
+          px={20}
+          gradient={gradientBorders.blackPurpleBlack}
+          border={1}
+          alignItems="center"
+        >
+          <SharesIcon
+            css={css`
+              @media only screen and (max-width: ${containerWidth}px) {
+                display: none;
+              }
+            `}
+          />
+          <Text
+            ml={2}
+            mt={11}
+            mb={14}
+            fontFamily="graphik"
+            fontWeight="medium"
+            textAlign="center"
+            color="#A9B0B8"
+            fontSize={16}
+            lineHeight={[1.2, 1]}
+            letterSpacing={0.2}
+          >
+            Investors will receive shares of the company.
+          </Text>
+        </GradientBorder>
       </Flex>
 
       <CrowdfundingForm />
@@ -310,7 +321,7 @@ const CrowdfundingForm = () => {
         <Legend color="#66BBFF">
           Our equity crowdfunding round will be hosted on Republic.co
         </Legend>
-        <Flex justifyContent="space-between">
+        <RadioGroup>
           <Box>
             <Label active={radio("LOCATION", "United States").checked}>
               {/* <Emoji symbol="🇺🇸" /> */}
@@ -332,7 +343,7 @@ const CrowdfundingForm = () => {
               <Input {...radio("LOCATION", "Other")} />
             </Label>
           </Box>
-        </Flex>
+        </RadioGroup>
       </Fieldset>
 
       <Divider gradient={gradientBorders.purplePurpleBlack} />
@@ -341,7 +352,7 @@ const CrowdfundingForm = () => {
         <Legend color="#6687FF">
           We will do our best to include everyone.
         </Legend>
-        <Flex justifyContent="space-between">
+        <RadioGroup>
           <Box>
             <Label
               active={radio("INVESTAMT", "$10 - $1,000").checked}
@@ -362,7 +373,7 @@ const CrowdfundingForm = () => {
           </Box>
           <Box>
             <Label
-              active={radio("INVESTAMT", "$10,000+").checked}
+              active={radio("INVESTAMT", "$10,000").checked}
               activeGradient={gradientBorders.purplePurpleBlack}
             >
               $10,000+
@@ -371,14 +382,14 @@ const CrowdfundingForm = () => {
           </Box>
           <Box>
             <Label
-              active={radio("INVESTAMT", "$100,000+").checked}
+              active={radio("INVESTAMT", "$100,000").checked}
               activeGradient={gradientBorders.purplePurpleBlack}
             >
               $100,000+
               <Input {...radio("INVESTAMT", "$100,000")} />
             </Label>
           </Box>
-        </Flex>
+        </RadioGroup>
       </Fieldset>
 
       <Fieldset>
