@@ -9,7 +9,12 @@ const Tweets = () => (
     {tweets.map((tweet, index) => (
       <TwitterTweetEmbed
         key={index}
-        options={{ conversation: "none", dnt: true, cards: "hidden" }}
+        options={{
+          conversation: "none",
+          dnt: true,
+          cards: "hidden",
+          width: "100%"
+        }}
         tweetId={tweet}
       />
     ))}

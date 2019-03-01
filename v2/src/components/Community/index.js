@@ -4,14 +4,13 @@ import addToMailchimp from "gatsby-plugin-mailchimp";
 import styled from "styled-components";
 import { useInput } from "react-hanger";
 
-const MailchimpResponse = styled(Box).attrs({as: "span"})`
+const MailchimpResponse = styled(Box).attrs({ as: "span" })`
   a {
     color: #191817;
     text-decoration: none;
     font-weight: 500;
   }
-`
-
+`;
 
 const Subscribers = () => {
   const [subscribers, setSubscribers] = useState(0);
@@ -79,7 +78,7 @@ const SubscriptionForm = () => {
           value={email.value}
           onChange={email.onChange}
           type="email"
-          width={200}
+          width={240}
           required
           mr={1}
           bg="transparent"
