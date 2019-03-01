@@ -51,7 +51,7 @@ var convertListFields = function convertListFields(fields) {
  * then make jsonp req with data
  */
 
-var addToMailchimp = function addToMailchimp(email, fields) {
+var addToMailchimp = function addToMailchimp(email, fields, customEndpoint) {
   var isEmailValid = (0, _emailValidator.validate)(email);
   var emailEncoded = encodeURIComponent(email);
   if (!isEmailValid) {
@@ -64,7 +64,7 @@ var addToMailchimp = function addToMailchimp(email, fields) {
   // generate Mailchimp endpoint for jsonp request
   // note, we change `/post` to `/post-json`
   // otherwise, Mailchomp returns an error
-  var endpoint = __GATSBY_PLUGIN_MAILCHIMP_ADDRESS__.replace(/\/post/g, '/post-json');
+  var endpoint = customEndpoint.replace(/\/post/g, '/post-json');
 
   var queryParams = '&EMAIL=' + emailEncoded + convertListFields(fields);
   var url = '' + endpoint + queryParams;
