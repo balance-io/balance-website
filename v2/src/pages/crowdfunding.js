@@ -101,8 +101,11 @@ Label.defaultProps = {
 
 const Input = styled.input`
   /* Radio */
-  &[type="radio"] {
+  &[type="radio"],
+  &[type="checkbox"] {
     appearance: none;
+    visibility: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
   &[type="email"] {
