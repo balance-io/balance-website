@@ -11,6 +11,8 @@
 
 /tokens         /erc20-tokens
 
+/invest/*       https://bal-invest.netlify.com/:splat  200
+
 /manager                 https://manager.balance.io
 /manager/wallet          https://manager.balance.io/wallet
 /manager/metamask        https://manager.balance.io/metamask
