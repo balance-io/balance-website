@@ -3,10 +3,11 @@ import { Card, Flex, Button, Text, Box } from "rebass";
 import addToMailchimp from "../../../plugins/gatsby-plugin-mailchimp";
 import styled from "styled-components";
 import { useInput } from "react-hanger";
+import Strong from "../Strong";
 
 export const MailchimpResponse = styled(Box).attrs({ as: "span" })`
   a {
-    color: ${props => props.dark ? "#7866FF" : "#191817"};
+    color: ${props => (props.dark ? "#7866FF" : "#191817")};
     text-decoration: none;
     font-weight: 500;
   }
@@ -32,7 +33,8 @@ const Subscribers = () => {
 
   return (
     <Text fontSize={0} color="textLight" textAlign="center">
-      {subscribers.toLocaleString()} subscribers
+      <Strong>{subscribers.toLocaleString()} people</Strong> subscribe to our
+      monthly updates
     </Text>
   );
 };
