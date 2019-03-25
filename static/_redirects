@@ -9,7 +9,12 @@
 /privacy        /
 /download       /
 
-/tokens         /erc20-tokens
+/tokens         /
+/erc20-tokens   /
+/about          /
+/exchange       /
+/blog           https://medium.com/balance-io
+/meetups        https://spectrum.chat/balance/meetups
 
 /manager                 https://manager.balance.io
 /manager/wallet          https://manager.balance.io/wallet

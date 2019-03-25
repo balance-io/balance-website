@@ -1,5 +1,4 @@
 [build]
-  base = "v2/"
-  publish = "v2/public"
-  functions = "v2/lambda"
+  publish = "public"
+  functions = "lambda"
   command = "npm run build && npm run build:lambda"
