@@ -28,14 +28,14 @@ module.exports = {
       {
         name: "Maker Loans",
         description:
-          "Track Collateralized Debt Positions you have opened to get a loan",
+          "Track Collateralized Debt Positions you have opened to get a loan.",
         link: "https://makerdao.com",
         brand: "maker",
         ready: true
       },
       {
         name: "Compound Interest",
-        description: "See how much interest you have earned on your tokens",
+        description: "See how much interest you have earned on your tokens.",
         link: "https://compound.finance",
         brand: "compound",
         ready: true
@@ -43,7 +43,7 @@ module.exports = {
       {
         name: "Dharma Loans",
         description:
-          "See how much interest you are paying or earning with your debt",
+          "See how much interest you are paying or earning with your debt.",
         link: "https://dharma.io",
         brand: "dharma",
         ready: false

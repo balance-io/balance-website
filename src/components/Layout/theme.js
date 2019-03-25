@@ -22,6 +22,7 @@ export default {
     freeSpeachGreen: "#55D134",
     snowyMint: "#E0FBD8",
     deepSkyBlue: "#00A2F8",
+    azure: "#007AFF",
     text: "#25292E",
     textDark: "#191817",
     textLight: "#3C4252",
