@@ -66,6 +66,11 @@ const WaveImage = styled(Image).attrs({
   left: 50%;
   max-width: unset;
   display: inline;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 `;
 
 Wave.propTypes = {
