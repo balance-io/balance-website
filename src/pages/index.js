@@ -8,22 +8,20 @@ import Container from "../components/Container";
 import SEO from "../components/SEO";
 import Header from "../components/Header";
 import Waves from "../components/Waves";
-
-import Footer from "../components/Footer";
-// import Integration from "../components/Integration";
-import { Subscribers, SubscriptionForm } from "../components/Community";
-import Tweets from "../components/Tweets";
-
-// import integrations from "../data/integrations.json";
-
-// // import device from "../images/iphone.png";
-// import device2x from "../images/iphone@2x.png";
-
-import { Announcement } from "../components/Badge";
-
-import badge from "../images/app-store-badge.svg";
 import { ExternalLink } from "../components/Links";
 import Strong from "../components/Strong";
+import Footer from "../components/Footer";
+import { Subscribers, SubscriptionForm } from "../components/Community";
+import Tweets from "../components/Tweets";
+// import { Announcement } from "../components/Badge";
+// import Integration from "../components/Integration";
+
+// import integrations from "../data/integrations.json";
+// // import device from "../images/iphone.png";
+// import device2x from "../images/iphone@2x.png";
+import badge from "../images/app-store-badge.svg";
+
+import { useSiteMetadata } from "../hooks";
 
 // const Device = props => (
 //   <Box
@@ -70,19 +68,18 @@ const IndexPage = () => (
 
     {/* Main */}
     <Box as="main">
-      <Box>
+      <Box pt={3}>
         {/* Intro */}
-        <Container pt={3}>
+        <Container pt={5}>
           <Box>
             <Heading
               as="h1"
               fontFamily="graphik"
-              textAlign="center"
               fontSize={5}
               color="text"
               fontWeight="semibold"
             >
-              Welcome to the Open Financial System
+              See your Balance in Open Finance
             </Heading>
             <Text
               as="p"
@@ -90,23 +87,21 @@ const IndexPage = () => (
               fontWeight="regular"
               lineHeight={1.4}
               mb={0}
-              mx="auto"
               css={{ maxWidth: 576 }}
-              textAlign="center"
               fontSize={4}
               mt={3}
               color="textLighter"
             >
-              Get access to the best tools and investment opportunities that are
-              being built on Ethereum.
+              Add all of your Ethereum wallets and keep track of your tokens,
+              loans and investments.
             </Text>
-            <Flex justifyContent="center" my={4}>
+            {/* <Flex justifyContent="center" my={4}>
               <Announcement
                 pill="We're Growing"
                 message="Invest in the future"
                 to="/crowdfunding/"
               />
-            </Flex>
+            </Flex> */}
           </Box>
         </Container>
 
@@ -132,26 +127,24 @@ const IndexPage = () => (
           ))}
         </Flex> */}
 
-        {/* App Store */}
         <Container>
-          <Flex justifyContent="center" mb={5}>
+          {/* App Store */}
+          <Flex justifyContent="center" mb={4}>
             <AppStoreBadge />
           </Flex>
-        </Container>
-      </Box>
 
-      <Box bg="white" py={4}>
-        {/* Community */}
-        <Container mb={[4, 5]}>
+          {/* Community */}
           <Heading fontWeight="regular" textAlign="center" fontSize={3}>
-            Join the <Strong>Balance Community</Strong>
+            Get notified about our <Strong>Android</Strong> app
           </Heading>
           <Flex justifyContent="center" my={3}>
             <SubscriptionForm />
           </Flex>
           <Subscribers />
         </Container>
+      </Box>
 
+      <Box bg="white" py={4}>
         {/* Tweets */}
         <Container maxWidth={1136}>
           <Heading
@@ -200,16 +193,20 @@ const Phone = () => {
   return <Image fixed={image.file.childImageSharp.fixed} />;
 };
 
-const AppStoreBadge = () => (
-  <Link href="https://testflight.apple.com/join/QXCgM6bu">
-    <Img
-      css={`
-        height: 56px;
-        vertical-align: middle;
-      `}
-      src={badge}
-    />
-  </Link>
-);
+const AppStoreBadge = () => {
+  const { appStoreUrl } = useSiteMetadata();
+
+  return (
+    <Link href={appStoreUrl}>
+      <Img
+        css={`
+          height: 56px;
+          vertical-align: middle;
+        `}
+        src={badge}
+      />
+    </Link>
+  );
+};
 
 export default IndexPage;
