@@ -26,36 +26,24 @@ module.exports = {
     ],
     integrations: [
       {
-        name: "Uniswap",
+        name: "Maker Loans",
         description:
-          "View your pool tokens in Balance, cash them out, and make trades natively from your wallet.",
-        brand: "uniswap",
-        status: "IN PROGRESS"
+          "Track Collateralized Debt Positions you have opened to get a loan",
+        link: "https://makerdao.com",
+        brand: "maker"
       },
       {
-        name: "Veil",
-        description:
-          "Participate in Veil markets directly from Balance and redeem your shares when a market ends.",
-        brand: "veil"
-      },
-      {
-        name: "Maker CDPs",
-        description:
-          "Take out loans against your ETH and get push notifications when your CDP is in danger.",
-        brand: "maker",
-        status: "IN PROGRESS"
-      },
-      {
-        name: "OpenSea",
-        description:
-          "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-        brand: "white"
-      },
-      {
-        name: "Compound",
-        description:
-          "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
+        name: "Compound Interest",
+        description: "See how much interest you have earned on your tokens",
+        link: "https://compound.finance",
         brand: "compound"
+      },
+      {
+        name: "Dharma Loans",
+        description:
+          "See how much interest you are paying or earning with your debt",
+        link: "https://dharma.io",
+        brand: "dharma"
       }
     ]
   },

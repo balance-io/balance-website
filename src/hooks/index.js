@@ -18,7 +18,7 @@ const useSiteMetadata = () => {
               name
               description
               brand
-              status
+              link
             }
             urls {
               url
