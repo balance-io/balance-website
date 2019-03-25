@@ -13,49 +13,11 @@ import Strong from "../components/Strong";
 import Footer from "../components/Footer";
 import { Subscribers, SubscriptionForm } from "../components/Community";
 import Tweets from "../components/Tweets";
+import AppStoreBadge from "../components/AppStoreBadge";
 // import { Announcement } from "../components/Badge";
 // import Integration from "../components/Integration";
 
-// import integrations from "../data/integrations.json";
-// // import device from "../images/iphone.png";
-// import device2x from "../images/iphone@2x.png";
-import badge from "../images/app-store-badge.svg";
-
 import { useSiteMetadata } from "../hooks";
-
-// const Device = props => (
-//   <Box
-//     css={`
-//       display: block;
-//       max-width: 432px;
-//       max-height: 864px;
-//       width: 100%;
-//       vertical-align: middle;
-//       position: relative;
-//       z-index: auto;
-
-//       &::after {
-//         content: "";
-//         position: absolute;
-//         background-image: linear-gradient(to bottom, #00e5cf 0%, #c54be5 100%);
-//         width: 100%;
-//         height: 100%;
-//         top: 25px;
-//         left: 29px;
-//         max-width: 375px;
-//         max-height: 812px;
-//         z-index: -1;
-//       }
-//     `}
-//   >
-//     {/* <Image
-//       src={device2x}
-//       css={`
-//         z-index: 1;
-//       `}
-//     /> */}
-//   </Box>
-// );
 
 const IndexPage = () => (
   <Layout>
@@ -95,6 +57,7 @@ const IndexPage = () => (
               Add all of your Ethereum wallets and keep track of your tokens,
               loans and investments.
             </Text>
+            {/* Announcement */}
             {/* <Flex justifyContent="center" my={4}>
               <Announcement
                 pill="We're Growing"
@@ -114,9 +77,7 @@ const IndexPage = () => (
           <Waves />
 
           <Container my={4}>
-            <Flex justifyContent="center">
-              <Phone />
-            </Flex>
+            <Flex justifyContent="center">{/* <Phone /> */}</Flex>
           </Container>
         </Box>
 
@@ -191,22 +152,6 @@ const Phone = () => {
   `);
 
   return <Image fixed={image.file.childImageSharp.fixed} />;
-};
-
-const AppStoreBadge = () => {
-  const { appStoreUrl } = useSiteMetadata();
-
-  return (
-    <Link href={appStoreUrl}>
-      <Img
-        css={`
-          height: 56px;
-          vertical-align: middle;
-        `}
-        src={badge}
-      />
-    </Link>
-  );
 };
 
 export default IndexPage;
