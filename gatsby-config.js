@@ -8,12 +8,55 @@ module.exports = {
     author: `@balance_io`,
     supportUrl: `http://support.balance.io/`,
     managerUrl: `https://manager.balance.io/`,
+    appStoreUrl: `https://testflight.apple.com/join/QXCgM6bu`,
     urls: [
+      { url: "https://discord.gg/xCtf2wN", label: "Discord" },
+      { url: "https://spectrum.chat/balance/meetups", label: "Meetups" },
       { url: "https://twitter.com/balance_io", label: "Twitter" },
       { url: "https://medium.com/balance-io", label: "Blog" },
       { url: "https://github.com/balance-io/", label: "GitHub" },
-      { url: "https://spectrum.chat/balance", label: "Forum" },
-      { url: "https://spectrum.chat/balance/meetups", label: "Meetups" }
+      { url: "https://spectrum.chat/balance", label: "Forum" }
+    ],
+    tweets: [
+      "1079238612888182785",
+      "1080444794508361728",
+      "1059520196472463364",
+      "1059535647151517696",
+      "1052007905791074304"
+    ],
+    integrations: [
+      {
+        name: "Uniswap",
+        description:
+          "View your pool tokens in Balance, cash them out, and make trades natively from your wallet.",
+        brand: "uniswap",
+        status: "IN PROGRESS"
+      },
+      {
+        name: "Veil",
+        description:
+          "Participate in Veil markets directly from Balance and redeem your shares when a market ends.",
+        brand: "veil"
+      },
+      {
+        name: "Maker CDPs",
+        description:
+          "Take out loans against your ETH and get push notifications when your CDP is in danger.",
+        brand: "maker",
+        status: "IN PROGRESS"
+      },
+      {
+        name: "OpenSea",
+        description:
+          "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
+        brand: "white"
+      },
+      {
+        name: "Compound",
+        description:
+          "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
+        brand: "compound"
+      }
     ]
   },
   plugins: [
@@ -47,9 +90,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-intercom`,
       options: {
-        appId: 'j0fl7v0m',
-        includeInDevelopment: false,
-      },
+        appId: "j0fl7v0m",
+        includeInDevelopment: false
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
