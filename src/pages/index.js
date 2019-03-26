@@ -16,7 +16,6 @@ import { Subscribers, SubscriptionForm } from "../components/Community";
 import Tweets from "../components/Tweets";
 import AppStoreBadge from "../components/AppStoreBadge";
 import IntegrationStack from "../components/IntegrationStack";
-// import { Announcement } from "../components/Badge";
 
 const IndexPage = () => (
   <Layout>
@@ -56,14 +55,6 @@ const IndexPage = () => (
               Add all of your Ethereum wallets and keep track of your tokens,
               loans and investments.
             </Text>
-            {/* Announcement */}
-            {/* <Flex justifyContent="center" my={4}>
-                <Announcement
-                  pill="We're Growing"
-                  message="Invest in the future"
-                  to="/crowdfunding/"
-                />
-              </Flex> */}
           </Box>
         </Container>
 
