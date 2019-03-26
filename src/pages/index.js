@@ -1,6 +1,7 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { Box, Heading, Text, Flex } from "rebass";
+import { css } from "styled-components";
 import Image from "gatsby-image";
 
 import Layout from "../components/Layout";
@@ -67,33 +68,50 @@ const IndexPage = () => (
         </Container>
 
         {/* Device */}
-        <Box
-          css={`
-            position: relative;
-          `}
-        >
+        <Box css={{ position: "relative" }}>
           <Waves />
 
-          <Container mt={4} mb={6}>
-            <Flex flexDirection="column" width={[1, 0.65]}>
-              {/* Cards */}
-              <IntegrationStack />
+          <Container my={4}>
+            <Flex mx={-2} flexDirection={["column", null, "row"]}>
+              <Flex
+                justifyContent="center"
+                flexDirection="column"
+                width={[`100%`, null, `60%`]}
+                px={2}
+              >
+                {/* Cards */}
+                <IntegrationStack />
 
-              {/* App Store */}
-              <Flex justifyContent="center" mt={5} mb={4}>
-                <AppStoreBadge />
-              </Flex>
-
-              {/* Community */}
-              <Box mb={4}>
-                <Heading fontWeight="regular" textAlign="center" fontSize={3}>
-                  Get notified about our <Strong>Android</Strong> app
-                </Heading>
-                <Flex justifyContent="center" my={3}>
-                  <SubscriptionForm />
+                {/* App Store */}
+                <Flex justifyContent="center" mt={5} mb={4}>
+                  <AppStoreBadge />
                 </Flex>
-                <Subscribers />
-              </Box>
+
+                {/* Community */}
+                <Box mb={4}>
+                  <Heading fontWeight="regular" textAlign="center" fontSize={3}>
+                    Get notified about our <Strong>Android</Strong> app
+                  </Heading>
+                  <Flex justifyContent="center" my={3}>
+                    <SubscriptionForm />
+                  </Flex>
+                  <Subscribers />
+                </Box>
+              </Flex>
+              <Flex
+                flexDirection="column"
+                width={[`100%`, null, `40%`]}
+                px={2}
+                mb={5}
+                css={css`
+                  display: none;
+                  @media screen and (min-width: 52em) {
+                    display: block;
+                  }
+                `}
+              >
+                <Phone />
+              </Flex>
             </Flex>
           </Container>
         </Box>
@@ -135,9 +153,9 @@ const IndexPage = () => (
 const Phone = () => {
   const image = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "app-screenshot.png" }) {
+      file(relativePath: { eq: "deviceDesktop.png" }) {
         childImageSharp {
-          fixed(height: 544) {
+          fixed(height: 692) {
             ...GatsbyImageSharpFixed_withWebp_noBase64
           }
         }
