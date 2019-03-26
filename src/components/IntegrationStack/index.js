@@ -1,8 +1,9 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Image from "gatsby-image";
-import { Text, Heading, Card as RebassCard, Flex } from "rebass";
+import { Text, Heading, Card as RebassCard, Flex, Button } from "rebass";
 import PropTypes from "prop-types";
+import { useNumber } from "react-hanger";
 
 import Badge from "../Badge";
 import { ExternalLink } from "../Links";
@@ -38,7 +39,16 @@ const BrandIcon = ({ brand }) => {
     }
   `);
 
-  return <Image fixed={image[brand].childImageSharp.fixed} />;
+  return (
+    <Image
+      style={{
+        borderRadius: 14.6,
+        boxShadow:
+          "0 5px 8px 0 rgba(37,41,46,0.04), 0 1px 4px 0 rgba(37,41,46,0.08)"
+      }}
+      fixed={image[brand].childImageSharp.fixed}
+    />
+  );
 };
 
 const Card = ({ active, ...rest }) => (
@@ -61,9 +71,25 @@ const IntegrationCard = ({
   brand,
   ready,
   active,
+  stackIndex,
+  // activeIndex,
+  index,
   ...rest
 }) => (
-  <Card p={4} css={{ maxWidth: 400 }} {...rest}>
+  <Card
+    p={4}
+    active={active}
+    css={{
+      position: "absolute",
+      maxWidth: 400,
+      transform: active
+        ? `scale(1)`
+        : `translateY(-${stackIndex * 30}px) scale(${1 - stackIndex * 0.1})`,
+      transition: "all 250ms ease-in-out"
+      // zIndex: activeIndex
+    }}
+    {...rest}
+  >
     {/* <Flex justifyContent="flex-end">
       <Badge mr={"-8px"}>{ready ? "READY" : "SOON"}</Badge>
     </Flex> */}
@@ -103,6 +129,8 @@ const IntegrationCard = ({
         {link.replace("https://", "")}
       </ExternalLink>
     </Text>
+    {/* {active ? "active: true" : "active: false"}
+    {` | index: ${index} | stackIndex: ${stackIndex}`} */}
   </Card>
 );
 
@@ -117,12 +145,44 @@ IntegrationCard.propTypes = {
 const IntegrationStack = () => {
   const { integrations } = useSiteMetadata();
 
+  const rotatingNumber = useNumber(0, {
+    upperLimit: integrations.length - 1,
+    lowerLimit: 0,
+    loop: true
+  });
+
   return (
-    <Flex flexDirection="column">
-      {integrations.map((integration, index) => (
-        <IntegrationCard key={index} {...integration} />
-      ))}
-    </Flex>
+    <>
+      <Flex
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="flex-end"
+        css={{ height: 240, position: "relative", zIndex: 0 }}
+      >
+        {integrations.map((integration, index) => (
+          <IntegrationCard
+            key={index}
+            index={index}
+            stackIndex={integrations.length - 1 - index}
+            activeIndex={rotatingNumber.value}
+            active={
+              rotatingNumber.value === integrations.length - 1 - index && true
+            }
+            {...integration}
+          />
+        ))}
+      </Flex>
+
+      {/* {rotatingNumber.value}
+      <Flex>
+        <Button width={64} onClick={() => rotatingNumber.increase(1)}>
+          +
+        </Button>
+        <Button width={64} onClick={() => rotatingNumber.decrease(1)}>
+          -
+        </Button>
+      </Flex> */}
+    </>
   );
 };
 
