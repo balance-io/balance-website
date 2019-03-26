@@ -2,7 +2,7 @@ import React from "react";
 import Image from "gatsby-image";
 import { Text, Heading, Card as RebassCard, Flex, Button } from "rebass";
 import PropTypes from "prop-types";
-import { useNumber } from "react-hanger";
+// import { useNumber } from "react-hanger";
 
 import Badge from "../Badge";
 import { ExternalLink } from "../Links";
@@ -18,7 +18,7 @@ const Card = props => (
   />
 );
 
-const BrandCard = ({ brand, active, ...rest }) => {
+const BrandCard = ({ brand, index, active, ...rest }) => {
   const brandBackgroundPositions = {
     maker: {
       x: "75%",
@@ -52,12 +52,13 @@ const BrandCard = ({ brand, active, ...rest }) => {
       }
       backgroundRepeat="no-repeat"
       borderRadius="18px"
+      mt={index !== 0 && 4}
       css={{
         position: "relative",
-        maxWidth: 400,
-        transform: active ? `scale(1)` : `scale(0.9)`,
+        maxWidth: 400
+        // transform: active ? `scale(1)` : `scale(0.9)`,
         // : `translateY(-${stackIndex * 30}px) scale(${1 - stackIndex * 0.1})`,
-        transition: "all 250ms ease-in-out"
+        // transition: "all 250ms ease-in-out"
       }}
       {...rest}
     />
@@ -70,10 +71,11 @@ const IntegrationCard = ({
   link,
   brand,
   ready,
+  index,
   active,
   ...rest
 }) => (
-  <BrandCard brand={brand} active={active} {...rest}>
+  <BrandCard brand={brand} active={active} index={index} {...rest}>
     {!ready && (
       <Badge css={{ top: 16, right: 16, position: "absolute" }}>SOON</Badge>
     )}
@@ -135,11 +137,11 @@ IntegrationCard.propTypes = {
 const IntegrationStack = () => {
   const { integrations } = useSiteMetadata();
 
-  const rotatingNumber = useNumber(0, {
-    upperLimit: integrations.length - 1,
-    lowerLimit: 0,
-    loop: true
-  });
+  // const rotatingNumber = useNumber(0, {
+  //   upperLimit: integrations.length - 1,
+  //   lowerLimit: 0,
+  //   loop: true
+  // });
 
   return (
     <>
@@ -152,18 +154,18 @@ const IntegrationStack = () => {
           <IntegrationCard
             key={index}
             index={index}
-            active={rotatingNumber.value === index && true}
+            // active={rotatingNumber.value === index && true}
             {...integration}
           />
         ))}
       </Flex>
 
       {/* Debug */}
-      {rotatingNumber.value}
+      {/* {rotatingNumber.value}
       <Flex>
         <Button onClick={() => rotatingNumber.increase(1)}>+</Button>
         <Button onClick={() => rotatingNumber.decrease(1)}>-</Button>
-      </Flex>
+      </Flex> */}
     </>
   );
 };

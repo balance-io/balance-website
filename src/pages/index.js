@@ -67,21 +67,48 @@ const IndexPage = () => (
           </Box>
         </Container>
 
-        {/* Device */}
-        <Box css={{ position: "relative" }}>
+        <Box mt={5} mb={3} css={{ position: "relative" }}>
           <Waves />
 
-          <Container my={4}>
+          <Container>
             <Flex mx={-2} flexDirection={["column", null, "row"]}>
+              {/* Cards */}
               <Flex
                 justifyContent="center"
                 flexDirection="column"
                 width={[`100%`, null, `60%`]}
                 px={2}
               >
-                {/* Cards */}
                 <IntegrationStack />
+              </Flex>
 
+              {/* Phone */}
+              <Flex
+                flexDirection="column"
+                width={[`100%`, null, `40%`]}
+                px={2}
+                css={css`
+                  display: none;
+                  @media screen and (min-width: 52em) {
+                    display: block;
+                  }
+                `}
+              >
+                <Phone />
+              </Flex>
+            </Flex>
+          </Container>
+        </Box>
+
+        <Box mt={3} mb={5}>
+          <Container>
+            <Flex mx={-2}>
+              <Flex
+                justifyContent="center"
+                flexDirection="column"
+                width={[`100%`, null, `60%`]}
+                px={2}
+              >
                 {/* App Store */}
                 <Flex justifyContent="center" mt={5} mb={4}>
                   <AppStoreBadge />
@@ -97,20 +124,6 @@ const IndexPage = () => (
                   </Flex>
                   <Subscribers />
                 </Box>
-              </Flex>
-              <Flex
-                flexDirection="column"
-                width={[`100%`, null, `40%`]}
-                px={2}
-                mb={5}
-                css={css`
-                  display: none;
-                  @media screen and (min-width: 52em) {
-                    display: block;
-                  }
-                `}
-              >
-                <Phone />
               </Flex>
             </Flex>
           </Container>
