@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { Box, Heading, Text, Link, Flex, Image as Img } from "rebass";
+import { Box, Heading, Text, Flex } from "rebass";
 import Image from "gatsby-image";
 
 import Layout from "../components/Layout";
@@ -14,133 +14,123 @@ import Footer from "../components/Footer";
 import { Subscribers, SubscriptionForm } from "../components/Community";
 import Tweets from "../components/Tweets";
 import AppStoreBadge from "../components/AppStoreBadge";
-import Integration from "../components/Integration";
+import IntegrationStack from "../components/IntegrationStack";
 // import { Announcement } from "../components/Badge";
 
-import { useSiteMetadata } from "../hooks";
+const IndexPage = () => (
+  <Layout>
+    <SEO />
 
-const IndexPage = () => {
-  const { integrations } = useSiteMetadata();
+    {/* Header */}
+    <Container>
+      <Header />
+    </Container>
 
-  return (
-    <Layout>
-      <SEO />
-
-      {/* Header */}
-      <Container>
-        <Header />
-      </Container>
-
-      {/* Main */}
-      <Box as="main">
-        <Box pt={3}>
-          {/* Intro */}
-          <Container pt={5}>
-            <Box>
-              <Heading
-                as="h1"
-                fontFamily="graphik"
-                fontSize={5}
-                color="text"
-                fontWeight="semibold"
-              >
-                See your Balance in Open Finance
-              </Heading>
-              <Text
-                as="p"
-                fontFamily="graphik"
-                fontWeight="regular"
-                lineHeight={1.4}
-                mb={0}
-                css={{ maxWidth: 576 }}
-                fontSize={4}
-                mt={3}
-                color="textLighter"
-              >
-                Add all of your Ethereum wallets and keep track of your tokens,
-                loans and investments.
-              </Text>
-              {/* Announcement */}
-              {/* <Flex justifyContent="center" my={4}>
+    {/* Main */}
+    <Box as="main">
+      <Box pt={3}>
+        {/* Intro */}
+        <Container pt={5}>
+          <Box>
+            <Heading
+              as="h1"
+              fontFamily="graphik"
+              fontSize={5}
+              color="text"
+              fontWeight="semibold"
+            >
+              See your Balance in Open Finance
+            </Heading>
+            <Text
+              as="p"
+              fontFamily="graphik"
+              fontWeight="regular"
+              lineHeight={1.4}
+              mb={0}
+              css={{ maxWidth: 576 }}
+              fontSize={4}
+              mt={3}
+              color="textLighter"
+            >
+              Add all of your Ethereum wallets and keep track of your tokens,
+              loans and investments.
+            </Text>
+            {/* Announcement */}
+            {/* <Flex justifyContent="center" my={4}>
                 <Announcement
                   pill="We're Growing"
                   message="Invest in the future"
                   to="/crowdfunding/"
                 />
               </Flex> */}
-            </Box>
-          </Container>
-
-          {/* Device */}
-          <Box
-            css={`
-              position: relative;
-            `}
-          >
-            <Waves />
-
-            <Container my={4}>
-              <Flex justifyContent="center">{/* <Phone /> */}</Flex>
-            </Container>
           </Box>
+        </Container>
 
-          <Container>
-            {/* Cards */}
-            <Flex flexDirection="column" alignItems="center">
-              {integrations.map((integration, index) => (
-                <Integration key={index} {...integration} />
-              ))}
+        {/* Device */}
+        <Box
+          css={`
+            position: relative;
+          `}
+        >
+          <Waves />
+
+          <Container mt={4} mb={6}>
+            <Flex flexDirection="column" width={[1, 0.65]}>
+              {/* Cards */}
+              <IntegrationStack />
+
+              {/* App Store */}
+              <Flex justifyContent="center" mt={5} mb={4}>
+                <AppStoreBadge />
+              </Flex>
+
+              {/* Community */}
+              <Box mb={4}>
+                <Heading fontWeight="regular" textAlign="center" fontSize={3}>
+                  Get notified about our <Strong>Android</Strong> app
+                </Heading>
+                <Flex justifyContent="center" my={3}>
+                  <SubscriptionForm />
+                </Flex>
+                <Subscribers />
+              </Box>
             </Flex>
-
-            {/* App Store */}
-            <Flex justifyContent="center" mt={5} mb={4}>
-              <AppStoreBadge />
-            </Flex>
-
-            {/* Community */}
-            <Heading fontWeight="regular" textAlign="center" fontSize={3}>
-              Get notified about our <Strong>Android</Strong> app
-            </Heading>
-            <Flex justifyContent="center" my={3}>
-              <SubscriptionForm />
-            </Flex>
-            <Subscribers />
-          </Container>
-        </Box>
-
-        {/* Tweets */}
-        <Box bg="white" py={4}>
-          <Container maxWidth={1136}>
-            <Heading
-              fontWeight="regular"
-              textAlign="center"
-              fontSize={3}
-              mt={0}
-              mb={22}
-            >
-              Follow{" "}
-              <ExternalLink
-                color="deepSkyBlue"
-                href="https://twitter.com/balance_io"
-              >
-                <Strong>@balance_io</Strong>
-              </ExternalLink>{" "}
-              on Twitter
-            </Heading>
-            <Tweets />
           </Container>
         </Box>
       </Box>
 
-      {/* Footer */}
+      {/* Tweets */}
       <Box bg="white" py={4}>
-        <Container>
-          <Footer />
+        <Container maxWidth={1136}>
+          <Heading
+            fontWeight="regular"
+            textAlign="center"
+            fontSize={3}
+            mt={0}
+            mb={22}
+          >
+            Follow{" "}
+            <ExternalLink
+              color="deepSkyBlue"
+              href="https://twitter.com/balance_io"
+            >
+              <Strong>@balance_io</Strong>
+            </ExternalLink>{" "}
+            on Twitter
+          </Heading>
+          <Tweets />
         </Container>
       </Box>
-    </Layout>
-  );
-};
+    </Box>
+
+    {/* Footer */}
+    <Box bg="white" py={4}>
+      <Container>
+        <Footer />
+      </Container>
+    </Box>
+  </Layout>
+);
 
 const Phone = () => {
   const image = useStaticQuery(graphql`
