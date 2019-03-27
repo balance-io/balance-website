@@ -37,6 +37,7 @@ const IndexPage = () => (
               fontFamily="graphik"
               fontSize={5}
               color="text"
+              textAlign="center"
               fontWeight="semibold"
             >
               See your Balance in Open Finance
@@ -47,7 +48,9 @@ const IndexPage = () => (
               fontWeight="regular"
               lineHeight={1.4}
               mb={0}
+              textAlign="center"
               css={{ maxWidth: 576 }}
+              mx="auto"
               fontSize={4}
               mt={3}
               color="textLighter"
@@ -91,32 +94,23 @@ const IndexPage = () => (
           </Container>
         </Box>
 
-        <Box mt={3} mb={5}>
+        <Box my={5}>
           <Container>
-            <Flex mx={-2}>
-              <Flex
-                justifyContent="center"
-                flexDirection="column"
-                width={[`100%`, null, `60%`]}
-                px={2}
-              >
-                {/* App Store */}
-                <Flex justifyContent="center" mt={5} mb={4}>
-                  <AppStoreBadge />
-                </Flex>
-
-                {/* Community */}
-                <Box mb={4}>
-                  <Heading fontWeight="regular" textAlign="center" fontSize={3}>
-                    Get notified about our <Strong>Android</Strong> app
-                  </Heading>
-                  <Flex justifyContent="center" my={3}>
-                    <SubscriptionForm />
-                  </Flex>
-                  <Subscribers />
-                </Box>
-              </Flex>
+            {/* App Store */}
+            <Flex justifyContent="center" mb={4}>
+              <AppStoreBadge />
             </Flex>
+
+            {/* Community */}
+            <Box mb={4}>
+              <Heading fontWeight="regular" textAlign="center" fontSize={3}>
+                Get notified about our <Strong>Android</Strong> app
+              </Heading>
+              <Flex justifyContent="center" my={3}>
+                <SubscriptionForm />
+              </Flex>
+              <Subscribers />
+            </Box>
           </Container>
         </Box>
       </Box>
