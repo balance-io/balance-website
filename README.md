@@ -2,6 +2,8 @@
 
 ### (built with [gatsbyjs](https://github.com/gatsbyjs/gatsby))
 
-`npm run dev` for development
+`yarn` to install
 
-`npm run build` for production
+`yarn start` for development
+
+`yarn build` for production

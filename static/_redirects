@@ -9,7 +9,12 @@
 /privacy        /
 /download       /
 
-/tokens         /erc20-tokens
+/tokens         /
+/erc20-tokens   /
+/about          /
+/exchange       /
+/blog           https://medium.com/balance-io
+/meetups        https://spectrum.chat/balance/meetups
 
 /invest/*       https://bal-invest.netlify.com/:splat  200
 
@@ -24,3 +29,4 @@ https://balancemy.money/* https://balance.io/:splat 301!
 https://www.balancemy.money/* https://balance.io/:splat 301!
 https://bal.money/* https://balance.io/:splat 301!
 https://www.bal.money/* https://balance.io/:splat 301!
+https://bal-gatsby.netlify.com/* https://balance.io/:splat 301!
