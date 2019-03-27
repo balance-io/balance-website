@@ -1,7 +1,5 @@
 import React from "react";
-import { Flex, Image } from "rebass";
-
-import { ExternalLink } from "../Links";
+import { Flex, Image, Link } from "rebass";
 
 import { useSiteMetadata } from "../../hooks";
 
@@ -45,19 +43,20 @@ const Footer = ({ light }) => {
       alignItems="center"
     >
       {urls.map((link, index) => (
-        <ExternalLink
+        <Link
           color={light ? "textLighter" : "textDark"}
           fontSize={1}
           key={index}
           href={link.url}
           mt={[index !== 0 ? 3 : 0, 0]}
           py={2}
+          css={{ textDecoration: "none" }}
         >
           <Flex>
             <FooterIcon mr={2} label={link.label} />
             {link.label}
           </Flex>
-        </ExternalLink>
+        </Link>
       ))}
     </Flex>
   );

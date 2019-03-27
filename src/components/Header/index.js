@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-import { Flex, Image } from "rebass";
+import { Flex, Image, Link as RebassLink } from "rebass";
 
 import { ExternalLink } from "../Links";
 
@@ -33,13 +33,14 @@ const Header = ({ light }) => {
           style={{ verticalAlign: "middle" }}
         />
       </Link>
-      <ExternalLink
+      <RebassLink
         fontSize={4}
         color={light ? "textLightest" : "textLighter"}
         href={managerUrl}
+        css={{ textDecoration: "none" }}
       >
         Manager
-      </ExternalLink>
+      </RebassLink>
     </Flex>
   );
 };
