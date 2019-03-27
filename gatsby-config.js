@@ -8,7 +8,7 @@ module.exports = {
     author: `@balance_io`,
     supportUrl: `http://support.balance.io/`,
     managerUrl: `https://manager.balance.io/`,
-    appStoreUrl: `https://testflight.apple.com/join/QXCgM6bu`,
+    appStoreUrl: `https://testflight.apple.com/join/02cARQQL`,
     urls: [
       { url: "https://discord.gg/xCtf2wN", label: "Discord" },
       { url: "https://spectrum.chat/balance/meetups", label: "Meetups" },

@@ -3,7 +3,7 @@ import { Link, Image } from "rebass";
 
 import { useSiteMetadata } from "../../hooks";
 
-import badge from "../../images/app-store-badge.svg";
+import badge from "../../images/testflight-badge.svg";
 
 const AppStoreBadge = () => {
   const { appStoreUrl } = useSiteMetadata();

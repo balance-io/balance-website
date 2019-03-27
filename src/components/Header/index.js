@@ -13,7 +13,12 @@ const Header = ({ light }) => {
   const { supportUrl, siteTitle, managerUrl } = useSiteMetadata();
 
   return (
-    <Flex as="header" alignItems="center" justifyContent="space-evenly" pt={4}>
+    <Flex
+      as="header"
+      alignItems="center"
+      justifyContent={["space-between", "space-evenly"]}
+      pt={4}
+    >
       <ExternalLink
         fontSize={4}
         color={light ? "textLightest" : "textLighter"}
